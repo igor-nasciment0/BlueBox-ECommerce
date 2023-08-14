@@ -1,0 +1,343 @@
+.pagina-carrinho
+{
+    main
+    {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        padding: 30px;
+        color: var(--preto-textos);
+    }
+
+    main > .container-tela
+    {
+        width: 100%;
+        max-width: var(--container-tela);
+
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .sec-carrinho
+    {
+        display: flex;
+        flex-direction: column;
+        margin-right: 30px;
+
+        flex-grow: 1;
+    }
+
+    main > h1
+    {
+        font-size: 22px;
+        margin-bottom: 20px;
+    }
+
+    .container-carrinho
+    {
+        padding: 20px 30px;
+        width: 100%;
+
+        background-color: #FFFFFF;
+        border-radius: 15px;
+        box-shadow: 0 4px 4px 0 rgba($color: #000000, $alpha: 0.2);
+    }
+
+    .container-carrinho .carrinho-produto
+    {
+        display: flex;
+        background-color: #F5F5F5;
+
+        padding: 24px;
+        padding-right: 40px;
+        box-shadow: 0 4px 4px 0 rgba($color: #000000, $alpha: 0.2);
+    }
+
+    .carrinho-produto > img
+    {
+        box-shadow: 0 0 10px 3px rgba($color: #000000, $alpha: 0.4);
+
+        max-width: 145px;    
+        width: 100%;
+        margin-right: 20px;
+    }
+
+    .produto-especificacoes
+    {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+
+        margin-right: auto;
+    }
+
+    .produto-especificacoes > h2
+    {
+        font-size: 16px;
+        font-weight: 500;
+        margin-bottom: 5px;
+    }
+
+    .produto-especificacoes > h3
+    {
+        font-size: 14px;
+        font-weight: 400;
+        margin-bottom: 5px;
+    }
+
+    .produto-especificacoes > h4
+    {
+        font-size: 14px;
+        font-weight: 400;
+        margin-bottom: 16px;
+
+        color: var(--azul-claro-textos);
+    }
+
+    .produto-especificacoes > .container-operadores
+    {
+        display: flex;
+        align-items: flex-end;
+    }
+
+    .operador-qtd
+    {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        margin-right: 16px;
+    }
+
+    .operador-qtd > h4
+    {
+        font-size: 14px;
+        font-weight: 600;
+        margin-bottom: 5px;
+    }
+
+    .operador-qtd > div
+    {
+        display: flex;
+        padding: 4px 8px;
+        border-radius: 100px;
+
+        background-color: var(--cinza-fundo);
+        box-shadow: 0 4px 4px 0 rgba($color: #000000, $alpha: 0.2);
+
+        font-size: 14px;
+        font-weight: 600;
+    }
+
+    .operador-qtd > div > div
+    {
+        margin: 0 16px;
+    }
+
+    .operador-qtd > div > button
+    {
+        font-size: 14px;
+        font-weight: 600;
+
+        background: none;
+        border: none;
+
+        cursor: pointer;
+    }
+
+    .container-operadores > button
+    {
+        padding: 0;
+        background: none;
+        border: none;
+        height: fit-content;
+
+        font-size: 14px;
+        font-weight: 400;
+        color: var(--azul-claro-textos);
+
+        margin-right: 16px;
+    }
+
+    .container-operadores > a
+    {
+        text-decoration: none;
+
+        font-size: 14px;
+        font-weight: 400;
+        color: var(--azul-claro-textos);
+    }
+
+    .produto-preco
+    {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        align-self: center;
+    }
+
+    .produto-preco > h2
+    {
+        font-size: 14px;
+        font-weight: 500;
+        margin-bottom: 5px;
+    }
+
+    .produto-preco > h4
+    {
+        font-size: 14px;
+        font-weight: 500;
+        margin-bottom: 3px;
+        
+        color: rgba($color: #000000, $alpha: 0.75);
+        text-decoration: line-through;
+    }
+
+    .produto-preco > h3
+    {
+        font-weight: 600;
+        font-size: 20px;
+    }
+
+    .sec-total 
+    {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+
+        padding: 30px;
+        border-radius: 15px;
+
+        background-color: white;
+        box-shadow: 0 4px 4px 0 rgba($color: #000000, $alpha: 0.2);
+        
+        text-align: center;
+    }
+
+    .sec-total-precos
+    {
+        margin-bottom: 20px;
+    }
+
+    .sec-total-precos > div
+    {
+        display: flex;
+        justify-content: space-between;
+
+        margin-bottom: 6px;
+        font-size: 14px;
+    }
+
+    .sec-total-precos > div > *
+    {
+        font-weight: 500;
+    }
+
+    .sec-total-precos > .total > *
+    {
+        font-weight: 700;
+        font-size: 22px;
+    }
+
+    .sec-total-precos > .total-produtos > *, .sec-total-precos > .frete > *
+    {
+        font-weight: 600;
+    }
+
+    .sec-total-input
+    {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        margin-bottom: 30px;
+    }
+
+    .sec-total-input > p
+    {
+        margin-bottom: 8px;
+    }
+
+    .sec-total-input > input
+    {
+        width: 95%;
+        padding: 10px 8px;
+        padding-left: 16px;
+        border-radius: 100px;
+        border: none;
+
+        box-shadow: 0 4px 4px 0 rgba($color: #000000, $alpha: 0.2);
+        background-color: var(--cinza-fundo);
+    }
+
+    .sec-total-input > input::placeholder
+    {
+        font-size: 12px;
+    }
+
+    .container-entregas
+    {
+        margin-bottom: 24px;
+
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .container-entregas > div
+    {
+        padding: 12px 18px;
+        background-color: var(--cinza-fundo);
+        border-radius: 15px;
+
+        display: flex;
+        align-items: center;
+
+        box-shadow: 0 4px 4px 0 rgba($color: #000000, $alpha: 0.1);
+    }
+
+    .container-entregas > div > img
+    {
+        width: 100%;
+        max-width: 50px;
+        border-radius: 100px;
+        margin-right: 10px;
+    }
+
+    .container-entregas > div h3
+    {
+        font-size: 14px;
+        font-weight: 500;
+        margin-bottom: 5px;
+    }
+
+    .container-entregas > div p
+    {
+        font-size: 12px;
+        color: var(--azul-claro-textos);
+        margin-bottom: 8px;
+    }
+
+    .container-entregas > div h4
+    {
+        font-size: 16px;
+        font-weight: 600;
+    }
+
+    .sec-total > a
+    {
+        width: 100%;
+        
+        text-transform: uppercase;
+        text-decoration: none;
+        font-size: 16px;
+        font-weight: 500;
+
+        padding: 12px;
+        border-radius: 10px;
+
+        background-color: var(--azul-marca);
+        color: #FFFFFF;
+    }
+}
