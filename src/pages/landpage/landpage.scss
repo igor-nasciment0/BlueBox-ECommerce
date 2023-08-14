@@ -1,0 +1,632 @@
+.pagina-landpage
+{
+    // SEÇÃO 01 – INÍCIO
+
+    .sec01-hogwarts
+    {
+        display: flex;
+        justify-content: center;
+
+        background-color: #030C1E;
+        background-image: url('../../assets/images/backgrounds/hogwarts.png');
+        background-position: -150px;
+        background-repeat: no-repeat;
+        background-size: auto 100%;
+    }
+
+    .sec01-container-tela
+    {
+        color: #FFFFFF;
+        display: flex;
+        justify-content: flex-end;
+
+        max-width: var(--container-tela);
+        width: 100%;
+    }
+    
+    .sec01-container-tela > div
+    {
+        width: 50%;     
+
+        display: flex;
+        justify-content: flex-end;
+    }
+
+    .gradient
+    {
+        width: 25%;
+        height: 100%;
+
+        background: rgb(3,12,30);
+        background: linear-gradient(90deg, rgba(3,12,30,0) 0%, rgba(3,12,30,1) 100%);
+    }
+    
+    .container-texto
+    {
+        box-sizing: content-box;
+        width: 80%;
+        background-color: var(--azul-escuro);
+        padding: 8vh 0;
+
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        h1
+        {
+            font-size: 22px;
+            font-weight: 700;
+            line-height: 30px;
+
+            max-width: 270px;
+            text-align: center;
+
+            margin-bottom: 2vw;
+        }
+    }
+
+    .container-beneficios
+    {
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+
+        .ben-cima, .ben-baixo
+        {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: flex-end;
+
+            div
+            {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+
+                margin: 15px;
+                margin-bottom: 5;
+            }
+            
+            div > img
+            {
+                height: 40px;
+                margin-bottom: 6px;
+            }
+
+            div > h3
+            {
+                font-size: 16px;
+                font-weight: 600;
+                margin-bottom: 4px;
+            }
+
+            div > h4
+            {
+                font-size: 12px;
+                font-weight: 300;
+            }
+        }
+    }
+
+    @media (max-width: 1024px) {
+        .sec01-hogwarts
+        {
+            background-position: unset;
+            background-size: cover;
+        }
+        
+        .sec01-container-tela
+        {
+            justify-content: center;
+
+            padding-bottom: 0;
+            box-shadow: 0 4px 4px 0 rgba($color: #030C1E, $alpha: 0.7);
+        }
+
+        .sec01-container-tela > div
+        {
+            flex-direction: column-reverse;
+            width: 100%;
+        }
+
+        .gradient
+        {
+            display: none;
+        }
+
+        .container-texto
+        {
+            width: 100%;
+            background-color: rgba($color: #030C1E, $alpha: 0.85);
+        }
+    }
+
+    // SEÇÃO 02 – CARDS
+
+    .sec02-cards
+    {
+        display: flex;
+        justify-content: center;
+
+        padding: 40px 0;
+    }
+
+    .container-cards
+    {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+
+        max-width: var(--container-tela);
+        width: 100%;
+
+        padding: 0 1.5vw;
+    }
+
+    .container-cards > div
+    {
+        display: flex;
+        align-items: flex-end;
+        justify-content: flex-end;
+
+        border-radius: 18px;
+        margin: 0 1.5%;
+        padding: 40px 25px;
+        
+        width: 100%;
+        max-width: 340px;
+
+        background-repeat: no-repeat;
+        background-size: cover;
+        box-shadow: 0 4px 4px 0 rgba($color: #000000, $alpha: 0.4);
+    }
+
+    .container-cards > div > img
+    {
+        display: none;
+    }
+
+    .card-text
+    {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .card-text h2
+    {
+        text-align: center;
+        font-size: 22px;
+        color: #FFFFFF;
+        font-weight: 600;
+
+        text-shadow: 0 0 10px #FFFFFF;
+    }
+
+    .card-text a
+    {
+        text-transform: uppercase;
+        text-decoration: none;
+        text-align: center;
+        font-weight: 700;
+        font-size: 16px;
+        color: #FFFFFF;
+
+        margin-top: 40px;
+        padding: 1em 2em;
+        border: 1px solid #FFFFFF;
+        border-radius: 20px;
+    }
+
+    .card-mk
+    {
+        align-items: flex-end;
+        background-image: url('../../assets/images/backgrounds/scorpion-card.png');
+    }
+
+    .card-fifa
+    {
+        align-items: flex-end;
+        background-image: url('../../assets/images/backgrounds/fifa-card.png');
+
+        a
+        {
+            background-color: var(--azul-marca);
+        }
+    }
+
+    .card-doll
+    {
+        justify-content: flex-start !important;
+        background-image: url('../../assets/images/backgrounds/banner-doll.png');
+        
+        a
+        {
+            background-color: #1F1723;
+            border-color: #835F35;
+        }
+    }
+
+    @media (max-width: 1024px)
+    {
+        .card-doll
+        {
+            background-position: -30px;
+        }
+    }
+
+    @media (max-width: 850px)
+    {
+        .container-cards{
+            flex-direction: column;
+        }
+
+        .container-cards > div
+        {
+            justify-content: space-between !important;
+            max-width: unset;
+            width: unset;
+
+            background-size: 100%;            
+            padding: unset;
+            margin-bottom: 16px;
+        }
+
+        .card-text h2
+        {
+            font-size: 20px;
+        }
+
+        .card-text a
+        {
+            font-size: 14px;
+        }
+
+        .container-cards > div > img
+        {
+            display: inline-block;
+            height: 100%;
+            width: 55%;
+            max-width: 360px;
+            border-radius: inherit;
+        }
+
+        .card-text
+        {
+            align-self: center;
+            padding: 30px 20px;
+            width: 100%;
+        }
+
+        .card-mk
+        {
+            background-image: none;
+            background-color: #000000;
+
+        }
+
+        .card-fifa
+        {
+            background-image: none;
+            background-color: #0B0E1F;
+        }
+
+        .card-doll
+        {
+            background-image: none;
+            background-color: #1F1622;
+        }
+    }
+
+    // SEÇÃO 03 - DESTAQUES
+
+    .sec03-produtos
+    {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        padding-top: 25px;
+        padding-bottom: 70px;
+
+        background: rgb(3,12,30);
+        background: linear-gradient(0deg, rgba(3,12,30,1) 20%, rgba(255,255,255,0) 100%);
+    }
+
+    .sec03-produtos h1
+    {
+        font-size: 22px;
+        color: var(--preto-textos);
+        margin-bottom: 2em;
+    }
+
+    .container-produtos
+    {
+        display: flex;
+        justify-content: space-between;
+
+        max-width: var(--container-tela);
+        width: 100%;
+
+        padding: 0 1em;
+    }
+
+    .container-produtos > div
+    {
+        padding: 20px;
+        margin: 0 1%;
+        width: 100%;
+
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+
+        background-color: #FFFFFF;
+        border-radius: 10px;
+        box-shadow: 0 4px 4px 0 rgba($color: #000000, $alpha: 0.4);
+
+        text-align: center;
+        color: var(--preto-textos);
+    }
+
+    .container-produtos > div > img
+    {
+        width: 100%;
+        height: auto;
+        max-width: 200px;
+
+        margin-bottom: 30px;
+    }
+
+    .container-produtos > div > h2
+    {
+        font-weight: 500;
+        font-size: 16px;
+        margin-bottom: 16px;
+        flex-grow: 1;
+    }
+
+    .container-produtos > div > .preco-anterior
+    {
+        font-size: 12px;
+        font-weight: 600;
+        text-decoration: line-through;
+    } 
+
+    .container-produtos > div > .preco
+    {
+        font-size: 28px;
+        font-weight: 700;
+        margin-bottom: 12px;
+    }
+
+    .container-produtos > div > p
+    {
+        font-size: 12px;
+        font-weight: 500;
+        margin-bottom: 6px;
+    }
+
+    .container-produtos > div > a
+    {
+        margin-top: 14px;
+
+        text-transform: uppercase;
+        text-decoration: none;
+        font-weight: 700;
+
+        color: #FFFFFF;
+        background-color: #435681;
+        padding: 10px 20%;
+
+        border-radius: 8px;
+    }
+
+    // SEÇÃO 04 - DESCUBRA A BLUEBOX
+
+    .sec04-descubra
+    {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        padding: 0 20px;        
+        padding-top: 20px;
+        padding-bottom: 240px;
+
+        color: #FFFFFF;
+
+        background-color: #030C1E;
+        background-image: url('../../assets/images/backgrounds/moonlight_background.png');
+        background-size: cover;
+        background-repeat: no-repeat;
+    }
+
+    .sec04-descubra > h1
+    {
+        font-size: 22px;
+        font-weight: 700;
+
+        margin-bottom: 40px;
+    }
+
+    .sec04-descubra > p
+    {
+        font-weight: 400;
+        font-size: 16px;
+
+        width: 100%;
+        max-width: 570px;
+        
+        text-align: center;
+    }
+
+    @media(max-width: 768px)
+    {
+        .sec04-descubra
+        {
+            background-position: -100px;
+            padding-bottom: 120px;
+        }
+
+        .sec04-descubra > h1
+        {
+            font-size: 20px;
+        }
+
+        .sec04-descubra > p
+        {
+            font-size: 14px;
+        }
+    }
+
+    @media (max-width: 500px) {
+        .sec04-descubra
+        {
+            background-position: -160px;
+        }
+    }
+
+    // SEÇÃO 05 - PAC-MAN
+
+    .sec05-pac-man
+    {
+        padding: 25px 30px;
+        background-color: var(--azul-marca);
+        display: flex;
+    }
+
+    .sec05-pac-man > .pac-img-container
+    {
+        width: 50%;
+    }
+
+    .sec05-pac-man > .pac-img-container > img
+    {
+        width: 100%;
+        height: 100%;
+    }
+
+    .sec05-pac-man > .pac-text
+    {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        text-align: center;
+        color: #FFFFFF;
+
+        padding: 0 30px;
+        width: 50%;
+    }
+
+    .sec05-pac-man > .pac-text > h2
+    {
+        font-size: 22px;
+        margin-bottom: 10px;
+    }
+
+    @media(max-width: 768px)
+    {
+        .sec05-pac-man
+        {
+            flex-direction: column;
+        }
+
+        .sec05-pac-man > .pac-img-container
+        {
+            padding: 25px;
+            width: 100%;
+        }
+
+        .sec05-pac-man > .pac-text 
+        {
+            width: 100%;
+            padding-bottom: 8px;
+        }
+
+        .sec05-pac-man > .pac-text > h2
+        {
+            font-size: 18px;
+            margin-bottom: 16px;
+        }
+
+        .sec05-pac-man > .pac-text > p
+        {
+            font-size: 14px;
+        }
+    }
+
+    // SEÇÃO 06 - SOBRE
+
+    .sec06-sobre
+    {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        padding: 35px 30px 160px 30px;
+
+        color: #FFFFFF;
+        background-color: var(--azul-escuro);
+        background-image: url('../../assets/images/backgrounds/gaming-shape.png');
+        background-size: 100% 100%;
+    }
+
+    .sec06-sobre > h1
+    {
+        font-size: 22px;
+        margin-bottom: 30px;
+    }
+
+    .sec06-sobre > img
+    {
+        width: 100%;
+        max-width: 150px;
+        margin-bottom: 35px;
+    }
+
+    .sec06-sobre > div
+    {
+        text-align: center;
+        max-width: 670px;
+    }
+
+    .sec06-sobre > div > p
+    {
+        font-size: clamp(14px, 1.2vw, 16px);
+        margin-bottom: 16px;
+    } 
+
+    @media (max-width: 768px) {
+        
+        .sec06-sobre
+        {
+            padding-bottom: 50px;
+            background-image: none;
+        }
+        
+        .sec06-sobre > h1
+        {
+            font-size: 18px;
+            margin-bottom: 16px;
+        }
+
+        .sec06-sobre > img
+        {
+            max-width: 80px;
+            margin-bottom: 20px;
+        }
+
+        .sec06-sobre > div > p
+        {
+            font-size: 14px;
+            text-shadow: 0 0 16px #FFFFFF;
+        }
+    }
+}
