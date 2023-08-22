@@ -1,8 +1,8 @@
 import './landpage.scss';
 
-import Cabecalho from '../../common/cabecalho/cabecalho';
-import FaixaCategorias from '../../common/faixa-categorias/faixa-cat';
-import Rodape from '../../common/rodape/rodape'
+import Cabecalho from '../../components/cabecalho/cabecalho';
+import FaixaCategorias from '../../components/faixa-categorias/faixa-cat';
+import Rodape from '../../components/rodape/rodape'
 
 import iconCaminhao from '../../assets/images/icons/truck.svg';
 import iconDinheiro from '../../assets/images/icons/money.svg';

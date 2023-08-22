@@ -1,7 +1,7 @@
 import './pedidos.scss';
 
-import Cabecalho from '../../common/cabecalho/cabecalho';
-import Rodape from '../../common/rodape/rodape';
+import Cabecalho from '../../components/cabecalho/cabecalho';
+import Rodape from '../../components/rodape/rodape';
 
 import imgProduto from '../../assets/images/foto_produto.png';
 import iconArrowLeft from '../../assets/images/icons/arrow-left.svg'
