@@ -95,4 +95,17 @@
         max-height: 50px;
         margin-right: 10px;
     }
+
+    button 
+    {
+        background-color: transparent;
+        border: none;
+    }
+
+    button img
+    {
+        color: var(--cinza-imagens);
+        height: 50px;
+        width: 50px;
+    }
 }

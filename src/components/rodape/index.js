@@ -1,10 +1,3 @@
-import logo from '../../assets/images/logo.svg';
-
-import facebook from '../../assets/images/icons/facebook.svg';
-import instagram from '../../assets/images/icons/instagram.svg';
-import whatsapp from '../../assets/images/icons/whatsapp.svg';
-import twitter from '../../assets/images/icons/twitter.svg';
-
 import './index.scss';
 
 export default function Rodape() {
@@ -19,7 +12,7 @@ export default function Rodape() {
                             <p>Seg a Sex - das 9h às 17h</p>
                         </div>
 
-                        <img src={logo} alt="Logo da BlueBox"/>
+                        <img src='/assets/images/logo.svg' alt="Logo da BlueBox"/>
                     </section>
 
                     <div className='linha'></div>
@@ -34,12 +27,12 @@ export default function Rodape() {
                         </div>
 
                         <div className='redes-icons'>
-                            <a href=""><img src={facebook} alt='Facebook' /></a>
-                            <a href=""><img src={instagram} alt='Instagram' /></a>
+                            <a href=""><img src='/assets/images/icons/facebook.svg' alt='Facebook' /></a>
+                            <a href=""><img src='assets/images/icons/instagram.svg' alt='Instagram' /></a>
                         </div>
                         <div className='redes-icons'>
-                            <a href=""><img src={twitter} alt='Twitter' /></a>
-                            <a href=""><img src={whatsapp} alt='Whatsapp' /></a>
+                            <a href=""><img src='assets/images/icons/twitter.svg' alt='Twitter' /></a>
+                            <a href=""><img src='assets/images/icons/whatsapp.svg' alt='Whatsapp' /></a>
                         </div>
                     </section>
                 </div>

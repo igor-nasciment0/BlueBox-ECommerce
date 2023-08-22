@@ -3,9 +3,6 @@ import './index.scss'
 import Cabecalho from '../../components/cabecalho/';
 import Rodape from '../../components/rodape/';
 
-import imagemProduto from '../../assets/images/foto_produto.png';
-import iconLoggi from '../../assets/images/icons/loggi.svg'
-
 export default function Carrinho()
 {
     return(
@@ -19,7 +16,7 @@ export default function Carrinho()
                     <section className='sec-carrinho'>
                         <div className='container-carrinho'>
                             <div className='carrinho-produto'>
-                                <img src={imagemProduto} alt="" />
+                                <img src='/assets/images/foto_produto.png' alt="" />
                             
                                 <div className='produto-especificacoes'>
                                     <h2>God of War: Saga (3 Jogos) (Seminovo) - PS3</h2>
@@ -80,7 +77,7 @@ export default function Carrinho()
 
                         <div className='container-entregas'>
                             <div>
-                                <img src={iconLoggi} alt="Ícone Transportadora" />
+                                <img src='/assets/images/icons/loggi.svg' alt="Ícone Transportadora" />
                                 <div>
                                     <h3>Entrega Loggi</h3>
                                     <p>Receba em até 2 dias úteis</p>

@@ -70,18 +70,43 @@
         height: 22px;
     }
 
-    .nav
+    nav
+    {
+        display: flex;
+        flex-direction: row;
+        align-items: flex-end;
+        gap: 22px;
+
+        margin: 0 7px;
+    }
+
+    nav > div
+    {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 5px;
+    }
+
+    nav > div > img
+    {
+        width: 40px;
+    }
+
+    nav > div > a
+    {
+        color: #FFF;
+        font-size: 12px;
+        text-decoration: none;
+    }
+
+    .container-contato
     {
         display: flex;
         align-items: center;
     }
 
-    .nav:not(.nav:last-child)
-    {
-        margin-right: 15px;
-    } 
-
-    .nav div h2, .nav div a
+    .container-contato div h2, .container-contato div a
     {
         font-size: clamp(12px, 1vw, 14px);
         font-weight: 300;
@@ -90,9 +115,22 @@
         color: white;
     }
 
-    .nav img
+    .container-contato img
     {
         max-height: 50px;
         margin-right: 10px;
+    }
+
+    button 
+    {
+        background-color: transparent;
+        border: none;
+    }
+
+    button img
+    {
+        color: var(--cinza-imagens);
+        height: 50px;
+        width: 50px;
     }
 }

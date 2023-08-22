@@ -1,46 +1,53 @@
 import './index.scss';
 
-import logoComNome from '../../assets/images/LogoComNome.svg';
-import searchIcon from '../../assets/images/icons/search.svg';
-import borgIcon from '../../assets/images/icons/borg-head.svg';
-import gmailIcon from '../../assets/images/icons/gmail.svg';
-
 import { Link } from 'react-router-dom';
 
-export default function CabecalhoLog()
+export default function CabecalhoLog(props)
 {
     return(
         <header className='common-cabecalho-logado'>
             <div class="container-cabecalho">
                 <div class="logo">
                     <Link to="/">
-                        <img src={logoComNome} alt="Logo da BlueBox"/>
+                        <img src='/assets/images/LogoComNome.svg' alt="Logo da BlueBox"/>
                     </Link>
                 </div>
 
                 <div class="input">
                     <input type="text" placeholder="O que você está buscando?"/>
-                    <img src={searchIcon} alt=""/>
+                    <img src='/assets/images/icons/search.svg' alt=""/>
                 </div>
                 
             
-                <div class="nav">
-                    <img src={borgIcon} alt=""/>
+                <nav>
+                    <div>
+                        <img src="/assets/images/icons/user.svg" alt="" />
+                        <Link to='/'>Fulano</Link>
+                    </div>
 
                     <div>
-                        <h2>Bem-vindo.</h2>
-                        <Link to="/">Entre ou cadastre-se.</Link>
+                        <img src="/assets/images/icons/cart.svg" alt="" />
+                        <Link to='/'>Carrinho</Link>
                     </div>
-                </div>
 
-                <div class="nav">
-                    <img src={gmailIcon} alt=""/>
+                    <div>
+                        <img src="/assets/images/icons/truckCabecalho.svg" alt="" />
+                        <Link to='/'>Pedidos</Link>
+                    </div>
+                </nav>
+
+                <div class="container-contato">
+                    <img src='/assets/images/icons/gmail.svg' alt=""/>
 
                     <div>
                         <h2>Precisa de ajuda?</h2>
                         <Link to="/">Fale conosco</Link>
                     </div>
                 </div>
+
+                <button>
+                    <img src='/assets/images/icons/sun.svg' alt="" />
+                </button>
             </div>
         </header>
     );

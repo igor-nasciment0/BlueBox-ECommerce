@@ -8,7 +8,7 @@
         justify-content: center;
 
         background-color: #030C1E;
-        background-image: url('../../assets/images/backgrounds/hogwarts.png');
+        background-image: url('../../../public/assets/images/backgrounds/hogwarts.png');
         background-position: -150px;
         background-repeat: no-repeat;
         background-size: auto 100%;
@@ -224,13 +224,13 @@
     .card-mk
     {
         align-items: flex-end;
-        background-image: url('../../assets/images/backgrounds/scorpion-card.png');
+        background-image: url('../../../assets/images/backgrounds/scorpion-card.png');
     }
 
     .card-fifa
     {
         align-items: flex-end;
-        background-image: url('../../assets/images/backgrounds/fifa-card.png');
+        background-image: url('../../../assets/images/backgrounds/fifa-card.png');
 
         a
         {
@@ -241,7 +241,7 @@
     .card-doll
     {
         justify-content: flex-start !important;
-        background-image: url('../../assets/images/backgrounds/banner-doll.png');
+        background-image: url('../../../assets/images/backgrounds/banner-doll.png');
         
         a
         {
