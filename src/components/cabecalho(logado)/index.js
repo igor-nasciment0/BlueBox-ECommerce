@@ -7,10 +7,10 @@ import gmailIcon from '../../assets/images/icons/gmail.svg';
 
 import { Link } from 'react-router-dom';
 
-export default function Cabecalho()
+export default function CabecalhoLog()
 {
     return(
-        <header className='common-cabecalho'>
+        <header className='common-cabecalho-logado'>
             <div class="container-cabecalho">
                 <div class="logo">
                     <Link to="/">

@@ -14,8 +14,7 @@ root.render(
       <Routes>
         <Route path='/' element={<Landpage/>}/>
         <Route path='/carrinho' element={<Carrinho/>} />
-        <Route path='/meus-pedidos' element={<User_Pedidos />} />
-        <Route path='/pesquisa' element={<Pesquisa />} />
+        <Route path='/meus-pedidos' element={<User_Pedidos/>} />
       </Routes>
     </BrowserRouter>
   </React.StrictMode>

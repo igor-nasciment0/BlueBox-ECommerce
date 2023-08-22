@@ -1,0 +1,161 @@
+.common-rodape
+{
+    display: flex;
+    justify-content: center;
+
+    background-color: var(--azul-marca);
+
+    > .container-tela
+    {
+        max-width: var(--container-tela);
+        width: 100%;
+        padding: 20px;
+
+        display: flex;
+        flex-direction: row;
+    }
+
+    .container-mobile-cima, .container-mobile-baixo
+    {
+        display: flex;
+        flex-direction: row;
+        flex-grow: 1;
+        justify-content: space-evenly;
+    }
+
+    .container-tela section
+    {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        color: #FFFFFF;
+        width: fit-content;
+        padding: 20px 0;
+        margin: 0 16px;
+
+        font-size: 11px;
+    }
+
+    .container-tela .linha
+    {
+        height: 100%;
+        width: 1px;
+        background-color: #FFFFFF;
+    }
+
+    .container-tela .rodape-quadro
+    {
+        padding: 16px;
+        padding-bottom: 0;
+        border: 1px solid #FFFFFF;
+        border-radius: 18px;
+
+        max-width: 255px;
+    }
+
+    .container-tela p
+    {
+        margin-bottom: 1em;
+    }
+
+    .secao-atendimento > .rodape-quadro
+    {
+        text-align: center;
+        margin-bottom: 60px;
+    }
+    
+    .secao-redes
+    {
+        text-align: center;
+    }
+
+    .secao-redes .rodape-quadro
+    {
+        margin-bottom: 45px;
+    }
+
+    .secao-redes img
+    {
+        margin: 0 10px;
+    }
+
+    .secao-sobre h3
+    {
+        text-align: center;
+        margin-bottom: 8px;
+    }
+
+    .secao-institucional h3
+    {
+        text-align: center;
+        margin-bottom: 8px;
+    }
+
+    .secao-institucional > div
+    {
+        display: flex;
+        flex-direction: column;
+        padding-bottom: 16px !important;
+    }
+
+    .secao-institucional > div > a
+    {
+        color: #FFFFFF;
+        margin-bottom: 5px;
+        text-decoration: none;
+        
+    }
+
+    .secao-institucional > div > a:hover
+    {
+     text-decoration: underline;
+    }
+
+    @media(max-width: 768px)
+    {
+        .container-tela
+        {
+            flex-direction: column;
+        }
+
+        .container-tela section
+        {
+            width: 100%;
+        }
+
+        .container-tela .linha
+        {
+            display: none;
+        }
+
+        .container-tela .rodape-quadro
+        {
+            width: 100%;
+        }
+
+        .secao-redes > .rodape-quadro
+        {
+            display: none;
+        }
+
+        .redes-icons
+        {
+            display: flex;
+            width: 100%;
+            justify-content: space-around;
+            margin-bottom: 8px;
+            flex-wrap: wrap;
+        }
+
+        .redes-icons img
+        {
+            margin: 0;
+        }
+
+        .secao-sobre
+        {
+            display: none !important;
+        }
+    }
+}
