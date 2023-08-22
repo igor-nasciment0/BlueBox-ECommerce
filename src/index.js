@@ -6,6 +6,7 @@ import './index.scss';
 import Landpage from './pages/landpage/landpage';
 import Carrinho from './pages/carrinho/carrinho';
 import User_Pedidos from './pages/user_pedidos/pedidos';
+import Pesquisa from './pages/pesquisa/pesquisa';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -14,7 +15,8 @@ root.render(
       <Routes>
         <Route path='/' element={<Landpage/>}/>
         <Route path='/carrinho' element={<Carrinho/>} />
-        <Route path='/meus-pedidos' element={<User_Pedidos/>} />
+        <Route path='/meus-pedidos' element={<User_Pedidos />} />
+        <Route path='/pesquisa' element={<Pesquisa />} />
       </Routes>
     </BrowserRouter>
   </React.StrictMode>
