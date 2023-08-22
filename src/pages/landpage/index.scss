@@ -224,13 +224,13 @@
     .card-mk
     {
         align-items: flex-end;
-        background-image: url('../../../assets/images/backgrounds/scorpion-card.png');
+        background-image: url('../../../public/assets/images/backgrounds/scorpion-card.png');
     }
 
     .card-fifa
     {
         align-items: flex-end;
-        background-image: url('../../../assets/images/backgrounds/fifa-card.png');
+        background-image: url('../../../public/assets/images/backgrounds/fifa-card.png');
 
         a
         {
@@ -241,7 +241,7 @@
     .card-doll
     {
         justify-content: flex-start !important;
-        background-image: url('../../../assets/images/backgrounds/banner-doll.png');
+        background-image: url('../../../public/assets/images/backgrounds/banner-doll.png');
         
         a
         {
@@ -441,7 +441,7 @@
         color: #FFFFFF;
 
         background-color: #030C1E;
-        background-image: url('../../assets/images/backgrounds/moonlight_background.png');
+        background-image: url('../../../public/assets/images/backgrounds/moonlight_background.png');
         background-size: cover;
         background-repeat: no-repeat;
     }
@@ -574,7 +574,7 @@
 
         color: #FFFFFF;
         background-color: var(--azul-escuro);
-        background-image: url('../../assets/images/backgrounds/gaming-shape.png');
+        background-image: url('../../../public/assets/images/backgrounds/gaming-shape.png');
         background-size: 100% 100%;
     }
 

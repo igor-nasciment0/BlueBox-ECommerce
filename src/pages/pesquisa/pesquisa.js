@@ -1,11 +1,8 @@
 import './pesquisa.scss';
 
-import Cabecalho from '../../components/cabecalho/cabecalho';
-import FaixaCategorias from '../../components/faixa-categorias/faixa-cat';
-import Rodape from '../../components/rodape/rodape'
-
-import Galinha from '../../assets/images/galinha.png';
-import BackgroundStardewValley from '../../assets/images/backgrounds/stardewvalleyWallpaper.png';
+import Cabecalho from '../../components/cabecalho/';
+import FaixaCategorias from '../../components/faixa-categorias/';
+import Rodape from '../../components/rodape/'
 
 export default function Pesquisa() 
 {
