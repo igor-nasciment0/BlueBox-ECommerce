@@ -7,7 +7,7 @@ import Rodape from '../../components/rodape/rodape'
 import Galinha from '../../assets/images/galinha.png';
 import BackgroundStardewValley from '../../assets/images/backgrounds/stardewvalleyWallpaper.png';
 
-export default function pesquisa() 
+export default function Pesquisa() 
 {
   return(
     <div className='pesquisaBody'>
