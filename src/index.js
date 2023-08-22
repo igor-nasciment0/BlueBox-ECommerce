@@ -3,9 +3,9 @@ import ReactDOM from 'react-dom/client';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import './index.scss';
 
-import Landpage from './pages/landpage/landpage';
-import Carrinho from './pages/carrinho/carrinho';
-import User_Pedidos from './pages/user_pedidos/pedidos';
+import Landpage from './pages/landpage/';
+import Carrinho from './pages/carrinho/';
+import User_Pedidos from './pages/user_pedidos/';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

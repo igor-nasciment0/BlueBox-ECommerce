@@ -1,4 +1,4 @@
-import './cabecalho.scss';
+import './index.scss';
 
 import logoComNome from '../../assets/images/LogoComNome.svg';
 import searchIcon from '../../assets/images/icons/search.svg';

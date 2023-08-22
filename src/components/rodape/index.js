@@ -5,7 +5,7 @@ import instagram from '../../assets/images/icons/instagram.svg';
 import whatsapp from '../../assets/images/icons/whatsapp.svg';
 import twitter from '../../assets/images/icons/twitter.svg';
 
-import './rodape.scss';
+import './index.scss';
 
 export default function Rodape() {
     return (

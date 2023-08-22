@@ -1,7 +1,7 @@
-import './carrinho.scss'
+import './index.scss'
 
-import Cabecalho from '../../components/cabecalho/cabecalho';
-import Rodape from '../../components/rodape/rodape';
+import Cabecalho from '../../components/cabecalho/';
+import Rodape from '../../components/rodape/';
 
 import imagemProduto from '../../assets/images/foto_produto.png';
 import iconLoggi from '../../assets/images/icons/loggi.svg'

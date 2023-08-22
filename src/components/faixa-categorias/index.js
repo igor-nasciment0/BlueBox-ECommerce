@@ -1,4 +1,4 @@
-import './faixa-cat.scss'
+import './index.scss'
 import Seta from '../../assets/images/icons/arrow-down.svg'
 
 export default function FaixaCategorias() {
