@@ -12,7 +12,7 @@ export default function User_Pedidos() {
                 <div className='container-tela'>
                     <h1>Meus Pedidos</h1>
                     <a href="">
-                        <img src='/assets/images/foto_produto.png' alt="" />
+                        <img src='/assets/images/icons/arrow-left.svg' alt="" />
                         Minha conta
                     </a>
                     
@@ -21,7 +21,7 @@ export default function User_Pedidos() {
                         <h2>Junho / 2023</h2>
                         <div className='compra'>
                             <div className='compra-especificacoes'>
-                                <img src='/assets/images/icons/arrow-left.svg' alt="Imagem do Produto" />
+                                <img src='/assets/images/foto_produto.png' alt="Imagem do Produto" />
                                 <div>
                                     <h3>God of War: Saga (3 Jogos) (Seminovo) - PS3</h3>
                                     <p>Você comprou em <span>16/06/2023</span>.</p>

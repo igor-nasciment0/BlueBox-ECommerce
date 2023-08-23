@@ -1,5 +1,9 @@
 .pagina-pedidos
 {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+
     main
     {
         display: flex;
@@ -7,6 +11,8 @@
         color: var(--preto-textos);
 
         padding: 45px 30px;
+
+        flex-grow: 1;
     }
 
     > main .container-tela

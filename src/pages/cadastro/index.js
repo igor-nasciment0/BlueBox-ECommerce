@@ -42,6 +42,8 @@ export default function TelaCadastro(){
                 
             </main>   
 
+            <Rodape/>
+
         </div>
 
     )
