@@ -1,8 +1,8 @@
-import './pesquisa.scss';
+import './index.scss';
 
-import Cabecalho from '../../components/cabecalho/';
-import FaixaCategorias from '../../components/faixa-categorias/';
-import Rodape from '../../components/rodape/'
+import Cabecalho from '../../components/cabecalho';
+import FaixaCategorias from '../../components/faixa-categorias';
+import Rodape from '../../components/rodape'
 
 export default function Pesquisa() 
 {

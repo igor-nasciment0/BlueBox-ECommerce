@@ -6,8 +6,8 @@ import './index.scss';
 import Landpage from './pages/landpage/';
 import Carrinho from './pages/carrinho/';
 import User_Pedidos from './pages/user_pedidos/';
-import Pesquisa from './pages/pesquisa/pesquisa';
-import TelaCadastro from './pages/Cadastro/Cadastro';
+import Pesquisa from './pages/pesquisa';
+import TelaCadastro from './pages/cadastro/';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -18,7 +18,7 @@ root.render(
         <Route path='/carrinho' element={<Carrinho/>} />
         <Route path='/meus-pedidos' element={<User_Pedidos/>} />
         <Route path='/pesquisa' element={<Pesquisa/>} />
-        <Route path='/Cadatro' element={<TelaCadastro/>} />
+        <Route path='/cadastro' element={<TelaCadastro/>} />
       </Routes>
     </BrowserRouter>
   </React.StrictMode>
