@@ -1,0 +1,89 @@
+.card-produto
+{
+    padding: 20px;
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+
+    background-color: #FFFFFF;
+    border-radius: 10px;
+    box-shadow: 0 4px 4px 0 rgba($color: #000000, $alpha: 0.4);
+
+    color: var(--preto-textos);
+
+    > img
+    {
+        width: 100%;
+        height: auto;
+        max-width: 200px;
+
+        margin-bottom: 30px;
+    }
+
+    > h2
+    {
+        font-weight: 600;
+        font-size: 15px;
+        margin-bottom: 16px;
+        flex-grow: 1;
+    }
+
+    > .preco-anterior
+    {
+        font-size: 12px;
+        font-weight: 600;
+        text-decoration: line-through;
+    } 
+
+    > .preco
+    {
+        font-size: 28px;
+        font-weight: 700;
+        margin-bottom: 12px;
+    }
+
+    > p
+    {
+        font-size: 12px;
+        font-weight: 500;
+        margin-bottom: 6px;
+    }
+
+    > a
+    {
+        margin-top: 14px;
+
+        text-transform: uppercase;
+        text-decoration: none;
+        font-weight: 700;
+
+        color: #FFFFFF;
+        background-color: #435681;
+        box-shadow: 0 4px 4px 0 rgba($color: #000000, $alpha: 0.2);
+        padding: 10px 20%;
+
+        border-radius: 8px;
+    }
+}
+
+.tema-cinza
+{
+    background-color: var(--cinza-fundo);
+    color: var(--preto-textos);
+    border: 1px solid rgba($color: #000000, $alpha: 0.2);
+}
+
+.tema-claro
+{
+    background-color: #FFF;
+    color: var(--preto-textos);
+}
+
+.tema-escuro
+{
+    background-color: var(--cinza-componentes);
+    color: #FFF;    
+}

@@ -4,6 +4,7 @@ import Cabecalho from '../../components/cabecalho/';
 import CabecalhoLog from '../../components/cabecalho(logado)';
 import FaixaCategorias from '../../components/faixa-categorias/';
 import Rodape from '../../components/rodape/'
+import CardProduto from '../../components/cardProduto';
 
 export default function Landpage()
 {
@@ -81,53 +82,10 @@ export default function Landpage()
                     <h1>Destaques</h1>
 
                     <div className='container-produtos'>
-                        <div>
-                            <img src='/assets/images/foto_produto.png' alt="Assassin's Creed" />
-                            <h2>Assassins Creed Brotherhood (Seminovo) - PS3</h2>
-                            <h4 className='preco-anterior'>R$ 44,99</h4>
-                            <h3 className='preco'>R$ 29,99</h3>
-
-                            <p>Ou em até 10x de R$2,99</p>
-                            <p>PIX: 10% de Desconto</p>
-
-                            <a href="">Comprar</a>
-                        </div>
-
-                        <div>
-                            <img src='/assets/images/foto_produto.png' alt="Assassin's Creed" />
-                            <h2>Assassins Creed Brotherhood (Seminovo) - PS3</h2>
-                            <h4 className='preco-anterior'>R$ 44,99</h4>
-                            <h3 className='preco'>R$ 29,99</h3>
-
-                            <p>Ou em até 10x de R$2,99</p>
-                            <p>PIX: 10% de Desconto</p>
-
-                            <a href="">Comprar</a>
-                        </div>
-
-                        <div>
-                            <img src='/assets/images/foto_produto.png' alt="Assassin's Creed" />
-                            <h2>Assassins Creed Brotherhood (Seminovo) - PS3</h2>
-                            <h4 className='preco-anterior'>R$ 44,99</h4>
-                            <h3 className='preco'>R$ 29,99</h3>
-
-                            <p>Ou em até 10x de R$2,99</p>
-                            <p>PIX: 10% de Desconto</p>
-
-                            <a href="">Comprar</a>
-                        </div>
-
-                        <div>
-                            <img src='/assets/images/foto_produto.png' alt="Assassin's Creed" />
-                            <h2>Assassins Creed Brotherhood (Seminovo) - PS3</h2>
-                            <h4 className='preco-anterior'>R$ 44,99</h4>
-                            <h3 className='preco'>R$ 29,99</h3>
-
-                            <p>Ou em até 10x de R$2,99</p>
-                            <p>PIX: 10% de Desconto</p>
-
-                            <a href="/">Comprar</a>
-                        </div>
+                        <CardProduto />
+                        <CardProduto />
+                        <CardProduto />
+                        <CardProduto />
                     </div>
                 </section>
 
