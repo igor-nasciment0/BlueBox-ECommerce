@@ -100,6 +100,48 @@ export default function Pedido() {
                             <CardProduto tema="tema-cinza"/>
                         </div>
                     </section>
+
+                    <section className="sec-detalhes">
+                        <h1>Informações</h1>
+
+                        <div className="info-usado">
+                            <h2>Importante</h2>
+                            <p>Esse produto é usado. Garantimos sua perfeita funcionabilidade. ;)</p>
+                            <h3>Estado do Jogo:</h3>
+
+                            <ul>
+                                <li>Disco: Sem riscos ou arranhões visíveis, funcionamento perfeito.</li>
+                                <li>Embalagem: Caixa original em ótimo estado, com mínimas marcas de desgaste.</li>
+                                <li>Manual: Manual de instruções incluído e em excelente condição.</li>
+                            </ul>
+
+                            <p>Sendo um produto usado, as imagens são apenas para fins ilustrativos e podem não refletir seu estado real.</p>
+                        </div>
+                        
+                        <div>
+                            <h2>Descrição do porduto</h2>
+                            <p>God of War: Collection tem como proposta central trazer o esplendor da série através de visuais em alta definição e uma jogabilidade ainda mais fluida. O game apresenta um compilado dos dois títulos mais aclamados da geração passada, agora com jogabilidade e gráficos melhorados, mas todas a qualidade da série mantida. A taxa estável de 60 quadros por segundo mostra que o terceiro PlayStation não encontra problemas em reproduzir os dois games com a aplicação de filtros de correção de bordas serrilhadas e cores ainda mais vibrantes.</p>
+                            <p>Além disso, os dois jogos refeitos contam com o sistema de troféus da PSN. Com isso, os gamers têm a possibilidade de comparar conquistas adquiridas através do progresso nas tramas dos primeiros games de Kratos. Os troféus consistem em uma adição interessante para quem gosta de ser recompensado pelos grandes feitios durante a ação de God of War. Reviva toda a nostálgia da série que conquistou seu lugar no mundo dos games, com seus dois primeiro títulos em uma só coleção.</p>
+                        </div>
+
+                        <h2>Especificações</h2>                       
+                        <div className="tabela-especificacoes">
+                            <div className="linha">
+                                <div>Desenvolvedora:</div>
+                                <div>Santa Monica Studios</div>
+                            </div>
+
+                            <div className="linha">
+                                <div>Publicadora:</div>
+                                <div>Sony Interactive Entertainment</div>
+                            </div>
+
+                            <div className="linha">
+                                <div>Data de Lançamento:</div>
+                                <div>28/08/2012</div>
+                            </div>
+                        </div>
+                    </section>
                 </main>
             </div>
 
