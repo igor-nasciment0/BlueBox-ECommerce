@@ -119,7 +119,7 @@ export default function Pedido() {
                         </div>
                         
                         <div>
-                            <h2>Descrição do porduto</h2>
+                            <h2>Descrição do Produto</h2>
                             <p>God of War: Collection tem como proposta central trazer o esplendor da série através de visuais em alta definição e uma jogabilidade ainda mais fluida. O game apresenta um compilado dos dois títulos mais aclamados da geração passada, agora com jogabilidade e gráficos melhorados, mas todas a qualidade da série mantida. A taxa estável de 60 quadros por segundo mostra que o terceiro PlayStation não encontra problemas em reproduzir os dois games com a aplicação de filtros de correção de bordas serrilhadas e cores ainda mais vibrantes.</p>
                             <p>Além disso, os dois jogos refeitos contam com o sistema de troféus da PSN. Com isso, os gamers têm a possibilidade de comparar conquistas adquiridas através do progresso nas tramas dos primeiros games de Kratos. Os troféus consistem em uma adição interessante para quem gosta de ser recompensado pelos grandes feitios durante a ação de God of War. Reviva toda a nostálgia da série que conquistou seu lugar no mundo dos games, com seus dois primeiro títulos em uma só coleção.</p>
                         </div>
@@ -143,6 +143,30 @@ export default function Pedido() {
                         </div>
                     </section>
                 </main>
+
+                <section className="sec-comentarios">
+                    <div>
+                        <div className="avaliacao-geral">
+                            <h2>Avaliação Geral do Produto</h2>
+                            <h3>4.8</h3>
+                            <img src="/assets/images/estrelasRate.png" alt="" />
+                            <h4>46 avaliações</h4>
+                        </div>
+                        <div className="container-avalie">
+                            <div>
+                                <h2>Já comprou este produto?</h2>
+                                <h3>Ajude os outros a saberem o que comprar.</h3>
+                                <img src="/assets/images/estrelasRate.png" alt="" />
+                                <p>Adorei!</p>
+                            </div>
+
+                            <div>
+                                <textarea cols="30" rows="10" placeholder="Gostaria de dizer um pouco mais?"></textarea>
+                                <button>Postar</button>
+                            </div>
+                        </div>
+                    </div>
+                </section>
             </div>
 
             <Rodape/>
