@@ -160,10 +160,33 @@ export default function Pedido() {
                                 <p>Adorei!</p>
                             </div>
 
-                            <div>
+                            {/* <div>
                                 <textarea cols="30" rows="10" placeholder="Gostaria de dizer um pouco mais?"></textarea>
                                 <button>Postar</button>
+                            </div> */}
+                        </div>
+                    </div>
+
+                    <div className="container-comentarios">
+                        <h2>Avaliações</h2>
+
+                        <div>
+                            <div className="container-comentario">
+                                <div>
+                                    <img src="/assets/images/user.png" alt="" />
+                                    <h4>Carlos Henrique</h4>
+                                    <h5>/ 30 de Julho de 2023</h5>
+                                </div>
+
+                                <img src="/assets/images/estrelasRate.png" alt="" />
+
+                                <p>Eu sou nego e não nego, aprovo esse produto</p>
+                                <p className="coment-likes">29 pessoas gostaram deste comentário</p>
                             </div>
+                            
+                            <button>
+                                <img src="/assets/images/icons/like.svg" alt="" />
+                            </button>
                         </div>
                     </div>
                 </section>
