@@ -160,10 +160,10 @@ export default function Pedido() {
                                 <p>Adorei!</p>
                             </div>
 
-                            {/* <div>
+                            <div>
                                 <textarea cols="30" rows="10" placeholder="Gostaria de dizer um pouco mais?"></textarea>
                                 <button>Postar</button>
-                            </div> */}
+                            </div>
                         </div>
                     </div>
 
