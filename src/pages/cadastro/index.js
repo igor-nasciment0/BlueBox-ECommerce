@@ -1,6 +1,6 @@
 import Cabecalho from "../../components/cabecalho"
 import Rodape from "../../components/rodape"
-
+import './index.scss'
 
 
 export default function TelaCadastro(){
@@ -14,21 +14,21 @@ export default function TelaCadastro(){
 
             <div className="Dados-container">
                 <h1>Criar Conta</h1>
-                <div className="inputs-irmãos">
-                    <input type="text" />
-                    <input type="text" />
+                <div className="inputs-irmaos">
+                    <input type="text" placeholder="Nome"/>
+                    <input type="text" placeholder="Sobrenome"/>
                 </div>
 
-                <input type="text" />
-                <input type="text" />
-                <input type="text" />
-                <input type="text" />
-                <input type="text" />
+                <input type="text" placeholder=""/>
+                <input type="text" placeholder=""/>
+                <input type="text" placeholder=""/>
+                <input type="text" placeholder=""/>
+                <input type="text" placeholder=""/>
 
 
                 <div className="Confirmação-Licença">
-                    <p></p>
-                    <input type="checkbox"/>
+                    <p>Li e concordo com os <span>termos e condições de uso</span></p>
+                    <input type="checkbox" className="Confirmar"/>
                     <button></button>
                 </div>
             </div>
