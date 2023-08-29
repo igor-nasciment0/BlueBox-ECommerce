@@ -4,7 +4,8 @@
     flex-direction: column;
     min-height: 100vh;
     justify-content: center;
-
+    background: rgb(255,255,255);
+    background: linear-gradient(180deg, rgba(255,255,255,1) 14%, rgba(33,48,81,1) 54%);
 .Cadastro-container{
     flex-grow: 1;
     display: flex;
@@ -24,6 +25,11 @@
     border-bottom-left-radius: 10px;
 }
 
+.Dados-container > h1{
+    font-size: 25px;
+    align-self: center;
+}
+
 .inputs-irmaos > input{
     width: 261px ;
     height: 35px;
@@ -31,14 +37,40 @@
 
 .Dados-container input{
     height: 35px;
-    margin: 5px;
+    margin: 12px;
     border-radius: 10px;
     border: none;
     box-shadow: 0px 4px 4px 0px #00000041;
+    padding: 10px;
+}
+
+.Confirmação-Licença{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 10px;
+}
+
+.Confirmação-Licença > p {
+    text-align: center;
+    padding: 16px;    
+}
+
+.Confirmação-Licença > button{
+    width: 135px;
+    height: 47px ;
+    flex-shrink: 0;
+    color: white;
+    font-weight: 700;
+    font-size: 18px;
+    border: none;
+    border-radius: 10px;
+    background: #152039;
 }
 
 span{
     color: #4c7ff8;
+    text-align: center;
 }
 
 span:hover{
@@ -49,10 +81,15 @@ span:hover{
     border: none !important;
     box-shadow: none !important;
     margin: none !important;
+    height: 15px !important;
+}
+
+.Termos{
+    display: flex;
 }
 
 .Login-google{
-    
+
 }
 
 }

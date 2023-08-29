@@ -19,17 +19,20 @@ export default function TelaCadastro(){
                     <input type="text" placeholder="Sobrenome"/>
                 </div>
 
-                <input type="text" placeholder=""/>
-                <input type="text" placeholder=""/>
-                <input type="text" placeholder=""/>
-                <input type="text" placeholder=""/>
-                <input type="text" placeholder=""/>
+                <input type="text" placeholder="E-mail"/>
+                <input type="text" placeholder="Senha"/>
+                <input type="text" placeholder="Confirmar Senha"/>
+                <input type="text" placeholder="Telefone"/>
+                <input type="text" placeholder="CPF"/>
 
 
                 <div className="Confirmação-Licença">
-                    <p>Li e concordo com os <span>termos e condições de uso</span></p>
-                    <input type="checkbox" className="Confirmar"/>
-                    <button></button>
+                    <div className="Termos">
+                        <p>Li e concordo com os <br/><span>termos e condições de uso </span></p>
+                        <input type="checkbox" className="Confirmar"/>
+                    </div>
+                    
+                    <button>concluir</button>
                 </div>
             </div>
 
