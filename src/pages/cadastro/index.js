@@ -12,6 +12,7 @@ export default function TelaCadastro(){
 
             <main className="Cadastro-container">
 
+            <section className="Cadastro">
             <div className="Dados-container">
                 <h1>Criar Conta</h1>
                 <div className="inputs-irmaos">
@@ -20,8 +21,8 @@ export default function TelaCadastro(){
                 </div>
 
                 <input type="text" placeholder="E-mail"/>
-                <input type="text" placeholder="Senha"/>
-                <input type="text" placeholder="Confirmar Senha"/>
+                <input type="password" placeholder="Senha"/>
+                <input type="password" placeholder="Confirmar Senha"/>
                 <input type="text" placeholder="Telefone"/>
                 <input type="text" placeholder="CPF"/>
 
@@ -32,16 +33,18 @@ export default function TelaCadastro(){
                         <input type="checkbox" className="Confirmar"/>
                     </div>
                     
-                    <button>concluir</button>
+                    <button>Concluir</button>
                 </div>
             </div>
 
             <div className="Login-google">
-                <img src="" alt="" />
-                <p></p>
-                <button></button>
-                <button> <img src="" alt="" /> </button>
+                <img src="/assets/images/usuario.png" alt="" />
+                <p>Tenha acesso ao melhor da BlueBox com o seu cadastro de usuário</p>
+                <button>Entrar</button>
+                <button className="Log-wit-google"> <img src="/assets/images/google.png" alt="" /> Entrar com o google </button>
             </div>
+
+            </section>
                 
             </main>   
 
