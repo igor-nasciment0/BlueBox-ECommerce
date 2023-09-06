@@ -41,7 +41,7 @@ export default function TelaCadastro(){
                 <img src="/assets/images/usuario.png" alt="" />
                 <p>Tenha acesso ao melhor da BlueBox com o seu cadastro de usuário</p>
                 <button>Entrar</button>
-                <button className="Log-wit-google"> <img src="/assets/images/google.png" alt="" /> Entrar com o google </button>
+                <button className="Log-wit-google"> <img src="/assets/images/google.png" alt="" /> <span>Entrar com o google</span></button>
             </div>
 
             </section>

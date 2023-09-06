@@ -75,10 +75,12 @@
     border: none;
     border-radius: 10px;
     background: #152039;
+    transition: 0.3s;
 }
 
 .Confirmação-Licença > button:hover{
     cursor: pointer;
+    scale: 1.05;
 }
 
 span{
@@ -132,7 +134,7 @@ span:hover{
     width: 112px;
     height: 37px;
     flex-shrink: 0;
-    border-radius: 15px;
+    border-radius: 12px;
     background: #D9D9D9;
     box-shadow: 0px 4px 4px 0px #00000041;
     border: none;
@@ -141,10 +143,12 @@ span:hover{
     font-size: 18px;
     color: #152039;
     font-weight: 600;
+    transition: 0.3s;
 }
 
 .Login-google > button:hover{
     cursor: pointer;
+    scale: 1.05;
 }
 
 .Log-wit-google{
@@ -165,6 +169,13 @@ span:hover{
 .Login-google > img{
     width: 100px;
     height: auto;
+}
+
+.Log-wit-google span{
+    text-decoration: none;
+    color: white;
+    box-shadow: none;
+    text-shadow: none;
 }
 
 }
