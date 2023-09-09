@@ -11,7 +11,7 @@ export default function Pesquisa()
       <Cabecalho/>
       <FaixaCategorias/>
     
-      <div className='infoNavagacao'>
+      <div className='infoNavegacao'>
         <a href=''>Página inicial...</a>
         <p>|</p>
         <a>Resultado da pesquisa</a>
@@ -23,7 +23,16 @@ export default function Pesquisa()
 
           <h2>Tipo</h2>
 
-          <div className='caixaMarcacao'></div>
+          <div className='caixaMarcacao'>
+            <div className='caixa'>              
+              <input type="checkbox" />
+              <p>Novo</p>
+            </div>
+            <div className='caixa'>
+              <input type="checkbox" />
+              <p>Usado</p>
+            </div>
+          </div>
 
           <h2>Preço</h2>
 
@@ -99,7 +108,7 @@ export default function Pesquisa()
                 </p>
                 <a href="">Comprar</a></div>
             </div>
-            <div>
+            <div className='cartoesProduto'>
               <div className='cards'><img src="" alt="" />
                 <h3>Jogo The Legend of Zelda: Twilight Princess - Wii</h3>
                 <h2>R$49,99</h2>
