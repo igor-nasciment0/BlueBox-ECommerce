@@ -5,7 +5,7 @@ import FaixaCategorias from '../../components/faixa-categorias';
 import Rodape from '../../components/rodape'
 import CardProduto from '../../components/cardProduto'
 
-export default function Pesquisa() 
+export default function Pesquisa()
 {
   return(
     <div className='pesquisaBody'>
