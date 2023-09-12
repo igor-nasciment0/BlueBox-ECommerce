@@ -3,6 +3,7 @@ import './index.scss';
 import Cabecalho from '../../components/cabecalho';
 import FaixaCategorias from '../../components/faixa-categorias';
 import Rodape from '../../components/rodape'
+import CardProduto from '../../components/cardProduto'
 
 export default function Pesquisa() 
 {
@@ -69,89 +70,27 @@ export default function Pesquisa()
           <div className='produtos'>
             <h1>Novidades</h1>
             <div className='cartoesProduto'>
-              <div className='cards'>
-                <img src="" alt="" />
-                <h3>Jogo The Legend of Zelda: Twilight Princess - Wii</h3>
-                <h2>R$49,99</h2>
-                <p>
-                  Ou em 10x de R$4,99 
-                  <br/>
-                  PIX: 10% de Desconto
-                </p>
-                <a href="">Comprar</a>
-              </div>
-              <div className='cards'><img src="" alt="" />
-                <h3>Jogo The Legend of Zelda: Twilight Princess - Wii</h3>
-                <h2>R$49,99</h2>
-                <p>
-                  Ou em 10x de R$4,99 
-                  <br/>
-                  PIX: 10% de Desconto
-                </p>
-                <a href="">Comprar</a></div>
-              <div className='cards'><img src="" alt="" />
-                <h3>Jogo The Legend of Zelda: Twilight Princess - Wii</h3>
-                <h2>R$49,99</h2>
-                <p>
-                  Ou em 10x de R$4,99 
-                  <br/>
-                  PIX: 10% de Desconto
-                </p>
-                <a href="">Comprar</a></div>
-              <div className='cards'><img src="" alt="" />
-                <h3>Jogo The Legend of Zelda: Twilight Princess - Wii</h3>
-                <h2>R$49,99</h2>
-                <p>
-                  Ou em 10x de R$4,99 
-                  <br/>
-                  PIX: 10% de Desconto
-                </p>
-                <a href="">Comprar</a></div>
+              <CardProduto />
+              <CardProduto />
+              <CardProduto />
+              <CardProduto />
             </div>
             <div className='cartoesProduto'>
-              <div className='cards'><img src="" alt="" />
-                <h3>Jogo The Legend of Zelda: Twilight Princess - Wii</h3>
-                <h2>R$49,99</h2>
-                <p>
-                  Ou em 10x de R$4,99 
-                  <br/>
-                  PIX: 10% de Desconto
-                </p>
-                <a href="">Comprar</a></div>
-              <div className='cards'><img src="" alt="" />
-                <h3>Jogo The Legend of Zelda: Twilight Princess - Wii</h3>
-                <h2>R$49,99</h2>
-                <p>
-                  Ou em 10x de R$4,99 
-                  <br/>
-                  PIX: 10% de Desconto
-                </p>
-                <a href="">Comprar</a></div>
-              <div className='cards'><img src="" alt="" />
-                <h3>Jogo The Legend of Zelda: Twilight Princess - Wii</h3>
-                <h2>R$49,99</h2>
-                <p>
-                  Ou em 10x de R$4,99 
-                  <br/>
-                  PIX: 10% de Desconto
-                </p>
-                <a href="">Comprar</a></div>
-              <div className='cards'><img src="" alt="" />
-                <h3>Jogo The Legend of Zelda: Twilight Princess - Wii</h3>
-                <h2>R$49,99</h2>
-                <p>
-                  Ou em 10x de R$4,99 
-                  <br/>
-                  PIX: 10% de Desconto
-                </p>
-                <a href="">Comprar</a></div>
+              <CardProduto />
+              <CardProduto />
+              <CardProduto />
+              <CardProduto />
             </div>
           </div>
           <div className='instagram'>
             <a href="">Nos siga no Instagram</a>
             <a href="">Novidades toda semana!</a>
-            <img src="" alt="" />
-            <img src="" alt="" />
+            <div className='stardewValley'>
+              <div className='degrade'></div>
+              <img src="/assets/images/backgrounds/stardewvalleyWallpaper.png" alt="Stardew Valley" />
+              <div className='degrade2'></div>
+            </div>
+            <img src="/assets/images/galinha.png" alt="Galinha" />
           </div>
         </div>
       </div>

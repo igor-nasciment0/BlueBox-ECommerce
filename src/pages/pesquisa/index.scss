@@ -96,7 +96,8 @@
         height: auto;
         width: 80%;
         margin-left: 50px;
-        border: 2px solid green;
+        padding: 10px;
+        
     }
 
     .produtos {
@@ -108,5 +109,55 @@
     .cartoesProduto {
         display: flex;
         flex-direction: row;
+        gap: 20px;
+    }
+
+    .card-produto {
+        margin: 20px 0px;
+    }
+
+    .instagram {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        height: 150px;
+        width: 100%;
+        padding: 0px 20px;
+        border-radius: 10px;
+        background: var(--azul-marca, #152039);
+
+        > a {
+            color: #ffffff;
+            text-decoration: none;
+            text-align: center;
+        }
+
+        .degrade {
+            height: 150px;
+            width: 100px;
+            position: absolute;
+            background: linear-gradient(90deg, #152039 50.24%, rgba(21, 32, 57, 0.00) 92.42%);
+        }
+
+        .degrade2 {
+            height: 150px;
+            width: 100px;
+            position: absolute;
+            right: 150px;
+            background: linear-gradient(-90deg, #152039 50.24%, rgba(21, 32, 57, 0.00) 92.42%);    
+        }
+
+        .stardewValley {
+            display: flex;
+            border-radius: 10px;
+            height: 100%;
+
+            > img {
+                width: 500px;
+                margin-right: 20px;
+            }
+        }
+
     }
 }
