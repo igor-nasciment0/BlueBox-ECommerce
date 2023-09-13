@@ -1,0 +1,151 @@
+.Tela-Login{
+
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    justify-content: center;
+    background: rgb(255,255,255);
+    background: linear-gradient(180deg, rgba(255,255,255,1) 14%, rgba(33,48,81,1) 68%);
+
+.Login{
+    display: flex;
+}
+
+.User-Login-container{
+    flex-grow: 1;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    padding: 35px;
+}
+
+.Dados-Container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #D9D9D9;
+    padding: 45px;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+}
+
+.Dados-Container > h1{
+    font-size: 25px;
+    align-self: center;
+    padding: 12px;
+    font-family: 'montserrat';
+}
+
+.Dados-Container input{
+    height: 35px;
+    width: 400px;
+    margin: 12px 0px;
+    border-radius: 10px;
+    border: none;
+    box-shadow: 0px 4px 4px 0px #00000041;
+    padding: 10px;
+}
+
+.Dados-Container input:focus-visible{
+    outline: none;
+}
+
+
+.Dados-Container > button{
+    width: 300px;
+    height: 40px;
+    flex-shrink: 0;
+    margin-top: 10px;
+    margin-bottom: 40px;
+    color: white;
+    font-weight: 700;
+    font-size: 15px;
+    border: none;
+    border-radius: 10px;
+    background: #152039;
+    transition: 0.3s;
+    text-transform: uppercase;
+}
+
+.Dados-Container > button:hover {
+    cursor: pointer;
+    scale: 1.05;
+}
+
+.Dados-Container > a {
+    margin-top: 20px;
+    color: #000000;
+}
+
+.Login-google{
+    background-color: #152039;
+    display: flex;
+    flex-direction: column;
+    padding: 80px;
+    align-items: center;
+    justify-content: center;
+    gap: 25px !important;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+.Login-google > p{
+    color: white;
+    text-align: center;
+    font-family: 'Josefin Sans', sans-serif;
+    font-weight: 400;
+    font-size: 18px;
+    width: 273px;
+    line-height: normal;
+}
+
+.Login-google > button{
+    width: 112px;
+    height: 37px;
+    flex-shrink: 0;
+    border-radius: 12px;
+    background: #D9D9D9;
+    box-shadow: 0px 4px 4px 0px #00000041;
+    border: none;
+    font: 600;
+    font-family: 'Josefin Sans', sans-serif;;
+    font-size: 18px;
+    color: #152039;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+.Login-google > button:hover{
+    cursor: pointer;
+    scale: 1.05;
+}
+
+.Log-wit-google{
+    width: 263.77px !important;
+    height: 49px !important;
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.50));
+    background: none !important;
+    border: solid white 2px !important;
+    border-radius: 10px !important;
+    color: white !important;
+    border-radius: 25px !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px !important;
+}
+
+.Login-google > img{
+    width: 100px;
+    height: auto;
+}
+
+.Log-wit-google span{
+    text-decoration: none;
+    color: white;
+    box-shadow: none;
+    text-shadow: none;
+}
+
+}

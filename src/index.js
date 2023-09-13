@@ -23,9 +23,8 @@ root.render(
         <Route path='/pesquisa' element={<Pesquisa/>}/>
         <Route path='/cadastro' element={<TelaCadastro/>}/>
         <Route path='/produto' element={<Produto/>}/>
-        <Route path='/checkout' element={<Checkout/>}/>
-
-        <Route path='/adm/login' element={<LoginAdm />}/>
+        <Route path='/checkout' element={<Checkout />} />
+        <Route path='/user_login' element={<User_Login/>}/>
       </Routes>
     </BrowserRouter>
   </React.StrictMode>
