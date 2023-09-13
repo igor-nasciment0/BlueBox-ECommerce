@@ -20,7 +20,7 @@ export default function User_Login() {
               <button>ENTRAR</button>
 
               <p>Novo na BlueBox?</p>
-              <button>CRIAR SUA CONTA AGORA</button>
+              <button>crie sua conta</button>
             </div>
 
             <div className="Login-google">

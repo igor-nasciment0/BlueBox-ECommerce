@@ -34,6 +34,7 @@
     font-size: 25px;
     align-self: center;
     padding: 12px;
+    font-family: 'montserrat';
 }
 
 .Dados-Container input{
@@ -53,7 +54,7 @@
 
 .Dados-Container > button{
     width: 300px;
-    height: 40px ;
+    height: 40px;
     flex-shrink: 0;
     margin-top: 10px;
     margin-bottom: 40px;
@@ -64,6 +65,7 @@
     border-radius: 10px;
     background: #152039;
     transition: 0.3s;
+    text-transform: uppercase;
 }
 
 .Dados-Container > button:hover {
