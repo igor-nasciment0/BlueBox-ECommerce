@@ -2,7 +2,7 @@ import './index.scss';
 
 import Cabecalho from '../../components/cabecalho';
 import Rodape from '../../components/rodape';
-import CabecalhoLog from '../../components/cabecalho(logado)';
+import CabecalhoLogado from '../../components/cabecalhoLogado';
 import CardProduto from '../../components/cardProduto';
 
 import { Link } from 'react-router-dom/dist';
@@ -10,7 +10,7 @@ import { Link } from 'react-router-dom/dist';
 export default function Pedido() {
     return(
         <div className="pagina-produto">
-            <CabecalhoLog/>
+            <CabecalhoLogado/>
             
             <div className="container-main">
                 <main>

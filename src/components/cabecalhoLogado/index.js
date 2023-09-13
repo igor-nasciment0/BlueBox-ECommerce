@@ -2,7 +2,7 @@ import './index.scss';
 
 import { Link } from 'react-router-dom';
 
-export default function CabecalhoLog(props)
+export default function CabecalhoLogado(props)
 {
     return(
         <header className='common-cabecalho-logado'>

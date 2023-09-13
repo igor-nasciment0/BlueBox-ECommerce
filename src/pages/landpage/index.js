@@ -1,16 +1,18 @@
 import './index.scss';
 
 import Cabecalho from '../../components/cabecalho/';
-import CabecalhoLog from '../../components/cabecalho(logado)';
+import CabecalhoLogado from '../../components/cabecalhoLogado';
 import FaixaCategorias from '../../components/faixa-categorias/';
 import Rodape from '../../components/rodape/'
 import CardProduto from '../../components/cardProduto';
+import { Link } from 'react-router-dom';
+import AnchorLink from 'react-anchor-link-smooth-scroll';
 
 export default function Landpage()
 {
     return(
         <div className="pagina-landpage">    
-            <CabecalhoLog />
+            <CabecalhoLogado />
             <FaixaCategorias />
 
             <main>
@@ -55,7 +57,7 @@ export default function Landpage()
                         <div className='card-mk'>
                             <div className='card-text'>
                                 <h2>Aproveite<br/>nossos<br/>descontos</h2>
-                                <a href="">Confira</a>
+                                <Link to={'/'}>Confira</Link>
                             </div>               
                             <img src='/assets/images/backgrounds/scorpion-frente.jpg' alt="" /> 
                         </div>
@@ -63,15 +65,15 @@ export default function Landpage()
                         <div className='card-fifa'>
                             <img src='/assets/images/backgrounds/card-fifa.jpg' alt="" />
                             <div className='card-text'>
-                                <h2>Seus jogos<br/>favoritos aqui</h2>
-                                <a href="">Ver jogos</a>                            
+                                <h2>Faça login e <br/> descubra a <br/> BlueBox</h2>
+                                <Link to={'/'}>Entrar</Link>                            
                             </div>
                         </div>
 
                         <div className='card-doll'>
                             <div className='card-text'>
                                 <h2>Descubra mais<br/>sobre nós!</h2>
-                                <a href="">Saiba mais</a>                            
+                                <AnchorLink offset='100' href='#sobre'>Saiba mais</AnchorLink>                            
                             </div>
                             <img src='/assets/images/backgrounds/banner-doll.jpg' alt="" />
                         </div>
@@ -105,7 +107,7 @@ export default function Landpage()
                     </div>
                 </section>
 
-                <section className='sec06-sobre'>
+                <section className='sec06-sobre' id='sobre'>
                     <h1>Sobre nós</h1>
                     <img src='/assets/images/logo.svg' alt="Logo da BlueBox"/>
 

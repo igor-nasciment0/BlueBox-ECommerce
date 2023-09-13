@@ -4,6 +4,8 @@ import Cabecalho from '../../components/cabecalho';
 import FaixaCategorias from '../../components/faixa-categorias';
 import Rodape from '../../components/rodape';
 
+import { Link } from 'react-router-dom';
+
 export default function Checkout()
 {
   return (
@@ -47,7 +49,7 @@ export default function Checkout()
 
       <div className='agradecimento'>
         <h1>Obrigado por comprar conosco!</h1>
-        <a href="">Voltar</a>
+        <Link to={'/'}>Voltar</Link>
       </div>
 
       <Rodape/>
