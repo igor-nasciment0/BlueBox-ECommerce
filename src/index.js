@@ -10,6 +10,7 @@ import Pesquisa from './pages/pesquisa';
 import TelaCadastro from './pages/cadastro/';
 import Produto from './pages/produto'
 import Checkout from './pages/checkout';
+import User_Login from './pages/user_login'
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -22,7 +23,8 @@ root.render(
         <Route path='/pesquisa' element={<Pesquisa/>}/>
         <Route path='/cadastro' element={<TelaCadastro/>}/>
         <Route path='/produto' element={<Produto/>}/>
-        <Route path='/checkout' element={<Checkout/>}/>
+        <Route path='/checkout' element={<Checkout />} />
+        <Route path='/user_login' element={<User_Login/>}/>
       </Routes>
     </BrowserRouter>
   </React.StrictMode>
