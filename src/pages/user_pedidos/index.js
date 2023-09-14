@@ -3,7 +3,9 @@ import './index.scss';
 import Cabecalho from '../../components/cabecalho/';
 import Rodape from '../../components/rodape/';
 
-export default function User_Pedidos() {
+import { Link } from 'react-router-dom';
+
+export default function UserPedidos() {
     return(
         <div className='pagina-pedidos'>
             <Cabecalho/>
@@ -11,10 +13,10 @@ export default function User_Pedidos() {
             <main>
                 <div className='container-tela'>
                     <h1>Meus Pedidos</h1>
-                    <a href="">
+                    <Link to={""}>
                         <img src='/assets/images/icons/arrow-left.svg' alt="" />
                         Minha conta
-                    </a>
+                    </Link>
                     
                     <div className='container-pedidos'>
 
@@ -27,8 +29,8 @@ export default function User_Pedidos() {
                                     <p>Você comprou em <span>16/06/2023</span>.</p>
 
                                     <div>
-                                        <a href="">Encontrar na loja</a>
-                                        <a href="">Ver semelhantes</a>
+                                        <Link to={""}>Encontrar na loja</Link>
+                                        <Link to={""}>Ver semelhantes</Link>
                                     </div>    
                                 </div>
                             </div>
@@ -46,7 +48,7 @@ export default function User_Pedidos() {
                             <div className='compra-status'>
                                 <h3>Status</h3>
                                 <div>Pendente</div>
-                                <a href="">Ver pedido</a>
+                                <Link to={""}>Ver pedido</Link>
                             </div>
                         </div>
                     </div>    

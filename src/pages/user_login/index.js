@@ -2,8 +2,9 @@ import './index.scss';
 
 import Cabecalho from '../../components/cabecalho';
 import Rodape from '../../components/rodape';
+import { Link } from 'react-router-dom';
 
-export default function User_Login() {
+export default function UserLogin() {
   
   return (
     <div className="Tela-Login">
@@ -16,7 +17,7 @@ export default function User_Login() {
               <input type="text" placeholder="E-mail"/>
               <input type="password" placeholder="Senha" />
             
-              <a href="">Esqueceu a senha?</a>
+              <Link to={""}>Esqueceu a senha?</Link>
               <button>ENTRAR</button>
 
               <p>Novo na BlueBox?</p>
