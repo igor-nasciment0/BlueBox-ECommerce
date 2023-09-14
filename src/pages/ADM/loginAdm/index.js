@@ -16,9 +16,9 @@ export default function LoginAdm(params) {
                     <input type="text" />
 
                     <label>Senha:</label>
-                    <input type="text" />
+                    <input type="password" />
 
-                    <Link>Entrar</Link>
+                    <Link to={""}>Entrar</Link>
                 </div>
             </main>
 

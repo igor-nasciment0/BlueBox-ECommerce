@@ -28,11 +28,11 @@ export default function Rodape() {
 
                         <div className='redes-icons'>
                             <a href=""><img src='/assets/images/icons/facebook.svg' alt='Facebook' /></a>
-                            <a href=""><img src='assets/images/icons/instagram.svg' alt='Instagram' /></a>
+                            <a href=""><img src='/assets/images/icons/instagram.svg' alt='Instagram' /></a>
                         </div>
                         <div className='redes-icons'>
-                            <a href=""><img src='assets/images/icons/twitter.svg' alt='Twitter' /></a>
-                            <a href=""><img src='assets/images/icons/whatsapp.svg' alt='Whatsapp' /></a>
+                            <a href=""><img src='/assets/images/icons/twitter.svg' alt='Twitter' /></a>
+                            <a href=""><img src='/assets/images/icons/whatsapp.svg' alt='Whatsapp' /></a>
                         </div>
                     </section>
                 </div>

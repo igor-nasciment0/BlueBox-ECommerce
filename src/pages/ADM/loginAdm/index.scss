@@ -11,13 +11,19 @@
         display: flex;
         flex-direction: column;
         justify-content: center;
+        align-items: center;
 
         flex-grow: 1;
-
+        width: 100%;
+        padding: 120px 20px;
+        
+        background: rgb(33,48,81);
+        background: linear-gradient(0deg, rgba(33,48,81,1) 0%, rgba(33,48,81,0) 100%);
         
         > div
         {
             max-width: 650px;
+            width: 100%;
             padding: 120px 60px;
             padding-bottom: 220px;
             width: 100%;
@@ -55,6 +61,7 @@
             width: 100%;
             padding: 8px 16px;
             border-radius: 20px;
+            box-shadow: 0 4px 4px 0 rgba($color: #000000, $alpha: 0.1);
 
             border: none;
             outline: none;
@@ -68,6 +75,27 @@
         input:last-of-type
         {
             margin-bottom: 71px;
+        }
+
+        a
+        {
+            font-size: 16px;
+            font-weight: 700;
+            text-transform: uppercase;
+            
+            padding: 20px 120px;
+            background-color: var(--azul-marca);
+            color: #FFF;
+            text-decoration: none;
+            border-radius: 20px;
+            box-shadow: rgba($color: #000000, $alpha: 0.25);
+
+            transition: 0.3s;
+        }
+
+        a:hover
+        {
+            transform: scale(1.05);
         }
     }
 }
