@@ -3,7 +3,7 @@ import CabecalhoLogo from "../../../components/cabecalhoLogo";
 import Rodape from "../../../components/rodape"
 import './index.scss';
 
-export default function LoginAdm(params) {
+export default function LoginAdm() {
     return(
         <div className="pagina-login-adm">
             <CabecalhoLogo />

@@ -13,12 +13,15 @@ import Checkout from './pages/checkout';
 import UserLogin from './pages/user_login';
 
 import LoginAdm from './pages/ADM/loginAdm';
+import CadastroProduto from './pages/ADM/cadastroProduto';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <BrowserRouter>
       <Routes>
+
+        {/* PARTE USUÁRIO */}
         <Route path='/' element={<Landpage/>}/>
         <Route path='/carrinho' element={<Carrinho/>}/>
         <Route path='/meus-pedidos' element={<UserPedidos/>}/>
@@ -28,7 +31,9 @@ root.render(
         <Route path='/checkout' element={<Checkout />} />
         <Route path='/login' element={<UserLogin/>}/>
 
+        {/* PARTE ADM */}
         <Route path='/adm/login' element={<LoginAdm/>}/>
+        <Route path='/adm/cadastro-produto' element={<CadastroProduto/>}/>
       </Routes>
     </BrowserRouter>
   </React.StrictMode>

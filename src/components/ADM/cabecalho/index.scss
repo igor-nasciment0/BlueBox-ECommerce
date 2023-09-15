@@ -1,0 +1,72 @@
+.cabecalho-adm
+{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+
+    background-color: var(--azul-marca);
+    padding: 15px 0;
+    padding-right: 70px;
+
+    .container-logo
+    {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        padding: 0 78px;
+    }
+
+    nav
+    {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+
+        gap: 50px;
+    
+        .nav-icons
+        {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            gap: 20px;
+
+            img
+            {
+                height: 25px;
+                padding: 4px 0;
+            }
+
+            .linha
+            {
+                height: 33px;
+                width: 1px;
+                background-color: var(--cinza-imagens);
+            }
+        }
+
+        .usuario
+        {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            gap: 10px;
+
+            img
+            {
+                height: 70px;
+                width: 70px;
+                border-radius: 200px;
+            }
+
+            h3
+            {
+                font-size: 16px;
+                font-weight: 500;
+                color: #FFF;
+            }
+        }
+    }
+}
