@@ -1,0 +1,172 @@
+.pagina-consulta-produto
+{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    min-height: 100vh;
+    color: var(--preto-textos);
+
+    main
+    {
+        display: flex;
+        flex-direction: row;
+        flex-grow: 1;
+        width: 100%;
+
+        .container-consulta
+        {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            flex-grow: 1;
+
+            padding: 55px 30px;
+
+            width: 100%;
+            max-width: 1180px;
+            margin: 0 auto;
+
+            .input
+            {
+                position: relative;
+                width: 100%;
+                max-width: 700px;
+
+                box-shadow: 0 4px 4px 0 rgba($color: #000000, $alpha: 0.25);
+                border-radius: 100px;
+                margin-bottom: 22px;
+
+                img
+                {
+                    position: absolute;
+                    left: 20px;
+                    top: 20px;
+                }
+
+                input
+                {
+                    padding: 25px;
+                    padding-left: 60px;
+                    width: 100%;
+
+                    border: none;
+                    border-radius: 100px;
+                }
+            }
+
+            .filtros
+            {
+                display: flex;
+                flex-direction: row;
+                justify-content: flex-end;
+
+                align-self: flex-end;
+
+                gap: 15px;
+                width: 100%;
+                margin-bottom: 18px;
+
+                select
+                {
+                    border: none;
+                    border-radius: 100px;
+                    box-shadow: 0 4px 4px 0 rgba($color: #000000, $alpha: 0.25);
+
+                    width: 100%;
+                    max-width: 220px;
+                    padding: 5px;
+                    padding-left: 12px;
+                }
+            }
+
+            .container-tabela
+            {
+                width: 100%;
+                max-height: 500px;
+                overflow-y: scroll;
+            }
+
+            ::-webkit-scrollbar
+            {
+                width: 18px;
+                margin-left: 6px;
+            }
+
+            ::-webkit-scrollbar-track
+            {
+                background-color: #ACACAC;
+                padding: 4px;
+                border-radius: 100px;
+            }
+
+            ::-webkit-scrollbar-thumb
+            {
+                background-color: #152039;
+                border-radius: 100px;
+                margin: 4px;
+
+                border: 4px solid transparent;
+                background-clip: content-box;
+            }
+
+            table
+            {
+                background-color: #FFF;
+                border-spacing: 0;
+                border-collapse: collapse;
+                font-size: 16px;
+                text-align: center;
+            
+                width: calc(100% - 8px);
+                margin-right: 8px;
+
+                td
+                {
+                    border: 1px solid #000000E9;
+                    vertical-align: center;
+                }
+
+                thead
+                {
+                    font-weight: 600;
+
+                    td
+                    {
+                        padding: 12px 8px;
+                    }
+                }
+
+                tbody
+                {
+                    font-weight: 400;
+
+                    td
+                    {
+                        padding: 4px 8px;
+                    }
+                }
+
+                button
+                {
+                    background: none;
+                    padding: 0;
+                    border: none;
+                    cursor: pointer;
+
+                    img
+                    {
+                        width: 36px;
+                        height: 36px;
+                        vertical-align: center;
+                    }
+                }
+
+                button:first-child
+                {
+                    margin-right: 10px;
+                }
+            }
+        }
+    }
+}

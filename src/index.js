@@ -14,6 +14,7 @@ import UserLogin from './pages/user_login';
 
 import LoginAdm from './pages/ADM/loginAdm';
 import CadastroProduto from './pages/ADM/cadastroProduto';
+import ConsultaProduto from './pages/ADM/consultaProduto';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -34,6 +35,7 @@ root.render(
         {/* PARTE ADM */}
         <Route path='/adm/login' element={<LoginAdm/>}/>
         <Route path='/adm/cadastro-produto' element={<CadastroProduto/>}/>
+        <Route path='/adm/consulta-produto' element={<ConsultaProduto/>}/>
       </Routes>
     </BrowserRouter>
   </React.StrictMode>
