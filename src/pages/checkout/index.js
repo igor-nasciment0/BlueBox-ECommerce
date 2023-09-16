@@ -78,9 +78,15 @@ export default function Checkout()
           </div>
 
           <div className='casaCliente'>
-            <p>CEP</p>
-            <p>Complemento</p>
-            <p>N° da Casa</p>
+            <div>
+              <p>CEP</p>
+            </div>
+            <div>
+             <p>Complemento</p>
+            </div>
+            <div className='alinhamentoNumero'>
+              <p>N° da Casa</p>
+            </div>
           </div>
 
           <div className='informacaoCliente'>
@@ -99,14 +105,22 @@ export default function Checkout()
             <h2>Pagamento</h2>
           </div>
 
-          <p>Número do Cartão</p>
-          <p>Cupom</p>
-          <p>Nome do Comprador</p>
-          <p>Data de Compra</p>
+          <div>
+            <p>Número do Cartão</p>
+          </div>
+          <div>
+            <p>Cupom</p>
+          </div>
+          <div>
+            <p>Nome do Comprador</p>
+          </div>
+          <div>
+            <p>Data de Compra</p>
+          </div>
 
           <div className='notaFiscal'>
-            <a href=""></a>
-            <img src="" alt="" />
+            <a href="">Baixar Nota Fiscal</a>
+            <img src="/assets/images/icons/download.svg" alt="Download" />
           </div>
         </div>
       </div>
