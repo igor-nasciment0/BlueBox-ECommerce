@@ -16,6 +16,7 @@ export default function Checkout()
         <h1>Checkout</h1>
 
         <img className='galinha' src="/assets/images/galinha.png" alt="Galinha" />
+        
         <div className='compra'>
           <div className='categorias'>
             <div className='espacamento'>
