@@ -1,19 +1,23 @@
+import { useContext } from 'react';
+import { TemaContext } from '../../theme';
 import './index.scss';
 
 import { Link } from 'react-router-dom';
 
 export default function CabecalhoLogado(props)
 {
+    let tema = useContext(TemaContext);
+
     return(
         <header className='common-cabecalho-logado'>
-            <div class="container-cabecalho">
-                <div class="logo">
+            <div className="container-cabecalho">
+                <div className="logo">
                     <Link to="/">
                         <img src='/assets/images/LogoComNome.svg' alt="Logo da BlueBox"/>
                     </Link>
                 </div>
 
-                <div class="input">
+                <div className="input">
                     <input type="text" placeholder="O que você está buscando?"/>
                     <img src='/assets/images/icons/search.svg' alt=""/>
                 </div>
@@ -36,7 +40,7 @@ export default function CabecalhoLogado(props)
                     </div>
                 </nav>
 
-                <div class="container-contato">
+                <div className="container-contato">
                     <img src='/assets/images/icons/gmail.svg' alt=""/>
 
                     <div>
@@ -45,7 +49,11 @@ export default function CabecalhoLogado(props)
                     </div>
                 </div>
 
-                <button>
+                <button onClick={() => {
+                        tema.trocarTema()
+                        console.log(tema.tema)
+                    }
+                }>
                     <img src='/assets/images/icons/sun.svg' alt="" />
                 </button>
             </div>

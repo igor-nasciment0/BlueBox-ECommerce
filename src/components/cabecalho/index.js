@@ -1,25 +1,29 @@
+import { useContext } from 'react';
+import { TemaContext } from '../../theme';
 import './index.scss';
 
 import { Link } from 'react-router-dom';
 
 export default function Cabecalho()
 {
+    let tema = useContext(TemaContext);
+
     return(
         <header className='common-cabecalho'>
-            <div class="container-cabecalho">
-                <div class="logo">
+            <div className="container-cabecalho">
+                <div className="logo">
                     <Link to="/">
                         <img src="/assets/images/LogoComNome.svg" alt="Logo da BlueBox"/>
                     </Link>
                 </div>
 
-                <div class="input">
+                <div className="input">
                     <input type="text" placeholder="O que você está buscando?"/>
                     <img src='/assets/images/icons/search.svg' alt=""/>
                 </div>
                 
             
-                <div class="nav">
+                <div className="nav">
                     <img src='/assets/images/icons/borg-head.svg' alt=""/>
 
                     <div>
@@ -28,7 +32,7 @@ export default function Cabecalho()
                     </div>
                 </div>
 
-                <div class="nav">
+                <div className="nav">
                     <img src='/assets/images/icons/gmail.svg' alt=""/>
 
                     <div>
@@ -37,7 +41,10 @@ export default function Cabecalho()
                     </div>
                 </div>
 
-                <button>
+                <button onClick={() => {
+                    tema.trocarTema()
+                    console.log(tema.tema);
+                }}>
                     <img src='/assets/images/icons/sun.svg' alt="" />
                 </button>
             </div>

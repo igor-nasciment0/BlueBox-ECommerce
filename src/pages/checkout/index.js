@@ -1,7 +1,6 @@
 import './index.scss';
 
 import Cabecalho from '../../components/cabecalho';
-import FaixaCategorias from '../../components/faixa-categorias';
 import Rodape from '../../components/rodape';
 
 import { Link } from 'react-router-dom';
@@ -120,7 +119,7 @@ export default function Checkout()
           </div>
 
           <div className='notaFiscal'>
-            <a href="">Baixar Nota Fiscal</a>
+            <Link to={""}>Baixar Nota Fiscal</Link>
             <img src="/assets/images/icons/download.svg" alt="Download" />
           </div>
         </div>

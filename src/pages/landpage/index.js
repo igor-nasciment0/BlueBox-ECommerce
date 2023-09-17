@@ -12,7 +12,7 @@ export default function Landpage()
 {
     return(
         <div className="pagina-landpage">    
-            <CabecalhoLogado />
+            <Cabecalho />
             <FaixaCategorias />
 
             <main>
