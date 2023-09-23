@@ -28,7 +28,7 @@ export default function BarraLateral() {
                     <img src="/assets/images/icons/adm/barraLateral/arrow-right.svg" alt="Início" />
                 </Link>
 
-                <Link>
+                <Link to={'/adm/cadastro-produto'}>
                     <div className="icone">
                         <img src="/assets/images/icons/adm/barraLateral/register.svg" alt="" />
                     </div>
@@ -38,7 +38,7 @@ export default function BarraLateral() {
                     <img src="/assets/images/icons/adm/barraLateral/arrow-right.svg" alt="Início" />
                 </Link>
 
-                <Link>
+                <Link to={'/adm/consulta-produto'}>
                     <div className="icone">
                         <img src="/assets/images/icons/adm/barraLateral/search.svg" alt="" />
                     </div>

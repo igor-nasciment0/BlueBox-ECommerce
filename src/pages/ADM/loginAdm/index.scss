@@ -15,17 +15,17 @@
 
         flex-grow: 1;
         width: 100%;
-        padding: 120px 20px;
+        padding: 60px 20px;
         
         background: rgb(33,48,81);
         background: linear-gradient(0deg, rgba(33,48,81,1) 0%, rgba(33,48,81,0) 100%);
         
         > div
         {
-            max-width: 650px;
+            max-width: 500px;
             width: 100%;
-            padding: 120px 60px;
-            padding-bottom: 220px;
+            padding: 60px 30px;
+            padding-bottom: 110px;
             width: 100%;
             border-radius: 15px;
 
@@ -40,23 +40,24 @@
 
         h1
         {
-            font-size: 44px;
+            font-size: 26px;
             font-weight: 700;
             margin-bottom: 70px;
         }
 
         label
         {
-            font-size: 18px;
+            font-size: 14px;
             font-weight: 500;
             align-self: flex-start;
 
             margin-left: 10px;
+            margin-bottom: 5px;
         }
 
         input
         {
-            font-size: 18px;
+            font-size: 14px;
 
             width: 100%;
             padding: 8px 16px;
@@ -77,13 +78,14 @@
             margin-bottom: 71px;
         }
 
-        a
+        button
         {
             font-size: 16px;
             font-weight: 700;
             text-transform: uppercase;
+            cursor: pointer;
             
-            padding: 20px 120px;
+            padding: 16px 90px;
             background-color: var(--azul-marca);
             color: #FFF;
             text-decoration: none;
@@ -93,7 +95,7 @@
             transition: 0.3s;
         }
 
-        a:hover
+        button:hover
         {
             transform: scale(1.05);
         }
