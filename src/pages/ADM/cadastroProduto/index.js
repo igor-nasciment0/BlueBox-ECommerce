@@ -1,6 +1,14 @@
+import { useState } from 'react';
 import BarraLateral from '../../../components/ADM/barraLateral';
 import CabecalhoADM from '../../../components/ADM/cabecalho';
 import './index.scss';
+
+const [nomeProduto, setNomeProduto] = useState('')
+const [precoInicial, setPrecoInicial] = useState('')
+const [QtdEstoue, setQtdEstoque] = useState('0')
+const [Descricao, setDescricao] = useState('')
+const [Especificacoes, setEspecificacoes] = useState('')
+const [estadoProduto, setEstadoProduto] = useState(0)
 
 export default function CadastroProduto() {
     return(
