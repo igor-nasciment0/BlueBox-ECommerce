@@ -5,6 +5,9 @@ import './index.scss'
 import axios from "axios";
 import InputMask from 'react-input-mask';
 
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 export default function TelaCadastro(){
 
     const [nome, setNome] = useState('');
@@ -16,13 +19,11 @@ export default function TelaCadastro(){
     const [cpf, setCpf] = useState('');
     const [dataNascimento, setDataNascimento] = useState('');
 
-    const [msgErro, setMsgErro] = useState('');
-
     async function cadastrar() {
         try {
             if(senha !== senhaConfirmar) {
-                setMsgErro('As senhas não coincidem.');
-                return ;
+                toast.error('As senhas não coincidem.');
+                return;
             }
 
             let credenciais = {
@@ -38,7 +39,7 @@ export default function TelaCadastro(){
             let resp = await axios.post('http://localhost:5000/usuario/cadastro', credenciais);   
 
         } catch (error) {
-            setMsgErro(error.response.data)
+            toast.error(error.response.data)
         }
     }
 
@@ -48,6 +49,19 @@ export default function TelaCadastro(){
             <Cabecalho/>
 
             <main className="Cadastro-container">
+
+            <ToastContainer
+                position="bottom-center"
+                autoClose={3000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+                theme="colored"
+            />
 
                 <section className="Cadastro">
                     <div className="Dados-container">
@@ -66,9 +80,7 @@ export default function TelaCadastro(){
                         <div className="data-nascimento">
                             <p>Data de nascimento:</p>
                             <input type="date" value={dataNascimento} onChange={(e) => setDataNascimento(e.target.value)}/>
-                        </div>  
-
-                        <h3>{msgErro}</h3>
+                        </div>
 
                         <div className="Confirmação-Licença">
                             <div className="Termos">
