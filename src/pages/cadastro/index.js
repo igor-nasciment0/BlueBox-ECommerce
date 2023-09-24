@@ -66,18 +66,18 @@ export default function TelaCadastro(){
 
             <main className="Cadastro-container">
 
-            <ToastContainer
-                position="bottom-center"
-                autoClose={3000}
-                hideProgressBar={false}
-                newestOnTop={false}
-                closeOnClick
-                rtl={false}
-                pauseOnFocusLoss
-                draggable
-                pauseOnHover
-                theme="colored"
-            />
+                <ToastContainer
+                    position="bottom-center"
+                    autoClose={3000}
+                    hideProgressBar={false}
+                    newestOnTop={false}
+                    closeOnClick
+                    rtl={false}
+                    pauseOnFocusLoss
+                    draggable
+                    pauseOnHover
+                    theme="colored"
+                />
 
                 <section className="Cadastro">
                     <div className="Dados-container">
@@ -90,7 +90,7 @@ export default function TelaCadastro(){
                         <input type="text" placeholder="E-mail" value={email} onChange={(e) => setEmail(e.target.value)}/>
                         <input type="password" placeholder="Senha" value={senha} onChange={(e) => setSenha(e.target.value)}/>
                         <input type="password" placeholder="Confirmar Senha" value={senhaConfirmar} onChange={(e) => setSenhaConfimar(e.target.value)}/>
-                        <InputMask type="text" mask="(99) 99999-9999" maskChar=" " placeholder="Telefone" value={telefone} onChange={(e) => setTelefone(e.target.value)}/>
+                        <InputMask type="text" mask="+55 (99) 99999-9999" maskChar=" " placeholder="Telefone" value={telefone} onChange={(e) => setTelefone(e.target.value)}/>
                         <InputMask type="text" mask="999.999.999-99" maskChar=" " placeholder="CPF" value={cpf} onChange={(e) => setCpf(e.target.value)}/>
                         
                         <div className="data-nascimento">
