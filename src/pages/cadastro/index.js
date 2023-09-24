@@ -7,8 +7,11 @@ import InputMask from 'react-input-mask';
 
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { useNavigate } from "react-router-dom";
 
 export default function TelaCadastro(){
+
+    const navigate = useNavigate();
 
     const [nome, setNome] = useState('');
     const [sobrenome, setSobrenome] = useState('');
@@ -36,10 +39,23 @@ export default function TelaCadastro(){
                 dataNascimento: dataNascimento
             }
 
-            let resp = await axios.post('http://localhost:5000/usuario/cadastro', credenciais);   
+            let resp = await axios.post('http://localhost:5000/usuario/cadastro', credenciais);
+
+            if(resp.status === 200)
+            {
+                toast.success("Cadastrado com sucesso! Faça seu login.", {hideProgressBar: true})
+                setTimeout(() => {
+                    navigate('/login');
+                }, 3000);
+            }
 
         } catch (error) {
-            toast.error(error.response.data)
+            if (error.response) {
+                toast.error(error.response.data)
+            }
+            else {
+                toast.error(error.message)
+            }
         }
     }
 
