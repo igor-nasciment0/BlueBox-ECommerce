@@ -66,7 +66,7 @@ export default function Landpage()
                             <img src='/assets/images/backgrounds/card-fifa.jpg' alt="" />
                             <div className='card-text'>
                                 <h2>Faça login e <br/> descubra a <br/> BlueBox</h2>
-                                <Link to={'/'}>Entrar</Link>                            
+                                <Link to={'/login'}>Entrar</Link>                            
                             </div>
                         </div>
 

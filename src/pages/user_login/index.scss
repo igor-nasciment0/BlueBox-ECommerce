@@ -52,7 +52,7 @@
 }
 
 
-.Dados-Container > button{
+.Dados-Container > button, .Dados-Container .link-cadastro{
     width: 300px;
     height: 40px;
     flex-shrink: 0;
@@ -66,9 +66,15 @@
     background: #152039;
     transition: 0.3s;
     text-transform: uppercase;
+    text-decoration: none;
+    text-align: center;
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-.Dados-Container > button:hover {
+.Dados-Container > button:hover, .Dados-Container .link-cadastro:hover {
     cursor: pointer;
     scale: 1.05;
 }

@@ -28,7 +28,7 @@ export default function Cabecalho()
 
                     <div>
                         <h2>Bem-vindo.</h2>
-                        <Link to="/">Entre ou cadastre-se.</Link>
+                        <Link to="/login">Entre ou cadastre-se.</Link>
                     </div>
                 </div>
 

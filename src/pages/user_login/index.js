@@ -21,7 +21,7 @@ export default function UserLogin() {
               <button>ENTRAR</button>
 
               <p>Novo na BlueBox?</p>
-              <button>crie sua conta</button>
+              <Link className="link-cadastro" to={"/cadastro"}>Crie sua Conta</Link>
             </div>
 
             <div className="Login-google">
