@@ -107,9 +107,9 @@ export default function CadastroProduto() {
 
                         <div className="info-abt-produto">
                             <div className="inicial-info">
-                                <input type="text" placeholder='Nome do produto:' className="nome-produto" />
-                                <input type="text" placeholder='Preço inicial:'/>
-                                <input type="text" placeholder='Quantidade:'/>
+                                <input type="text" placeholder='Nome do produto' className="nome-produto" />
+                                <input type="text" placeholder='Preço'/>
+                                <input type="text" placeholder='Quantidade'/>
                             </div>
                             <p>Descrição</p>
                             <textarea cols="30" rows="10" placeholder='Ex: God of War: Collection tem como proposta central trazer o esplendor da série através de visuais em alta definição e uma jogabilidade ainda mais fluida. O game apresenta um compilado dos dois títulos mais aclamados da geração passada, agora com jogabilidade e gráficos melhorados, mas todas a qualidade da série mantida. A taxa estável de 60 quadros por segundo mostra que o terceiro PlayStation não encontra problemas em reproduzir os dois games com a aplicação de filtros de correção de...'></textarea>
