@@ -6,6 +6,7 @@ import axios from 'axios';
 
 import { confirmAlert } from 'react-confirm-alert';
 import 'react-confirm-alert/src/react-confirm-alert.css';
+import { useNavigate } from "react-router-dom";
 
 
 export default function ConsultaProduto()
@@ -13,6 +14,8 @@ export default function ConsultaProduto()
 
     const [listaProdutos, setListaProdutos] = useState([]);
     const [busca, setBusca] = useState('');
+
+    const navigate = useNavigate();
 
     async function buscarProduto()
     {
@@ -109,7 +112,7 @@ export default function ConsultaProduto()
                                         <td>{produto.usado ? 'Usado' : 'Novo'}</td>
                                         <td>{produto.preco}</td>
                                         <td>
-                                            <button>
+                                            <button onClick={() => navigate('/adm/cadastro-produto', {state: produto})}>
                                                 <img src="/assets/images/icons/adm/edit.svg" alt="" />
                                             </button>
 

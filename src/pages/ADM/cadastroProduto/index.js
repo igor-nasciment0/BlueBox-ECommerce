@@ -1,16 +1,80 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import BarraLateral from '../../../components/ADM/barraLateral';
 import CabecalhoADM from '../../../components/ADM/cabecalho';
 import './index.scss';
+import { useLocation } from 'react-router-dom';
+import axios from 'axios';
+import {toast, toastContainer} from 'react-toastify';
 
 export default function CadastroProduto() {
-    const [foto, setFoto] = useState('')
-    const [nomeProduto, setNomeProduto] = useState('')
-    const [precoInicial, setPrecoInicial] = useState('')
-    const [QtdEstoue, setQtdEstoque] = useState('0')
-    const [Descricao, setDescricao] = useState('')
-    const [Especificacoes, setEspecificacoes] = useState('')
-    const [estadoProduto, setEstadoProduto] = useState(0)
+    const [foto, setFoto] = useState('');
+    const [nomeProduto, setNomeProduto] = useState('');
+    const [preco, setPreco] = useState('');
+    const [qtdEstoque, setQtdEstoque] = useState('0');
+    const [descricao, setDescricao] = useState('');
+    const [especificacoes, setEspecificacoes] = useState('');
+    const [categoria, setCategoria] = useState(0);
+    const [marca, setMarca] = useState(0);
+    const [usado, setUsado] = useState(0);
+    const [peso, setPeso] = useState(0);
+
+    const [atualizar, setAtualizar] = useState(false);
+
+    const location = useLocation();
+    const produto = location.state;
+
+    useEffect(() => {
+        if(produto)
+        {
+            setNomeProduto(produto.nome);
+            setPreco(produto.preco);
+            setQtdEstoque(produto.estoque);
+            setDescricao(produto.descricao);
+            setEspecificacoes(produto.especificacoes);
+            setUsado(produto.usado);
+            setCategoria(produto.categoria);
+            setMarca(produto.marca);
+            setPeso(produto.peso);
+
+            setAtualizar(true);
+        }
+    }, [])
+
+    async function atualizarProduto() {
+        try {
+            let infoProduto = {
+                nome: nomeProduto,
+                preco: preco,
+                estoque: qtdEstoque,
+                descricao: descricao,
+                especificacoes: especificacoes,
+                categoria: categoria,
+                marca: marca,
+                usado: usado,
+                peso: peso
+            }
+    
+            let url = 'http://localhost:5000/produto/' + produto.id;
+    
+            let resp = await axios.put(url, infoProduto);
+    
+            if(resp.status === 204) {
+                toast.success('Produto atualizado com sucesso!');
+            }      
+
+        } catch (error) {
+            if(error.response) {
+                toast.error(error.response.data);
+            } 
+            else {
+                toast.error(error.message);
+            }
+        }
+    }
+
+    async function cadastrarProduto() {
+        
+    }
 
     return(
         <div className="pagina-cadastro-produto">
@@ -63,9 +127,13 @@ export default function CadastroProduto() {
                                         <p>Produto usado</p>
                                     </div>
 
-                                    <select><option value="0" key="">Categoria</option></select>
-                                    <select><option value="0" key="">Marca</option></select>
-                                    <select><option value="0" key="">Plataforma</option></select>
+                                    <select>
+                                        <option value="0" key="">Categoria</option>
+                                    </select>
+                                    
+                                    <select>
+                                        <option value="0" key="">Marca</option>
+                                    </select>
                                 </div>
 
                             </div>
@@ -74,8 +142,11 @@ export default function CadastroProduto() {
 
                     </div>
 
-                    <button>ADICIONAR PRODUTO</button>
-
+                    <button onclick={() => {
+                        atualizar ? atualizarProduto() : cadastrarProduto()
+                    }}>
+                        {atualizar ? 'Atualizar produto' : 'Adicionar produto'}
+                    </button>
                 </div>
             </main>
 
