@@ -3,14 +3,15 @@ import BarraLateral from '../../../components/ADM/barraLateral';
 import CabecalhoADM from '../../../components/ADM/cabecalho';
 import './index.scss';
 
-const [nomeProduto, setNomeProduto] = useState('')
-const [precoInicial, setPrecoInicial] = useState('')
-const [QtdEstoue, setQtdEstoque] = useState('0')
-const [Descricao, setDescricao] = useState('')
-const [Especificacoes, setEspecificacoes] = useState('')
-const [estadoProduto, setEstadoProduto] = useState(0)
-
 export default function CadastroProduto() {
+    const [foto, setFoto] = useState('')
+    const [nomeProduto, setNomeProduto] = useState('')
+    const [precoInicial, setPrecoInicial] = useState('')
+    const [QtdEstoue, setQtdEstoque] = useState('0')
+    const [Descricao, setDescricao] = useState('')
+    const [Especificacoes, setEspecificacoes] = useState('')
+    const [estadoProduto, setEstadoProduto] = useState(0)
+
     return(
         <div className="pagina-cadastro-produto">
             <CabecalhoADM />
@@ -25,7 +26,7 @@ export default function CadastroProduto() {
                         <div className="info-foto-produto">
 
                             <div className="foto-produto"> 
-                                <div className='foto-principal'></div>
+                                <input className='foto-principal'  value={foto} onChange={e => (e.target.value)}/>
 
                                 <div className="fotos-adicionais">
                                     <div></div>
