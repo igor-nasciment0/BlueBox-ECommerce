@@ -25,8 +25,7 @@ export default function TelaCadastro(){
     async function cadastrar() {
         try {
             if(senha !== senhaConfirmar) {
-                toast.error('As senhas não coincidem.');
-                return;
+                throw new Error('As senhas não coincidem.');
             }
 
             let credenciais = {
