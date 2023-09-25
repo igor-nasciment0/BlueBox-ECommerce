@@ -2,13 +2,15 @@ import './index.scss';
 
 import Cabecalho from '../../components/cabecalho';
 import Rodape from '../../components/rodape';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import axios from 'axios';
 
 import { ToastContainer, toast } from 'react-toastify'
 
 export default function UserLogin() {
+
+  const navigate = useNavigate();
   
   const [email, setEmail] = useState('');
   const [senha, setSenha] = useState('');
@@ -25,6 +27,9 @@ export default function UserLogin() {
       if (resp.status === 200)
       {
         toast.success('Logado com sucesso!')
+        setTimeout(() => {
+          navigate('/');
+        }, 3000);
       }
 
     } catch (error) {

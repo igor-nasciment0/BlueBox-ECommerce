@@ -5,14 +5,14 @@ import CabecalhoLogado from '../../components/cabecalhoLogado';
 import FaixaCategorias from '../../components/faixa-categorias/';
 import Rodape from '../../components/rodape/'
 import CardProduto from '../../components/cardProduto';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import AnchorLink from 'react-anchor-link-smooth-scroll';
 
 export default function Landpage()
 {
     return(
         <div className="pagina-landpage">    
-            <Cabecalho />
+            <Cabecalho/>
             <FaixaCategorias />
 
             <main>

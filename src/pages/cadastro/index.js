@@ -110,7 +110,7 @@ export default function TelaCadastro(){
                     <div className="Login-google">
                         <img src="/assets/images/usuario.png" alt="" />
                         <p>Tenha acesso ao melhor da BlueBox com o seu cadastro de usuário</p>
-                        <button>Entrar</button>
+                        <button onClick={() => navigate('/login')}>Entrar</button>
                         <button className="Log-wit-google"> <img src="/assets/images/google.png" alt="" /> <span>Entrar com o Google</span></button>
                     </div>
 

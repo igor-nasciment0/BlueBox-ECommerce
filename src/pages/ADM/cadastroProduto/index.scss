@@ -38,12 +38,13 @@
             background: var(--azul-textos, #1C84FF);
             border: none;
             margin-top: 25px;
+        
+            transition: 0.5s;
         }
 
         button:hover{
             cursor: pointer;
             scale: 1.05;
-            transition: 0.5s;
         }
 
         select:focus-visible{
