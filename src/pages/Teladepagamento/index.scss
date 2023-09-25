@@ -1,0 +1,18 @@
+.teladePagamento{
+
+   .info-pedido{
+    display: flex;
+    flex-direction: row;
+   }
+      
+   .encomendas{
+    width: 851px;
+    height: 437px;
+    flex-shrink: 0;
+    border-radius: 5px;
+    border: 0px solid #000;
+    background: #FFF;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+
+}
