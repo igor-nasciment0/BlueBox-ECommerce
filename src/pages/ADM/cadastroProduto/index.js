@@ -95,7 +95,7 @@ export default function CadastroProduto() {
 
         catch(err)
         {
-            resp.status(500).send(error.message)
+            resp.status(500).send(err.message)
         }
     }
 
