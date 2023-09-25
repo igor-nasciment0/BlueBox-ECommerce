@@ -73,8 +73,33 @@ export default function CadastroProduto() {
     }
 
     async function cadastrarProduto() {
-        
+
+        try{
+            
+            let cadastrarProduto ={
+                nome:nomeProduto,
+                preco:preco,
+                estoque:qtdEstoque,
+                descricao:descricao,
+                especificacoes:especificacoes,
+                categoria:categoria,
+                marca:marca,
+                usado:usado,
+                peso:peso
+            }
+
+            let url = 'http://localhost:5000/produto' + produto.id
+            let resp = await axios.post(url, cadastrarProduto) 
+
+        }
+
+        catch(err)
+        {
+            resp.status(500).send(error.message)
+        }
     }
+
+
 
     return(
         <div className="pagina-cadastro-produto">
@@ -90,7 +115,7 @@ export default function CadastroProduto() {
                         <div className="info-foto-produto">
 
                             <div className="foto-produto"> 
-                                <input className='foto-principal'  value={foto} onChange={e => (e.target.value)}/>
+                                <input className='foto-principal' value={foto} onChange={e => (e.target.value)}/>
 
                                 <div className="fotos-adicionais">
                                     <div></div>
@@ -107,28 +132,28 @@ export default function CadastroProduto() {
 
                         <div className="info-abt-produto">
                             <div className="inicial-info">
-                                <input type="text" placeholder='Nome do produto' className="nome-produto" />
-                                <input type="text" placeholder='Preço'/>
-                                <input type="text" placeholder='Quantidade'/>
+                                <input type="text" value={nomeProduto} onChange={e => (e.target.value)} placeholder='Nome do produto' className="nome-produto" />
+                                <input type="text" value={preco} onChange={e => (e.target.value)} placeholder='Preço'/>
+                                <input type="text" value={qtdEstoque} onChange={e => (e.target.value)} placeholder='Quantidade'/>
                             </div>
                             <p>Descrição</p>
-                            <textarea cols="30" rows="10" placeholder='Ex: God of War: Collection tem como proposta central trazer o esplendor da série através de visuais em alta definição e uma jogabilidade ainda mais fluida. O game apresenta um compilado dos dois títulos mais aclamados da geração passada, agora com jogabilidade e gráficos melhorados, mas todas a qualidade da série mantida. A taxa estável de 60 quadros por segundo mostra que o terceiro PlayStation não encontra problemas em reproduzir os dois games com a aplicação de filtros de correção de...'></textarea>
+                            <textarea cols="30" value={descricao} onChange={e => (e.target.value)} rows="10" placeholder='Ex: God of War: Collection tem como proposta central trazer o esplendor da série através de visuais em alta definição e uma jogabilidade ainda mais fluida. O game apresenta um compilado dos dois títulos mais aclamados da geração passada, agora com jogabilidade e gráficos melhorados, mas todas a qualidade da série mantida. A taxa estável de 60 quadros por segundo mostra que o terceiro PlayStation não encontra problemas em reproduzir os dois games com a aplicação de filtros de correção de...'></textarea>
 
                             <div className="caracteristicas-produto">
                                 <div className='especificacoes'>
                                     <h4>Especificações</h4>
                                     <p>(Separe usando dois pontos e quebra de linha, e escreva as mais importantes ao cliente primeiro)</p>
-                                    <input type="text" />
+                                    <input type="text" value={especificacoes} onChange={e => (e.target.value)}/>
                                 </div>
 
                                 <div className='estado-produto'>
                                     <div className='check-usado'>
-                                        <input type="radio" className='check'/>
+                                        <input type="radio" value={usado} onChange={e => (e.target.value)} className='check'/>
                                         <p>Produto usado</p>
                                     </div>
 
                                     <select>
-                                        <option value="0" key="">Categoria</option>
+                                        <option value="0"  key="">Categoria</option>
                                     </select>
                                     
                                     <select>
