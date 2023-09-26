@@ -1,13 +1,15 @@
 import { useActionData } from 'react-router-dom';
 import './index.scss';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
+import { TemaContext } from '../../theme';
 
-export default function CardProduto(props)
+export default function CardProduto()
 {
-    const [classe, setClasse] = useState(`card-produto ${props.tema}`) ;
+    let context = useContext(TemaContext);
+    let tema = context.tema;
     
     return(
-        <div className={classe}>
+        <div className={'card-produto ' + tema}>
             <img src='/assets/images/foto_produto.png' alt="Assassin's Creed" />
             <h2>Assassins Creed Brotherhood (Seminovo)</h2>
             <h4 className='preco-anterior'>R$ 44,99</h4>

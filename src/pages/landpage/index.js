@@ -7,11 +7,16 @@ import Rodape from '../../components/rodape/'
 import CardProduto from '../../components/cardProduto';
 import { Link, useLocation } from 'react-router-dom';
 import AnchorLink from 'react-anchor-link-smooth-scroll';
+import { useContext } from 'react';
+import { TemaContext } from '../../theme';
 
 export default function Landpage()
 {
+    let context = useContext(TemaContext); 
+    let tema = context.tema;
+
     return(
-        <div className="pagina-landpage">    
+        <div className={"pagina-landpage " + tema}>    
             <Cabecalho/>
             <FaixaCategorias />
 

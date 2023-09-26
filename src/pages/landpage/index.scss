@@ -2,6 +2,9 @@
 {
     // SEÇÃO 01 – INÍCIO
 
+    background-color: var(--fundo-tela);
+    transition: 0.3s;
+
     .sec01-hogwarts
     {
         display: flex;
@@ -152,172 +155,172 @@
         justify-content: center;
 
         padding: 40px 0;
-    }
-
-    .container-cards
-    {
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-
-        max-width: var(--container-tela);
-        width: 100%;
-
-        padding: 0 1.5vw;
-    }
-
-    .container-cards > div
-    {
-        display: flex;
-        align-items: flex-end;
-        justify-content: flex-end;
-
-        border-radius: 18px;
-        margin: 0 1.5%;
-        padding: 40px 25px;
-        
-        width: 100%;
-        max-width: 340px;
-
-        background-repeat: no-repeat;
-        background-size: cover;
-        box-shadow: 0 4px 4px 0 rgba($color: #000000, $alpha: 0.4);
-    }
-
-    .container-cards > div > img
-    {
-        display: none;
-    }
-
-    .card-text
-    {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .card-text h2
-    {
-        text-align: center;
-        font-size: 22px;
-        color: #FFFFFF;
-        font-weight: 600;
-
-        text-shadow: 0 0 10px #FFFFFF;
-    }
-
-    .card-text a
-    {
-        text-transform: uppercase;
-        text-decoration: none;
-        text-align: center;
-        font-weight: 700;
-        font-size: 16px;
-        color: #FFFFFF;
-
-        margin-top: 40px;
-        padding: 1em 2em;
-        border: 1px solid #FFFFFF;
-        border-radius: 20px;
-    }
-
-    .card-mk
-    {
-        align-items: flex-end;
-        background-image: url('../../../public/assets/images/backgrounds/scorpion-card.png');
-    }
-
-    .card-fifa
-    {
-        align-items: flex-end;
-        background-image: url('../../../public/assets/images/backgrounds/fifa-card.png');
-
-        a
+    
+        .container-cards
         {
-            background-color: var(--azul-marca);
-        }
-    }
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
 
-    .card-doll
-    {
-        justify-content: flex-start !important;
-        background-image: url('../../../public/assets/images/backgrounds/banner-doll.png');
-        
-        a
-        {
-            background-color: #1F1723;
-            border-color: #835F35;
-        }
-    }
+            max-width: var(--container-tela);
+            width: 100%;
 
-    @media (max-width: 1024px)
-    {
-        .card-doll
-        {
-            background-position: -30px;
-        }
-    }
-
-    @media (max-width: 850px)
-    {
-        .container-cards{
-            flex-direction: column;
+            padding: 0 1.5vw;
         }
 
         .container-cards > div
         {
-            justify-content: space-between !important;
-            max-width: unset;
-            width: unset;
+            display: flex;
+            align-items: flex-end;
+            justify-content: flex-end;
 
-            background-size: 100%;            
-            padding: unset;
-            margin-bottom: 16px;
-        }
+            border-radius: 18px;
+            margin: 0 1.5%;
+            padding: 40px 25px;
+            
+            width: 100%;
+            max-width: 340px;
 
-        .card-text h2
-        {
-            font-size: 20px;
-        }
-
-        .card-text a
-        {
-            font-size: 14px;
+            background-repeat: no-repeat;
+            background-size: cover;
+            box-shadow: 0 4px 4px 0 rgba($color: #000000, $alpha: 0.4);
         }
 
         .container-cards > div > img
         {
-            display: inline-block;
-            height: 100%;
-            width: 55%;
-            max-width: 360px;
-            border-radius: inherit;
+            display: none;
         }
 
         .card-text
         {
-            align-self: center;
-            padding: 30px 20px;
-            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .card-text h2
+        {
+            text-align: center;
+            font-size: 22px;
+            color: #FFFFFF;
+            font-weight: 600;
+
+            text-shadow: 0 0 10px #FFFFFF;
+        }
+
+        .card-text a
+        {
+            text-transform: uppercase;
+            text-decoration: none;
+            text-align: center;
+            font-weight: 700;
+            font-size: 16px;
+            color: #FFFFFF;
+
+            margin-top: 40px;
+            padding: 1em 2em;
+            border: 1px solid #FFFFFF;
+            border-radius: 20px;
         }
 
         .card-mk
         {
-            background-image: none;
-            background-color: #000000;
-
+            align-items: flex-end;
+            background-image: url('../../../public/assets/images/backgrounds/scorpion-card.png');
         }
 
         .card-fifa
         {
-            background-image: none;
-            background-color: #0B0E1F;
+            align-items: flex-end;
+            background-image: url('../../../public/assets/images/backgrounds/fifa-card.png');
+
+            a
+            {
+                background-color: var(--azul-marca);
+            }
         }
 
         .card-doll
         {
-            background-image: none;
-            background-color: #1F1622;
+            justify-content: flex-start !important;
+            background-image: url('../../../public/assets/images/backgrounds/banner-doll.png');
+            
+            a
+            {
+                background-color: #1F1723;
+                border-color: #835F35;
+            }
+        }
+
+        @media (max-width: 1024px)
+        {
+            .card-doll
+            {
+                background-position: -30px;
+            }
+        }
+
+        @media (max-width: 850px)
+        {
+            .container-cards{
+                flex-direction: column;
+            }
+
+            .container-cards > div
+            {
+                justify-content: space-between !important;
+                max-width: unset;
+                width: unset;
+
+                background-size: 100%;            
+                padding: unset;
+                margin-bottom: 16px;
+            }
+
+            .card-text h2
+            {
+                font-size: 20px;
+            }
+
+            .card-text a
+            {
+                font-size: 14px;
+            }
+
+            .container-cards > div > img
+            {
+                display: inline-block;
+                height: 100%;
+                width: 55%;
+                max-width: 360px;
+                border-radius: inherit;
+            }
+
+            .card-text
+            {
+                align-self: center;
+                padding: 30px 20px;
+                width: 100%;
+            }
+
+            .card-mk
+            {
+                background-image: none;
+                background-color: #000000;
+
+            }
+
+            .card-fifa
+            {
+                background-image: none;
+                background-color: #0B0E1F;
+            }
+
+            .card-doll
+            {
+                background-image: none;
+                background-color: #1F1622;
+            }
         }
     }
 
@@ -339,7 +342,7 @@
     .sec03-produtos h1
     {
         font-size: 22px;
-        color: var(--preto-textos);
+        color: var(--cor-textos);
         margin-bottom: 2em;
     }
 

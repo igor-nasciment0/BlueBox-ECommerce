@@ -8,24 +8,29 @@
     font-family: 'Montserrat';
 }
 
-body
-{
-    background-color: var(--cinza-fundo);
-}
-
 :root
 {
     --container-tela: 1220px;
 
     --azul-marca: #152039;
     --cinza-imagens: #D9D9D9;
-    --cinza-fundo: #EBEBEB;
     --azul-escuro: #030C1E;
 
-    --preto-textos: #000000E9;
     --azul-claro: #308FFF;
     --verde-claro: #00D251;
     --dourado: #F59E0B;
 
     --cinza-componentes: #33363A;
+}
+
+.light {
+    --cor-textos: #000000E9;
+    --fundo-componentes: #FAFAFA;
+    --fundo-tela: #EBEBEB;
+}
+
+.dark {
+    --cor-textos: #FAFAFA;
+    --fundo-componentes: #33363A;
+    --fundo-tela: #212529;
 }

@@ -8,11 +8,11 @@
     justify-content: space-between;
     align-items: center;
 
-    background-color: #FFFFFF;
+    background-color: var(--fundo-componentes);
     border-radius: 10px;
     box-shadow: 0 4px 4px 0 rgba($color: #000000, $alpha: 0.4);
 
-    color: var(--preto-textos);
+    color: var(--cor-textos);
 
     > img
     {
