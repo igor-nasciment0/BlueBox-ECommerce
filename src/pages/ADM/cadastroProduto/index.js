@@ -185,7 +185,7 @@ export default function CadastroProduto() {
                                 <div className='especificacoes'>
                                     <h4>Especificações</h4>
                                     <p>(Separe usando dois pontos e quebra de linha, e escreva as mais importantes ao cliente primeiro)</p>
-                                    <input type="text" value={especificacoes} onChange={e => setEspecificacoes(e.target.value)}/>
+                                    <textarea type="text" value={especificacoes} onChange={e => setEspecificacoes(e.target.value)}/>
                                 </div>
 
                                 <div className='estado-produto'>

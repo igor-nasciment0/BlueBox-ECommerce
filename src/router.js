@@ -15,6 +15,7 @@ import CadastroProduto from './pages/ADM/cadastroProduto';
 import ConsultaProduto from './pages/ADM/consultaProduto';
 import { useContext, useState } from 'react';
 import { TemaContext } from './theme';
+import Contato from './pages/contato';
 
 export default function Router() {
 
@@ -38,6 +39,7 @@ export default function Router() {
             <BrowserRouter>
                 <Routes>
                     <Route path='/' element={<Landpage/>}/>
+                    <Route path='/contato' element={<Contato/>} />
                     <Route path='/carrinho' element={<Carrinho/>}/>
                     <Route path='/meus-pedidos' element={<UserPedidos/>}/>
                     <Route path='/pesquisa' element={<Pesquisa/>}/>
