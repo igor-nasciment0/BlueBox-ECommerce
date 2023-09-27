@@ -82,6 +82,36 @@ export default function Pesquisa()
               <CardProduto />
             </div>
           </div>
+
+          <div className='nav'>
+            <div className='setas'>
+              <img src= "/assets/images/icons/setaEsq.svg" alt="SetaEsq" />
+            </div>
+
+            <div className='numPagina'>
+              <a href="">1</a>
+            </div>
+
+            <div className='numPagina'>
+              <a href="">2</a>
+            </div>
+          
+            <div className='numPagina'>
+              <a href="">3</a>
+            </div>
+          
+            <p>...</p>
+
+            <div className='numPagina'>
+              <a href="">35</a>
+            </div>
+
+            <div className='setas'>
+               <img src="/assets/images/icons/arrow-right.svg" alt="SetaDir" />
+            </div>
+            
+          </div>
+
           <div className='instagram'>
             <a href="">Nos siga no Instagram</a>
             <a href="">Novidades toda semana!</a>
