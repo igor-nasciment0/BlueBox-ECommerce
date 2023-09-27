@@ -116,6 +116,58 @@
         margin: 20px 0px;
     }
 
+    .nav {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        height: 50px;
+        width: 100%;
+        margin-bottom: 20px;
+
+        > p {
+            font-size: 20px;
+            letter-spacing: 2px;
+        }
+
+        .setas {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            height: 30px;
+            width: 30px;
+            border-radius: 3px;
+            background-color: #152039;
+            margin: 0px 10px;
+
+            > img {
+                height: 13px;
+                width: 13px;
+                cursor: pointer;
+            }
+        }
+
+        .numPagina {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            height: 30px;
+            width: 30px;
+            border-radius: 3px;
+            background-color: #e6e6e6;
+            margin: 0px 10px;
+
+            > a {
+                color: #000000;
+                text-decoration: none;
+            }
+        }
+  
+    }
+
+
     .instagram {
         display: flex;
         flex-direction: row;
