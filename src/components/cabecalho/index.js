@@ -37,7 +37,7 @@ export default function Cabecalho()
 
                     <div>
                         <h2>Precisa de ajuda?</h2>
-                        <Link to="/">Fale conosco</Link>
+                        <Link to="/contato">Fale conosco</Link>
                     </div>
                 </div>
 
@@ -45,7 +45,9 @@ export default function Cabecalho()
                     tema.trocarTema()
                     console.log(tema.tema);
                 }}>
-                    <img src='/assets/images/icons/sun.svg' alt="" />
+                    <div className='fade-image-sun'>
+                        <img src={'/assets/images/icons/sun.svg'} alt="" />
+                    </div>
                 </button>
             </div>
         </header>

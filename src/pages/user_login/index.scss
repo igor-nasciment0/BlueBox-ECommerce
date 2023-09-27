@@ -4,8 +4,14 @@
     flex-direction: column;
     min-height: 100vh;
     justify-content: center;
-    background: rgb(255,255,255);
-    background: linear-gradient(180deg, rgba(255,255,255,1) 14%, rgba(33,48,81,1) 68%);
+    background: var(--fundo-tela);
+    transition: 0.3s;
+
+    color: var(--cor-textos);
+
+.gradient {
+    background: linear-gradient(180deg, rgba(0,0,0,0) 14%, rgba(33,48,81,1) 68%);
+}
 
 .Login{
     display: flex;
@@ -28,7 +34,7 @@
     align-items: center;
     flex-grow: 1;
 
-    background-color: #D9D9D9;
+    background-color: var(--fundo-componentes);
     padding: 45px;
     border-top-left-radius: 10px;
     border-bottom-left-radius: 10px;
@@ -49,6 +55,8 @@
     border: none;
     box-shadow: 0px 4px 4px 0px #00000041;
     padding: 10px;
+
+    background-color: #D9D9D9;
 }
 
 .Dados-Container input:focus-visible{
@@ -85,7 +93,7 @@
 
 .Dados-Container > a {
     margin-top: 20px;
-    color: #000000;
+    color: var(--azul-claro);
 }
 
 .Login-google{

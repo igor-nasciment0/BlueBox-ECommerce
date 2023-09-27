@@ -45,7 +45,7 @@ export default function CabecalhoLogado(props)
 
                     <div>
                         <h2>Precisa de ajuda?</h2>
-                        <Link to="/">Fale conosco</Link>
+                        <Link to="/contato">Fale conosco</Link>
                     </div>
                 </div>
 

@@ -3,15 +3,19 @@ import './index.scss';
 import Cabecalho from '../../components/cabecalho';
 import Rodape from '../../components/rodape';
 import { Link, useNavigate } from 'react-router-dom';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import axios from 'axios';
 
 import { ToastContainer, toast } from 'react-toastify'
+import { TemaContext } from '../../theme';
 
 export default function UserLogin() {
 
   const navigate = useNavigate();
   
+  const context = useContext(TemaContext);
+  let tema = context.tema;
+
   const [email, setEmail] = useState('');
   const [senha, setSenha] = useState('');
 
@@ -43,43 +47,45 @@ export default function UserLogin() {
   }
 
   return (
-    <div className="Tela-Login">
+    <div className={"Tela-Login " + tema}>
       <Cabecalho/>
-        <main className="User-Login-container">
+        <div className="gradient">
+          <main className="User-Login-container">
 
-          <ToastContainer
-                position="bottom-center"
-                autoClose={3000}
-                hideProgressBar={false}
-                newestOnTop={false}
-                closeOnClick
-                rtl={false}
-                pauseOnFocusLoss
-                draggable
-                pauseOnHover
-                theme="colored"
-            />
+            <ToastContainer
+                  position="bottom-center"
+                  autoClose={3000}
+                  hideProgressBar={false}
+                  newestOnTop={false}
+                  closeOnClick
+                  rtl={false}
+                  pauseOnFocusLoss
+                  draggable
+                  pauseOnHover
+                  theme="colored"
+              />
 
-          <section className="Login">
-            <div className="Dados-Container">
-              <h1>Login</h1>
-                  
-              <input type="text" placeholder="E-mail" value={email} onChange={e => setEmail(e.target.value)}/>
-              <input type="password" placeholder="Senha" value={senha} onChange={e => setSenha(e.target.value)}/>
-            
-              <Link to={""}>Esqueceu a senha?</Link>
-              <button onClick={logar}>Entrar</button>
+            <section className="Login">
+              <div className="Dados-Container">
+                <h1>Login</h1>
+                    
+                <input type="text" placeholder="E-mail" value={email} onChange={e => setEmail(e.target.value)}/>
+                <input type="password" placeholder="Senha" value={senha} onChange={e => setSenha(e.target.value)}/>
+              
+                <Link to={""}>Esqueceu a senha?</Link>
+                <button onClick={logar}>Entrar</button>
 
-              <p>Novo na BlueBox?</p>
-              <Link className="link-cadastro" to={"/cadastro"}>Crie sua Conta</Link>
-            </div>
+                <p>Novo na BlueBox?</p>
+                <Link className="link-cadastro" to={"/cadastro"}>Crie sua Conta</Link>
+              </div>
 
-            <div className="Login-google">
-              <img src="/assets/images/usuario.png" alt="" />
-              <button className="Log-wit-google"> <img src="/assets/images/google.png" alt="" /> <span>Entrar com o google</span></button>
-            </div>
-          </section>        
-        </main>   
+              <div className="Login-google">
+                <img src="/assets/images/usuario.png" alt="" />
+                <button className="Log-wit-google"> <img src="/assets/images/google.png" alt="" /> <span>Entrar com o google</span></button>
+              </div>
+            </section>        
+          </main>   
+        </div>
       <Rodape/>
     </div>  
   )
