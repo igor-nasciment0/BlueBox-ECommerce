@@ -34,3 +34,11 @@
     --fundo-componentes: #33363A;
     --fundo-tela: #212529;
 }
+
+input {
+    background-color: var(--cinza-imagens);
+}
+
+input:focus-visible {
+    outline: none;
+}

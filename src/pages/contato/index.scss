@@ -41,6 +41,7 @@
             border-radius: 10px;
 
             background-color: var(--fundo-componentes);
+            box-shadow: 0 0 10px 0 rgba($color: #000000, $alpha: 0.2);
 
             > div {
                 display: flex;

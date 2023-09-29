@@ -2,11 +2,12 @@ import "./index.scss";
 import CabecalhoADM from '../../../components/ADM/cabecalho'
 import BarraLateral from '../../../components/ADM/barraLateral'
 import { useEffect, useState } from "react";
-import axios from 'axios';
 
 import { confirmAlert } from 'react-confirm-alert';
 import 'react-confirm-alert/src/react-confirm-alert.css';
 import { useNavigate } from "react-router-dom";
+import { buscarProduto, deletarProduto } from "../../../api/produtoAPI";
+import { toast } from "react-toastify";
 
 
 export default function ConsultaProduto()
@@ -17,22 +18,37 @@ export default function ConsultaProduto()
 
     const navigate = useNavigate();
 
-    async function buscarProduto()
-    {
-        let produtos = await axios.get('http://localhost:5000/produto?nome=' + busca);
-        setListaProdutos(produtos.data);
+    async function buscar() {
+        try {
+            let produtos = await buscarProduto(busca);
+            setListaProdutos(produtos);   
+        } catch (error) {
+            console.log(error.message);
+        }
     }
 
-    async function deletarProduto(id, nome) {
+    async function deletar(id, nome) {
         confirmAlert({
             title: 'Confirmar exclusão',
-            message: `Tem certeza que deseja remocer o item ${nome}?`,
+            message: `Tem certeza que deseja remover o item ${nome}?`,
             buttons: [
               {
                 label: 'Sim',
                 onClick: async () => {
-                    await axios.delete('http://localhost:5000/produto/' + id)
-                    buscarProduto();
+                    try {
+                        let resp = await deletarProduto(id);
+
+                        if(resp.status === 204)
+                            toast.success('Produto deletado com sucesso!')
+
+                        buscar();
+                    } catch (error) {
+                        if(error.response) {
+                            toast.error(error.response.data)
+                        } else {
+                            toast.error(error.message);
+                        }   
+                    }
                 }
               },
               {
@@ -45,9 +61,9 @@ export default function ConsultaProduto()
 
     useEffect(
         () => {
-            buscarProduto()
+            buscar()
         },
-        [busca]
+        []
     );
 
     return(
@@ -117,8 +133,8 @@ export default function ConsultaProduto()
                                             </button>
 
                                             <button onClick={() => {
-                                                deletarProduto(produto.id, produto.nome)
-                                                buscarProduto()    
+                                                deletar(produto.id, produto.nome)
+                                                buscar()    
                                             }}>
                                                 <img src="/assets/images/icons/adm/delete.svg" alt="" />
                                             </button>

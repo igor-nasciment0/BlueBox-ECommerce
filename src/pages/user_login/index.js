@@ -4,10 +4,10 @@ import Cabecalho from '../../components/cabecalho';
 import Rodape from '../../components/rodape';
 import { Link, useNavigate } from 'react-router-dom';
 import { useContext, useState } from 'react';
-import axios from 'axios';
 
 import { ToastContainer, toast } from 'react-toastify'
 import { TemaContext } from '../../theme';
+import { loginCliente } from '../../api/clienteAPI';
 
 export default function UserLogin() {
 
@@ -21,12 +21,8 @@ export default function UserLogin() {
 
   async function logar() {
     try {
-      let credenciais = {
-        email: email,
-        senha: senha
-      }
 
-      let resp = await axios.post('http://localhost:5000/usuario/login', credenciais);
+      let resp = await loginCliente(email, senha);
 
       if (resp.status === 200)
       {
@@ -81,7 +77,7 @@ export default function UserLogin() {
 
               <div className="Login-google">
                 <img src="/assets/images/usuario.png" alt="" />
-                <button className="Log-wit-google"> <img src="/assets/images/google.png" alt="" /> <span>Entrar com o google</span></button>
+                <button className="Log-wit-google"> <img src="/assets/images/google.png" alt="" /> <span>Entrar com o Google</span></button>
               </div>
             </section>        
           </main>   

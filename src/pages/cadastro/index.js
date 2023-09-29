@@ -2,13 +2,13 @@ import { useContext, useState } from "react"
 import Cabecalho from "../../components/cabecalho"
 import Rodape from "../../components/rodape"
 import './index.scss'
-import axios from "axios";
 import InputMask from 'react-input-mask';
 
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useNavigate } from "react-router-dom";
 import { TemaContext } from "../../theme";
+import { cadastroCliente } from "../../api/clienteAPI";
 
 export default function TelaCadastro(){
 
@@ -32,17 +32,7 @@ export default function TelaCadastro(){
                 throw new Error('As senhas não coincidem.');
             }
 
-            let credenciais = {
-                nome: nome,
-                sobrenome: sobrenome,
-                email: email,
-                senha: senha,
-                telefone: telefone,
-                cpf: cpf,
-                dataNascimento: dataNascimento
-            }
-
-            let resp = await axios.post('http://localhost:5000/usuario/cadastro', credenciais);
+            let resp = await cadastroCliente(nome, sobrenome, email, senha, telefone, cpf, dataNascimento);
 
             if(resp.status === 200)
             {
