@@ -68,7 +68,7 @@ export default function Landpage()
                         </div>
 
                         <div className='card-fifa'>
-                            <img src='/assets/images/backgrounds/card-fifa.jpg' alt="" />
+                            <img src='/assets/images/backgrounds/fifa-card.png' alt="" />
                             <div className='card-text'>
                                 <h2>Faça login e <br/> descubra a <br/> BlueBox</h2>
                                 <Link to={'/login'}>Entrar</Link>                            
@@ -80,12 +80,12 @@ export default function Landpage()
                                 <h2>Descubra mais<br/>sobre nós!</h2>
                                 <AnchorLink offset='100' href='#sobre'>Saiba mais</AnchorLink>                            
                             </div>
-                            <img src='/assets/images/backgrounds/banner-doll.jpg' alt="" />
+                            <img src='/assets/images/backgrounds/banner-doll.png' alt="" />
                         </div>
                     </div>
                 </section>
 
-                <section className='sec03-produtos'>
+{/*                 <section className='sec03-produtos'>
                     <h1>Destaques</h1>
 
                     <div className='container-produtos'>
@@ -94,7 +94,7 @@ export default function Landpage()
                         <CardProduto />
                         <CardProduto />
                     </div>
-                </section>
+                </section> */}
 
                 <section className='sec04-descubra'>
                     <h1>Descubra a BlueBox!</h1>

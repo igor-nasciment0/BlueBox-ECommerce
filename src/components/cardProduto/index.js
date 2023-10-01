@@ -3,7 +3,7 @@ import './index.scss';
 import { useContext, useState } from 'react';
 import { TemaContext } from '../../theme';
 
-export default function CardProduto()
+export default function CardProduto(props)
 {
     let context = useContext(TemaContext);
     let tema = context.tema;

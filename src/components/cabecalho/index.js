@@ -50,6 +50,28 @@ export default function Cabecalho()
                     </div>
                 </button>
             </div>
+
+            <div className="container-cabecalho-mobile">
+                <div className="logo">
+                    <Link to="/">
+                        <img src="/assets/images/LogoComNome.svg" alt="Logo da BlueBox"/>
+                        <img src="/assets/images/logo.svg" alt="Logo da BlueBox" className="logo-sem-nome"/>
+                    </Link>
+                </div>
+
+                <div className="input">
+                    <input type="text" placeholder="O que você está buscando?"/>
+                    <img src='/assets/images/icons/search.svg' alt=""/>
+                </div>
+
+                <button>
+                    <img src="/assets/images/icons/menu.svg" alt="" />
+                </button>
+
+                <button>
+                    <img src="/assets/images/icons/cart.svg" alt="" />
+                </button>
+            </div>
         </header>
     );
 }

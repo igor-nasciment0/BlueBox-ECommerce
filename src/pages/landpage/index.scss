@@ -294,6 +294,8 @@
                 width: 55%;
                 max-width: 360px;
                 border-radius: inherit;
+
+                object-fit: cover;
             }
 
             .card-text
@@ -308,18 +310,29 @@
                 background-image: none;
                 background-color: #000000;
 
+                img {
+                    object-position: 20% 0;
+                }
             }
 
             .card-fifa
             {
                 background-image: none;
                 background-color: #0B0E1F;
+
+                img {
+                    object-position: 30% 0;
+                }
             }
 
             .card-doll
             {
                 background-image: none;
                 background-color: #1F1622;
+
+                img {
+                    object-position: 60% 0;
+                }
             }
         }
     }

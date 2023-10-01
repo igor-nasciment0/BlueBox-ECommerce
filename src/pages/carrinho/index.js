@@ -2,11 +2,16 @@ import './index.scss'
 
 import Cabecalho from '../../components/cabecalho/';
 import Rodape from '../../components/rodape/';
+import { useContext } from 'react';
+import { TemaContext } from '../../theme';
 
 export default function Carrinho()
 {
+    const context = useContext(TemaContext);
+    let tema = context.tema;
+
     return(
-        <div className='pagina-carrinho'>
+        <div className={'pagina-carrinho ' + tema}>
             <Cabecalho/>
 
             <main>

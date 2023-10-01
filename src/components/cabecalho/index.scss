@@ -6,7 +6,6 @@
     background-color: var(--azul-marca);
     color: white;
     width: 100%;
-
     
     .container-cabecalho
     {
@@ -21,22 +20,30 @@
         padding: 20px 20px;
     }
 
+    .container-cabecalho-mobile {
+        display: none;
+    }
+
     .logo
     {
         margin-right: 15px;
-        width: 15%;
-        max-width: 130px;
+        min-width: 130px;
+
+        a > .logo-sem-nome {
+            display: none;
+        }
     }
 
     .logo > a, .logo > a > img
     {
         display: inline-block;
         width: 100%;
+        vertical-align: middle;
     }
 
     .input
     {
-        width: 40%;
+        width: 100%;
         max-width: 510px;
 
         position: relative;
@@ -73,6 +80,8 @@
 
     .nav
     {
+        min-width: 190px;
+        justify-content: center;
         display: flex;
         align-items: center;
     }
@@ -111,7 +120,87 @@
         cursor: pointer;
     }
 
-    @keyframes {
-        
+    @media (max-width: 1024px) {
+        .container-cabecalho {
+            display: none;
+        }
+
+        .container-cabecalho-mobile {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-between;
+
+            max-width: 850px;
+            width: 100%;
+            padding: 10px 20px;
+
+            .logo {
+                min-width: 110px;
+            }
+
+            .input {
+                max-width: 550px;
+            }
+
+            button {
+                display: flex;
+                flex-direction: row;
+                justify-content: center;
+                align-items: center;
+                padding: 0;
+
+                img {
+                    height: 40px;
+                    width: 40px;
+                }
+            }
+
+            button:first-of-type {
+                margin-right: 10px;
+            }
+        }
+    }
+
+    @media (max-width: 600px) {
+        .container-cabecalho-mobile {
+            button img {
+                width: 30px;
+                height: 30px;
+            }
+        }
+
+        .input input::placeholder {
+            font-size: 11px;
+        }
+    }
+
+    @media (max-width: 520px) {
+        .container-cabecalho-mobile {
+
+            padding: 10px 12px;
+
+            .logo {
+                min-width: unset;
+            }
+
+            .logo a img {
+                display: none;
+            }
+
+            .logo .logo-sem-nome {
+                display: inline-block;
+                width: 40px;
+                height: 40px;
+            }
+
+            .input input {
+                padding-left: 12px;
+            }
+
+            .input img {
+                display: none;
+            }
+        }
     }
 }
