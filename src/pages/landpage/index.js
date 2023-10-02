@@ -64,11 +64,9 @@ export default function Landpage()
                                 <h2>Aproveite<br/>nossos<br/>descontos</h2>
                                 <Link to={'/'}>Confira</Link>
                             </div>               
-                            <img src='/assets/images/backgrounds/scorpion-frente.jpg' alt="" /> 
                         </div>
 
                         <div className='card-fifa'>
-                            <img src='/assets/images/backgrounds/fifa-card.png' alt="" />
                             <div className='card-text'>
                                 <h2>Faça login e <br/> descubra a <br/> BlueBox</h2>
                                 <Link to={'/login'}>Entrar</Link>                            
@@ -80,7 +78,6 @@ export default function Landpage()
                                 <h2>Descubra mais<br/>sobre nós!</h2>
                                 <AnchorLink offset='100' href='#sobre'>Saiba mais</AnchorLink>                            
                             </div>
-                            <img src='/assets/images/backgrounds/banner-doll.png' alt="" />
                         </div>
                     </div>
                 </section>
