@@ -42,3 +42,7 @@ input {
 input:focus-visible {
     outline: none;
 }
+
+::placeholder {
+    color: rgba($color: #000000, $alpha: 0.5);
+}
