@@ -12,7 +12,7 @@
 
         background-color: #030C1E;
         background-image: url('../../../public/assets/images/backgrounds/hogwarts.png');
-        background-position: -150px;
+        background-position: unset;
         background-repeat: no-repeat;
         background-size: auto 100%;
     }
@@ -90,7 +90,7 @@
                 text-align: center;
 
                 margin: 15px;
-                margin-bottom: 5;
+                margin-bottom: 5px;
             }
             
             div > img
@@ -143,7 +143,17 @@
         .container-texto
         {
             width: 100%;
-            background-color: rgba($color: #030C1E, $alpha: 0.85);
+            background-color: rgba($color: #030C1E, $alpha: 0.5);
+        }
+    }
+
+    @media (max-width: 550px) {
+        .sec01-hogwarts {
+            background-position: -380px;
+        }
+
+        .container-texto {
+            padding: 40px 0;
         }
     }
 

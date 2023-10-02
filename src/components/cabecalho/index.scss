@@ -170,7 +170,7 @@
             }
         }
 
-        .input input::placeholder {
+        .input input::placeholder, .input input {
             font-size: 11px;
         }
     }
@@ -200,6 +200,20 @@
 
             .input img {
                 display: none;
+            }
+        }
+    }
+
+    @media (max-width: 375px) {
+        .container-cabecalho-mobile {
+            .logo .logo-sem-nome {
+                width: 35px;
+                height: 35px;
+            }
+
+            button img {
+                width: 25px;
+                height: 25px;
             }
         }
     }
