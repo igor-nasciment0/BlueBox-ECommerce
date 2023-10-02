@@ -143,13 +143,13 @@
         .container-texto
         {
             width: 100%;
-            background-color: rgba($color: #030C1E, $alpha: 0.5);
+            background-color: rgba($color: #030C1E, $alpha: 0.6);
         }
     }
 
     @media (max-width: 550px) {
         .sec01-hogwarts {
-            background-position: -380px;
+            background-position: -350px;
         }
 
         .container-texto {
