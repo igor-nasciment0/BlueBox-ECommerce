@@ -3,6 +3,8 @@
     display: flex;
     justify-content: center;
     padding: 10px 30px;
+    position: relative;
+    z-index: 1;
 
     background-color: var(--azul-marca);
     border-top: 1px #435681 solid;
@@ -12,16 +14,28 @@
     {
         display: flex;
         flex-direction: row;
-        justify-content: space-between;
+        justify-content: center;
         list-style-type: none;
         padding: 0;
 
         max-width: 900px;
         width: 100%;
+    
+        div {
+            display: flex;
+            width: 100%;
+            justify-content: space-around;
+        }
+
+        li {
+            display: flex;
+            align-items: center;
+        }
     }
 
     a
     {
+        margin-right: 5px;
         text-decoration: none;
         color: white;
         font-size: clamp(12px, 1vw, 14px);
@@ -34,6 +48,19 @@
     }
 
     @media (max-width: 580px) {
-        display: none;
+        box-shadow: 0 4px 4px 0 rgba($color: #000000, $alpha: 0.3);
+
+        ul {
+            flex-wrap: wrap;
+            
+            div {
+                justify-content: center;
+                gap: 22px;
+            }
+
+            div:first-child {
+                margin-bottom: 8px;
+            }
+        }        
     }
 }

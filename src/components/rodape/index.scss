@@ -135,11 +135,6 @@
             width: 100%;
         }
 
-        .secao-redes > .rodape-quadro
-        {
-            display: none;
-        }
-
         .redes-icons
         {
             display: flex;
@@ -153,10 +148,37 @@
         {
             margin: 0;
         }
+    }
 
-        .secao-sobre
-        {
-            display: none !important;
+    @media (max-width: 450px) {
+        .container-mobile-cima, .container-mobile-baixo {
+            flex-direction: column;
+        }
+
+        section {
+            margin: 0 !important;
+            padding: 10px 0 !important;
+        }
+
+        .rodape-quadro {
+            max-width: unset !important;
+        }
+
+        .secao-redes .rodape-quadro {
+            margin-bottom: 30px;
+        }
+
+        .secao-atendimento .rodape-quadro {
+            display: none;
+        }
+
+        .redes-icons {
+            justify-content: center;
+            gap: 40px;
+        }
+
+        .redes-icons.first {
+            margin-bottom: 20px;
         }
     }
 }

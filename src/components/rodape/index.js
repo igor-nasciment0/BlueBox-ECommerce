@@ -26,7 +26,7 @@ export default function Rodape() {
                             <p>Curitiba - PR</p>
                         </div>
 
-                        <div className='redes-icons'>
+                        <div className='redes-icons first'>
                             <a href=""><img src='/assets/images/icons/facebook.svg' alt='Facebook' /></a>
                             <a href=""><img src='/assets/images/icons/instagram.svg' alt='Instagram' /></a>
                         </div>

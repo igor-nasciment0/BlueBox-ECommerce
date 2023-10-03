@@ -143,7 +143,7 @@
         .container-texto
         {
             width: 100%;
-            background-color: rgba($color: #030C1E, $alpha: 0.6);
+            background-color: rgba($color: #030C1E, $alpha: 0.75);
         }
     }
 
@@ -206,6 +206,8 @@
             display: flex;
             flex-direction: column;
             align-items: center;
+            padding: 5px 10px;
+            border-radius: 5px;
         }
 
         .card-text h2
@@ -282,6 +284,7 @@
                 width: unset;         
                 padding: unset;
                 margin-bottom: 16px;
+                padding: 30px 20px;
             }
 
             .card-text h2
@@ -308,8 +311,6 @@
             .card-text
             {
                 align-self: center;
-                padding: 30px 20px;
-                width: 50%;
                 border-radius: 18px;
             }
 
@@ -319,54 +320,75 @@
 
                 background-image: url('../../../public/assets/images/backgrounds/scorpion-frente.jpg');
                 background-color: #000000;
-                background-size: 300px 100% !important;
-                background-position: right;
+                background-position: 100px;
 
                 .card-text {
                     background-color: rgba($color: #000000, $alpha: 0.5);
                     box-shadow: 4px 0 8px 0 rgba($color: #000000, $alpha: 0.5);
+                    margin-left: 30px;
                 }
             }
 
-            .card-fifa
+            .container-cards > .card-fifa
             {
                 justify-content: flex-end;
 
                 background-image: url('../../../public/assets/images/backgrounds/fifa-card.png');
-                background-color: #000000;
-                background-size: 300px 100% !important;
+                background-color: #080f1f;
                 background-position: left;
 
                 .card-text {
-                    background-color: #152039;
-                    box-shadow: -4px 0 8px 0 rgba($color: #152039, $alpha: 0.5);
-                    border-top-left-radius: 0;
-                    border-bottom-left-radius: 0;
+                    backdrop-filter: blur(8px);
+                    margin-right: 30px;
                 }
             }
 
-            .card-doll
+            .container-cards > .card-doll
             {
                 background-image: none;
                 background-color: #1F1622;
 
                 background-image: url('../../../public/assets/images/backgrounds/banner-doll.png');
-                background-color: #000000;
-                background-size: 300px 100% !important;
-                background-position: right;
+                background-color: #1F1622;
+                background-position: right -50px;
 
                 .card-text {
-                    background-color: #1F1622;
+                    backdrop-filter: blur(8px);
                     box-shadow: -4px 0 8px 0 rgba($color: #1F1622, $alpha: 0.5);
-                    border-top-right-radius: 0;
-                    border-bottom-right-radius: 0;
+                    margin-left: 30px;
                 }
             }
         }
 
-        @media (max-width: 450px) {
-            .card-text {
-                padding: 30px 10px;
+        @media (max-width: 550px) {
+            .container-cards {
+                > .card-mk, > .card-fifa, > .card-doll {
+                    background-size: 300px 100% !important;
+
+                    .card-text {
+                        margin: 0;
+                    }
+                }
+
+                > .card-doll {
+                    background-position: right;
+                }
+
+                > .card-mk {
+                    background-position: right;
+                }
+            }
+        }
+
+        @media (max-width: 380px) {
+            .container-cards > .card-mk {
+                background-position: 120px;
+            }
+        }
+
+        @media (max-width: 350px) {
+            .container-cards > .card-doll {
+                background-position: 50px;
             }
         }
     }
@@ -397,12 +419,34 @@
     {
         display: flex;
         justify-content: space-between;
-        gap: 2%;
+        gap: 2vw;
 
         max-width: var(--container-tela);
         width: 100%;
 
         padding: 0 1em;
+
+        > div {
+            width: 100%;
+            display: flex;
+            justify-content: space-around;
+            gap: 2vw;
+        }
+
+        @media (max-width: 900px) {
+            flex-direction: column;
+
+            > div {
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 520px) {
+            > div {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
     }
 
     // SEÇÃO 04 - DESCUBRA A BLUEBOX
@@ -423,6 +467,7 @@
         background-image: url('../../../public/assets/images/backgrounds/moonlight_background.png');
         background-size: cover;
         background-repeat: no-repeat;
+        background-position: center;
     }
 
     .sec04-descubra > h1
@@ -448,7 +493,6 @@
     {
         .sec04-descubra
         {
-            background-position: -100px;
             padding-bottom: 120px;
         }
 
@@ -460,13 +504,6 @@
         .sec04-descubra > p
         {
             font-size: 14px;
-        }
-    }
-
-    @media (max-width: 500px) {
-        .sec04-descubra
-        {
-            background-position: -160px;
         }
     }
 
@@ -541,6 +578,13 @@
         }
     }
 
+    @media (max-width: 500px) {
+        .sec05-pac-man > .pac-img-container {
+            padding: 0;
+            margin-bottom: 10px;
+        }
+    }
+
     // SEÇÃO 06 - SOBRE
 
     .sec06-sobre
@@ -555,6 +599,7 @@
         background-color: var(--azul-escuro);
         background-image: url('../../../public/assets/images/backgrounds/gaming-shape.png');
         background-size: 100% 100%;
+        background-position: bottom center;
     }
 
     .sec06-sobre > h1
@@ -587,7 +632,6 @@
         .sec06-sobre
         {
             padding-bottom: 50px;
-            background-image: none;
         }
         
         .sec06-sobre > h1
@@ -606,6 +650,28 @@
         {
             font-size: 14px;
             text-shadow: 0 0 16px #FFFFFF;
+        }
+    }
+
+    @media (max-width: 550px) {
+        .sec06-sobre {
+            background-image: none;
+            position: relative;
+
+            h1, img, div {
+                position: relative;
+            }
+        }
+
+        .sec06-sobre::before {
+            content: "";
+            background-image: url('../../../public/assets/images/backgrounds/gaming-small-shapes.jpg');
+            position: absolute;
+            top: 0px;
+            right: 0px;
+            bottom: 0px;
+            left: 0px;
+            opacity: 0.3;
         }
     }
 }

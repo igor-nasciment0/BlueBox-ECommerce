@@ -82,16 +82,21 @@ export default function Landpage()
                     </div>
                 </section>
 
-{/*                 <section className='sec03-produtos'>
+                <section className='sec03-produtos'>
                     <h1>Destaques</h1>
 
                     <div className='container-produtos'>
-                        <CardProduto />
-                        <CardProduto />
-                        <CardProduto />
-                        <CardProduto />
+                        <div>
+                            <CardProduto />
+                            <CardProduto />
+                        </div>
+
+                        <div>
+                            <CardProduto />
+                            <CardProduto />
+                        </div>
                     </div>
-                </section> */}
+                </section>
 
                 <section className='sec04-descubra'>
                     <h1>Descubra a BlueBox!</h1>
