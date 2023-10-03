@@ -19,6 +19,10 @@ export default function Perfil()
               <img src="/assets/images/pessoa-aleatoria.png" alt="FotoPerfil" />
             </div>
 
+            <div className='trocaImg'>
+              <a href="">Adicionar Imagem</a>
+            </div>
+
             <a href="">Trocar Senha</a>
             <Link to={'/meus-pedidos'}>Meus Pedidos</Link>
             <a href="">Meus Cupons</a>
@@ -30,12 +34,12 @@ export default function Perfil()
             <h1>Meu Perfil</h1>
 
             <h3>Nome de usuário</h3>
-            <div>
+            <div className='info'>
               <p>Igão o maioral</p>
             </div>
 
             <h3>CPF</h3>
-            <div>
+            <div className='info'>
               <p>3********4</p>
             </div>
 
@@ -56,7 +60,7 @@ export default function Perfil()
             </div>
 
             <h3>Data de Nascimento</h3>
-            <div>
+            <div className='data'>
               <div>
                 <p>01</p>
               </div>
