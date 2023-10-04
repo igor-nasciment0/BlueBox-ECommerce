@@ -6,64 +6,73 @@ import CabecalhoLogado from '../../components/cabecalhoLogado';
 import CardProduto from '../../components/cardProduto';
 
 import { Link } from 'react-router-dom/dist';
+import { useContext } from 'react';
+import { TemaContext } from '../../theme';
 
 export default function Pedido() {
+
+    const context = useContext(TemaContext);
+    let tema = context.tema;
+
     return(
-        <div className="pagina-produto">
-            <CabecalhoLogado/>
+        <div className={"pagina-produto " + tema}>
+            <Cabecalho/>
             
             <div className="container-main">
                 <main>
                     <section className="container-produto">
-                        <div className="imagens">
-                            <div className="cont-imagem-principal">
-                                <img src="/assets/images/foto_produto.png" alt="" />
-                            </div>
-
-                            <div className="cont-imagens-secundarias">
-                                <div><img src="/assets/images/foto_produto.png" alt="" /></div>
-                                <div><img src="/assets/images/foto_produto.png" alt="" /></div>
-                                <div><img src="/assets/images/foto_produto.png" alt="" /></div>
-                                <div><img src="/assets/images/foto_produto.png" alt="" /></div>
-                            </div>
-                        </div>
-
-                        <div className="info">
-                            <h1>God of War: Saga (3 Jogos) (Seminovo) - PS3</h1>
-
-                            <div className="avaliacao">
-                                <img src="/assets/images/estrelasRate.png" alt="" />
-                                (46 avaliações)
-                            </div>
-
-                            <div className="preco">
-                                <div>
-                                    <h3>De: R$ 44,99</h3>
-                                    <h2>R$ 29,99</h2>
-                                    <h4>Ou em até 10x</h4>
+                        <div className='mobile-container-cima'>
+                            <div className="imagens">
+                                <div className="cont-imagem-principal">
+                                    <img src="/assets/images/foto_produto.png" alt="" />
                                 </div>
 
-                                <div className='desconto'>
-                                    <h3>33% de Desconto</h3>
+                                <div className="cont-imagens-secundarias">
+                                    <div><img src="/assets/images/foto_produto.png" alt="" /></div>
+                                    <div><img src="/assets/images/foto_produto.png" alt="" /></div>
+                                    <div><img src="/assets/images/foto_produto.png" alt="" /></div>
+                                    <div><img src="/assets/images/foto_produto.png" alt="" /></div>
                                 </div>
                             </div>
 
-                            <Link>Ver os meios de pagamento</Link>
+                            <div className="info">
+                                <h1>God of War: Saga (3 Jogos) (Seminovo) - PS3</h1>
 
-                            <div className="sobre">
-                                <h4>Sobre</h4>
-                                <p>God of War: Collection tem como proposta central trazer o esplendor da série através de visuais em alta definição e uma jogabilidade ainda mais fluida. O game apresenta um compilado dos dois títulos mais aclamados da geração passada, agora com jogabilidade e gráficos melhorados...</p>
-                                <Link>Ver mais</Link>
-                            </div>
+                                <div className="avaliacao">
+                                    <img src="/assets/images/estrelasRate.png" alt="" />
+                                    (46 avaliações)
+                                </div>
 
-                            <ul>
-                                <li>Plataforma: <b>PS3</b></li>
-                                <li>Formato: <b>Físico</b></li>
-                                <li>É online: <b>Sim</b></li>
-                            </ul>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   
+                                <div className="preco">
+                                    <div>
+                                        <h3>De: R$ 44,99</h3>
+                                        <h2>R$ 29,99</h2>
+                                        <h4>Ou em até 10x</h4>
+                                    </div>
+
+                                    <div className='desconto'>
+                                        <h3>33% de Desconto</h3>
+                                    </div>
+                                </div>
+
+                                <Link>Ver os meios de pagamento</Link>
+
+                                <div className="sobre">
+                                    <h4>Sobre</h4>
+                                    <p>God of War: Collection tem como proposta central trazer o esplendor da série através de visuais em alta definição e uma jogabilidade ainda mais fluida. O game apresenta um compilado dos dois títulos mais aclamados da geração passada, agora com jogabilidade e gráficos melhorados...</p>
+                                    <Link>Ver mais</Link>
+                                </div>
+
+                                <ul>
+                                    <li>Plataforma: <b>PS3</b></li>
+                                    <li>Formato: <b>Físico</b></li>
+                                    <li>É online: <b>Sim</b></li>
+                                </ul>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   
+                            </div>    
                         </div>
+                        
 
-                        <div className="entrega">
+                        <div className="entregas">
                             <h2>R$ 29,99</h2>
                             <hr/>
 
@@ -73,14 +82,29 @@ export default function Pedido() {
                             </div>
 
                             <div className="container-entregas">
-                                <h2>Entrega mais Rápida</h2>
+                                <div className="entrega">
+                                    <h2>Entrega mais Rápida</h2>
 
-                                <div>
-                                    <img src="/assets/images/loggiLogo.png" alt="" />
                                     <div>
-                                        <h4>Entrega Loggi</h4>
-                                        <p>Receba em até 2 dias úteis</p>
-                                        <h5>R$ 10.99</h5>
+                                        <img src="/assets/images/loggiLogo.png" alt="" />
+                                        <div>
+                                            <h4>Entrega Loggi</h4>
+                                            <p>Receba em até 2 dias úteis</p>
+                                            <h5>R$ 10.99</h5>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div className="entrega">
+                                    <h2>Entrega mais Rápida</h2>
+
+                                    <div>
+                                        <img src="/assets/images/loggiLogo.png" alt="" />
+                                        <div>
+                                            <h4>Entrega Loggi</h4>
+                                            <p>Receba em até 2 dias úteis</p>
+                                            <h5>R$ 10.99</h5>
+                                        </div>
                                     </div>
                                 </div>
                             </div> 
@@ -93,11 +117,16 @@ export default function Pedido() {
                     <section className="sec-relacionados">
                         <h1>Relacionados</h1>
 
-                        <div>
-                            <CardProduto tema="tema-cinza"/>
-                            <CardProduto tema="tema-cinza"/>
-                            <CardProduto tema="tema-cinza"/>
-                            <CardProduto tema="tema-cinza"/>
+                        <div className='container-produtos'>
+                            <div>
+                                <CardProduto />
+                                <CardProduto />
+                            </div>
+
+                            <div>
+                                <CardProduto />
+                                <CardProduto />
+                            </div>
                         </div>
                     </section>
 
@@ -173,9 +202,11 @@ export default function Pedido() {
                         <div>
                             <div className="container-comentario">
                                 <div>
-                                    <img src="/assets/images/user.png" alt="" />
-                                    <h4>Carlos Henrique</h4>
-                                    <h5>/ 30 de Julho de 2023</h5>
+                                    <img src="/assets/images/usuario.png" alt="" />
+                                    <div>
+                                        <h4>Carlos Henrique</h4>
+                                        <h5>30 de Julho de 2023</h5>    
+                                    </div>
                                 </div>
 
                                 <img src="/assets/images/estrelasRate.png" alt="" />
