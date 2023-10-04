@@ -55,7 +55,7 @@ export default function Contato() {
                         <input type="text" name='from_email' required/>
 
                         <h3>Assunto</h3>
-                        <input type="text" placeholder='Dê um breve título ao seu problema. Ex: “Recebi um produto com defeito”.' name='from_subject' required/>
+                        <input type="text" placeholder='Ex: “Recebi um produto com defeito”.' name='from_subject' required/>
 
                         <h3>Explicação</h3>
                         <textarea placeholder='Pode explicar seu problema com detalhes. Nós nos esforçaremos para ajudar!' name='message' required/>

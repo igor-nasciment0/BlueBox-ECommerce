@@ -63,6 +63,14 @@
 
                 border-radius: 6px;
                 padding: 12px 15px;
+                position: relative;
+            }
+
+            input::placeholder {
+                position: absolute;
+                top: 50%;
+                transform: translateY(-50%);
+                white-space: pre-line;
             }
 
             input:focus-visible {
@@ -93,6 +101,25 @@
             .botao-submit:hover {
                 transform: scale(1.05);
                 background-color: #3e5079;
+            }
+        }
+       
+        @media (max-width: 768px)
+        {
+            > h1 {
+                font-size: 18px;
+            }
+
+            > h2 {
+                font-size: 16px;
+            }
+
+            > form h3 {
+                font-size: 14px;
+            }
+
+            .botao-submit {
+                font-size: 16px;
             }
         }
     }
