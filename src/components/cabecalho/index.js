@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import { TemaContext } from '../../theme';
 import './index.scss';
 
@@ -7,6 +7,16 @@ import { Link } from 'react-router-dom';
 export default function Cabecalho()
 {
     let tema = useContext(TemaContext);
+
+    const [display, setDisplay] = useState({display: 'none'});
+
+    function barraLateral(params) {
+        if (display.display === 'none') {
+            setDisplay({display: 'flex'});
+        } else {
+            setDisplay({display: 'none'});
+        }
+    }
 
     return(
         <header className='common-cabecalho'>
@@ -64,7 +74,7 @@ export default function Cabecalho()
                     <img src='/assets/images/icons/search.svg' alt=""/>
                 </div>
 
-                <button>
+                <button onClick={barraLateral}>
                     <img src="/assets/images/icons/menu.svg" alt="" />
                 </button>
 
@@ -72,6 +82,19 @@ export default function Cabecalho()
                     <img src="/assets/images/icons/cart.svg" alt="" />
                 </button>
             </div>
+            
+            <div className='menu-cabecalho' style={display}>
+                    <ul>
+                        <li>
+                            <img src="/assets/images/icons/borg-head.svg" alt="" />
+                            <Link to={'/login'}>Fazer login</Link>
+                        </li>
+                        <li>
+                            <img src="/assets/images/icons/gmail.svg" alt="" />
+                            <Link to={'/contato'}>Contato</Link>
+                        </li>
+                    </ul>
+                </div>
         </header>
     );
 }

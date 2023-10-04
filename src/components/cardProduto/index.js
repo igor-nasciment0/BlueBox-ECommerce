@@ -11,7 +11,7 @@ export default function CardProduto(props)
     const navigate = useNavigate();
     
     return(
-        <div className={'card-produto ' + tema} onClick={navigate('/produto')}>
+        <div className={'card-produto ' + tema} onClick={() => navigate('/produto')}>
             <img src='/assets/images/foto_produto.png' alt="Assassin's Creed" />
             <h2>Assassins Creed Brotherhood (Seminovo)</h2>
             <h4 className='preco-anterior'>R$ 44,99</h4>
