@@ -84,17 +84,22 @@ export default function Cabecalho()
             </div>
             
             <div className='menu-cabecalho' style={display}>
-                    <ul>
-                        <li>
-                            <img src="/assets/images/icons/borg-head.svg" alt="" />
-                            <Link to={'/login'}>Fazer login</Link>
-                        </li>
-                        <li>
-                            <img src="/assets/images/icons/gmail.svg" alt="" />
-                            <Link to={'/contato'}>Contato</Link>
-                        </li>
-                    </ul>
-                </div>
+                <ul>
+                    <li>
+                        <img src="/assets/images/icons/borg-head.svg" alt="" />
+                        <Link to={'/login'}>Fazer login</Link>
+                    </li>
+                    <li>
+                        <img src="/assets/images/icons/gmail.svg" alt="" />
+                        <Link to={'/contato'}>Contato</Link>
+                    </li>
+                </ul>
+                <button onClick={() => {tema.trocarTema()}}>
+                    <div className='fade-image-sun'>
+                        <img src={'/assets/images/icons/sun.svg'} alt="" />
+                    </div>
+                </button>
+            </div>
         </header>
     );
 }

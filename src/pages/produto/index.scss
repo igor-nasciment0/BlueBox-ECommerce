@@ -6,11 +6,21 @@
     color: rgb(var(--cor-textos));
     background-color: var(--fundo-tela);
 
+    transition: 0.3s;
+
+    * {
+        transition: 0.1s;
+    }
+
     .container-main
     {
         display: flex;
         flex-direction: column;
         padding: 40px 20px;
+
+        @media (max-width: 768px) {
+            padding: 20px 10px;
+        }
     }
 
     main
@@ -30,7 +40,7 @@
         margin-bottom: 30px;
 
         @media (max-width: 700px) {
-            padding: 36px 10px;
+            padding: 20px 10px;
         }
     }
 
@@ -457,6 +467,7 @@
             .entregas .container-entregas{
                 flex-direction: column;
                 align-items: center;
+                margin-bottom: 16px;
 
                 .entrega {
                     width: 100%;
@@ -478,9 +489,12 @@
             text-align: center;
             margin-bottom: 27px;
             font-size: 24px;
-            
-            
-            @media (max-width: 700px) {
+        }
+
+        @media (max-width: 700px) {
+            margin-bottom: 35px;
+
+            h1 {
                 font-size: 20px;
             }
         }
@@ -714,7 +728,7 @@
             }
         }
 
-        @media (max-width: 380px) {
+        @media (max-width: 460px) {
             .tabela-especificacoes {
                 flex-direction: column;
                 flex-wrap: wrap;
