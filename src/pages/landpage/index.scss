@@ -424,7 +424,7 @@
         max-width: var(--container-tela);
         width: 100%;
 
-        padding: 0 1em;
+        padding: 0 10px;
 
         > div {
             width: 100%;
@@ -439,12 +439,62 @@
             > div {
                 justify-content: center;
             }
+
+            .card-produto {
+                padding: 5px;
+
+                h2 {
+                    font-size: 13px;
+                }
+
+                a {
+                    display: none;
+                }
+
+                > img {
+                    margin-bottom: 5px;
+                }
+
+                > h2 {
+                    margin-bottom: 7px;
+                }
+
+                .preco {
+                    margin-bottom: 8px;
+                }
+            }
         }
 
-        @media (max-width: 520px) {
-            > div {
-                flex-direction: column;
-                align-items: center;
+        @media (max-width: 600px) {
+            .card-produto {
+                h2 {
+                    font-size: 12px;
+                }
+
+                .preco {
+                    font-size: 25px;
+                }
+            }
+        }
+
+        @media (max-width: 450px) {
+            .card-produto {
+                h2 {
+                    font-size: 11px;
+                }
+
+                p {
+                    font-weight: 600;
+                    font-size: 8px;
+                }
+
+                .preco-anterior {
+                    font-size: 11px;
+                }
+
+                .preco {
+                    font-size: 18px;
+                }
             }
         }
     }
