@@ -20,34 +20,53 @@ export default function Carrinho()
                 <div className='container-tela'>
                     <section className='sec-carrinho'>
                         <div className='container-carrinho'>
-                            <div className='carrinho-produto'>
-                                <img src='/assets/images/foto_produto.png' alt="" />
-                            
-                                <div className='produto-especificacoes'>
-                                    <h2>God of War: Saga (3 Jogos) (Seminovo) - PS3</h2>
-                                    <h3>Produto seminovo / usado</h3>
-                                    <h4>Disponível</h4>
+                            <div className='produto-container'>
+                                <div className='produto'>
+                                    <img src='/assets/images/foto_produto.png' alt="" />
+                                
+                                    <div className='produto-especificacoes'>
+                                        <h2>God of War: Saga (3 Jogos) (Seminovo) - PS3</h2>
+                                        <h3>Produto seminovo / usado</h3>
+                                        <h4>Disponível</h4>
 
-                                    <div className='container-operadores'>
-                                        <div className='operador-qtd'>
-                                            <h4>Qtd.</h4>
-                                            <div>
-                                                <button> - </button>
-                                                <div> 1 </div>
-                                                <button> + </button>
+                                        <div className='container-operadores'>
+                                            <div className='operador-qtd'>
+                                                <h4>Qtd.</h4>
+                                                <div>
+                                                    <button> - </button>
+                                                    <div> 1 </div>
+                                                    <button> + </button>
+                                                </div>
                                             </div>
-                                        </div>
 
-                                        <button>Excluir</button>
-                                        <a href="">Ver semelhantes</a>
+                                            <button>Excluir</button>
+                                            <a href="">Ver semelhantes</a>
+                                        
+                                            <div className='preco-mobile'>R$ 44,99</div>
+                                        </div>
                                     </div>
+
+                                    <div className='produto-preco'>
+                                        <h2>Preço:</h2>
+                                        <h4>R$ 44,99</h4>
+                                        <h3>R$ 29,99</h3>
+                                    </div>  
                                 </div>
 
-                                <div className='produto-preco'>
-                                    <h2>Preço:</h2>
-                                    <h4>R$ 44,99</h4>
-                                    <h3>R$ 29,99</h3>
-                                </div>  
+                                <div className='container-operadores mobile'>
+                                    <div className='operador-qtd'>
+                                        <div>
+                                            <button> - </button>
+                                            <div> 1 </div>
+                                            <button> + </button>
+                                        </div>
+                                    </div>
+
+                                    <button>Excluir</button>
+                                    <a href="">Ver semelhantes</a>
+                                
+                                    <div className='preco-mobile'>R$ 44,99</div>
+                                </div>
                             </div>
                         </div>
                     </section>

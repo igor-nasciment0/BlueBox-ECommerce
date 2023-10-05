@@ -282,7 +282,7 @@
                     width: 100%;
                     border: none;
                     border-radius: 100px;
-                    background-color: var(--fundo-tela);
+                    background-color: var(--fundo-componentes2);
                 }
 
                 input::placeholder {
@@ -319,7 +319,7 @@
                         gap: 20px;
 
                         padding: 10px 21px;
-                        background-color: var(--fundo-tela);
+                        background-color: var(--fundo-componentes2);
                         border-radius: 15px;
 
                         img
@@ -376,7 +376,7 @@
 
             .btn-carrinho
             {
-                background-color: rgba($color: #152039, $alpha: 0.3);
+                background-color: rgba(var(--cor-textos), 0.2);
                 color: var(--preto-textos);
             }
         }
@@ -594,7 +594,7 @@
         }
 
         .card-produto {
-            background-color: var(--fundo-tela);
+            background-color: var(--fundo-componentes2);
         }
     }
 

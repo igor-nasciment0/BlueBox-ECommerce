@@ -1,6 +1,11 @@
 .pagina-carrinho
 {
     background-color: var(--fundo-tela);
+    transition: 0.3s;
+
+    * {
+        transition: 0.1s;
+    }
 
     main
     {
@@ -8,7 +13,7 @@
         flex-direction: column;
         align-items: center;
 
-        padding: 30px;
+        padding: 30px 20px;
         color: rgb(var(--cor-textos));
     }
 
@@ -25,7 +30,7 @@
     {
         display: flex;
         flex-direction: column;
-        margin-right: 30px;
+        margin-right: 20px;
 
         flex-grow: 1;
     }
@@ -38,25 +43,26 @@
 
     .container-carrinho
     {
-        padding: 20px 30px;
+        padding: 16px;
         width: 100%;
 
-        background-color: #FFFFFF;
+        background-color: var(--fundo-componentes);
         border-radius: 15px;
         box-shadow: 0 4px 4px 0 rgba($color: #000000, $alpha: 0.2);
     }
 
-    .container-carrinho .carrinho-produto
+    .container-carrinho .produto-container
     {
-        display: flex;
-        background-color: #F5F5F5;
-
-        padding: 24px;
-        padding-right: 40px;
+        background-color: var(--fundo-componentes2);
+        padding: 16px;
         box-shadow: 0 4px 4px 0 rgba($color: #000000, $alpha: 0.2);
     }
 
-    .carrinho-produto > img
+    .produto {
+        display: flex;
+    } 
+
+    .produto > img
     {
         box-shadow: 0 0 10px 3px rgba($color: #000000, $alpha: 0.4);
 
@@ -94,7 +100,7 @@
         font-weight: 400;
         margin-bottom: 16px;
 
-        color: var(--azul-claro-textos);
+        color: var(--azul-claro);
     }
 
     .produto-especificacoes > .container-operadores
@@ -125,7 +131,7 @@
         padding: 4px 8px;
         border-radius: 100px;
 
-        background-color: var(--cinza-fundo);
+        background-color: var(--fundo-tela);
         box-shadow: 0 4px 4px 0 rgba($color: #000000, $alpha: 0.2);
 
         font-size: 14px;
@@ -146,6 +152,11 @@
         border: none;
 
         cursor: pointer;
+        color: rgb(var(--cor-textos));
+    }
+
+    .container-operadores.mobile {
+        display: none;
     }
 
     .container-operadores > button
@@ -157,7 +168,7 @@
 
         font-size: 14px;
         font-weight: 400;
-        color: var(--azul-claro-textos);
+        color: var(--azul-claro);
 
         margin-right: 16px;
     }
@@ -168,7 +179,11 @@
 
         font-size: 14px;
         font-weight: 400;
-        color: var(--azul-claro-textos);
+        color: var(--azul-claro);
+    }
+
+    .preco-mobile {
+        display: none;
     }
 
     .produto-preco
@@ -193,7 +208,7 @@
         font-weight: 500;
         margin-bottom: 3px;
         
-        color: rgba($color: #000000, $alpha: 0.75);
+        color: rgba($color: var(--cor-textos), $alpha: 0.75);
         text-decoration: line-through;
     }
 
@@ -209,10 +224,10 @@
         flex-direction: column;
         justify-content: space-around;
 
-        padding: 30px;
+        padding: 30px 16px;
         border-radius: 15px;
 
-        background-color: white;
+        background-color: var(--fundo-componentes);
         box-shadow: 0 4px 4px 0 rgba($color: #000000, $alpha: 0.2);
         
         text-align: center;
@@ -220,6 +235,8 @@
 
     .sec-total-precos
     {
+        display: flex;
+        flex-direction: column;
         margin-bottom: 20px;
     }
 
@@ -271,11 +288,12 @@
         border: none;
 
         box-shadow: 0 4px 4px 0 rgba($color: #000000, $alpha: 0.2);
-        background-color: var(--cinza-fundo);
+        background-color: var(--fundo-componentes2);
     }
 
     .sec-total-input > input::placeholder
     {
+        color: rgba(var(--cor-textos), 0.6);
         font-size: 12px;
     }
 
@@ -290,7 +308,7 @@
     .container-entregas > div
     {
         padding: 12px 18px;
-        background-color: var(--cinza-fundo);
+        background-color: var(--fundo-componentes2);
         border-radius: 15px;
 
         display: flex;
@@ -317,7 +335,7 @@
     .container-entregas > div p
     {
         font-size: 12px;
-        color: var(--azul-claro-textos);
+        color: var(--azul-claro);
         margin-bottom: 8px;
     }
 
@@ -341,5 +359,170 @@
 
         background-color: var(--azul-marca);
         color: #FFFFFF;
+    }
+
+    @media (max-width: 1024px) {
+        main > .container-tela {
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .sec-carrinho {
+            width: 100%;
+            margin: 0;
+        }
+
+        .sec-total {
+            width: 100%;
+            max-width: 500px;
+            align-items: center;
+
+            > div, > a {
+                width: 100%;
+                align-items: center;
+            }
+
+            .sec-total-precos > div{
+                width: 100%;
+            }
+
+            .container-entregas > div {
+                width: 100%;
+                justify-content: center;
+                gap: 20px;
+            }
+        }
+    }
+
+    @media (max-width: 768px) {
+        .sec-carrinho {
+            .produto > img {
+                max-width: 100px;
+                height: min-content;
+                align-self: center;
+                margin-right: 16px;
+            }
+
+            .produto-preco {
+                display: none;
+            }
+
+            .produto-especificacoes {
+                margin: 0;
+                width: 100%;
+            }
+
+            .container-operadores {
+                width: 100%;
+            }
+
+            .preco-mobile {
+                display: inline-block;
+                margin-left: auto;
+                font-size: 20px;
+                font-weight: 600;
+            }
+        }
+    }
+
+    @media (max-width: 600px) {
+        .sec-carrinho {
+            .produto-container {
+                display: flex;
+                flex-direction: column;
+
+                .produto {
+                    margin-bottom: 10px;
+
+                    > img {
+                        max-width: 80px;
+                    }
+
+                    .container-operadores {
+                        display: none;
+                    }
+
+                    .produto-especificacoes {
+                        h2 {
+                            font-size: 14px;
+                        }
+
+                        h3, h4 {
+                            font-size: 12px;
+                        }
+                    }
+                }
+            }
+
+            .container-operadores.mobile {
+                display: flex;
+                align-items: flex-end;
+
+                .operador-qtd {
+                    width: 100%;
+                    max-width: 80px;
+                    margin-right: 10px;
+
+                    > div {
+                        width: 100%;
+                        display: flex;
+                        justify-content: space-between;
+
+                        > div {
+                            font-size: 14px;
+                            margin: 0; 
+                        }    
+
+                        button {
+                            margin: 0;
+                        }
+                    }
+                }
+
+                button, a {
+                    margin-right: 10px;
+                    font-size: 12px;
+                }
+
+                .preco-mobile {
+                    font-size: 16px;
+                }
+            }
+        }
+
+        .sec-total {
+            .sec-total-precos .total{
+                h3, p {
+                    font-size: 18px;
+                }
+            }
+            
+            .sec-total-input p {
+                font-size: 14px;
+            }
+
+            > a {
+                font-size: 14px;
+            }
+        }
+    }
+
+    @media (max-width: 450px) {
+        .sec-carrinho .produto-container .produto > img {
+            max-width: 60px;
+        } 
+
+        .sec-carrinho .produto-container .container-operadores.mobile .operador-qtd {
+            max-width: 60px;
+
+            > div {
+                padding: 4px 3px;
+            }
+        }
+
+        .sec-carrinho .container-operadores.mobile > a {
+            display: none !important;
+        }
     }
 }
