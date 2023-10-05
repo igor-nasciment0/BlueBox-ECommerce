@@ -7,7 +7,7 @@
     background: var(--fundo-tela);
     transition: 0.3s;
 
-    color: var(--cor-textos);
+    color: rgb(var(--cor-textos));
 
 .gradient {
     background: linear-gradient(180deg, rgba(0,0,0,0) 14%, rgba(33,48,81,1) 68%);
