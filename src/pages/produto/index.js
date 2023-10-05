@@ -8,6 +8,7 @@ import CardProduto from '../../components/cardProduto';
 import { Link } from 'react-router-dom/dist';
 import { useContext } from 'react';
 import { TemaContext } from '../../theme';
+import AnchorLink from 'react-anchor-link-smooth-scroll';
 
 export default function Pedido() {
 
@@ -60,7 +61,7 @@ export default function Pedido() {
                                 <div className="sobre">
                                     <h4>Sobre</h4>
                                     <p>God of War: Collection tem como proposta central trazer o esplendor da série através de visuais em alta definição e uma jogabilidade ainda mais fluida. O game apresenta um compilado dos dois títulos mais aclamados da geração passada, agora com jogabilidade e gráficos melhorados...</p>
-                                    <Link>Ver mais</Link>
+                                    <AnchorLink href='#detalhes'>Ver mais</AnchorLink>
                                 </div>
 
                                 <ul>
@@ -130,7 +131,7 @@ export default function Pedido() {
                         </div>
                     </section>
 
-                    <section className="sec-detalhes">
+                    <section className="sec-detalhes" id='detalhes'>
                         <h1>Informações</h1>
 
                         <div className="info-usado">
