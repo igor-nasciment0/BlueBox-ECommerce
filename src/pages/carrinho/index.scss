@@ -458,6 +458,7 @@
             .container-operadores.mobile {
                 display: flex;
                 align-items: flex-end;
+                text-align: center;
 
                 .operador-qtd {
                     width: 100%;
@@ -521,8 +522,26 @@
             }
         }
 
-        .sec-carrinho .container-operadores.mobile > a {
-            display: none !important;
+        main {
+            padding: 30px 8px;
+        }
+
+        .container-carrinho {
+            border-radius: 5px;
+            padding: 16px 8px;
+        }
+
+        .sec-carrinho .container-operadores.mobile {
+            > a {
+                font-size: 12px;
+                font-weight: 600;
+                margin: 0;
+            }
+
+            > button {
+                font-size: 12px;
+                font-weight: 600;
+            }
         }
     }
 }

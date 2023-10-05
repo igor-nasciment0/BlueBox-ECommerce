@@ -63,9 +63,9 @@ export default function Carrinho()
                                     </div>
 
                                     <button>Excluir</button>
-                                    <a href="">Ver semelhantes</a>
+                                    <a href="">Ver similares</a>
                                 
-                                    <div className='preco-mobile'>R$ 44,99</div>
+                                    <div className='preco-mobile'>44,99</div>
                                 </div>
                             </div>
                         </div>
