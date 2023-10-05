@@ -75,7 +75,7 @@ export default function Carrinho()
                         <div className='sec-total-precos'>
                             <div className='total'>
                                 <h3>Total:</h3>
-                                <p>40.98</p>
+                                <p>R$ 40.98</p>
                             </div>
 
                             <div>

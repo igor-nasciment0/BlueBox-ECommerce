@@ -391,6 +391,10 @@
                 width: 100%;
                 justify-content: center;
                 gap: 20px;
+
+                > img {
+                    margin-right: 0;
+                }
             }
         }
     }
