@@ -17,7 +17,7 @@ export default function TeladePagamento(){
                             <p>God of War: Saga (3 Jogos) (Seminovo) - PS3</p>
                             <div>
                               <p>Qtd</p>
-                              <p> <button>-</button> 2 <button>+</button> </p>
+                              <p> 2 </p>
                             </div>
 
                             <div>
@@ -25,10 +25,43 @@ export default function TeladePagamento(){
                               <p>29,99</p>
                             </div>
                         </div>
+
+                        <div className="especs-pedido">
+                            <img src="/assets/images/foto_produto.png" alt="" />
+                            <p>God of War: Saga (3 Jogos) (Seminovo) - PS3</p>
+                            <div>
+                              <p>Qtd</p>
+                              <p> 2 </p>
+                            </div>
+
+                            <div>
+                              <p>Subtotal</p>
+                              <p>29,99</p>
+                            </div>
+                        </div>
+
+                        <div className="especs-pedido">
+                            <img src="/assets/images/foto_produto.png" alt="" />
+                            <p>God of War: Saga (3 Jogos) (Seminovo) - PS3</p>
+                            <div>
+                              <p>Qtd</p>
+                              <p> 2 </p>
+                            </div>
+
+                            <div>
+                              <p>Subtotal</p>
+                              <p>29,99</p>
+                            </div>
+                        </div>
+                        
                     </div>
 
                     <div className="metodos-pagamento">
-
+                        <p>Escolha seu metodo de pagamento:</p>
+                        <button>PIX</button>
+                        <button>Cartão de credito</button>
+                        <button>Cartão de debito</button>
+                        <button>Boleto</button>
                     </div>
                 </div>
             </main>
