@@ -12,46 +12,51 @@ export default function TeladePagamento(){
                 <div className="info-pedido">
                     <div className="encomendas">
                         <h1>Pedido</h1>
-                        <div className="especs-pedido">
-                            <img src="/assets/images/foto_produto.png" alt="" />
-                            <p>God of War: Saga (3 Jogos) (Seminovo) - PS3</p>
-                            <div>
-                              <p>Qtd</p>
-                              <p> 2 </p>
+
+                        <div className="produtos">
+
+                            <div className="especs-pedido">
+                                <img src="/assets/images/foto_produto.png" alt="" />
+                                <p>God of War: Saga (3 Jogos) (Seminovo) - PS3</p>
+                                <div>
+                                <p>Qtd</p>
+                                <p> 2 </p>
+                                </div>
+
+                                <div>
+                                <p>Subtotal</p>
+                                <p>29,99</p>
+                                </div>
                             </div>
 
-                            <div>
-                              <p>Subtotal</p>
-                              <p>29,99</p>
-                            </div>
-                        </div>
+                            <div className="especs-pedido">
+                                <img src="/assets/images/foto_produto.png" alt="" />
+                                <p>God of War: Saga (3 Jogos) (Seminovo) - PS3</p>
+                                <div>
+                                <p>Qtd</p>
+                                <p> 2 </p>
+                                </div>
 
-                        <div className="especs-pedido">
-                            <img src="/assets/images/foto_produto.png" alt="" />
-                            <p>God of War: Saga (3 Jogos) (Seminovo) - PS3</p>
-                            <div>
-                              <p>Qtd</p>
-                              <p> 2 </p>
-                            </div>
-
-                            <div>
-                              <p>Subtotal</p>
-                              <p>29,99</p>
-                            </div>
-                        </div>
-
-                        <div className="especs-pedido">
-                            <img src="/assets/images/foto_produto.png" alt="" />
-                            <p>God of War: Saga (3 Jogos) (Seminovo) - PS3</p>
-                            <div>
-                              <p>Qtd</p>
-                              <p> 2 </p>
+                                <div>
+                                <p>Subtotal</p>
+                                <p>29,99</p>
+                                </div>
                             </div>
 
-                            <div>
-                              <p>Subtotal</p>
-                              <p>29,99</p>
+                            <div className="especs-pedido">
+                                <img src="/assets/images/foto_produto.png" alt="" />
+                                <p>God of War: Saga (3 Jogos) (Seminovo) - PS3</p>
+                                <div>
+                                <p>Qtd</p>
+                                <p> 2 </p>
+                                </div>
+
+                                <div>
+                                <p>Subtotal</p>
+                                <p>29,99</p>
+                                </div>
                             </div>
+
                         </div>
                         
                     </div>
@@ -63,6 +68,8 @@ export default function TeladePagamento(){
                         <button>Cartão de debito</button>
                         <button>Boleto</button>
                     </div>
+
+                    <div className="bandeira-cartões"><img src="/assets/images/Bandeiracartão.png" alt="" /></div>
                 </div>
             </main>
             <Rodape/>
