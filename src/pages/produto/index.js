@@ -2,7 +2,6 @@ import './index.scss';
 
 import Cabecalho from '../../components/cabecalho';
 import Rodape from '../../components/rodape';
-import CabecalhoLogado from '../../components/cabecalhoLogado';
 import CardProduto from '../../components/cardProduto';
 
 import { Link } from 'react-router-dom/dist';

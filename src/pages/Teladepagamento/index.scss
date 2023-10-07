@@ -14,6 +14,12 @@
         padding: 25px;
     }
 
+    .row-centralizer{
+        display: flex;
+        flex-direction: row;
+        gap: 25px;
+    }
+
    .info-pedido{
     display: flex;
     flex-direction: column;
@@ -46,6 +52,7 @@
 
 .produtos{
     overflow-y: scroll;
+    height: 300px;
 }
 
 .especs-pedido{
@@ -109,6 +116,107 @@
     background: #FFF;
     margin-top: 15px;
     border-radius: 5px;
+}
+
+.resumo-pedido{
+
+
+    >p{
+        font-size: 12px;
+        font-style: italic;
+        text-align: center;
+    }
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+    .card-resumo{
+        background-color: #FFF;
+        padding: 20px;
+        border-radius: 5px;
+        width: 300px;
+        display: flex;
+        justify-content: center;
+        box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+        margin-bottom: 15px;
+    }
+
+    .borda-resumo{
+        border: 2px solid rgba(0, 0, 0, 0.30);
+        border-radius: 5px;
+        justify-content: center;
+        align-items: center;
+        display: flex;
+        flex-direction: column;
+        padding: 15px 0px;
+        gap: 10px;
+        max-width: 300px;
+        width: 100%;
+        padding: 15px 30px;
+
+        button{
+            color: var(--quase-branco, var(--fundo-componentes-tema-escuro, #FAFAFA));
+            font-size: 13px;
+            font-weight: 700;
+            width: 100%;
+            padding: 10px 25px;
+            align-items: center;
+            justify-content: center;
+            display: flex;
+            border-radius: 5px;
+            gap: 10px;
+            border: none;
+            background: var(--azul-textos, #1C84FF);
+        }
+
+        .finalizar-pedido{
+            background: var(--cinza-no-pode-clicar, #ACACAC);
+            color: var(--cinza-claro-texto, #424242);
+        }
+
+        .linha2{
+            width: 64px;
+            height: 2px;
+            background: #23272A;
+        }
+
+        >p{
+            font-size: 13px;
+            text-align: center;
+            color: rgba(0, 0, 0, 0.60);
+        }
+
+        .pix{
+            font-weight: 700;
+            color: var(--verde-claro);
+            font-size: 13px;
+        }
+
+        .total{
+            font-weight: 700;
+        }
+
+        .linha{
+            height: 2px;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.30);
+        }
+
+        h1{
+            font-weight: 400;
+            text-align: center;
+        }
+
+        div{
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: flex-start;
+            width: 100%;
+        }
+    }
+
 }
 
 }
