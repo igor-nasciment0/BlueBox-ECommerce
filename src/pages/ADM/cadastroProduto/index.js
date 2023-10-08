@@ -82,8 +82,6 @@ export default function CadastroProduto() {
 
             for(let i = 0; i < imagensSecundarias.length; i++) {
                 let imagem = imagensSecundarias[i];
-                console.log(imagem);
-                
                 await adicionarImagem(novoProduto.data.id, false, imagem);
             }
            
@@ -119,7 +117,7 @@ export default function CadastroProduto() {
     }
 
     function adicionarImagemSecundaria() {
-        if(imagensSecundarias.length <= 4) {
+        if(imagensSecundarias.length <= 4 && document.getElementById('imgSec')) {
             document.getElementById('imgSec').click();
         } else {
             toast.error('O número máximo de imagens secundárias é 4.')
@@ -160,15 +158,16 @@ export default function CadastroProduto() {
                                 </div>
 
                                 <div className="fotos-adicionais">
-                                    {imagensSecundarias.map(imagem => {
-                                            let url = mostrarImagem(imagem);
-                                            
-                                            if(url)
-                                                return (
-                                                    <div>
-                                                        <img src={url} alt="Imagem Secundária" />
-                                                    </div>     
-                                                )   
+                                    {imagensSecundarias.map((imagem, index) => {
+                                        let url = mostrarImagem(imagem);
+                                        
+                                        if(url)
+                                            return (
+                                                <div>
+                                                    <img className='deletar-img' src="/assets/images/icons/adm/remove-circle.svg" alt="" onClick={() => setImagensSecundarias([...imagensSecundarias.slice(0, index), ...imagensSecundarias.slice(index + 1)])}/>
+                                                    <img src={url} alt="Imagem Secundária" />
+                                                </div>     
+                                            )   
                                         }       
                                     )}
                                     

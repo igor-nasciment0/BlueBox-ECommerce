@@ -133,6 +133,8 @@
             margin-top: 7px;
     
             div{
+                position: relative;
+
                 display: flex;
                 justify-content: center;
                 align-items: center;
@@ -144,6 +146,13 @@
                 img {
                     max-width: 40px;
                     max-height: 40px;
+                }
+
+                .deletar-img {
+                    position: absolute;
+                    width: 24px;
+                    top: -12px;
+                    right: -7px;
                 }
             }    
         }
