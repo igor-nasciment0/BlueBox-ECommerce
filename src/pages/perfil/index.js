@@ -3,16 +3,38 @@ import './index.scss';
 import Cabecalho from '../../components/cabecalho';
 import Rodape from '../../components/rodape';
 
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import storage from 'local-storage';
 
 export default function Perfil()
 {
+  const [infoUser, setInfoUser] = useState({});
+  const [nascimento, setNascimento] = useState(new Date());
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    let info = storage('user-login');
+
+    if(info) {
+      setInfoUser(info);
+      setNascimento(new Date(info.dataNascimento));
+      console.log(info);
+    } else {
+      navigate('/login');
+    }
+  }, [])
+
+  function sair() {
+    storage.remove('user-login');
+    navigate('/');
+  }
+
   return (
     <div className='perfilBody'>
       <Cabecalho/>
       
       <div className='secao'>
-        
         <div className='perfil'> 
           <div className='ladoEsq'>
             <div className='imagem'>
@@ -20,12 +42,12 @@ export default function Perfil()
             </div>
 
             <div className='trocaImg'>
-              <a href="">Adicionar Imagem</a>
+              <button href="">Adicionar Imagem</button>
             </div>
 
-            <a href="">Trocar Senha</a>
+            <Link href="">Trocar Senha</Link>
             <Link to={'/meus-pedidos'}>Meus Pedidos</Link>
-            <a href="">Meus Cupons</a>
+            <button onClick={sair}>Sair</button>
           </div>
 
           <div className='barra'></div>
@@ -35,18 +57,18 @@ export default function Perfil()
 
             <h3>Nome de usuário</h3>
             <div className='info'>
-              <p>Igão o maioral</p>
+              <p>{`${infoUser.nome} ${infoUser.sobrenome}`}</p>
             </div>
 
             <h3>CPF</h3>
             <div className='info'>
-              <p>3********4</p>
+              <p>{infoUser.cpf}</p>
             </div>
 
             <h3>E-mail</h3>
             <div className='infoTrocavel'>
               <div>
-                <p>blabla@gmail.com</p>
+                <p>{infoUser.email}</p>
               </div>
               <a href="">Trocar</a>
             </div>
@@ -54,7 +76,7 @@ export default function Perfil()
             <h3>Número de Telefone</h3>
             <div className='infoTrocavel'>
               <div>
-                <p>119999999999</p>
+                <p>{infoUser.telefone}</p>
               </div>
               <a href="">Trocar</a>
             </div>
@@ -62,20 +84,20 @@ export default function Perfil()
             <h3>Data de Nascimento</h3>
             <div className='data'>
               <div>
-                <p>01</p>
+                <p>{nascimento.getDate()}</p>
               </div>
 
               <div>
-                <p>11</p>
+                <p>{nascimento.getMonth() + 1}</p>
               </div>
 
               <div>
-                <p>1999</p>
+                <p>{nascimento.getFullYear()}</p>
               </div>
             </div>
           </div>
         </div>
-    </div>
+      </div>
     
     <Rodape/>
   </div>

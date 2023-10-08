@@ -6,8 +6,8 @@ let api = axios.create({
 
 export async function cadastroCliente(nome, sobrenome, email, senha, telefone, cpf, dataNascimento) {
     let credenciais = {
-        nome: nome,
-        sobrenome: sobrenome,
+        nome: nome.trim(),
+        sobrenome: sobrenome.trim(),
         email: email,
         senha: senha,
         telefone: telefone,

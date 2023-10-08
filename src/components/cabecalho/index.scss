@@ -79,7 +79,7 @@
         height: 22px;
     }
 
-    .nav
+    .cab-link
     {
         min-width: 190px;
         justify-content: center;
@@ -87,12 +87,7 @@
         align-items: center;
     }
 
-    .nav:not(.nav:last-child)
-    {
-        margin-right: 15px;
-    } 
-
-    .nav div h2, .nav div a
+    .cab-link div h2, .cab-link div a
     {
         font-size: clamp(12px, 1vw, 14px);
         font-weight: 300;
@@ -101,10 +96,40 @@
         color: white;
     }
 
-    .nav img
+    .cab-link img
     {
         max-height: 50px;
         margin-right: 10px;
+    }
+
+    nav
+    {
+        display: flex;
+        flex-direction: row;
+        align-items: flex-end;
+        gap: 22px;
+
+        margin: 0 7px;
+    }
+
+    nav > div
+    {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 5px;
+    }
+
+    nav > div > img
+    {
+        width: 40px;
+    }
+
+    nav > div > a
+    {
+        color: #FFF;
+        font-size: 12px;
+        text-decoration: none;
     }
 
     button 
@@ -141,7 +166,7 @@
             }
 
             .input {
-                max-width: 550px;
+                max-width: 600px;
             }
 
             button {
@@ -157,7 +182,7 @@
                 }
             }
 
-            button:first-of-type {
+            button:not(button:last-of-type) {
                 margin-right: 10px;
             }
         }

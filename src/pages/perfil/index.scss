@@ -56,8 +56,10 @@
                     border-radius: 10px;
                     transition: 0.5s;
 
-                    > a {
+                    > button {
                         text-decoration: none;
+                        border: none;
+                        background: none;
                         color: #ffffff;
                         font-size: 14px;
                     }
@@ -68,15 +70,21 @@
                     transition: 0.5s;
                 }
 
-                > a {
+                > a, > button {
                     text-decoration: none;
-                    color: #000000;
+                    background: none;
+                    border: none;
+
+                    font-size: 16px;
+                    color: rgb(var(--cor-textos));
                     margin: 10px 0px;
                     transition: 0.5s;
+                    
+                    cursor: pointer;
                 }
 
-                > a:hover {
-                    scale: 1.2;
+                > a:hover, > button:hover {
+                    scale: 1.05;
                     transition: 0.5s;
                 }
             }

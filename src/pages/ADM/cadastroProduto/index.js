@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import BarraLateral from '../../../components/ADM/barraLateral';
 import CabecalhoADM from '../../../components/ADM/cabecalho';
 import './index.scss';
@@ -6,12 +6,17 @@ import { useLocation } from 'react-router-dom';
 import axios from 'axios';
 import {ToastContainer, toast} from 'react-toastify';
 import { atualizarProduto, buscarCategorias, buscarMarcas, cadastrarProduto } from '../../../api/produtoAPI';
+import { TemaContext } from '../../../theme';
 
 export default function CadastroProduto() {
+
+    const context = useContext(TemaContext);
+    let tema = context.tema
+
     const [foto, setFoto] = useState('');
     const [nomeProduto, setNomeProduto] = useState('');
-    const [preco, setPreco] = useState(0);
-    const [qtdEstoque, setQtdEstoque] = useState(0);
+    const [preco, setPreco] = useState();
+    const [qtdEstoque, setQtdEstoque] = useState();
     const [descricao, setDescricao] = useState('');
     const [especificacoes, setEspecificacoes] = useState('');
     const [categoria, setCategoria] = useState(0);
@@ -26,7 +31,6 @@ export default function CadastroProduto() {
 
     const location = useLocation();
     const produto = location.state;
-    console.log(produto);
 
     useEffect(() => {
         if(produto)
@@ -100,7 +104,7 @@ export default function CadastroProduto() {
     }
 
     return(
-        <div className="pagina-cadastro-produto">
+        <div className={"pagina-cadastro-produto " + tema}>
             <ToastContainer
                 position="bottom-center"
                 autoClose={3000}

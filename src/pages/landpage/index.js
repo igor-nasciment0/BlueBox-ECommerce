@@ -1,7 +1,6 @@
 import './index.scss';
 
 import Cabecalho from '../../components/cabecalho/';
-import CabecalhoLogado from '../../components/cabecalhoLogado';
 import FaixaCategorias from '../../components/faixa-categorias/';
 import Rodape from '../../components/rodape/'
 import CardProduto from '../../components/cardProduto';
