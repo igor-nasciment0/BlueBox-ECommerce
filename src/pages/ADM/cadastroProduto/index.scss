@@ -90,39 +90,63 @@
             color: var(--cinza-claro-texto, #424242);
             margin-top: 6px;
         }
-    }
 
-    .foto-produto{
-        width: 290px;
-        height: 360px;
-        background: #D9D9D9;
-        padding: 18px;
-        box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-    }
-
-    .foto-principal{
-        width: 100%;
-        height: 270px;
-        background: #989898;
-        border: none;
-    }
-
-    .foto-principal:focus-visible{
-        outline: none;
-    }
-
-    .fotos-adicionais{
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-
-        div{
-            width: 50px;
-            height: 50px;
-            background-color: #989898;
-            margin-top: 7px;
+        .input-file {
+            position: absolute;
+            visibility: hidden;
         }
+        
+        .foto-produto{
+            width: 100%;
+            max-width: 290px;
+            height: 360px;
+            background: #D9D9D9;
+            padding: 18px;
+            box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+        }
+    
+        .foto-principal{
+            display: flex;
+            justify-content: center;
+            align-items: center;
 
+            width: 100%;
+            height: 270px;
+            background: #989898;
+            border: none;
+
+            > .imagem-produto {
+                max-width: 220px;
+                max-height: 250px;
+                box-shadow: 0 0 7px 3px rgba(0, 0, 0, 0.5);
+            }
+        }
+    
+        .foto-principal:focus-visible{
+            outline: none;
+        }
+    
+        .fotos-adicionais{
+            display: flex;
+            flex-direction: row;
+            gap: 13px;
+            margin-top: 7px;
+    
+            div{
+                display: flex;
+                justify-content: center;
+                align-items: center;
+
+                width: 50px;
+                height: 50px;
+                background-color: #989898;
+            
+                img {
+                    max-width: 40px;
+                    max-height: 40px;
+                }
+            }    
+        }
     }
 
     .info-abt-produto{

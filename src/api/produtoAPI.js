@@ -52,6 +52,20 @@ export async function deletarProduto(id) {
     return resp;
 }
 
+
+export async function adicionarImagem(idProduto, primaria, imagem) {
+    const formData = new FormData();
+    formData.append('imagem', imagem);
+
+    let resp = await api.post(`/produto/${idProduto}/imagem?primaria=${primaria}`, formData, {
+        headers: {
+            "Content-Type": "multipart/form-data"
+        }
+    })
+
+    console.log(resp);
+}
+
 export async function buscarMarcas() {
     let marcas = await api.get('/produto/marca');
     

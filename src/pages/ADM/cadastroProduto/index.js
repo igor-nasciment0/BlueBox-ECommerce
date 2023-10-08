@@ -3,9 +3,8 @@ import BarraLateral from '../../../components/ADM/barraLateral';
 import CabecalhoADM from '../../../components/ADM/cabecalho';
 import './index.scss';
 import { useLocation } from 'react-router-dom';
-import axios from 'axios';
 import {ToastContainer, toast} from 'react-toastify';
-import { atualizarProduto, buscarCategorias, buscarMarcas, cadastrarProduto } from '../../../api/produtoAPI';
+import { adicionarImagem, atualizarProduto, buscarCategorias, buscarMarcas, cadastrarProduto } from '../../../api/produtoAPI';
 import { TemaContext } from '../../../theme';
 
 export default function CadastroProduto() {
@@ -13,7 +12,9 @@ export default function CadastroProduto() {
     const context = useContext(TemaContext);
     let tema = context.tema
 
-    const [foto, setFoto] = useState('');
+    const [imagemPrimaria, setImagemPrimaria] = useState('');
+    const [imagensSecundarias, setImagensSecundarias] = useState([]);
+
     const [nomeProduto, setNomeProduto] = useState('');
     const [preco, setPreco] = useState();
     const [qtdEstoque, setQtdEstoque] = useState();
@@ -73,11 +74,20 @@ export default function CadastroProduto() {
 
     async function cadastrar() {
         try{
-            let resp = await cadastrarProduto(nomeProduto, preco, qtdEstoque, descricao, especificacoes, categoria, marca, usado, peso);
+            if(!imagemPrimaria)
+                throw new Error('A imagem primária é obrigatória.')
 
-            if(resp.status === 200) {
-                toast.success("Produto cadastrado com sucesso!")
+            let novoProduto = await cadastrarProduto(nomeProduto, preco, qtdEstoque, descricao, especificacoes, categoria, marca, usado, peso);
+            await adicionarImagem(novoProduto.data.id, true, imagemPrimaria);
+
+            for(let i = 0; i < imagensSecundarias.length; i++) {
+                let imagem = imagensSecundarias[i];
+                console.log(imagem);
+                
+                await adicionarImagem(novoProduto.data.id, false, imagem);
             }
+           
+            toast.success("Produto cadastrado com sucesso!")
         }
         catch(error)
         {
@@ -100,6 +110,19 @@ export default function CadastroProduto() {
 
         } catch (error) {
             console.log(error.message);
+        }
+    }
+
+    function mostrarImagem(img) {
+        if(img)
+            return URL.createObjectURL(img)
+    }
+
+    function adicionarImagemSecundaria() {
+        if(imagensSecundarias.length <= 4) {
+            document.getElementById('imgSec').click();
+        } else {
+            toast.error('O número máximo de imagens secundárias é 4.')
         }
     }
 
@@ -131,18 +154,35 @@ export default function CadastroProduto() {
                         <div className="info-foto-produto">
 
                             <div className="foto-produto"> 
-                                <input className='foto-principal' value={foto} onChange={e => (e.target.value)}/>
+                                <div className='foto-principal' onClick={() => document.getElementById('imgMain').click()}>
+                                    {!imagemPrimaria ? <img src="/assets/images/icons/adm/upload.svg" alt="" /> : <img src={mostrarImagem(imagemPrimaria)} alt="Imagem primária" className='imagem-produto'/>}
+                                    <input type='file' id='imgMain' className="input-file" onChange={e => setImagemPrimaria(e.target.files[0])}/>
+                                </div>
 
                                 <div className="fotos-adicionais">
-                                    <div></div>
-                                    <div></div>
-                                    <div></div>
-                                    <div></div>
+                                    {imagensSecundarias.map(imagem => {
+                                            let url = mostrarImagem(imagem);
+                                            
+                                            if(url)
+                                                return (
+                                                    <div>
+                                                        <img src={url} alt="Imagem Secundária" />
+                                                    </div>     
+                                                )   
+                                        }       
+                                    )}
+                                    
+                                    {imagensSecundarias.length < 4 &&
+
+                                    <div onClick={adicionarImagemSecundaria}>
+                                        <img src="/assets/images/icons/adm/plus.svg" alt="" />
+                                        <input type='file' id='imgSec' className="input-file" onChange={e => setImagensSecundarias([...imagensSecundarias, e.target.files[0]])}/>
+                                    </div>}
                                 </div>
                             </div>
 
-                            <button>Adicionar Imagem Principal</button>
-                            <button className="add-2nd-img">Adicionar Imagem Secundária</button>
+                            <button onClick={() => document.getElementById('imgMain').click()}>Adicionar Imagem Principal</button>
+                            <button onClick={adicionarImagemSecundaria} className="add-2nd-img">Adicionar Imagem Secundária</button>
 
                         </div>
 
