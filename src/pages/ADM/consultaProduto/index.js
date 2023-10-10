@@ -6,8 +6,8 @@ import { useEffect, useState } from "react";
 import { confirmAlert } from 'react-confirm-alert';
 import 'react-confirm-alert/src/react-confirm-alert.css';
 import { useNavigate } from "react-router-dom";
-import { buscarProduto, deletarProduto } from "../../../api/produtoAPI";
-import { toast } from "react-toastify";
+import { buscarImagens, buscarProduto, deletarProduto, excluirImagem } from "../../../api/produtoAPI";
+import { toast, ToastContainer } from "react-toastify";
 
 
 export default function ConsultaProduto()
@@ -36,6 +36,14 @@ export default function ConsultaProduto()
                 label: 'Sim',
                 onClick: async () => {
                     try {
+                        let imagens = await buscarImagens(id);
+
+                        for (let i = 0; i < imagens.length; i++) {
+                            let imagem = imagens[i];
+
+                            await excluirImagem(imagem.id);
+                        }
+
                         let resp = await deletarProduto(id);
 
                         if(resp.status === 204)
@@ -71,6 +79,18 @@ export default function ConsultaProduto()
             <CabecalhoADM/>
 
             <main>
+                <ToastContainer
+                    position="bottom-center"
+                    autoClose={3000}
+                    hideProgressBar={false}
+                    newestOnTop={false}
+                    closeOnClick
+                    rtl={false}
+                    pauseOnFocusLoss
+                    draggable
+                    pauseOnHover
+                    theme="colored"
+                />
                 <BarraLateral/>
 
                 <div className="container-consulta">

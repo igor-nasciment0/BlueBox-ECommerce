@@ -25,7 +25,7 @@ export async function cadastrarProduto(nomeProduto, preco, qtdEstoque, descricao
 
     let resp = await api.post('/produto', cadastrarProduto) 
     
-    return resp;
+    return resp.data;
 }
 
 export async function atualizarProduto(id, nomeProduto, preco, qtdEstoque, descricao, especificacoes, categoria, marca, usado, peso) {
@@ -43,7 +43,7 @@ export async function atualizarProduto(id, nomeProduto, preco, qtdEstoque, descr
 
     let resp = await api.put('/produto/' + id, infoProduto);
 
-    return resp;
+    return resp.data;
 }
 
 export async function deletarProduto(id) {
@@ -52,6 +52,15 @@ export async function deletarProduto(id) {
     return resp;
 }
 
+export async function buscarImagens(id) {
+    let imagens = await api.get(`/produto/${id}/imagem`);
+
+    return imagens.data;
+}
+
+export function mostrarUrlImagem(url) {
+    return api.getUri() + '/' + url;
+}
 
 export async function adicionarImagem(idProduto, primaria, imagem) {
     const formData = new FormData();
@@ -65,6 +74,12 @@ export async function adicionarImagem(idProduto, primaria, imagem) {
 
     console.log(resp);
 }
+
+export async function excluirImagem(id) {
+    let resp = await api.delete('/produto/imagem/' + id);
+    return resp;
+}
+
 
 export async function buscarMarcas() {
     let marcas = await api.get('/produto/marca');

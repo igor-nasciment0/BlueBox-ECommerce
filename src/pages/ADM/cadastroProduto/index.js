@@ -4,7 +4,7 @@ import CabecalhoADM from '../../../components/ADM/cabecalho';
 import './index.scss';
 import { useLocation } from 'react-router-dom';
 import {ToastContainer, toast} from 'react-toastify';
-import { adicionarImagem, atualizarProduto, buscarCategorias, buscarMarcas, cadastrarProduto } from '../../../api/produtoAPI';
+import { adicionarImagem, atualizarProduto, buscarCategorias, buscarImagens, buscarMarcas, cadastrarProduto, excluirImagem, mostrarUrlImagem } from '../../../api/produtoAPI';
 import { TemaContext } from '../../../theme';
 
 export default function CadastroProduto() {
@@ -26,12 +26,11 @@ export default function CadastroProduto() {
     const [peso, setPeso] = useState(100);
 
     const [atualizacao, setAtualizacao] = useState(false);
-
     const [listaMarcas, setListaMarcas] = useState([]);
     const [listaCategorias, setListaCategorias] = useState([]);
 
     const location = useLocation();
-    const produto = location.state;
+    const [produto, setProduto] = useState(location.state);
 
     useEffect(() => {
         if(produto)
@@ -47,6 +46,8 @@ export default function CadastroProduto() {
             setPeso(100);
 
             setAtualizacao(true);
+
+            buscarImagensProduto();
         }
     }, [produto])
 
@@ -54,14 +55,39 @@ export default function CadastroProduto() {
         listarMarcasCategorias()
     }, [])
 
+    function zerarVariaveis() {
+        setAtualizacao(false);
+        setProduto(null);
+
+        setNomeProduto('');
+        setPreco('');
+        setQtdEstoque('');
+        setDescricao('');
+        setEspecificacoes('');
+        setCategoria(0);
+        setMarca(0);
+        setUsado(false);
+        setPeso(100);
+        setImagemPrimaria('');
+        setImagensSecundarias([]);
+    }
+
+
     async function atualizar() {
         try {
-            let resp = await atualizarProduto(produto.id, nomeProduto, preco, qtdEstoque, descricao, especificacoes, categoria, marca, usado, peso)
-    
-            if(resp.status === 204) {
-                toast.success('Produto atualizado com sucesso!');
-            }      
+            await atualizarProduto(produto.id, nomeProduto, preco, qtdEstoque, descricao, especificacoes, categoria, marca, usado, peso)
+            
+            if(imagemPrimaria.type)
+                await adicionarImagem(produto.id, true, imagemPrimaria);
 
+            for(let i = 0; i < imagensSecundarias.length; i ++) {
+                let imagem = imagensSecundarias[i];
+
+                if(imagem.type)
+                    await adicionarImagem(produto.id, false, imagem);
+            }
+
+            toast.success('Produto atualizado com sucesso!');
         } catch (error) {
             if(error.response) {
                 toast.error(error.response.data);
@@ -78,13 +104,14 @@ export default function CadastroProduto() {
                 throw new Error('A imagem primária é obrigatória.')
 
             let novoProduto = await cadastrarProduto(nomeProduto, preco, qtdEstoque, descricao, especificacoes, categoria, marca, usado, peso);
-            await adicionarImagem(novoProduto.data.id, true, imagemPrimaria);
+            await adicionarImagem(novoProduto.id, true, imagemPrimaria);
 
             for(let i = 0; i < imagensSecundarias.length; i++) {
                 let imagem = imagensSecundarias[i];
-                await adicionarImagem(novoProduto.data.id, false, imagem);
+                await adicionarImagem(novoProduto.id, false, imagem);
             }
-           
+            
+            setProduto(novoProduto);
             toast.success("Produto cadastrado com sucesso!")
         }
         catch(error)
@@ -97,6 +124,7 @@ export default function CadastroProduto() {
             }
         }
     }
+
 
     async function listarMarcasCategorias() {
         try {
@@ -111,9 +139,40 @@ export default function CadastroProduto() {
         }
     }
 
+    async function buscarImagensProduto() {
+        try {
+            if(produto) {
+                setImagemPrimaria(null);
+                setImagensSecundarias([]);
+    
+                let imagens = await buscarImagens(produto.id);
+
+                let arrayProvisorio = [];
+    
+                for(let i = 0; i < imagens.length; i++) {
+                    let imagem = imagens[i];
+                    
+                    if(imagem.primaria)
+                        setImagemPrimaria(imagem);
+                    else
+                        arrayProvisorio.push(imagem);
+                };
+
+                setImagensSecundarias(arrayProvisorio);
+            }
+        } catch (err) {
+            if(err.response)
+                toast.error(err.response.data);
+            else 
+                toast.error(err.message)
+        }
+    }
+
     function mostrarImagem(img) {
-        if(img)
+        if(!img.url)
             return URL.createObjectURL(img)
+        else
+          return mostrarUrlImagem(img.url);
     }
 
     function adicionarImagemSecundaria() {
@@ -121,6 +180,14 @@ export default function CadastroProduto() {
             document.getElementById('imgSec').click();
         } else {
             toast.error('O número máximo de imagens secundárias é 4.')
+        }
+    }
+
+    async function deletarImagem(img) { 
+        console.log(img);
+        if(atualizacao && img.id) {
+            console.log(img.id);
+            await excluirImagem(img.id);
         }
     }
 
@@ -154,7 +221,10 @@ export default function CadastroProduto() {
                             <div className="foto-produto"> 
                                 <div className='foto-principal' onClick={() => document.getElementById('imgMain').click()}>
                                     {!imagemPrimaria ? <img src="/assets/images/icons/adm/upload.svg" alt="" /> : <img src={mostrarImagem(imagemPrimaria)} alt="Imagem primária" className='imagem-produto'/>}
-                                    <input type='file' id='imgMain' className="input-file" onChange={e => setImagemPrimaria(e.target.files[0])}/>
+                                    <input type='file' id='imgMain' className="input-file" onChange={e => {
+                                                                                                            imagemPrimaria && deletarImagem(imagemPrimaria);
+                                                                                                            setImagemPrimaria(e.target.files[0])
+                                                                                                        }}/>
                                 </div>
 
                                 <div className="fotos-adicionais">
@@ -164,7 +234,13 @@ export default function CadastroProduto() {
                                         if(url)
                                             return (
                                                 <div>
-                                                    <img className='deletar-img' src="/assets/images/icons/adm/remove-circle.svg" alt="" onClick={() => setImagensSecundarias([...imagensSecundarias.slice(0, index), ...imagensSecundarias.slice(index + 1)])}/>
+                                                    <img className='deletar-img' 
+                                                    src="/assets/images/icons/adm/remove-circle.svg" alt="" 
+                                                    onClick={async () => {
+                                                                    deletarImagem(imagem);
+                                                                    setImagensSecundarias([...imagensSecundarias.slice(0, index), ...imagensSecundarias.slice(index + 1)])
+                                                                }}/>
+
                                                     <img src={url} alt="Imagem Secundária" />
                                                 </div>     
                                             )   
@@ -237,6 +313,8 @@ export default function CadastroProduto() {
                     }}>
                         {atualizacao ? 'Atualizar Produto' : 'Salvar Produto'}
                     </button>
+
+                    <button className='btn-novo' onClick={zerarVariaveis}>Novo</button>
                 </div>
             </main>
 
