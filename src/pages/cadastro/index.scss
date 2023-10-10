@@ -286,6 +286,16 @@ span:hover{
     .Dados-container {
         max-width: 300px;
     }
+
+    .Confirmação-Licença {
+        .Termos {
+            margin-top: 10px;
+
+            > p {
+                font-size: 10px;
+            }
+        }
+    }
 }
 
 }
