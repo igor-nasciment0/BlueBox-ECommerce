@@ -10,6 +10,10 @@
     color: rgb(var(--cor-textos));
 
 .gradient {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     background: linear-gradient(180deg, #00000000 14%, rgba(33,48,81,1) 68%);
 }
 
@@ -90,6 +94,10 @@
     flex-direction: row;
     justify-content: space-between;
     padding: 10px;
+
+    > button {
+        margin-left: 20px;
+    }
 }
 
 .Confirmação-Licença p {
@@ -208,6 +216,37 @@ span:hover{
     color: white;
     box-shadow: none;
     text-shadow: none;
+}
+
+.google-cadastro-resp {
+    background-color: #fafafa;
+}
+
+@media (max-width: 850px) {
+    .Dados-container {
+        border-radius: 7px;
+    }
+    
+    .Login-google {
+        display: none;
+    }
+
+    .data-nascimento {
+        justify-content: none;
+    }
+}
+
+@media (max-width: 585px) {
+    .Confirmação-Licença {
+        display: flex;
+        flex-direction: column-reverse;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .data-nascimento {
+        justify-content: space-between;
+    }
 }
 
 }

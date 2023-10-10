@@ -58,7 +58,6 @@ export default function TelaCadastro(){
             <Cabecalho/>
             <div className="gradient">
                 <main className="Cadastro-container">                  
-
                     <ToastContainer
                         position="bottom-center"
                         autoClose={3000}
@@ -71,7 +70,6 @@ export default function TelaCadastro(){
                         pauseOnHover
                         theme="colored"
                     />
-
                     <section className="Cadastro">
                         <div className="Dados-container">
                             <h1>Criar Conta</h1>
@@ -107,10 +105,13 @@ export default function TelaCadastro(){
                             <button onClick={() => navigate('/login')}>Entrar</button>
                             <button className="Log-wit-google"> <img src="/assets/images/google.png" alt="" /> <span>Entrar com o Google</span></button>
                         </div>
-
                     </section>
-                    
-                </main>   
+                </main>
+
+                <div className="google-cadastro-resp">
+                      <h1>Cadastre-se com Google</h1>
+                      <button className="Sing-wit-google-resp"> <img src="/assets/images/google.png" alt="" /> <span>Entrar com o Google</span></button>
+                    </div>
             </div>
             <Rodape/>
         </div>
