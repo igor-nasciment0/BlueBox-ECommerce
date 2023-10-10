@@ -114,10 +114,33 @@
 
                     display: flex;
                     justify-content: space-between;
+                    margin-bottom: 8px;
 
                     p{
                         font-size: 16px;
                     }
+                }
+
+                .finalizar-pedido{
+                    background: var(--cinza-no-pode-clicar, #ACACAC);
+                    color: var(--cinza-claro-texto, #424242);
+                    display: flex;
+                    align-items: center;
+                    gap: 8px;
+                    border: none;
+                    border-radius: 10px;
+                    background-color: var(--verde-claro);
+                    padding: 10px 40px;
+                    color: white;
+                    font-size: 18px;
+                    font-weight: 600;
+                    transition: 0.2s;
+                }
+
+                .finalizar-pedido:hover{
+                    cursor: pointer;
+                    scale: 1.1;
+                    transition: 0.2s;
                 }
 
             }
