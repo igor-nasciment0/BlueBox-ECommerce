@@ -3,6 +3,7 @@
     display: flex;
     flex-direction: column;
     min-height: 100vh;
+    width: 100%;
     justify-content: center;
     background: var(--fundo-tela);
     transition: 0.3s;
@@ -19,13 +20,20 @@
     max-width: 914px;
 }
 
+.gradient{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
 .User-Login-container{
     flex-grow: 1;
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: center;
-    padding: 35px;
 }
 
 .Dados-Container{
@@ -33,7 +41,6 @@
     flex-direction: column;
     align-items: center;
     flex-grow: 1;
-
     background-color: var(--fundo-componentes);
     padding: 45px;
     border-top-left-radius: 10px;
@@ -164,6 +171,80 @@
     color: white;
     box-shadow: none;
     text-shadow: none;
+}
+
+.Log-wit-google-resp {
+    display: none!important;
+}
+
+@media (max-width: 850px) {
+    .User-Login-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;        
+        max-width: max-content;
+        padding: none;
+    }
+
+    .Dados-Container {
+        min-width: auto;
+        max-width: 370px;
+        border-radius: 15px;
+        min-width: 100px;
+    }
+
+    .Log-wit-google-resp {
+        display: flex !important;
+        padding: 30px 5px;
+    }
+    
+    .Login-google {
+        display: none;
+    }
+
+    .Log-wit-google-resp {
+        max-width: 250px;
+        padding: 30px 7px;
+        filter: drop-shadow(0px 4px 4px rgba(78, 78, 78, 0.5));
+        border-radius: 10px !important;
+        border-radius: 50px !important;
+        background-color: #fff !important;
+        color: black !important;
+    }
+}
+
+@media (max-width: 430px) {
+    .Dados-Container {
+        max-width: 300px;
+
+        > button {
+            max-width: 250px;
+        }
+    }
+
+    .link-cadastro {
+        max-width: 250px;
+    }
+
+    .Log-wit-google-resp {
+        max-width: 250px;
+        padding: 30px 7px;
+        filter: drop-shadow(0px 4px 4px rgba(78, 78, 78, 0.5));
+        border-radius: 10px !important;
+        border-radius: 50px !important;
+        background-color: #fff !important;
+        color: black !important;
+
+
+        > span {
+            font-size: 14px;
+        }
+        
+        > img {
+            margin-right: 5px;
+        }
+    }
 }
 
 }

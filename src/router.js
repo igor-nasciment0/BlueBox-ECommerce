@@ -15,6 +15,7 @@ import Telacartao from './pages/Tela-dados-cartão';
 import LoginAdm from './pages/ADM/loginAdm';
 import CadastroProduto from './pages/ADM/cadastroProduto';
 import ConsultaProduto from './pages/ADM/consultaProduto';
+import PedidoConcluido from './pages/ADM/pedidosConcluidos';
 import { useContext, useState } from 'react';
 import { TemaContext } from './theme';
 import Contato from './pages/contato';
@@ -55,7 +56,8 @@ export default function Router() {
 
                     <Route path='/adm/login' element={<LoginAdm/>}/>
                     <Route path='/adm/cadastro-produto' element={<CadastroProduto/>}/>
-                    <Route path='/adm/consulta-produto' element={<ConsultaProduto/>}/>   
+                    <Route path='/adm/consulta-produto' element={<ConsultaProduto />} />   
+                    <Route path='/adm/pedido-concluido' element={<PedidoConcluido />} />
                 </Routes>
             </BrowserRouter>
         </TemaContext.Provider>

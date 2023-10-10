@@ -84,6 +84,8 @@ export default function UserLogin() {
 
                 <p>Novo na BlueBox?</p>
                 <Link className="link-cadastro" to={"/cadastro"}>Crie sua Conta</Link>
+              
+                <button className="Log-wit-google-resp"> <img src="/assets/images/google.png" alt="" /> <span>Entrar com o Google</span></button>
               </div>
 
               <div className="Login-google">
