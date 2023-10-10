@@ -54,6 +54,34 @@ export default function TeladePagamento() {
                     <p>29,99</p>
                   </div>
                 </div>
+
+                <div className="especs-pedido">
+                  <img src="/assets/images/foto_produto.png" alt="" />
+                  <p>God of War: Saga (3 Jogos) (Seminovo) - PS3</p>
+                  <div>
+                    <p>Qtd</p>
+                    <p> 2 </p>
+                  </div>
+
+                  <div>
+                    <p>Subtotal</p>
+                    <p>29,99</p>
+                  </div>
+                </div>
+
+                <div className="especs-pedido">
+                  <img src="/assets/images/foto_produto.png" alt="" />
+                  <p>God of War: Saga (3 Jogos) (Seminovo) - PS3</p>
+                  <div>
+                    <p>Qtd</p>
+                    <p> 2 </p>
+                  </div>
+
+                  <div>
+                    <p>Subtotal</p>
+                    <p>29,99</p>
+                  </div>
+                </div>
               </div>
             </div>
 
@@ -149,7 +177,13 @@ export default function TeladePagamento() {
             </div>
 
             <p>Rezam as lendas:</p>
-            <p>  “Um verdadeiro herói deverá colocar o cupom <strong>antes</strong> do método de pagamento.”</p>
+            <p>
+              {" "}
+              “Um verdadeiro herói deverá colocar o cupom <strong>
+                antes
+              </strong>{" "}
+              do método de pagamento.”
+            </p>
             <img src="/assets/images/mago 1.png" alt="" />
           </div>
         </div>
