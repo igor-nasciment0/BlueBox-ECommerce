@@ -3,6 +3,7 @@
     display: flex;
     flex-direction: column;
     min-height: 100vh;
+    width: 100%;
     justify-content: center;
     background: var(--fundo-tela);
     transition: 0.3s;
@@ -19,13 +20,20 @@
     max-width: 914px;
 }
 
+.gradient{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
 .User-Login-container{
     flex-grow: 1;
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: center;
-    padding: 35px;
 }
 
 .Dados-Container{
@@ -33,7 +41,6 @@
     flex-direction: column;
     align-items: center;
     flex-grow: 1;
-
     background-color: var(--fundo-componentes);
     padding: 45px;
     border-top-left-radius: 10px;
@@ -164,6 +171,26 @@
     color: white;
     box-shadow: none;
     text-shadow: none;
+}
+
+@media (max-width: 850px) {
+    .User-Login-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;        
+        max-width: max-content;
+        padding: none;
+    }
+
+    .Dados-Container {
+        min-width: auto;
+        max-width: 370px;
+    }
+    
+    .Login-google {
+        display: none;
+    }
 }
 
 }
