@@ -3,6 +3,7 @@
     display: flex;
     flex-direction: column;
     min-height: 100vh;
+    width: 100%;
     justify-content: center;
     background-color: var(--fundo-tela);
     transition: 0.3s;
@@ -219,8 +220,7 @@ span:hover{
 }
 
 .google-cadastro-resp {
-    padding: 20px;
-    background-color: #fafafa;
+    display: none;
 }
 
 @media (max-width: 850px) {
@@ -235,6 +235,38 @@ span:hover{
     .data-nascimento {
         justify-content: none;
     }
+
+    .google-cadastro-resp {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 150px;
+        padding: 20px;
+        margin-bottom: 30px;
+        background-color: #fafafa;
+        border-radius: 10px;
+
+        > h1 {
+            margin-bottom: 10px;
+            font-size: 18px;
+        }
+
+        > button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: none;
+            border-radius: 40px;
+            box-shadow: 0px 4px 4px rgba(78, 78, 78, 0.5);;
+            padding: 5px;
+
+            > span {
+                color: #000;
+                margin-left: 5px;
+            }
+        }
+    }
 }
 
 @media (max-width: 585px) {
@@ -247,6 +279,12 @@ span:hover{
 
     .data-nascimento {
         justify-content: space-between;
+    }
+}
+
+@media (max-width: 425px) {
+    .Dados-container {
+        max-width: 300px;
     }
 }
 
