@@ -173,6 +173,10 @@
     text-shadow: none;
 }
 
+.Log-wit-google-resp {
+    display: none!important;
+}
+
 @media (max-width: 850px) {
     .User-Login-container {
         display: flex;
@@ -186,10 +190,44 @@
     .Dados-Container {
         min-width: auto;
         max-width: 370px;
+        border-radius: 15px;
+        min-width: 100px;
+    }
+
+    .Log-wit-google-resp {
+        display: flex !important;
+        padding: 30px 5px;
     }
     
     .Login-google {
         display: none;
+    }
+}
+
+@media (max-width: 430px) {
+    .Dados-Container {
+        max-width: 300px;
+
+        > button {
+            max-width: 250px;
+        }
+    }
+
+    .link-cadastro {
+        max-width: 250px;
+    }
+
+    .Log-wit-google-resp {
+        max-width: 250px;
+        padding: 30px 7px;
+
+        > span {
+            font-size: 14px;
+        }
+        
+        > img {
+            margin-right: 5px;
+        }
     }
 }
 
