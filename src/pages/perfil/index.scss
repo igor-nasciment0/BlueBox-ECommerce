@@ -43,6 +43,11 @@
                         height: 150px;
                         width: 150px;
                     }
+
+                    #inputImg {
+                        position: absolute;
+                        visibility: hidden;
+                    }
                 }
 
                 .trocaImg {

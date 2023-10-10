@@ -4,6 +4,9 @@ import './index.scss';
 import { useState } from "react";
 import {useNavigate} from "react-router-dom";
 
+import storage from 'local-storage';
+import { loginAdm } from "../../../api/admAPI";
+
 export default function LoginAdm() {
 
     const [email, setEmail] = useState('');
@@ -15,18 +18,19 @@ export default function LoginAdm() {
     
     async function logar() {
         try {
-            let login = {
-                email: email,
-                senha: senha
-            }
+            let resposta = await loginAdm(email, senha);
+            console.log(resposta);
 
-            let resposta = await axios.post('http://localhost:5000/adm/login', login);
+            if (resposta.status === 200){
+                storage('adm-login', resposta.data);
+                navigate('/adm/consulta-produto');  
+            }      
 
-            if (resposta.status === 204);
-                navigate('/adm/consulta-produto');        
         } catch (error) {
-
-            setMsgErro(error.response.data);
+            if(error.response)
+                setMsgErro(error.response.data);
+            else 
+                setMsgErro(error.message);
         }        
     }
 

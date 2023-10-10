@@ -72,7 +72,7 @@ export async function adicionarImagem(idProduto, primaria, imagem) {
         }
     })
 
-    console.log(resp);
+    return resp;
 }
 
 export async function excluirImagem(id) {

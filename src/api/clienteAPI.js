@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-let api = axios.create({
+const api = axios.create({
     baseURL: 'http://localhost:5033'
 })
 
@@ -27,6 +27,19 @@ export async function loginCliente(email, senha) {
     }
   
     let resp = await api.post('/usuario/login', credenciais);
+
+    return resp;
+}
+
+export async function trocarFotoPerfil(idCliente, imagem) {
+    const formData = new FormData();
+    formData.append('imagem', imagem);
+
+    let resp = await api.put(`/usuario/${idCliente}/imagem`, formData, {
+        headers: {
+            "Content-Type": "multipart/form-data"
+        }
+    })
 
     return resp;
 }

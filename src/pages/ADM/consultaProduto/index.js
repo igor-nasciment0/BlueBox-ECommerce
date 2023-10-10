@@ -9,7 +9,6 @@ import { useNavigate } from "react-router-dom";
 import { buscarImagens, buscarProduto, deletarProduto, excluirImagem } from "../../../api/produtoAPI";
 import { toast, ToastContainer } from "react-toastify";
 
-
 export default function ConsultaProduto()
 {
 
@@ -117,7 +116,7 @@ export default function ConsultaProduto()
                                     <td>Nome do Produto</td>
                                     <td>QTD</td>
                                     <td>Novo/Usado</td>
-                                    <td>Valor do Produto</td>
+                                    <td className="no-border-right">Valor do Produto</td>
                                     <td>Editar</td>
                                 </tr>
                             </thead>
@@ -127,8 +126,8 @@ export default function ConsultaProduto()
                                     <td>Resident Evil 1 - Playstation 1</td>
                                     <td>10</td>
                                     <td>Usado</td>
-                                    <td>R$100,00</td>
-                                    <td>
+                                    <td className="no-border-right">R$100,00</td>
+                                    <td className="container-edit">
                                         <button>
                                             <img src="/assets/images/icons/adm/edit.svg" alt="" />
                                         </button>
@@ -146,8 +145,8 @@ export default function ConsultaProduto()
                                         <td>{produto.nome}</td>
                                         <td>{produto.estoque}</td>
                                         <td>{produto.usado ? 'Usado' : 'Novo'}</td>
-                                        <td>{produto.preco}</td>
-                                        <td>
+                                        <td className="no-border-right">{produto.preco}</td>
+                                        <td className="container-edit">
                                             <button onClick={() => navigate('/adm/cadastro-produto', {state: produto})}>
                                                 <img src="/assets/images/icons/adm/edit.svg" alt="" />
                                             </button>
