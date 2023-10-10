@@ -6,20 +6,27 @@ import Rodape from '../../components/rodape';
 import { Link, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import storage from 'local-storage';
+import { mostrarUrlImagem } from '../../api/produtoAPI';
+import { trocarFotoPerfil } from '../../api/clienteAPI';
 
-export default function Perfil()
-{
+import { toast, ToastContainer } from 'react-toastify';
+
+export default function Perfil() {
   const [infoUser, setInfoUser] = useState({});
   const [nascimento, setNascimento] = useState(new Date());
+  const [img, setImg] = useState();
+
+  const [atualizacao, setAtualizacao] = useState();
+
   const navigate = useNavigate();
 
   useEffect(() => {
     let info = storage('user-login');
 
-    if(info) {
+    if (info) {
       setInfoUser(info);
       setNascimento(new Date(info.dataNascimento));
-      console.log(info);
+      setImg(info.imgPerfil);
     } else {
       navigate('/login');
     }
@@ -30,19 +37,60 @@ export default function Perfil()
     navigate('/');
   }
 
+  async function fotoPerfil() {
+    try {
+      let resp = await trocarFotoPerfil(infoUser.id, img);
+
+      if (resp.status === 204)
+        toast.success('Imagem alterada com sucesso!');
+
+    } catch (error) {
+      if (error.response)
+        toast.error(error.response.data);
+      else
+        toast.error(error.message);
+    }
+  }
+
+  function mostrarImagem() {
+    if (typeof img === 'object')
+      return URL.createObjectURL(img);
+    else
+      return mostrarUrlImagem(img);
+  }
+
   return (
     <div className='perfilBody'>
-      <Cabecalho/>
-      
+      <Cabecalho />
+
+      <ToastContainer
+        position="bottom-center"
+        autoClose={3000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="colored"
+      />
+
       <div className='secao'>
-        <div className='perfil'> 
+        <div className='perfil'>
           <div className='ladoEsq'>
             <div className='imagem'>
-              <img src="/assets/images/pessoa-aleatoria.png" alt="FotoPerfil" />
+              <input type="file" id='inputImg' onChange={e => {
+                setImg(e.target.files[0])
+                setAtualizacao(true)
+              }} />
+              
+              {!img ? <img src="/assets/images/usuario.png" alt="Insira uma foto de perfil!" onClick={(() => document.getElementById('inputImg').click())} /> :
+                <img src={mostrarImagem(img)} alt="FotoPerfil" />}
             </div>
 
             <div className='trocaImg'>
-              <button href="">Adicionar Imagem</button>
+              <button onClick={(() => document.getElementById('inputImg').click())}>Adicionar Imagem</button>
             </div>
 
             <Link href="">Trocar Senha</Link>
@@ -51,7 +99,7 @@ export default function Perfil()
           </div>
 
           <div className='barra'></div>
-          
+
           <div className='ladoDir'>
             <h1>Meu Perfil</h1>
 
@@ -97,9 +145,11 @@ export default function Perfil()
             </div>
           </div>
         </div>
+
+        {atualizacao && <button className='confirm-btn' onClick={fotoPerfil}>Confirmar mudanças</button>}
       </div>
-    
-    <Rodape/>
-  </div>
+
+      <Rodape />
+    </div>
   )
 }
