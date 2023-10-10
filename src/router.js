@@ -18,7 +18,6 @@ import PedidoConcluido from './pages/ADM/pedidosConcluidos';
 import { useContext, useState } from 'react';
 import { TemaContext } from './theme';
 import Contato from './pages/contato';
-import PedidoConcluido from './pages/ADM/pedidosConcluidos';
 
 export default function Router() {
 
