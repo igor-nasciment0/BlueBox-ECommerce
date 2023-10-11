@@ -127,7 +127,8 @@
                 }
 
                 > h3 {
-                    margin: 20px 0px 7px 0px;
+                    margin: 20px 0px 9px 0px;
+                    font-size: 14px;
                 }
 
                 .info {
@@ -189,6 +190,50 @@
         .confirm-btn:hover {
             scale: 1.1;
             transition: 0.5s;
+        }
+    }
+
+    @media (max-width: 768px) {
+        .perfil {
+            flex-direction: column!important;
+            max-width: 450px!important;
+            padding: 35px 0px!important;
+
+            .ladoEsq {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                margin-left: 0px!important;
+            }
+
+            .barra {
+                display: block;
+                height: 2px!important;
+                min-width: 50vw;
+                max-width: 100%;
+                margin: 20px 0px!important;
+            }
+
+            .ladoDir {
+                > h1 {
+                    text-align: center;
+                }
+
+                .info {
+                    > p {
+                        min-width: 50vw;
+                        max-width: 100%;
+                    }
+                }
+
+                .infoTrocavel {
+                    > div {
+                        min-width: 45vw!important;
+                        max-width: 100%;
+                    }
+                }
+            }
         }
     }
 }
