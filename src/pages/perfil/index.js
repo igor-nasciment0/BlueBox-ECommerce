@@ -4,14 +4,20 @@ import Cabecalho from '../../components/cabecalho';
 import Rodape from '../../components/rodape';
 
 import { Link, useNavigate } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import storage from 'local-storage';
 import { mostrarUrlImagem } from '../../api/produtoAPI';
 import { trocarFotoPerfil } from '../../api/clienteAPI';
 
 import { toast, ToastContainer } from 'react-toastify';
+import { TemaContext } from '../../theme';
 
 export default function Perfil() {
+
+  const context = useContext(TemaContext);
+  let tema = context.tema;
+
+
   const [infoUser, setInfoUser] = useState({});
   const [nascimento, setNascimento] = useState(new Date());
   const [img, setImg] = useState();
@@ -30,7 +36,7 @@ export default function Perfil() {
     } else {
       navigate('/login');
     }
-  }, [])
+  }, [navigate])
 
   function sair() {
     storage.remove('user-login');
@@ -60,7 +66,7 @@ export default function Perfil() {
   }
 
   return (
-    <div className='perfilBody'>
+    <div className={'pagina-perfil ' + tema}>
       <Cabecalho />
 
       <ToastContainer
