@@ -154,10 +154,26 @@
     @media (max-width: 919px) {
         .pagamento-cartao{
             flex-direction: column;
-        }
+            width: 100%;
+            padding: 0px 30px;
 
-        main{
-            padding: 30px;
+            .dados-cartao{
+                max-width: 100%;
+                width: 100%;
+            }
+
+            .linha{
+                height: 2px !important;
+                padding: 0px;
+            }
+
+            .linha2{
+                padding: 0px;
+            }
+
+            div{
+                padding: 15px;
+            }
         }
     }
 }
