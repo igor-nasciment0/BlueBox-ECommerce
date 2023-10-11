@@ -23,6 +23,7 @@ export default function Perfil() {
   const [img, setImg] = useState();
 
   const [atualizacao, setAtualizacao] = useState();
+  const [carregando, setCarregando] = useState(false);
 
   const navigate = useNavigate();
 
@@ -36,7 +37,7 @@ export default function Perfil() {
     } else {
       navigate('/login');
     }
-  }, [navigate])
+  }, [])
 
   function sair() {
     storage.remove('user-login');
@@ -45,16 +46,29 @@ export default function Perfil() {
 
   async function fotoPerfil() {
     try {
-      let resp = await trocarFotoPerfil(infoUser.id, img);
+      if(!carregando)
+      {
+        setCarregando(true);
 
-      if (resp.status === 204)
-        toast.success('Imagem alterada com sucesso!');
+        let resp = await trocarFotoPerfil(infoUser.id, img);
 
+        if (resp.status === 204)
+        {
+          toast.success('Imagem alterada com sucesso! Faça login novamente.');
+          storage.remove('user-login');
+        }
+
+        setTimeout(() => {
+          navigate('/login');
+        }, 3000);
+      }      
     } catch (error) {
       if (error.response)
         toast.error(error.response.data);
       else
         toast.error(error.message);
+
+      setCarregando(false);
     }
   }
 
