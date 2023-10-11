@@ -15,7 +15,7 @@ export default function Telacartao() {
             <input type="text" placeholder="CEP" />
             <input type="text" placeholder="CPF" />
 
-            <div className="bandeira-cartões">
+            <div className="bandeira-cartoes">
               <img src="/assets/images/Bandeiracartão.png" alt="" />
             </div>
           </div>

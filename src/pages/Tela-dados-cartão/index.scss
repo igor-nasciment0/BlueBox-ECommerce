@@ -150,7 +150,6 @@
     }
 
 
-
     @media (max-width: 919px) {
         .pagamento-cartao{
             flex-direction: column;
@@ -160,6 +159,10 @@
             .dados-cartao{
                 max-width: 100%;
                 width: 100%;
+
+                >img{
+                    width: 100%;
+                }
             }
 
             .linha{
@@ -173,6 +176,15 @@
 
             div{
                 padding: 15px;
+            }
+        }
+    }
+
+    @media (max-width: 463px) {
+        .bandeira-cartoes{
+            img{
+                height: 144px;
+                width: auto;
             }
         }
     }
