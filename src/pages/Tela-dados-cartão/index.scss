@@ -183,8 +183,39 @@
     @media (max-width: 463px) {
         .bandeira-cartoes{
             img{
-                
                 width: 100%;
+            }
+
+            .specs-pagamento{
+                p{
+                    font-size: 12px;
+                }
+            }
+
+        }
+
+        .borda-resumo{
+            h1{
+                font-size: 28px;
+            }
+        }
+    }
+
+
+    @media (max-width: 450px) {
+        .borda-resumo{
+            h1{
+                font-size: 20px;
+            }
+
+            .specs-pagamento{
+                p{
+                    font-size: 11px !important;
+                }
+            }
+
+            .finalizar-pedido{
+                font-size: small !important;
             }
         }
     }
