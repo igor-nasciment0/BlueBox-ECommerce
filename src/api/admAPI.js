@@ -12,5 +12,5 @@ export async function loginAdm(email, senha) {
 
     let resp = await api.post('/adm/login', login);
 
-    return resp[0];
+    return resp;
 }

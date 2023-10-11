@@ -4,11 +4,18 @@
     flex-direction: column;
     min-height: 100vh;
 
+    background-color: var(--fundo-tela);
+
+    transition: 0.3s;
+    * {
+        transition: 0.1s;
+    }
+
     main
     {
         display: flex;
         justify-content: center;
-        color: var(--preto-textos);
+        color: rgb(var(--cor-textos));
 
         padding: 45px 30px;
 
@@ -72,10 +79,11 @@
         justify-content: space-between;
         align-items: center;
 
-        background-color: #FFFFFF;
+        background-color: var(--fundo-componentes);
         box-shadow: 0 4px 4px 0 rgba($color: #000000, $alpha: 0.2);
 
         padding: 24px;
+        margin-bottom: 10px;
     }
 
     .compra-especificacoes
@@ -98,6 +106,7 @@
         display: flex;
         flex-direction: column;
         justify-content: center;
+        max-width: 380px;
 
         flex-grow: 1;
     }
@@ -125,7 +134,7 @@
     .compra-especificacoes > div a
     {
         font-size: 14px;
-        color: var(--azul-claro-textos);
+        color: var(--azul-claro);
         margin-right: 24px;
 
         font-weight: 500;

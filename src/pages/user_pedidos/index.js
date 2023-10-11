@@ -4,10 +4,16 @@ import Cabecalho from '../../components/cabecalho/';
 import Rodape from '../../components/rodape/';
 
 import { Link } from 'react-router-dom';
+import { useContext } from 'react';
+import { TemaContext } from '../../theme';
 
 export default function UserPedidos() {
+
+    const context = useContext(TemaContext);
+    let tema = context.tema;
+
     return(
-        <div className='pagina-pedidos'>
+        <div className={'pagina-pedidos ' + tema}>
             <Cabecalho/>
 
             <main>

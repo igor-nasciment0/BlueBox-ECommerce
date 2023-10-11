@@ -19,10 +19,9 @@ export default function LoginAdm() {
     async function logar() {
         try {
             let resposta = await loginAdm(email, senha);
-            console.log(resposta);
 
             if (resposta.status === 200){
-                storage('adm-login', resposta.data);
+                storage('adm-login', resposta.data[0]);
                 navigate('/adm/consulta-produto');  
             }      
 
