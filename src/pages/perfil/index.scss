@@ -31,7 +31,7 @@
             
             height: 100%;
             width: 100%;
-            max-width: 900px;
+            max-width: 800px;
 
             align-items: center;
             justify-content: flex-start;
@@ -130,6 +130,8 @@
                 }
 
                 .info {
+                    min-width: 30vw;
+                    max-width: 100%;
                     background-color: var(--fundo-componentes2);
                     box-shadow: 0px 2px 4px rgba(var(--cor-textos), 0.2);
                     border-radius: 7px;
@@ -147,6 +149,8 @@
                         background-color: var(--fundo-componentes2);
                         box-shadow: 0px 2px 4px rgba(var(--cor-textos), 0.2);
                         border-radius: 7px;
+                        min-width: 25vw;
+                        max-width: 100%;
                         padding: 7px;
                         margin-right: 14px;
                     }
