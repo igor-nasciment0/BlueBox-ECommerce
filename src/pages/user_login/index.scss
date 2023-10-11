@@ -218,6 +218,10 @@
     .Dados-Container {
         max-width: 300px;
 
+        > input {
+            width: 250px;
+        }
+
         > button {
             max-width: 250px;
         }
