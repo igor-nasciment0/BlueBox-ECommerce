@@ -60,6 +60,7 @@
                     > img {
                         height: 150px;
                         width: 150px;
+                        border-radius: 100px;
                     }
 
                     #inputImg {
@@ -126,7 +127,8 @@
                 }
 
                 > h3 {
-                    margin: 20px 0px 7px 0px;
+                    margin: 20px 0px 9px 0px;
+                    font-size: 14px;
                 }
 
                 .info {
@@ -173,6 +175,21 @@
                     }
                 }
             }
+        }
+
+        .confirm-btn {
+            margin-top: 20px;
+            padding: 10px;
+            border-radius: 20px;
+            background-color: #152039;
+            color: #FFF;
+            border: none;
+            transition: 0.5s;
+        }
+
+        .confirm-btn:hover {
+            scale: 1.1;
+            transition: 0.5s;
         }
     }
 }
