@@ -35,7 +35,6 @@ export default function Perfil() {
       setNascimento(new Date(info.dataNascimento));
       setImg(info.imgPerfil);
     } else {
-      navigate('/login');
     }
   }, [])
 
