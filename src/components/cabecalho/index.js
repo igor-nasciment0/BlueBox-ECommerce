@@ -119,8 +119,6 @@ function CabDeslogado() {
 
 function CabLogado({login}) {
     let tema = useContext(TemaContext);
-    
-    const navigate = useNavigate();
 
     const [display, setDisplay] = useState({display: 'none'});
 
