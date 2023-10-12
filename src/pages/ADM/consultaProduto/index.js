@@ -70,7 +70,7 @@ export default function ConsultaProduto()
         () => {
             buscar()
         },
-        []
+        [busca]
     );
 
     return(

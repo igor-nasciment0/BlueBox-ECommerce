@@ -68,7 +68,7 @@ export default function BarraLateral() {
                     <img src="/assets/images/icons/adm/barraLateral/arrow-right.svg" alt="Início" />
                 </Link>
 
-                <Link>
+                <Link to={'/adm/promocoes'}>
                     <div className="icone">
                         <img src="/assets/images/icons/adm/barraLateral/percentage.svg" alt="" />
                     </div>

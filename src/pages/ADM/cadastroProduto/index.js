@@ -119,7 +119,7 @@ export default function CadastroProduto() {
                 toast.error(error.response.data);
             } 
             else {
-                toast.error(error.message);
+                toast.info(error.message);
             }
         }
     }
