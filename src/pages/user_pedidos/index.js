@@ -19,7 +19,7 @@ export default function UserPedidos() {
             <main>
                 <div className='container-tela'>
                     <h1>Meus Pedidos</h1>
-                    <Link to={""}>
+                    <Link to={"/perfil"}>
                         <img src='/assets/images/icons/arrow-left.svg' alt="" />
                         Minha conta
                     </Link>
