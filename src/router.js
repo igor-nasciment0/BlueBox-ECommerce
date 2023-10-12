@@ -16,13 +16,13 @@ import LoginAdm from './pages/ADM/loginAdm';
 import CadastroProduto from './pages/ADM/cadastroProduto';
 import ConsultaProduto from './pages/ADM/consultaProduto';
 import PedidoConcluido from './pages/ADM/pedidosConcluidos';
-import { useContext, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { TemaContext } from './theme';
 import Contato from './pages/contato';
 
 export default function Router() {
 
-    let temaAtual = useContext(TemaContext);
+    let temaSistema = window.matchMedia('(prefers-color-scheme: light)');
 
     function trocarTema()
     {
@@ -33,9 +33,21 @@ export default function Router() {
     }
 
     const [tema, setTema] = useState({
-        tema: temaAtual.tema,
+        tema: temaSistema.matches ? 'light' : 'dark',
         trocarTema 
     });
+
+    useEffect(() => {
+        let listener = e => setTema({
+            tema: e.matches ? 'light' : 'dark',
+            trocarTema
+        });
+
+        const verfTema = window.matchMedia("(prefers-color-scheme: light)");
+        verfTema.addListener(listener);
+
+        return () => verfTema.removeListener(listener);
+      }, []);
 
     return (
         <TemaContext.Provider value={tema}>
