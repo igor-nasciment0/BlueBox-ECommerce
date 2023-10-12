@@ -19,6 +19,7 @@ import PedidoConcluido from './pages/ADM/pedidosConcluidos';
 import { useEffect, useState } from 'react';
 import { TemaContext } from './theme';
 import Contato from './pages/contato';
+import Promocoes from './pages/ADM/promocoes';
 
 export default function Router() {
 
@@ -70,6 +71,7 @@ export default function Router() {
                     <Route path='/adm/cadastro-produto' element={<CadastroProduto/>}/>
                     <Route path='/adm/consulta-produto' element={<ConsultaProduto />} />   
                     <Route path='/adm/pedido-concluido' element={<PedidoConcluido />} />
+                    <Route path='/adm/promocoes' element={<Promocoes />} />
                 </Routes>
             </BrowserRouter>
         </TemaContext.Provider>
