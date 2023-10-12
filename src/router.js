@@ -47,7 +47,7 @@ export default function Router() {
         verfTema.addListener(listener);
 
         return () => verfTema.removeListener(listener);
-      }, []);
+      });
 
     return (
         <TemaContext.Provider value={tema}>
