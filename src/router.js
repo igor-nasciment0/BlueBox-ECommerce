@@ -16,14 +16,19 @@ import LoginAdm from './pages/ADM/loginAdm';
 import CadastroProduto from './pages/ADM/cadastroProduto';
 import ConsultaProduto from './pages/ADM/consultaProduto';
 import PedidoConcluido from './pages/ADM/pedidosConcluidos';
-import { useEffect, useState } from 'react';
-import { TemaContext } from './theme';
 import Contato from './pages/contato';
 import Promocoes from './pages/ADM/promocoes';
+
+import { useState } from 'react';
+import { TemaContext } from './theme';
+import storage from 'local-storage';
 
 export default function Router() {
 
     let temaSistema = window.matchMedia('(prefers-color-scheme: light)');
+    let temaPreferido = storage('pref-tema');
+
+    let temaInicial = temaPreferido ? temaPreferido : temaSistema;
 
     function trocarTema()
     {
@@ -31,24 +36,16 @@ export default function Router() {
             tema: prevTheme.tema === 'light' ? 'dark' : 'light',
             trocarTema
         }))
+
+        let prevTheme = storage('pref-tema');
+
+        storage('pref-tema', prevTheme === 'light' ? 'dark' : 'light');
     }
 
     const [tema, setTema] = useState({
-        tema: temaSistema.matches ? 'light' : 'dark',
+        tema: temaInicial,
         trocarTema 
     });
-
-    useEffect(() => {
-        let listener = e => setTema({
-            tema: e.matches ? 'light' : 'dark',
-            trocarTema
-        });
-
-        const verfTema = window.matchMedia("(prefers-color-scheme: light)");
-        verfTema.addListener(listener);
-
-        return () => verfTema.removeListener(listener);
-      });
 
     return (
         <TemaContext.Provider value={tema}>
