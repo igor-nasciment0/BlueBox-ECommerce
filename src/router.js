@@ -26,6 +26,8 @@ import storage from 'local-storage';
 export default function Router() {
 
     let temaSistema = window.matchMedia('(prefers-color-scheme: light)');
+    temaSistema = temaSistema.matches ? 'light' : 'dark';
+
     let temaPreferido = storage('pref-tema');
 
     let temaInicial = temaPreferido ? temaPreferido : temaSistema;
@@ -37,7 +39,7 @@ export default function Router() {
             trocarTema
         }))
 
-        let prevTheme = storage('pref-tema');
+        let prevTheme = tema.tema;
 
         storage('pref-tema', prevTheme === 'light' ? 'dark' : 'light');
     }
