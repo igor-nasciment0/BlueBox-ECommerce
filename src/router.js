@@ -19,9 +19,10 @@ import PedidoConcluido from './pages/ADM/pedidosConcluidos';
 import Contato from './pages/contato';
 import Promocoes from './pages/ADM/promocoes';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { TemaContext } from './theme';
 import storage from 'local-storage';
+import StatusEntrega from './pages/entrega';
 
 export default function Router() {
 
@@ -32,22 +33,21 @@ export default function Router() {
 
     let temaInicial = temaPreferido ? temaPreferido : temaSistema;
 
-    function trocarTema()
-    {
+    function trocarTema() {
         setTema((prevTheme) => ({
             tema: prevTheme.tema === 'light' ? 'dark' : 'light',
             trocarTema
         }))
-
-        let prevTheme = tema.tema;
-
-        storage('pref-tema', prevTheme === 'light' ? 'dark' : 'light');
     }
 
     const [tema, setTema] = useState({
         tema: temaInicial,
         trocarTema 
     });
+
+    useEffect(() => {
+        storage('pref-tema', tema.tema);
+    }, [tema]);
 
     return (
         <TemaContext.Provider value={tema}>
@@ -65,6 +65,7 @@ export default function Router() {
                     <Route path='/pagamento' element={<TeladePagamento />} />
                     <Route path='/perfil' element={<Perfil />} />
                     <Route path='/tela-cartão' element={<Telacartao />} />
+                    <Route path='/entrega' element={<StatusEntrega/>}/>
 
                     <Route path='/adm/login' element={<LoginAdm/>}/>
                     <Route path='/adm/cadastro-produto' element={<CadastroProduto/>}/>

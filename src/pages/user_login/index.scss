@@ -10,8 +10,12 @@
 
     color: rgb(var(--cor-textos));
 
+    * {
+        transition: 0.1s;
+    }
+
 .gradient {
-    background: linear-gradient(180deg, rgba(0,0,0,0) 14%, rgba(33,48,81,1) 68%);
+    background: linear-gradient(180deg, rgba(0,0,0,0) 14%, rgb(33, 47, 80) 68%);
 }
 
 .Login{
