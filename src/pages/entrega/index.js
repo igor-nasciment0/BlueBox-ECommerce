@@ -17,6 +17,8 @@ import Box from '@mui/material/Box';
 import Stepper from '@mui/material/Stepper';
 import Step from '@mui/material/Step';
 import StepLabel from '@mui/material/StepLabel';
+import { StepContent } from '@mui/material';
+import VerticalLinearStepper from './barraVertical';
 
 export default function StatusEntrega() {
 
@@ -135,6 +137,8 @@ export default function StatusEntrega() {
                                     </Step>
                                 </Stepper>
                             </Box>
+
+                            <VerticalLinearStepper />
                         </div>
                     </div>
 
