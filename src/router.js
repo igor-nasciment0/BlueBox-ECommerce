@@ -17,12 +17,16 @@ import CadastroProduto from './pages/ADM/cadastroProduto';
 import ConsultaProduto from './pages/ADM/consultaProduto';
 import PedidoConcluido from './pages/ADM/pedidosConcluidos';
 import Contato from './pages/contato';
+<<<<<<< HEAD
+import TelaPagamentoPix from './pages/pagina_Pagamento_pix';
+=======
 import Promocoes from './pages/ADM/promocoes';
 
 import { useEffect, useState } from 'react';
 import { TemaContext } from './theme';
 import storage from 'local-storage';
 import StatusEntrega from './pages/entrega';
+>>>>>>> 78d08d17c32ebc3ccd88676b781cf50c77492550
 
 export default function Router() {
 
@@ -65,6 +69,7 @@ export default function Router() {
                     <Route path='/pagamento' element={<TeladePagamento />} />
                     <Route path='/perfil' element={<Perfil />} />
                     <Route path='/tela-cartão' element={<Telacartao />} />
+                    <Route path='/tela-pix' element={<TelaPagamentoPix />} />
                     <Route path='/entrega' element={<StatusEntrega/>}/>
 
                     <Route path='/adm/login' element={<LoginAdm/>}/>
