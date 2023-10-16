@@ -19,6 +19,7 @@ import PedidoConcluido from './pages/ADM/pedidosConcluidos';
 import { useContext, useState } from 'react';
 import { TemaContext } from './theme';
 import Contato from './pages/contato';
+import TelaPagamentoPix from './pages/pagina_Pagamento_pix';
 
 export default function Router() {
 
@@ -53,6 +54,7 @@ export default function Router() {
                     <Route path='/pagamento' element={<TeladePagamento />} />
                     <Route path='/perfil' element={<Perfil />} />
                     <Route path='/tela-cartão' element={<Telacartao />} />
+                    <Route path='/tela-pix' element={<TelaPagamentoPix />} />
 
                     <Route path='/adm/login' element={<LoginAdm/>}/>
                     <Route path='/adm/cadastro-produto' element={<CadastroProduto/>}/>
