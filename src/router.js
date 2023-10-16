@@ -16,17 +16,28 @@ import LoginAdm from './pages/ADM/loginAdm';
 import CadastroProduto from './pages/ADM/cadastroProduto';
 import ConsultaProduto from './pages/ADM/consultaProduto';
 import PedidoConcluido from './pages/ADM/pedidosConcluidos';
-import { useContext, useState } from 'react';
-import { TemaContext } from './theme';
 import Contato from './pages/contato';
+<<<<<<< HEAD
 import TelaPagamentoPix from './pages/pagina_Pagamento_pix';
+=======
+import Promocoes from './pages/ADM/promocoes';
+
+import { useEffect, useState } from 'react';
+import { TemaContext } from './theme';
+import storage from 'local-storage';
+import StatusEntrega from './pages/entrega';
+>>>>>>> 78d08d17c32ebc3ccd88676b781cf50c77492550
 
 export default function Router() {
 
-    let temaAtual = useContext(TemaContext);
+    let temaSistema = window.matchMedia('(prefers-color-scheme: light)');
+    temaSistema = temaSistema.matches ? 'light' : 'dark';
 
-    function trocarTema()
-    {
+    let temaPreferido = storage('pref-tema');
+
+    let temaInicial = temaPreferido ? temaPreferido : temaSistema;
+
+    function trocarTema() {
         setTema((prevTheme) => ({
             tema: prevTheme.tema === 'light' ? 'dark' : 'light',
             trocarTema
@@ -34,9 +45,13 @@ export default function Router() {
     }
 
     const [tema, setTema] = useState({
-        tema: temaAtual.tema,
+        tema: temaInicial,
         trocarTema 
     });
+
+    useEffect(() => {
+        storage('pref-tema', tema.tema);
+    }, [tema]);
 
     return (
         <TemaContext.Provider value={tema}>
@@ -55,11 +70,13 @@ export default function Router() {
                     <Route path='/perfil' element={<Perfil />} />
                     <Route path='/tela-cartão' element={<Telacartao />} />
                     <Route path='/tela-pix' element={<TelaPagamentoPix />} />
+                    <Route path='/entrega' element={<StatusEntrega/>}/>
 
                     <Route path='/adm/login' element={<LoginAdm/>}/>
                     <Route path='/adm/cadastro-produto' element={<CadastroProduto/>}/>
                     <Route path='/adm/consulta-produto' element={<ConsultaProduto />} />   
                     <Route path='/adm/pedido-concluido' element={<PedidoConcluido />} />
+                    <Route path='/adm/promocoes' element={<Promocoes />} />
                 </Routes>
             </BrowserRouter>
         </TemaContext.Provider>
