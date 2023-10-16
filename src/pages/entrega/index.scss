@@ -361,11 +361,11 @@
 
             .barra-progresso {
                 width: 100%;
-                padding: 80px 50px;
 
-                > div {
-                    width: 100%;
-                }
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+                position: relative;
             }
 
             .passo-entrega {
@@ -376,32 +376,17 @@
                 height: 150px;
 
                 position: relative;
-
-                .ponto {
-                    height: 22px;
-                    width: 22px;
-                    border-radius: 100px;
-
-                    left: 0;
-                    right: 0;
-                    top: 0;
-                    bottom: 0;
-                    margin: auto;
-
-                    position: absolute;
-
-                    display: none;
-                }
             
                 img {
                     height: 50px;
-                    margin-bottom: 40px;
+                    margin-bottom: 8px;
                 }
     
                 h4 {
                     font-size: 16px;
                     font-weight: 400;
                     margin-bottom: 5px;
+                    color: rgb(var(--cor-textos));
                 }
     
                 p {
@@ -445,3 +430,5 @@
 .pagina-entrega.dark .icons-entrega {
     filter: invert(90%) sepia(0%) saturate(1991%) hue-rotate(150deg) brightness(92%) contrast(106%);
 }
+
+@-webkit-keyframes progress-active{0%{opacity:.1;width:0}20%{opacity:.5;width:0}to{opacity:0;width:100%}}@keyframes progress-active{0%{opacity:.1;width:0}20%{opacity:.5;width:0}to{opacity:0;width:100%}}@-webkit-keyframes progress-active-vertical{0%{height:0;opacity:.1}20%{height:0;opacity:.5}to{height:100%;opacity:0}}@keyframes progress-active-vertical{0%{height:0;opacity:.1}20%{height:0;opacity:.5}to{height:100%;opacity:0}}.rs-progress-info{font-size:0}.rs-progress,.rs-progress-icon-fail,.rs-progress-icon-success,.rs-progress-info-status{font-size:16px;line-height:1.25}.rs-progress-circle{font-size:0;position:relative}.rs-progress-circle-info{bottom:0;color:#8e8e93;color:var(--rs-text-secondary);font-size:16px;height:36px;left:0;line-height:2.25;margin:auto;position:absolute;right:0;text-align:center;top:0}.rs-progress-circle .rs-progress-trail{stroke:#e5e5ea;stroke:var(--rs-progress-bg)}.rs-progress-circle .rs-progress-stroke{stroke:#3498ff;stroke:var(--rs-progress-bar);-webkit-transition:stroke-dashoffset .3s ease,stroke-dasharray .2s ease-in-out,stroke .3s;transition:stroke-dashoffset .3s ease,stroke-dasharray .2s ease-in-out,stroke .3s}.rs-progress-circle-success .rs-progress-circle-info{color:#4caf50;color:var(--rs-progress-bar-success)}.rs-progress-circle-success .rs-progress-stroke{stroke:#4caf50;stroke:var(--rs-progress-bar-success)}.rs-progress-circle-fail .rs-progress-circle-info{color:#f44336;color:var(--rs-progress-bar-fail)}.rs-progress-circle-fail .rs-progress-stroke{stroke:#f44336;stroke:var(--rs-progress-bar-fail)}.rs-progress-line{-webkit-box-align:center;-ms-flex-align:center;align-items:center;display:-webkit-box;display:-ms-flexbox;display:flex;padding:8px 12px;width:100%}.rs-progress-line-active .rs-progress-line-bg{position:relative}.rs-progress-line-active .rs-progress-line-bg:before{-webkit-animation:progress-active 2s cubic-bezier(.23,1,.32,1) infinite;animation:progress-active 2s cubic-bezier(.23,1,.32,1) infinite;background-color:#fff;border-radius:10px;bottom:0;content:"";left:0;opacity:0;position:absolute;right:0;top:0}.rs-progress-line .rs-progress-info{-webkit-box-flex:0;-webkit-box-align:center;-ms-flex-align:center;align-items:center;display:-webkit-box;display:-ms-flexbox;display:flex;-ms-flex:0 0 50px;flex:0 0 50px;height:20px;padding-left:12px;width:50px}.rs-progress-line-outer{-webkit-box-flex:1;border-radius:5px;-ms-flex:1 1 auto;flex:1 1 auto;overflow:hidden;vertical-align:middle}.rs-progress-line-inner{background:#e5e5ea;background:var(--rs-progress-bg);border-radius:5px}.rs-progress-line-bg{background-color:#3498ff;background-color:var(--rs-progress-bar);border-radius:5px;-webkit-transition:.2s ease-in-out;transition:.2s ease-in-out;-webkit-transition-property:width,background-color;transition-property:width,background-color}.rs-progress-line-bg,.rs-progress-line-inner{height:10px}.rs-progress-line-success{color:#4caf50;color:var(--rs-progress-bar-success)}.rs-progress-line-success .rs-progress-line-bg{background-color:#4caf50;background-color:var(--rs-progress-bar-success)}.rs-progress-line-fail{color:#f44336;color:var(--rs-progress-bar-fail)}.rs-progress-line-fail .rs-progress-line-bg{background-color:#f44336;background-color:var(--rs-progress-bar-fail)}.rs-progress-line.rs-progress-line-vertical{-webkit-box-orient:vertical;-webkit-box-direction:reverse;-ms-flex-direction:column-reverse;flex-direction:column-reverse;width:auto}.rs-progress-line.rs-progress-line-vertical .rs-progress-line-outer{-webkit-box-flex:1;-ms-flex:1 1 auto;flex:1 1 auto;width:auto}.rs-progress-line.rs-progress-line-vertical .rs-progress-line-inner{-webkit-box-orient:vertical;-webkit-box-direction:reverse;-webkit-box-align:center;-ms-flex-align:center;align-items:center;display:-webkit-box;display:-ms-flexbox;display:flex;-ms-flex-direction:column-reverse;flex-direction:column-reverse;height:100%;min-height:100px;position:relative;width:10px}.rs-progress-line.rs-progress-line-vertical .rs-progress-info{-ms-flex-preferred-size:auto;flex-basis:auto;padding-left:0;width:auto}.rs-progress-line.rs-progress-line-vertical .rs-progress-line-bg{bottom:0;position:absolute;-webkit-transform:rotate(180deg);transform:rotate(180deg);-webkit-transition-property:height,background-color;transition-property:height,background-color;width:100%}.rs-progress-line.rs-progress-line-vertical.rs-progress-line-active .rs-progress-line-bg:before{-webkit-animation-name:progress-active-vertical;animation-name:progress-active-vertical}.rs-progress-icon-fail,.rs-progress-icon-success{display:inline-block}.rs-progress-icon-fail svg,.rs-progress-icon-success svg{stroke:currentColor;stroke-width:.5px;stroke-linecap:round}.rs-progress-line .rs-progress-icon-fail,.rs-progress-line .rs-progress-icon-success{font-size:14px;line-height:0}.rs-progress-circle .rs-progress-icon-fail,.rs-progress-circle .rs-progress-icon-success{font-size:36px;line-height:0}
