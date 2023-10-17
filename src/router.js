@@ -10,23 +10,20 @@ import Checkout from './pages/checkout';
 import UserLogin from './pages/user_login';
 import TeladePagamento from './pages/Teladepagamento';
 import Perfil from './pages/perfil';
-import Telacartao from './pages/Tela-dados-cartão';
 
 import LoginAdm from './pages/ADM/loginAdm';
 import CadastroProduto from './pages/ADM/cadastroProduto';
 import ConsultaProduto from './pages/ADM/consultaProduto';
 import PedidoConcluido from './pages/ADM/pedidosConcluidos';
 import Contato from './pages/contato';
-<<<<<<< HEAD
 import TelaPagamentoPix from './pages/pagina_Pagamento_pix';
-=======
 import Promocoes from './pages/ADM/promocoes';
 
 import { useEffect, useState } from 'react';
 import { TemaContext } from './theme';
 import storage from 'local-storage';
 import StatusEntrega from './pages/entrega';
->>>>>>> 78d08d17c32ebc3ccd88676b781cf50c77492550
+import Telacartao from './pages/Tela_dados_cartão';
 
 export default function Router() {
 

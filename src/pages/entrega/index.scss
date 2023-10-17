@@ -351,12 +351,14 @@
                 font-size: 18px;
                 font-weight: 500;
                 margin-bottom: 10px;
+                text-align: center;
             }
 
-            p {
+            > p {
                 font-size: 14px;
                 color: rgba(var(--cor-textos), 0.7);
                 margin-bottom: 24px;
+                text-align: center;
             }
 
             .barra-progresso {
@@ -366,6 +368,7 @@
                 flex-direction: row;
                 justify-content: center;
                 position: relative;
+                padding: 0 16px;
             }
 
             .passo-entrega {
@@ -395,9 +398,68 @@
                 }
             }
 
-            .passo-entrega.concluido {
-                .ponto {
+            .titulo-step {
+                font-size: 18px;
+                font-weight: 500;
+                margin-bottom: 8px;
+                padding-left: 20px;
+            }
+    
+            .descricao-step {
+                font-size: 16px;
+                color: rgba(var(--cor-textos), 0.7);
+                padding-left: 20px;
+            }
+    
+            .icons-entrega.vertical {
+                margin-left: 20px;
+            }
+
+            .barra-vertical {
+                display: none;
+
+                p {
+                    margin-bottom: 10px;
+                }
+            }
+
+            @media (max-width: 600px) {
+                padding: 20px 20px;
+
+                .barra-vertical {
                     display: block;
+
+                    img {
+                        max-width: 45px;   
+                    }
+                }
+
+                .barra-horizontal {
+                    display: none;
+                }
+            }
+
+            @media (max-width: 500px) {
+                > h3 {
+                    font-size: 12px;
+                }
+
+                > h2 {
+                    font-size: 16px;
+                }
+
+                > p {
+                    font-size: 12px;
+                }
+
+                .barra-vertical {
+                    h4 {
+                        font-size: 16px;
+                    }
+
+                    p {
+                        font-size: 14px;
+                    }
                 }
             }
         }
@@ -423,23 +485,6 @@
             background-color: var(--azul-marca);
             border-radius: 10px;
             box-shadow: 0 4px 4px 0 rgba($color: #000000, $alpha: 0.2);
-        }
-
-        .titulo-step {
-            font-size: 18px;
-            font-weight: 500;
-            margin-bottom: 8px;
-            padding-left: 10px;
-        }
-
-        .descricao-step {
-            font-size: 16px;
-            color: rgba(var(--cor-textos), 0.7);
-            padding-left: 10px;
-        }
-
-        .icons-entrega.vertical {
-            padding-left: 10px;
         }
     }
 }

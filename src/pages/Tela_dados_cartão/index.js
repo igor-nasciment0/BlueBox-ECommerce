@@ -1,4 +1,4 @@
-import Cabecalho from "../../components/cabecalho/";
+import Cabecalho from "../../components/cabecalho";
 import Rodape from "../../components/rodape";
 import "./index.scss";
 

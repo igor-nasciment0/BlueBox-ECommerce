@@ -4,7 +4,6 @@ import Stepper from '@mui/material/Stepper';
 import Step from '@mui/material/Step';
 import StepLabel from '@mui/material/StepLabel';
 import StepContent from '@mui/material/StepContent';
-import Typography from '@mui/material/Typography';
 
 const steps = [
   {
@@ -29,14 +28,23 @@ const steps = [
   }
 ];
 
-export default function VerticalLinearStepper() {
+export default function BarraProgresso() {
   return (
-    <Box sx={{ maxWidth: 400 }}>
+    <div className='barra-progresso'>
+      <BarraProgressoHorizontal />
+      <BarraProgressoVertical />
+    </div>
+  )
+}
+
+function BarraProgressoVertical() {
+  return (
+    <Box sx={{ maxWidth: 400 }} className="barra-vertical">
       <Stepper activeStep={0} orientation="vertical">
         {steps.map(step => (
           <Step expanded={true}>
             <StepLabel>
-              <img src={step.img} alt="" className="icons-entrega vertical"/>
+              <img src={step.img} alt="" className="icons-entrega vertical" />
             </StepLabel>
             <StepContent>
               <h4 className="titulo-step">{step.label}</h4>
@@ -47,4 +55,25 @@ export default function VerticalLinearStepper() {
       </Stepper>
     </Box>
   );
+}
+
+function BarraProgressoHorizontal() {
+  return (
+    <Box sx={{ width: '100%' }} className="barra-horizontal">
+      <Stepper activeStep={2} alternativeLabel>
+        {steps.map(step =>
+          <Step>
+            <StepLabel>
+              <div className='passo-entrega'>
+                <img src={step.img} className='icons-entrega' alt="" />
+
+                <h4>{step.label}</h4>
+                <p>{step.description}</p>
+              </div>
+            </StepLabel>
+          </Step>
+        )}
+      </Stepper>
+    </Box>
+  )
 }

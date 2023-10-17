@@ -5,20 +5,7 @@ import Cabecalho from '../../components/cabecalho'
 import { Link } from 'react-router-dom';
 import Rodape from '../../components/rodape';
 
-import "react-step-progress-bar/styles.css";
-// import { ProgressBar, Step } from "react-step-progress-bar";
-
-import 'rsuite/Progress/styles/index.less';
-import 'rsuite/Progress/styles/animation.less';
-import { Progress } from "rsuite";
-
-
-import Box from '@mui/material/Box';
-import Stepper from '@mui/material/Stepper';
-import Step from '@mui/material/Step';
-import StepLabel from '@mui/material/StepLabel';
-import { StepContent } from '@mui/material';
-import VerticalLinearStepper from './barraVertical';
+import BarraProgresso from './barraProgresso';
 
 export default function StatusEntrega() {
 
@@ -92,54 +79,7 @@ export default function StatusEntrega() {
                         <h2>Data prevista de Entrega: 29/07/2023</h2>
                         <p>Desculpe fazer você esperar :(</p>
 
-                        <div className='barra-progresso'>
-                            <Box sx={{ width: '100%'}}>
-                                <Stepper activeStep={2} alternativeLabel>
-                                    <Step>
-                                        <StepLabel>
-                                            <div className='passo-entrega'>
-                                                <img src="/assets/images/icons/checkBox.svg" className='icons-entrega' alt="" />
-
-                                                <h4>Pagamento<br/>Aprovado</h4>
-                                                <p>23/07/2023</p>
-                                            </div>
-                                        </StepLabel>
-                                    </Step>
-                                    <Step>
-                                        <StepLabel>
-                                            <div className='passo-entrega'>
-                                                <img src="/assets/images/icons/prancheta.svg" className='icons-entrega' alt="" />
-
-                                                <h4>Em preparação</h4>
-                                                <p>23/07/2023</p>
-                                            </div>
-                                        </StepLabel>
-                                    </Step>
-                                    <Step>
-                                        <StepLabel>
-                                            <div className='passo-entrega'>
-                                                <img src="/assets/images/icons/caminhao-de-entrega.svg" className='icons-entrega' alt="" />
-
-                                                <h4>A caminho</h4>
-                                                <p>23/07/2023</p>
-                                            </div>
-                                        </StepLabel>
-                                    </Step>
-                                    <Step>
-                                        <StepLabel>
-                                            <div className='passo-entrega'>
-                                                <img src="/assets/images/icons/cara-feliz.svg" className='icons-entrega' alt="" />
-
-                                                <h4>Entregue!</h4>
-                                                <p>23/07/2023</p>
-                                            </div>
-                                        </StepLabel>
-                                    </Step>
-                                </Stepper>
-                            </Box>
-
-                            <VerticalLinearStepper />
-                        </div>
+                        <BarraProgresso/>
                     </div>
 
                     <h2>Problemas com esta compra?</h2>
