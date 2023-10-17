@@ -1,0 +1,226 @@
+.pagina-grafico-vendas{
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    background-color: var(--fundo-tela);
+    color: rgb(var(--cor-textos));
+
+    main
+    {
+        display: flex;
+        flex-direction: row;
+        height: 100%;
+        width: 100%;
+        flex-grow: 1;
+        background-color: #EBEBEB;
+    }
+
+
+    .informacoes-geral{
+        padding: 30px;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 35px;
+
+        >h1{
+            font-size: 24px;
+            font-weight: 700;
+        }
+
+        .ultimos-dados{
+            display: flex;
+            width: 100%;
+            justify-content: space-between;
+            align-items: center;
+
+            h1{
+                color: #FFF;
+                font-family: Josefin Sans;
+                font-size: 44px;
+                font-style: normal;
+                font-weight: 400;
+                line-height: normal;
+            }
+
+            .usuarios{
+                max-width: 327.516px;
+                width: 100%;
+                max-height: 166px;
+                height: 100%;
+                border-radius: 15px;
+                background: #0037C3;
+                color: white;
+                padding: 25px;
+                align-items: center;
+                flex-direction: row;
+                display: flex;
+                gap: 10px;
+                justify-content: space-between;
+                transition: 0.5s;
+
+                p{
+                    color: #FFF;
+                    font-family: Josefin Sans;
+                    font-size: 13px;
+                    font-style: normal;
+                    font-weight: 400;
+                    line-height: normal;
+                }
+
+                .info-att{
+                    display: flex;
+                    flex-direction: column;
+                    gap: 10px;
+                }
+            }
+            
+            .usuarios:hover{
+                cursor: pointer;
+                scale: 1.1;
+                transition: 0.5s;
+            }
+
+            .vendas-comp{
+                max-width: 327.516px;
+                width: 100%;
+                max-height: 166px;
+                height: 100%;
+                border-radius: 15px;
+                background: #A700E2;
+                color: white;
+                padding: 25px;
+                align-items: center;
+                flex-direction: row;
+                display: flex;
+                gap: 10px;
+                justify-content: space-between;
+                transition: 0.5s;
+
+                .info-att{
+                    display: flex;
+                    flex-direction: column;
+                    gap: 10px;
+                }
+
+                p{
+                    color: #FFF;
+                    font-family: Josefin Sans;
+                    font-size: 13px;
+                    font-style: normal;
+                    font-weight: 400;
+                    line-height: normal;
+                }
+
+            }
+
+            .vendas-comp:hover{
+                cursor: pointer;
+                scale: 1.1;
+                transition: 0.5s;
+            }
+
+            .receita-fat{
+                max-width: 327.516px;
+                width: 100%;
+                max-height: 166px;
+                height: 100%;
+                border-radius: 15px;
+                background: #FE8900;
+                color: white;
+                padding: 25px;
+                align-items: center;
+                flex-direction: row;
+                display: flex;
+                gap: 10px;
+                justify-content: space-between;
+                transition: 0.5s;
+
+                .info-att{
+                    display: flex;
+                    flex-direction: column;
+                    gap: 10px;
+                }
+
+                p{
+                    color: #FFF;
+                    font-family: Josefin Sans;
+                    font-size: 13px;
+                    font-style: normal;
+                    font-weight: 400;
+                    line-height: normal;
+                }
+
+            }
+
+            .receita-fat:hover{
+                cursor: pointer;
+                scale: 1.1;
+                transition: 0.5s;
+            }
+        }
+
+        .graf-progress{
+            display: flex;
+            flex-direction: row;
+            width: 100%;
+            justify-content: space-between;
+
+            .atividade-pedido{
+                max-width: 356.559px;
+                width: 100%;
+                flex-shrink: 0;
+                border-radius: 5px;
+                padding: 15px;
+                background-color: white;
+                display: flex;
+                flex-direction: column;
+                gap: 8px;
+
+                .estagio-produto{
+                    display: flex;
+                    width: 100%;
+                    flex-direction: row;
+                    justify-content: space-between;
+                    align-items: center;
+                    margin-bottom: 10px;
+
+                    .icone{
+                        display: flex;
+                        flex-direction: row;
+
+                        >div{
+                            display: flex;
+                            flex-direction: column;
+
+
+                            p{
+                                font-size: 15px;
+                                font-weight: 600;
+                            }
+
+                            .nome-produto{
+                                font-size: 12px;
+                                font-weight: 400;
+                            }
+                        }
+                    }
+                }
+
+                >p{
+                    font-size: 19px;
+                    font-weight: 600;
+                    margin-bottom: 6px;
+                }
+
+                .linha{
+                    height: 2px;
+                    width: 100%;
+                    background-color: rgba(0, 0, 0, 0.322);
+                }
+            }
+        }
+    }
+}

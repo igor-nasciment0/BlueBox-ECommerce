@@ -5,12 +5,12 @@ import { useEffect } from 'react';
 
 export default function CabecalhoADM() {
 
-    const navigate = useNavigate();
+    // const navigate = useNavigate();
 
-    useEffect(() => {
-        if(!storage('adm-login'))
-            navigate('/adm/login');
-    })
+    // useEffect(() => {
+    //     if(!storage('adm-login'))
+    //         navigate('/adm/login');
+    // })
 
     return(
         <header className="cabecalho-adm">
