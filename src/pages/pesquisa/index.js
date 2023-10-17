@@ -136,7 +136,7 @@ export default function Pesquisa()
               <CardProduto />
             </div>
           </div>
-
+          
           <div className='nav'>
             <div className='setas'>
               <img src= "/assets/images/icons/setaEsq.svg" alt="SetaEsq" />
