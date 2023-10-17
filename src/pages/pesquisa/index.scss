@@ -212,4 +212,89 @@
         }
 
     }
+
+    .filtroResp {
+        display: none;
+    }
+
+    @media (max-width: 1024px) {
+        .instagram {
+            > a {
+                margin: 0px 10px;
+            }
+            
+            .stardewValley {
+                > img {
+                    min-width: none;
+                    max-width: 360px;
+                }
+            }
+        }
+    }
+
+    @media (max-width: 768px) {
+        .infoNavegacao {
+            display: none;
+        }
+
+        .filtroResp {
+            display: flex;
+            flex-direction: column;
+            position: absolute;
+            z-index: 99998;
+            height: auto;
+            width: 200px;
+            background-color: #152039;
+
+            .logoFiltro {
+                
+                > img {
+                    height: auto;
+                    width: 100%;
+                    max-width: 50px;
+                }
+            }
+        }
+
+        .s1 {
+            padding: 40px 30px;
+        }
+
+        .produtosInsta {
+            width: 100%;
+            margin-left: 0px;
+        }
+
+        .card-produto {
+            > img {
+                max-width: 200px!important;
+            }
+
+            > h2  {
+                text-align: center;
+            }
+
+            > a {
+                width: 100%;
+                max-width: 500px!important;
+                text-align: center;
+            }
+        }
+
+        .cartoesProduto {
+            flex-direction: column;
+        }
+        
+        .sec-categorias {
+            display: none;
+        }
+
+        .filtro {
+            display: none;
+        }
+
+        .instagram {
+            display: none;
+        }
+    }
 }

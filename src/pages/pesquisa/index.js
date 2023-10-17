@@ -18,6 +18,12 @@ export default function Pesquisa()
         <a>Resultado da pesquisa</a>
       </div>
 
+      <div className='filtroResp'>
+        <div className='logoFiltro'>
+          <img src="/assets/images/3pontos.png" alt="" />
+        </div>
+      </div>
+
       <div className='s1'>
         <div className='filtro'>
           <h1>Filtrar</h1>
@@ -120,7 +126,7 @@ export default function Pesquisa()
               <img src="/assets/images/backgrounds/stardewvalleyWallpaper.png" alt="Stardew Valley" />
               <div className='degrade2'></div>
             </div>
-            <img src="/assets/images/galinha.png" alt="Galinha" />
+            <img className='galinha' src="/assets/images/galinha.png" alt="Galinha" />
           </div>
         </div>
       </div>
