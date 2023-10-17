@@ -14,7 +14,7 @@ const steps = [
   {
     img: '/assets/images/icons/prancheta.svg',
     label: 'Em preparação',
-    description: '27/07/2023.',
+    description: '27/07/2023',
   },
   {
     img: '/assets/images/icons/caminhao-de-entrega.svg',
@@ -24,7 +24,8 @@ const steps = [
   {
     img: '/assets/images/icons/cara-feliz.svg',
     label: 'Entregue!',
-    description: `29//07/2023`,
+    description: `29/07/2023`,
+    blue: true
   }
 ];
 
@@ -47,7 +48,7 @@ function BarraProgressoVertical() {
               <img src={step.img} alt="" className="icons-entrega vertical" />
             </StepLabel>
             <StepContent>
-              <h4 className="titulo-step">{step.label}</h4>
+              <h4 className="titulo-step" style={{color: step.blue && 'var(--azul-claro)'}}>{step.label}</h4>
               <p className='descricao-step'>{step.description}</p>
             </StepContent>
           </Step>
@@ -67,7 +68,7 @@ function BarraProgressoHorizontal() {
               <div className='passo-entrega'>
                 <img src={step.img} className='icons-entrega' alt="" />
 
-                <h4>{step.label}</h4>
+                <h4 style={{color: step.blue && 'var(--azul-claro)'}}>{step.label}</h4>
                 <p>{step.description}</p>
               </div>
             </StepLabel>

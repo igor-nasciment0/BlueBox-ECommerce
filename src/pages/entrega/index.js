@@ -77,7 +77,7 @@ export default function StatusEntrega() {
                     <div className='processo-entrega'>
                         <h3>Entrega Pendente</h3>
                         <h2>Data prevista de Entrega: 29/07/2023</h2>
-                        <p>Desculpe fazer você esperar :(</p>
+                        <p>Desculpe por fazer você esperar :(</p>
 
                         <BarraProgresso/>
                     </div>
