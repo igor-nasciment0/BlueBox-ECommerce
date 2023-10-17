@@ -243,7 +243,9 @@
             position: absolute;
             z-index: 99998;
             height: auto;
-            width: 200px;
+            width: 100%;
+            max-width: 300px;
+            padding: 15px 20px;
             background-color: #152039;
 
             .logoFiltro {
@@ -252,6 +254,59 @@
                     height: auto;
                     width: 100%;
                     max-width: 50px;
+                }
+            }
+
+            .secFiltro {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+
+                > h2 {
+                    font-size: 26px;
+                    margin-bottom: 10px;
+                    color: #ffffff;
+                }
+
+                > h3 {
+                    font-size: 20px;
+                    margin-bottom: 10px;
+                    color: #ffffff;
+                }
+
+                > input {
+                    margin-bottom: 10px;
+                }
+
+                .marcacaoResp {
+                    display: flex;
+                    flex-direction: row;
+                    margin-bottom: 10px;
+
+                    .caixaResp {
+                        display: flex;
+                        flex-direction: column;
+                        align-items: center;
+                        margin: 0px 10px;
+
+                        > p {
+                            color: #ffffff;
+                        }
+                    }
+                }
+
+                > a {
+                    text-decoration: none;
+                    color: #ffffff;
+                    font-size: 14px;
+                    margin: 10px 0px;
+                    transition: 0.5s;
+                }
+
+                > a:hover {
+                    color: #e6e6e6;
+                    font-size: 16px;
+                    transition: 0.5s;
                 }
             }
         }
