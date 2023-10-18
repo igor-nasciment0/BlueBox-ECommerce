@@ -4,11 +4,13 @@ import Cabecalho from '../../components/cabecalho';
 import Rodape from '../../components/rodape';
 import CardProduto from '../../components/cardProduto';
 
-import { Link, useParams } from 'react-router-dom/dist';
+import { Link, redirect, useParams } from 'react-router-dom/dist';
 import { useContext, useEffect, useState } from 'react';
 import { TemaContext } from '../../theme';
 import AnchorLink from 'react-anchor-link-smooth-scroll';
 import { buscarImagens, buscarProdutoPorID } from '../../api/produtoAPI';
+
+import {toast} from 'react-toastify';
 
 export default function Pedido() {
 
@@ -18,8 +20,11 @@ export default function Pedido() {
     const id = useParams().id;
 
     const [produto, setProduto] = useState({});
+    const [precoReal, setPrecoReal] = useState();
     const [imagemPrincipal, setImagemPrincipal] = useState();
     const [imagensSecundarias, setImagensSecundarias] = useState([]);
+
+    const [especificacoes, setEspecificacoes] = useState([]);
 
     async function buscarProduto() {
         try {
@@ -40,13 +45,56 @@ export default function Pedido() {
 
             setImagensSecundarias(arrayProvisorio);
         } catch (error) {
-            
+            redirect('/');
+            toast.error('Ocorreu um erro ao carregar o produto');
         }
     }
 
     useEffect(() => {
         buscarProduto();
+        
+        produto.promocao ?
+          setPrecoReal(produto.valorPromocional) :
+          setPrecoReal(produto.preco)
+    }, [])
+
+    useEffect(() => {
+        console.log(produto);
     })
+
+    function valorEmReais(valor) {
+        return new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(valor);
+    }
+
+    function desconto(valorNormal, valorPromocao) {
+        let desconto = (valorNormal - valorPromocao) / valorNormal * 100
+        return desconto.toFixed();
+    }
+
+    function separarEspecificacoes() {
+        let especificacoes = produto.especificacoes;
+        let stringAtual = '';
+        let spec = {};
+        let array = [];
+
+        for(let index in especificacoes) {
+            let char = especificacoes.charAt(index);
+
+            if(char === ':') {
+                spec.chave = stringAtual;
+                stringAtual = '';
+            } 
+            else if (char === '\n') {
+                spec.valor = stringAtual;
+                stringAtual = '';
+                array.push(spec);
+            } else {
+                stringAtual.concat(char);
+            }
+        }
+
+        setEspecificacoes(array)
+    }
 
     return(
         <div className={"pagina-produto " + tema}>
@@ -70,7 +118,7 @@ export default function Pedido() {
                             </div>
 
                             <div className="info">
-                                <h1>God of War: Saga (3 Jogos) (Seminovo) - PS3</h1>
+                                <h1>{produto.nome}</h1>
 
                                 <div className="avaliacao">
                                     <img src="/assets/images/estrelasRate.png" alt="" />
@@ -79,21 +127,23 @@ export default function Pedido() {
 
                                 <div className="preco">
                                     <div>
-                                        <h3>De: R$ 44,99</h3>
-                                        <h2>R$ 29,99</h2>
-                                        <h4>Ou em até 10x</h4>
+                                        {produto.promocao && <h3>De: {valorEmReais(produto.preco)}</h3>}
+                                        <h2>R$ {valorEmReais(precoReal)}</h2>
+                                        <h4>Ou em até 10x de {valorEmReais(precoReal / 10)}</h4>
                                     </div>
 
+                                    {produto.promocao && 
                                     <div className='desconto'>
-                                        <h3>33% de Desconto</h3>
+                                        <h3>{desconto(produto.preco, produto.valorPromocional)}% de Desconto</h3>
                                     </div>
+                                    }
                                 </div>
 
                                 <Link>Ver os meios de pagamento</Link>
 
                                 <div className="sobre">
                                     <h4>Sobre</h4>
-                                    <p>God of War: Collection tem como proposta central trazer o esplendor da série através de visuais em alta definição e uma jogabilidade ainda mais fluida. O game apresenta um compilado dos dois títulos mais aclamados da geração passada, agora com jogabilidade e gráficos melhorados...</p>
+                                    <p>{produto.descricao && produto.descricao.slice(0, 270)}...</p>
                                     <AnchorLink href='#detalhes'>Ver mais</AnchorLink>
                                 </div>
 
@@ -143,7 +193,7 @@ export default function Pedido() {
                                 </div>
                             </div> 
 
-                            <button className="btn-comprar">Comprar agora</button>
+                            <button className="btn-comprar" onClick={separarEspecificacoes}>Comprar agora</button>
                             <button className="btn-carrinho">Adicionar ao carrinho</button> 
                         </div>
                     </section>

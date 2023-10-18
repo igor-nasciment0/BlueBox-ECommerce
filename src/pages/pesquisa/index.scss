@@ -1,43 +1,68 @@
 .pesquisaBody {
 
+    transition: 0.3s;
+    * {
+        transition: 0.1s;
+    }
+
+    color: rgb(var(--cor-textos));
+    background-color: var(--fundo-tela);
+
     .infoNavegacao {
         display: flex;
         flex-direction: row;
         margin-top: 50px;
+        margin-bottom: 30px;
         margin-left: 50px;
     }
 
     .infoNavegacao > a {
         text-decoration: none;
-        color: #000000;
         margin: 0px 10px;
         font-size: 14px;
-        transition: 0.5s;
+        color: var(--azul-claro);
+    }
+
+    .infoNavegacao > p {
+        margin: 0px 10px;
+        font-size: 14px;
     }
 
     .infoNavegacao > a:hover {
-        color: #2d2d2d;
-        font-size: 16px;
+        color: rgba(var(--cor-textos), 0.7);
         cursor: pointer;
-        transition: 0.5s;
+    }
+
+    > .logoFiltro {
+        display: none;
+
+        @media(max-width: 768px) {
+            display: inline-block;
+        }
+    } 
+
+    > h1 {
+        font-size: 25px;
+        text-align: center;
     }
 
     .s1 {
         display: flex;
         flex-direction: row;
-        padding: 50px 30px;
+        padding: 30px 20px;
     }
 
     .filtro {
         display: flex;
         flex-direction: column;
         align-items: center;
-        padding: 50px 0px;
+        padding: 50px 35px;
         border-radius: 11px;
         background: linear-gradient(180deg, #213051 0%, #0C111C 100%);
         height: auto;
-        width: 200px;
         color: white;
+
+        text-align: center;
     }
 
     .filtro > h1 {
@@ -94,26 +119,22 @@
         flex-direction: column;
         align-items: center;
         height: auto;
-        width: 80%;
-        margin-left: 50px;
-        padding: 10px;
-        
+        width: 100%;
+        padding: 0 16px;   
     }
 
     .produtos {
         display: flex;
         flex-direction: column;
         align-items: center;
+        margin-bottom: 30px;
+        gap: 20px;
     }
 
     .cartoesProduto {
         display: flex;
         flex-direction: row;
         gap: 20px;
-    }
-
-    .card-produto {
-        margin: 20px 0px;
     }
 
     .nav {
@@ -123,7 +144,7 @@
         justify-content: center;
         height: 50px;
         width: 100%;
-        margin-bottom: 20px;
+        margin-bottom: auto;
 
         > p {
             font-size: 20px;
@@ -233,23 +254,47 @@
     }
 
     @media (max-width: 768px) {
+        position: relative;
+
         .infoNavegacao {
             display: none;
+        }
+
+        > .logoFiltro {
+            position: absolute;
+            top: 75px;
+            left: 25px;
+            z-index: 1;
+                
+            > img {
+                height: auto;
+                width: 100%;
+                max-width: 50px;
+            }
         }
 
         .filtroResp {
             display: flex;
             flex-direction: column;
-            position: absolute;
-            z-index: 99998;
+            position: fixed;
+            top: 0;
+            z-index: 2;
             height: auto;
             width: 100%;
             max-width: 300px;
             padding: 15px 20px;
+            padding-top: 60px;
             background-color: #152039;
 
-            .logoFiltro {
-                
+            overflow-y: scroll;
+            max-height: 100vh;
+
+            > .logoFiltro {
+                position: absolute;
+                top: 20px;
+                left: 25px;
+                z-index: 1;
+                    
                 > img {
                     height: auto;
                     width: 100%;
@@ -351,5 +396,9 @@
         .instagram {
             display: none;
         }
+    }
+
+    .img-branco {
+        filter: invert(90%) sepia(0%) saturate(1991%) hue-rotate(150deg) brightness(92%) contrast(106%);
     }
 }

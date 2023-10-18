@@ -4,23 +4,44 @@ import Cabecalho from '../../components/cabecalho';
 import FaixaCategorias from '../../components/faixa-categorias';
 import Rodape from '../../components/rodape'
 import CardProduto from '../../components/cardProduto'
+import { useContext, useState } from 'react';
+import { TemaContext } from '../../theme';
 
 export default function Pesquisa()
 {
+  const context = useContext(TemaContext);
+  let tema = context.tema;
+
+  const [displayBarra, setDisplayBarra] = useState({
+    display: 'none'
+  })
+
+  function barraLateral() {
+    if(displayBarra.display === 'none')
+      setDisplayBarra({display: 'flex'})
+    else 
+      setDisplayBarra({display: 'none'})  
+  }
+
   return(
-    <div className='pesquisaBody'>
+    <div className={'pesquisaBody ' + tema}>
       <Cabecalho/>
       <FaixaCategorias/>
     
       <div className='infoNavegacao'>
         <a href=''>Página inicial...</a>
         <p>|</p>
-        <a>Resultado da pesquisa</a>
+        <p>Resultado da pesquisa</p>
       </div>
 
-      <div className='filtroResp'>
+      <div className='logoFiltro'>
+        <img src="/assets/images/3pontos.png" alt="" onClick={barraLateral} className={displayBarra.display === 'flex' && 'img-branco'}/>
+      </div>
+
+      <div className='filtroResp' style={displayBarra}>
+
         <div className='logoFiltro'>
-          <img src="/assets/images/3pontos.png" alt="" />
+          <img src="/assets/images/3pontos.png" alt="" onClick={barraLateral} className={displayBarra.display === 'flex' && 'img-branco'}/>
         </div>
 
         <div className='secFiltro'>
@@ -72,6 +93,8 @@ export default function Pesquisa()
         </div>
       </div>
 
+      <h1>Novidades</h1>
+
       <div className='s1'>
         <div className='filtro'>
           <h1>Filtrar</h1>
@@ -122,7 +145,6 @@ export default function Pesquisa()
         </div>
         <div className='produtosInsta'>
           <div className='produtos'>
-            <h1>Novidades</h1>
             <div className='cartoesProduto'>
               <CardProduto />
               <CardProduto />
