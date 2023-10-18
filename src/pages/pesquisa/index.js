@@ -18,6 +18,60 @@ export default function Pesquisa()
         <a>Resultado da pesquisa</a>
       </div>
 
+      <div className='filtroResp'>
+        <div className='logoFiltro'>
+          <img src="/assets/images/3pontos.png" alt="" />
+        </div>
+
+        <div className='secFiltro'>
+          <h2>Filtrar</h2>
+
+          <h3>Tipo</h3>
+
+          <div className='marcacaoResp'>
+            <div className='caixaResp'>
+              <input type="checkbox" />
+              <p>Novo</p>
+            </div>
+            <div className='caixaResp'>
+              <input type="checkbox" />
+              <p>Usado</p>
+            </div>
+          </div>
+
+          <h3>Preço</h3>
+
+          <input type="range" />
+
+          <h3>Categorias</h3>
+
+          <a href="">Playstation 1</a>
+          <a href="">Playstation 2</a>
+          <a href="">Playstation 3</a>
+          <a href="">Playstation 4</a>
+          <a href="">Playstation 5</a>
+          <a href="">Playstation Portable</a>
+          <a href="">Playstation Vita</a>
+          <a href="">Xbox 360</a>
+          <a href="">Xbox One</a>
+          <a href="">Xbox Series X & S</a>
+          <a href="">Nintendo 64</a>
+          <a href="">Nintendo GameCube</a>
+          <a href="">Wii</a>
+          <a href="">Nintendo Switch</a>
+          <a href="">Game Boy</a>
+          <a href="">Nintendo 3DS & 2DS</a>
+          <a href="">Controle</a>
+          <a href="">Mouse</a>
+          <a href="">Teclado</a>
+          <a href="">Notebook</a>
+          <a href="">PC Gamer</a>
+          <a href="">Action Figures</a>
+          <a href="">Jogos de Mesa</a>
+          <a href="">Colecionáveis</a>
+        </div>
+      </div>
+
       <div className='s1'>
         <div className='filtro'>
           <h1>Filtrar</h1>
@@ -82,7 +136,7 @@ export default function Pesquisa()
               <CardProduto />
             </div>
           </div>
-
+          
           <div className='nav'>
             <div className='setas'>
               <img src= "/assets/images/icons/setaEsq.svg" alt="SetaEsq" />
@@ -120,7 +174,7 @@ export default function Pesquisa()
               <img src="/assets/images/backgrounds/stardewvalleyWallpaper.png" alt="Stardew Valley" />
               <div className='degrade2'></div>
             </div>
-            <img src="/assets/images/galinha.png" alt="Galinha" />
+            <img className='galinha' src="/assets/images/galinha.png" alt="Galinha" />
           </div>
         </div>
       </div>

@@ -1,4 +1,4 @@
-import './index.scss';
+  import './index.scss';
 
 import Cabecalho from '../../components/cabecalho';
 import Rodape from '../../components/rodape';

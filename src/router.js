@@ -24,6 +24,7 @@ import { TemaContext } from './theme';
 import storage from 'local-storage';
 import StatusEntrega from './pages/entrega';
 import Telacartao from './pages/Tela_dados_cartão';
+import Graficovendas from './pages/ADM/graficoVendas';
 
 export default function Router() {
 
@@ -74,6 +75,7 @@ export default function Router() {
                     <Route path='/adm/consulta-produto' element={<ConsultaProduto />} />   
                     <Route path='/adm/pedido-concluido' element={<PedidoConcluido />} />
                     <Route path='/adm/promocoes' element={<Promocoes />} />
+                    <Route path='/adm/grafico-vendas' element={<Graficovendas />} />
                 </Routes>
             </BrowserRouter>
         </TemaContext.Provider>

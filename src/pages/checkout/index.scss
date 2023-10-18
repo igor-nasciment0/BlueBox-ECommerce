@@ -259,4 +259,99 @@
             transition: 0.5s;
         }
     }
+
+    @media (max-width: 1024px) {
+        .resumo {
+            .galinha {
+                right: 74px;
+                top: 99px;
+            }
+        }
+    }
+
+    @media (max-width: 768px) {
+        .resumo {
+            .galinha {
+                right: 74px;
+                top: 91px;
+            }
+        }
+
+        .informacaoEntrega {
+            flex-direction: column;
+            align-items: center;
+            justify-content: none!important;
+
+            .entrega {
+                margin-right: 0px;
+                margin-bottom: 10px;
+                width: 100%;
+                max-width: 500px;
+            }
+
+            .pagamento {
+                margin-right: 0px;
+                width: 100%;
+                max-width: 500px; 
+            }
+        }
+    }
+
+    @media (max-width: 500px) {
+        .resumo {
+            .galinha {
+                display: none;
+            }
+        }
+
+        .compra {
+            .categorias {
+                > div {
+                    padding: 10px 5px;
+                }
+            }
+
+            .conteudo {
+                > div {
+                    padding: 10px 9px;
+                }
+                
+                .valor {
+                    padding: 10px 2px !important;
+                }
+            }
+        }
+
+        .informacaoEntrega {
+            .entrega {
+                margin-right: 0px;
+                margin-bottom: 10px;
+                width: 100%;
+                max-width: 400px;
+            }
+    
+            .pagamento {
+                margin-right: 0px;
+                width: 100%;
+                max-width: 400px; 
+            }
+        }
+    }
+
+    @media (max-width: 410px) {
+        .informacaoEntrega {
+            .entrega {
+                margin-right: 0px;
+                margin-bottom: 10px;
+                width: 100%;
+                max-width: 300px;
+            }
+    
+            .pagamento {
+                margin-right: 0px;
+                width: 100%;
+                max-width: 300px; 
+            }
+        }
+    }
 }
