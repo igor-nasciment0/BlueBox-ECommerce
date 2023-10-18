@@ -1,0 +1,120 @@
+.pagina-pedidos-concluidos {
+    background-color: #EBEBEB;
+
+    .s1 {
+        display: flex;
+        flex-direction: row;
+
+        .barra-lateral {
+            height: 817px;
+        }
+        
+        .conteudo {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+            padding: 50px 0px;
+
+            > h1 {
+                margin-bottom: 20px;
+                font-weight: 500;
+                font-size: 26px;
+            }
+
+            .ordenar {
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                justify-content: end;
+                height: 20px;
+                width: 100%;
+                max-width: 950px;
+                margin-bottom: 10px;
+                
+                > div {
+                    display: flex;
+                    flex-direction: row;
+                    align-items: center;
+                    justify-content: center;
+                    background-color: #fff;
+                    border-radius: 8px;
+                    padding: 6px;
+                    box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.25);
+
+                    > img {
+                        margin-left: 10px;
+                        height: 14px;
+                        width: auto;
+                    }
+                }
+            }
+
+            .pedidos-concluidos {
+                display: flex;
+                flex-direction: column;
+                padding: 20px;
+                height: 100%;
+                max-height: 550px;
+                width: 100%;
+                max-width: 950px;
+                border-radius: 10px;
+                background-color: #fff;
+                margin-bottom: 10px;
+                white-space: nowrap;
+                overflow-y: scroll;
+                
+
+
+                .pedidos {
+                    display: flex;
+                    flex-direction: row;
+                    align-items: center;
+                    justify-content: space-between;
+                    padding: 20px 30px;
+                    background-color: #EBEBEB;
+                    margin-bottom: 10px;
+                    border: 1px solid rgba(0, 0, 0, 0.20);
+                    box-shadow: 0px 0px 2px 0px rgba(0, 0, 0, 0.25);
+
+                    > div {
+                        display: flex;
+                        flex-direction: column;
+                        align-items: center;
+                        justify-content: center;
+                    
+                        > p {
+                            margin-bottom: 6px;
+                            font-size: 13px;
+                        }
+
+                        > h6 {
+                            font-size: 12px;
+                        }
+                    }
+                }
+            }
+
+            .tudo {
+                display: flex;
+                align-items: center;
+                justify-content: end;
+                height: 50px;
+                width: 100%;
+                max-width: 950px;
+
+                .verTudo {
+                    border-radius: 8px;
+                    background: var(--azul-textos, #1C84FF);
+                    box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.25);
+                    padding: 8px 25px;
+
+                    > a {
+                        text-decoration: none;
+                        color: #fff;
+                    }
+                }
+            }
+        }
+    }
+}

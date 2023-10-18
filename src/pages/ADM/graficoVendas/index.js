@@ -1,5 +1,6 @@
 import BarraLateral from "../../../components/ADM/barraLateral";
 import CabecalhoADM from "../../../components/ADM/cabecalho";
+import Graficobarra from "../../../components/graficos";
 import "./index.scss";
 
 export default function Graficovendas() {
@@ -10,7 +11,6 @@ export default function Graficovendas() {
         <BarraLateral />
 
         <div className="informacoes-geral">
-          <h1>Outubro / 2023</h1>
 
           <div className="ultimos-dados">
             <div className="usuarios">
@@ -86,8 +86,10 @@ export default function Graficovendas() {
             </div>
           </div>
 
+          <h1>Outubro / 2023</h1>
+
           <div className="graf-progress">
-            <img src="/assets/images/Grafico.png" alt="" />
+            <Graficobarra/>
 
             <div className="atividade-pedido">
               <p>Atividade do pedido</p>
