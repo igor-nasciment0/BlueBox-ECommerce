@@ -10,6 +10,12 @@ export async function buscarProduto(busca) {
     return produtos.data;
 }
 
+export async function buscarProdutoPorID(id) {
+    let produto = await api.get('/produto/buscar/' + id);
+
+    return produto
+}
+
 export async function cadastrarProduto(nomeProduto, preco, qtdEstoque, descricao, especificacoes, categoria, marca, usado, peso) {
     let cadastrarProduto = {
         nome: nomeProduto,
@@ -52,8 +58,8 @@ export async function deletarProduto(id) {
     return resp;
 }
 
-export async function buscarImagens(id) {
-    let imagens = await api.get(`/produto/${id}/imagem`);
+export async function buscarImagens(idProduto) {
+    let imagens = await api.get(`/produto/${idProduto}/imagem`);
 
     return imagens.data;
 }

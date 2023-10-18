@@ -60,7 +60,7 @@ export default function Router() {
                     <Route path='/meus-pedidos' element={<UserPedidos/>}/>
                     <Route path='/pesquisa' element={<Pesquisa/>}/>
                     <Route path='/cadastro' element={<TelaCadastro/>}/>
-                    <Route path='/produto' element={<Produto/>}/>
+                    <Route path='/produto/:id' element={<Produto/>}/>
                     <Route path='/checkout' element={<Checkout />}/>
                     <Route path='/login' element={<UserLogin/>}/>
                     <Route path='/pagamento' element={<TeladePagamento />} />

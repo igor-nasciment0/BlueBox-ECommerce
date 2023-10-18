@@ -4,15 +4,49 @@ import Cabecalho from '../../components/cabecalho';
 import Rodape from '../../components/rodape';
 import CardProduto from '../../components/cardProduto';
 
-import { Link } from 'react-router-dom/dist';
-import { useContext } from 'react';
+import { Link, useParams } from 'react-router-dom/dist';
+import { useContext, useEffect, useState } from 'react';
 import { TemaContext } from '../../theme';
 import AnchorLink from 'react-anchor-link-smooth-scroll';
+import { buscarImagens, buscarProdutoPorID } from '../../api/produtoAPI';
 
 export default function Pedido() {
 
     const context = useContext(TemaContext);
     let tema = context.tema;
+
+    const id = useParams().id;
+
+    const [produto, setProduto] = useState({});
+    const [imagemPrincipal, setImagemPrincipal] = useState();
+    const [imagensSecundarias, setImagensSecundarias] = useState([]);
+
+    async function buscarProduto() {
+        try {
+            let p = await buscarProdutoPorID(id);
+            setProduto(p.data);
+
+            let arrayProvisorio = [];
+
+            let imagens = await buscarImagens(id);
+            for(let i = 0; i < imagens.length; i++) {
+                let imagem = imagens[i];
+                
+                if(imagem.primaria)
+                    setImagemPrincipal(imagem);
+                else 
+                    arrayProvisorio.push(imagem);
+            }
+
+            setImagensSecundarias(arrayProvisorio);
+        } catch (error) {
+            
+        }
+    }
+
+    useEffect(() => {
+        buscarProduto();
+    })
 
     return(
         <div className={"pagina-produto " + tema}>
@@ -24,7 +58,7 @@ export default function Pedido() {
                         <div className='mobile-container-cima'>
                             <div className="imagens">
                                 <div className="cont-imagem-principal">
-                                    <img src="/assets/images/foto_produto.png" alt="" />
+                                    <img src="/assets/images/foto_produto.png" alt="" onClick={() => console.log(produto)} />
                                 </div>
 
                                 <div className="cont-imagens-secundarias">
