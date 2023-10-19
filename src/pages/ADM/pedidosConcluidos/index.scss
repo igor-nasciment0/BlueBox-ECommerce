@@ -62,7 +62,7 @@
                 background-color: #fff;
                 margin-bottom: 10px;
                 white-space: nowrap;
-                overflow-y: scroll;
+                overflow-y: auto;
                 
 
 
@@ -93,6 +93,20 @@
                         }
                     }
                 }
+            }
+
+            .pedidos-concluidos::-webkit-scrollbar {
+                width: 10px;
+            }
+
+            .pedidos-concluidos::-webkit-scrollbar-thumb {
+                background: #152039E5;
+                border-radius: 10px;
+            }
+
+            .pedidos-concluidos::-webkit-scrollbar-track {
+                background: #ACACAC;
+                border-radius: 10px;
             }
 
             .tudo {
