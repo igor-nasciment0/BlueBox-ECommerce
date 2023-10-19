@@ -64,6 +64,14 @@ export default function TelaPagamentoPix() {
           </svg>
 
           <button className="copiar-codigo">Copiar código PIX</button>
+          <div className="passos">
+            <p>
+              1. Acesse o app do seu banco ou internet banking de preferência.
+            </p>
+            <p>2. Escolha pagar via Pix.</p>
+            <p>3. Escaneie o QR Code ou copie e cole o código Pix acima.</p>
+            <p>4. Seu pagamento será aprovado em alguns segundos.</p>
+          </div>
         </div>
       </main>
       <Rodape />
