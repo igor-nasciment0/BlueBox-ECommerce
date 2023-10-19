@@ -13,7 +13,7 @@ export async function buscarProduto(busca) {
 export async function buscarProdutoPorID(id) {
     let produto = await api.get('/produto/buscar/' + id);
 
-    return produto
+    return produto.data;
 }
 
 export async function cadastrarProduto(nomeProduto, preco, qtdEstoque, descricao, especificacoes, categoria, marca, usado, peso) {
