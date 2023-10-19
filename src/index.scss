@@ -8,6 +8,19 @@
     font-family: 'Montserrat';
 }
 
+body::-webkit-scrollbar {
+    width: 10px;
+}
+
+body::-webkit-scrollbar-thumb {
+    background: #152039;
+    border-radius: 5px;
+}
+
+body::-webkit-scrollbar-track {
+    background: #152039E5;
+}
+
 :root
 {
     --container-tela: 1220px;

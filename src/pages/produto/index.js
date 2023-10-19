@@ -12,6 +12,7 @@ import { buscarImagens, buscarProdutoPorID, mostrarUrlImagem, separarDescricao, 
 
 import ReactImageMagnify from 'react-image-magnify'
 import {toast} from 'react-toastify';
+import { buscarAvaliacoes } from '../../api/avaliacaoAPI';
 
 export default function Pedido() {
 
@@ -30,12 +31,14 @@ export default function Pedido() {
     const [especificacoes, setEspecificacoes] = useState([]);
     const [descricao, setDescricao] = useState([]);
 
+    const [avaliacoes, setAvaliacoes] = useState([]);
+
     const conversor = new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' });
 
     async function buscarProduto() {
         try {
             let p = await buscarProdutoPorID(id);
-            setProduto(p.data);
+            setProduto(p);
 
             let arrayProvisorio = [];
 
@@ -50,6 +53,7 @@ export default function Pedido() {
             }
 
             setImagensSecundarias(arrayProvisorio);
+            setAvaliacoes(await buscarAvaliacoes(id))
         } catch (error) {
             redirect('/');
             toast.error('Ocorreu um erro ao carregar o produto');
@@ -61,8 +65,6 @@ export default function Pedido() {
     }, [])
 
     useEffect(() => {
-        console.log(produto);
-
         produto.promocao ?
             setPrecoReal(produto.valorPromocional) :
             setPrecoReal(produto.preco)
@@ -276,13 +278,14 @@ export default function Pedido() {
 
                     <div className="container-comentarios">
                         <h2>Avaliações</h2>
-
+                            
+                        {avaliacoes.map(avaliacao => 
                         <div>
                             <div className="container-comentario">
                                 <div>
-                                    <img src="/assets/images/usuario.png" alt="" />
+                                    <img src={avaliacao.imgCliente ? mostrarUrlImagem(avaliacao.imgCliente) : '/assets/images/usuario.png'} alt="" />
                                     <div>
-                                        <h4>Carlos Henrique</h4>
+                                        <h4>{avaliacao.nomeCliente}</h4>
                                         <h5>30 de Julho de 2023</h5>    
                                     </div>
                                 </div>
@@ -296,7 +299,9 @@ export default function Pedido() {
                             <button>
                                 <img src="/assets/images/icons/like.svg" alt="" />
                             </button>
-                        </div>
+                        </div>   
+                        )}
+                        
                     </div>
                 </section>
             </div>
