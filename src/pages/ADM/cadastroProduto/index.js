@@ -43,12 +43,14 @@ export default function CadastroProduto() {
             setUsado(produto.usado);
             setCategoria(produto.categoria);
             setMarca(produto.marca);
-            setPeso(100);
+            setPeso(produto.peso);
 
             setAtualizacao(true);
 
             buscarImagensProduto();
         }
+
+        console.log(produto);
     }, [produto])
 
     useEffect(() => {

@@ -8,8 +8,9 @@ import { Link, redirect, useParams } from 'react-router-dom/dist';
 import { useContext, useEffect, useState } from 'react';
 import { TemaContext } from '../../theme';
 import AnchorLink from 'react-anchor-link-smooth-scroll';
-import { buscarImagens, buscarProdutoPorID } from '../../api/produtoAPI';
+import { buscarImagens, buscarProdutoPorID, mostrarUrlImagem, separarDescricao, separarEspecificacoes } from '../../api/produtoAPI';
 
+import ReactImageMagnify from 'react-image-magnify'
 import {toast} from 'react-toastify';
 
 export default function Pedido() {
@@ -20,11 +21,16 @@ export default function Pedido() {
     const id = useParams().id;
 
     const [produto, setProduto] = useState({});
-    const [precoReal, setPrecoReal] = useState();
-    const [imagemPrincipal, setImagemPrincipal] = useState();
+    const [imagemPrincipal, setImagemPrincipal] = useState({});
     const [imagensSecundarias, setImagensSecundarias] = useState([]);
 
+    const [precoReal, setPrecoReal] = useState(10);
+    const [preco, setPreco] = useState(0);
+
     const [especificacoes, setEspecificacoes] = useState([]);
+    const [descricao, setDescricao] = useState([]);
+
+    const conversor = new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' });
 
     async function buscarProduto() {
         try {
@@ -52,48 +58,27 @@ export default function Pedido() {
 
     useEffect(() => {
         buscarProduto();
-        
-        produto.promocao ?
-          setPrecoReal(produto.valorPromocional) :
-          setPrecoReal(produto.preco)
     }, [])
 
     useEffect(() => {
         console.log(produto);
-    })
+
+        produto.promocao ?
+            setPrecoReal(produto.valorPromocional) :
+            setPrecoReal(produto.preco)
+
+        setEspecificacoes(separarEspecificacoes(produto.especificacoes));
+        setDescricao(separarDescricao(produto.descricao));
+        setPreco(produto.preco);
+    }, [produto]);
 
     function valorEmReais(valor) {
-        return new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(valor);
+        return conversor.format(Number(valor)); 
     }
 
-    function desconto(valorNormal, valorPromocao) {
+    function calcularDesconto(valorNormal, valorPromocao) {
         let desconto = (valorNormal - valorPromocao) / valorNormal * 100
         return desconto.toFixed();
-    }
-
-    function separarEspecificacoes() {
-        let especificacoes = produto.especificacoes;
-        let stringAtual = '';
-        let spec = {};
-        let array = [];
-
-        for(let index in especificacoes) {
-            let char = especificacoes.charAt(index);
-
-            if(char === ':') {
-                spec.chave = stringAtual;
-                stringAtual = '';
-            } 
-            else if (char === '\n') {
-                spec.valor = stringAtual;
-                stringAtual = '';
-                array.push(spec);
-            } else {
-                stringAtual.concat(char);
-            }
-        }
-
-        setEspecificacoes(array)
     }
 
     return(
@@ -106,14 +91,26 @@ export default function Pedido() {
                         <div className='mobile-container-cima'>
                             <div className="imagens">
                                 <div className="cont-imagem-principal">
-                                    <img src="/assets/images/foto_produto.png" alt="" onClick={() => console.log(produto)} />
+                                    <ReactImageMagnify
+                                        {...{
+                                            smallImage: {
+                                                src: mostrarUrlImagem(imagemPrincipal.url),
+                                                isFluidWidth: true
+                                            },
+                                            largeImage : {
+                                                src: mostrarUrlImagem(imagemPrincipal.url),
+                                                width: 500,
+                                                height: 500
+                                            }
+                                        }}
+                                    />
                                 </div>
 
                                 <div className="cont-imagens-secundarias">
-                                    <div><img src="/assets/images/foto_produto.png" alt="" /></div>
-                                    <div><img src="/assets/images/foto_produto.png" alt="" /></div>
-                                    <div><img src="/assets/images/foto_produto.png" alt="" /></div>
-                                    <div><img src="/assets/images/foto_produto.png" alt="" /></div>
+                                    {imagensSecundarias.map(imagem => 
+                                        <div>
+                                            <img src={mostrarUrlImagem(imagem.url)} alt="" />
+                                        </div>)}
                                 </div>
                             </div>
 
@@ -127,14 +124,14 @@ export default function Pedido() {
 
                                 <div className="preco">
                                     <div>
-                                        {produto.promocao && <h3>De: {valorEmReais(produto.preco)}</h3>}
-                                        <h2>R$ {valorEmReais(precoReal)}</h2>
-                                        <h4>Ou em até 10x de {valorEmReais(precoReal / 10)}</h4>
+                                        {produto.promocao && <h3>De: {valorEmReais(preco)}</h3>}
+                                        <h2>{valorEmReais(precoReal)}</h2>
+                                        <h4>Ou em até 10x de {valorEmReais((precoReal / 10) - 0.01)}</h4>
                                     </div>
 
                                     {produto.promocao && 
                                     <div className='desconto'>
-                                        <h3>{desconto(produto.preco, produto.valorPromocional)}% de Desconto</h3>
+                                        <h3>{calcularDesconto(produto.preco, produto.valorPromocional)}% de Desconto</h3>
                                     </div>
                                     }
                                 </div>
@@ -148,16 +145,16 @@ export default function Pedido() {
                                 </div>
 
                                 <ul>
-                                    <li>Plataforma: <b>PS3</b></li>
-                                    <li>Formato: <b>Físico</b></li>
-                                    <li>É online: <b>Sim</b></li>
+                                    {especificacoes.map((spec, index) => index < 3 &&
+                                        <li>{spec.chave}: <b>{spec.valor}</b></li>
+                                    )}
                                 </ul>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   
                             </div>    
                         </div>
                         
 
                         <div className="entregas">
-                            <h2>R$ 29,99</h2>
+                            <h2>{valorEmReais(precoReal)}</h2>
                             <hr/>
 
                             <div className="input-cep">
@@ -217,42 +214,39 @@ export default function Pedido() {
                     <section className="sec-detalhes" id='detalhes'>
                         <h1>Informações</h1>
 
-                        <div className="info-usado">
-                            <h2>Importante</h2>
-                            <p>Esse produto é usado. Garantimos sua perfeita funcionabilidade. ;)</p>
-                            <h3>Estado do Jogo:</h3>
+                        {produto.usado &&
+                            <div className="info-usado">
+                                <h2>Importante</h2>
+                                <p>Esse produto é usado. Garantimos sua perfeita funcionabilidade. ;)</p>
+                                <h3>Garantimos para este jogo:</h3>
 
-                            <ul>
-                                <li>Disco: Sem riscos ou arranhões visíveis, funcionamento perfeito.</li>
-                                <li>Embalagem: Caixa original em ótimo estado, com mínimas marcas de desgaste.</li>
-                                <li>Manual: Manual de instruções incluído e em excelente condição.</li>
-                            </ul>
+                                <ul>
+                                    <li>Disco: Sem riscos ou arranhões visíveis, funcionamento perfeito.</li>
+                                    <li>Embalagem: Caixa original em ótimo estado, com mínimas marcas de desgaste.</li>
+                                    <li>Manual: Manual de instruções incluído e em excelente condição.</li>
+                                </ul>
 
-                            <p>Sendo um produto usado, as imagens são apenas para fins ilustrativos e podem não refletir seu estado real.</p>
-                        </div>
+                                <p>Sendo um produto usado, as imagens podem não refletir seu estado real.</p>
+                            </div>
+                        }
+                        
                         
                         <div>
                             <h2>Descrição do Produto</h2>
-                            <p>God of War: Collection tem como proposta central trazer o esplendor da série através de visuais em alta definição e uma jogabilidade ainda mais fluida. O game apresenta um compilado dos dois títulos mais aclamados da geração passada, agora com jogabilidade e gráficos melhorados, mas todas a qualidade da série mantida. A taxa estável de 60 quadros por segundo mostra que o terceiro PlayStation não encontra problemas em reproduzir os dois games com a aplicação de filtros de correção de bordas serrilhadas e cores ainda mais vibrantes.</p>
-                            <p>Além disso, os dois jogos refeitos contam com o sistema de troféus da PSN. Com isso, os gamers têm a possibilidade de comparar conquistas adquiridas através do progresso nas tramas dos primeiros games de Kratos. Os troféus consistem em uma adição interessante para quem gosta de ser recompensado pelos grandes feitios durante a ação de God of War. Reviva toda a nostálgia da série que conquistou seu lugar no mundo dos games, com seus dois primeiro títulos em uma só coleção.</p>
+
+                            {descricao.map(paragrafo => 
+                                <p>{paragrafo}</p>
+                            )}
                         </div>
 
                         <h2>Especificações</h2>                       
                         <div className="tabela-especificacoes">
-                            <div className="linha">
-                                <div>Desenvolvedora:</div>
-                                <div>Santa Monica Studios</div>
-                            </div>
-
-                            <div className="linha">
-                                <div>Publicadora:</div>
-                                <div>Sony Interactive Entertainment</div>
-                            </div>
-
-                            <div className="linha">
-                                <div>Data de Lançamento:</div>
-                                <div>28/08/2012</div>
-                            </div>
+                            {especificacoes.map(spec => 
+                                <div className="linha">
+                                    <div>{spec.chave}:</div>
+                                    <div>{spec.valor}</div>
+                                </div>    
+                            )}
                         </div>
                     </section>
                 </main>

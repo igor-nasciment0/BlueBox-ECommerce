@@ -58,6 +58,58 @@ export async function deletarProduto(id) {
     return resp;
 }
 
+export function separarEspecificacoes(strEspecificacoes) {
+    let stringAtual = '';
+    let spec = {};
+    let array = [];
+
+    for(let index in strEspecificacoes) {
+        let char = strEspecificacoes.charAt(index);
+
+        if(char === ':') {
+            spec.chave = stringAtual;
+            stringAtual = '';
+        } 
+        else if (char === '\n') {
+            spec.valor = stringAtual;
+            stringAtual = '';
+
+            array.push(spec);
+            spec = {};
+        } else if(Number(index) === strEspecificacoes.length - 1){
+            stringAtual += char;
+            spec.valor = stringAtual;
+            array.push(spec);
+        } else {
+            stringAtual += char;
+        }
+    }
+
+    return array;
+}
+
+export function separarDescricao(strDescricao) {
+    let stringAtual = '';
+    let array = [];
+
+    for(let index in strDescricao) {
+        let char = strDescricao.charAt(index);
+
+        if(char === '\n') {
+            array.push(stringAtual);
+            stringAtual = '';
+        } if(Number(index) === strDescricao.length - 1) {
+            stringAtual += char;
+            array.push(stringAtual);
+        } else {
+            stringAtual += char;
+        }
+    }
+
+    return array;
+}
+
+
 export async function buscarImagens(idProduto) {
     let imagens = await api.get(`/produto/${idProduto}/imagem`);
 
