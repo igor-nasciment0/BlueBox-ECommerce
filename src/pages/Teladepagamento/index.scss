@@ -97,6 +97,20 @@
     align-items: center;
     background: var(--cinza-imagens, #D9D9D9);
     border-radius: 5px;
+    
+    > p {
+        width: 100%;
+        max-width: 170px;
+    } 
+
+    .metodos {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+        max-width: 410px;
+    }
 
     button{
         border-radius: 5px;
@@ -224,6 +238,24 @@
     .resumo-pedido {
         width: 100%;
         max-width: 190px;
+    }
+
+    .borda-resumo {
+        > h1 {
+            font-size: 22px;
+        }
+
+        > div {
+            > p {
+                font-size: 12px;
+            }
+        }
+
+        > button {
+            > svg {
+                display: none;
+            }
+        }
     }
 
     .encomendas {
