@@ -15,6 +15,7 @@
         width: 100%;
         flex-grow: 1;
         background-color: #EBEBEB;
+        overflow: hidden;
     }
 
 
@@ -232,7 +233,7 @@
         }
     }
 
-    @media (max-width: 1126px) {
+    @media (max-width: 1211px) {
         .graf-progress{
             flex-direction: column !important;
             align-items: center;

@@ -116,6 +116,39 @@
     
     }
 
-    
+    @media (max-width: 850px) {
+        .titulo-pagamento{
+            h1{
+                font-size: 25px;
+            }
+        }
+
+        .pagamento-total{
+            
+            width: 118%;
+
+            h4{
+                font-size: 15px !important;
+            }
+        }
+
+        .qr-code-pix{
+            .qr-code{
+                height: 150px;
+                width: auto;
+            }
+        }
+
+        .simbolo-pix{
+            margin-bottom: 10px;
+        }
+
+        .passos{
+            p{
+                font-size: 14px;
+            }
+        }
+
+    }
 
 }
