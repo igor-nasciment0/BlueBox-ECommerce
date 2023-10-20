@@ -87,10 +87,12 @@ export default function TeladePagamento() {
 
             <div className="metodos-pagamento">
               <p>Escolha seu metodo de pagamento:</p>
-              <button>PIX</button>
-              <button>Cartão de credito</button>
-              <button>Cartão de debito</button>
-              <button>Boleto</button>
+              <div className="metodos">
+                <button>PIX</button>
+                <button>Cartão de credito</button>
+                <button>Cartão de debito</button>
+                <button>Boleto</button>
+              </div>
             </div>
 
             <div className="bandeira-cartões">

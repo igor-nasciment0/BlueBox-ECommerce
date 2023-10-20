@@ -10,7 +10,7 @@
         align-items: center;
         display: flex;
         background-color: #D9D9D9;
-        padding: 50px;
+        padding: 20px;
     }
 
     .qr-code-pix{
@@ -20,7 +20,7 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        padding: 10px 80px;
+        padding: 10px 50px;
         flex-direction: column;
         border-radius: 5px;
         
@@ -116,6 +116,39 @@
     
     }
 
-    
+    @media (max-width: 850px) {
+        .titulo-pagamento{
+            h1{
+                font-size: 25px;
+            }
+        }
+
+        .pagamento-total{
+            
+            width: 118%;
+
+            h4{
+                font-size: 15px !important;
+            }
+        }
+
+        .qr-code-pix{
+            .qr-code{
+                height: 150px;
+                width: auto;
+            }
+        }
+
+        .simbolo-pix{
+            margin-bottom: 10px;
+        }
+
+        .passos{
+            p{
+                font-size: 14px;
+            }
+        }
+
+    }
 
 }
