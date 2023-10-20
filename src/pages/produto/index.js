@@ -12,8 +12,11 @@ import { buscarImagens, buscarProdutoPorID, mostrarUrlImagem } from '../../api/p
 import { formatarData, separarEspecificacoes, separarTexto } from '../../api/funcoesGerais';
 
 import InnerImageZoom from 'react-inner-image-zoom';
-import {toast} from 'react-toastify';
-import { buscarAvaliacoes } from '../../api/avaliacaoAPI';
+import 'react-inner-image-zoom/lib/InnerImageZoom/styles.css';
+
+import {toast, ToastContainer} from 'react-toastify';
+import { buscarAvaliacoes, postarAvaliacao } from '../../api/avaliacaoAPI';
+import { get } from 'local-storage';
 
 export default function Pedido() {
 
@@ -25,14 +28,15 @@ export default function Pedido() {
     const [produto, setProduto] = useState({});
     const [imagemPrincipal, setImagemPrincipal] = useState({});
     const [imagensSecundarias, setImagensSecundarias] = useState([]);
-
     const [precoReal, setPrecoReal] = useState(10);
     const [preco, setPreco] = useState(0);
-
     const [especificacoes, setEspecificacoes] = useState([]);
     const [descricao, setDescricao] = useState([]);
 
     const [avaliacoes, setAvaliacoes] = useState([]);
+
+    const [comentario, setComentario] = useState('');
+    const [nota, setNota] = useState(5);
 
     const conversor = new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' });
 
@@ -58,6 +62,26 @@ export default function Pedido() {
         } catch (error) {
             redirect('/');
             toast.error('Ocorreu um erro ao carregar o produto');
+        }
+    }
+
+    async function postAvaliacao() {
+        try {
+            let idCliente = get('user-login').id;
+            
+            await postarAvaliacao(id, idCliente, comentario, nota);
+            await buscarProduto();
+
+            toast.success('Comentário adicionado. Obrigado pela contribuição!')
+
+            setComentario('');
+
+        } catch (error) {
+            if(error.response) {
+                toast.error(error.response.data)
+            } else {
+                toast.error(error.message)
+            }
         }
     }
 
@@ -87,6 +111,18 @@ export default function Pedido() {
     return(
         <div className={"pagina-produto " + tema}>
             <Cabecalho/>
+            <ToastContainer
+                position="bottom-center"
+                autoClose={3000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+                theme="colored"
+            />
             
             <div className="container-main">
                 <main>
@@ -94,7 +130,7 @@ export default function Pedido() {
                         <div className='mobile-container-cima'>
                             <div className="imagens">
                                 <div className="cont-imagem-principal">
-                                    <InnerImageZoom src={mostrarUrlImagem(imagemPrincipal.url)}/>
+                                    <InnerImageZoom src={mostrarUrlImagem(imagemPrincipal.url)} zoomScale={1.5}/>
                                 </div>
 
                                 <div className="cont-imagens-secundarias">
@@ -209,10 +245,10 @@ export default function Pedido() {
                             <div className="info-usado">
                                 <h2>Importante</h2>
                                 <p>Esse produto é usado. Garantimos sua perfeita funcionabilidade. ;)</p>
-                                <h3>Garantimos para este jogo:</h3>
+                                <h3>Garantimos para este jogo, console ou acessório:</h3>
 
                                 <ul>
-                                    <li>Disco: Sem riscos ou arranhões visíveis, funcionamento perfeito.</li>
+                                    <li>Nada de riscos ou arranhões visíveis, funcionamento perfeito.</li>
                                     <li>Embalagem: Caixa original em ótimo estado, com mínimas marcas de desgaste.</li>
                                     <li>Manual: Manual de instruções incluído e em excelente condição.</li>
                                 </ul>
@@ -259,8 +295,8 @@ export default function Pedido() {
                             </div>
 
                             <div>
-                                <textarea cols="30" rows="10" placeholder="Gostaria de dizer um pouco mais?"></textarea>
-                                <button>Postar</button>
+                                <textarea cols="30" rows="10" placeholder="Gostaria de dizer um pouco mais?" value={comentario} onChange={e => setComentario(e.target.value)}></textarea>
+                                <button onClick={postAvaliacao}>Postar</button>
                             </div>
                         </div>
                     </div>
