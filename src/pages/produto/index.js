@@ -8,9 +8,10 @@ import { Link, redirect, useParams } from 'react-router-dom/dist';
 import { useContext, useEffect, useState } from 'react';
 import { TemaContext } from '../../theme';
 import AnchorLink from 'react-anchor-link-smooth-scroll';
-import { buscarImagens, buscarProdutoPorID, mostrarUrlImagem, separarDescricao, separarEspecificacoes } from '../../api/produtoAPI';
+import { buscarImagens, buscarProdutoPorID, mostrarUrlImagem } from '../../api/produtoAPI';
+import { formatarData, separarEspecificacoes, separarTexto } from '../../api/funcoesGerais';
 
-import ReactImageMagnify from 'react-image-magnify'
+import InnerImageZoom from 'react-inner-image-zoom';
 import {toast} from 'react-toastify';
 import { buscarAvaliacoes } from '../../api/avaliacaoAPI';
 
@@ -70,7 +71,7 @@ export default function Pedido() {
             setPrecoReal(produto.preco)
 
         setEspecificacoes(separarEspecificacoes(produto.especificacoes));
-        setDescricao(separarDescricao(produto.descricao));
+        setDescricao(separarTexto(produto.descricao));
         setPreco(produto.preco);
     }, [produto]);
 
@@ -93,19 +94,7 @@ export default function Pedido() {
                         <div className='mobile-container-cima'>
                             <div className="imagens">
                                 <div className="cont-imagem-principal">
-                                    <ReactImageMagnify
-                                        {...{
-                                            smallImage: {
-                                                src: mostrarUrlImagem(imagemPrincipal.url),
-                                                isFluidWidth: true
-                                            },
-                                            largeImage : {
-                                                src: mostrarUrlImagem(imagemPrincipal.url),
-                                                width: 500,
-                                                height: 500
-                                            }
-                                        }}
-                                    />
+                                    <InnerImageZoom src={mostrarUrlImagem(imagemPrincipal.url)}/>
                                 </div>
 
                                 <div className="cont-imagens-secundarias">
@@ -286,13 +275,13 @@ export default function Pedido() {
                                     <img src={avaliacao.imgCliente ? mostrarUrlImagem(avaliacao.imgCliente) : '/assets/images/usuario.png'} alt="" />
                                     <div>
                                         <h4>{avaliacao.nomeCliente}</h4>
-                                        <h5>30 de Julho de 2023</h5>    
+                                        <h5>{formatarData(avaliacao.dataPostagem)}</h5>    
                                     </div>
                                 </div>
 
                                 <img src="/assets/images/estrelasRate.png" alt="" />
 
-                                <p>Eu sou nego e não nego, aprovo esse produto</p>
+                                <p>{avaliacao.comentario}</p>
                                 <p className="coment-likes">29 pessoas gostaram deste comentário</p>
                             </div>
                             
