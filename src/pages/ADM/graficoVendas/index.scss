@@ -238,6 +238,32 @@
             flex-direction: column !important;
             align-items: center;
         }
+
+        .atividade-pedido{
+            max-width: 580px !important;
+        }
+
+        .ultimos-dados{
+            flex-direction: column;
+            padding: 0px 50px;
+        }
+
+        .usuarios{
+            max-width: unset !important;
+        }
+
+        .vendas-comp{
+            max-width: unset !important;
+        }
+
+        .receita-fat{
+            max-width: unset !important;
+        }
+
+        .informacoes-geral{
+            padding: 20px !important;
+        }
+
     }
 
 
