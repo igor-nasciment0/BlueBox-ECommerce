@@ -15,15 +15,15 @@ import InnerImageZoom from 'react-inner-image-zoom';
 import 'react-inner-image-zoom/lib/InnerImageZoom/styles.css';
 
 import {toast, ToastContainer} from 'react-toastify';
-import { buscarAvaliacoes, postarAvaliacao } from '../../api/avaliacaoAPI';
+import { buscarAvaliacoes, darLike, postarAvaliacao, tirarLike, verificarLike, verificarNumeroLikes } from '../../api/avaliacaoAPI';
 import { get } from 'local-storage';
 
-export default function Pedido() {
-
+export default function Produto() {
     const context = useContext(TemaContext);
     let tema = context.tema;
 
-    const id = useParams().id;
+    const idProduto = useParams().id;
+    const idCliente = get('user-login').id;
 
     const [produto, setProduto] = useState({});
     const [imagemPrincipal, setImagemPrincipal] = useState({});
@@ -42,12 +42,12 @@ export default function Pedido() {
 
     async function buscarProduto() {
         try {
-            let p = await buscarProdutoPorID(id);
+            let p = await buscarProdutoPorID(idProduto);
             setProduto(p);
 
             let arrayProvisorio = [];
 
-            let imagens = await buscarImagens(id);
+            let imagens = await buscarImagens(idProduto);
             for(let i = 0; i < imagens.length; i++) {
                 let imagem = imagens[i];
                 
@@ -58,18 +58,41 @@ export default function Pedido() {
             }
 
             setImagensSecundarias(arrayProvisorio);
-            setAvaliacoes(await buscarAvaliacoes(id))
         } catch (error) {
             redirect('/');
             toast.error('Ocorreu um erro ao carregar o produto');
         }
     }
 
-    async function postAvaliacao() {
+    async function buscarRatings() {
         try {
-            let idCliente = get('user-login').id;
+            let ratings =  await buscarAvaliacoes(idProduto);
             
-            await postarAvaliacao(id, idCliente, comentario, nota);
+            for(let i = 0; i < ratings.length; i++) {
+                let r = ratings[i];
+
+                let boolLike = await verificarLike(idCliente, r.id);
+                let numLikes = await verificarNumeroLikes(r.id);
+
+                r.deuLike = boolLike.deuLike;
+                r.likes = numLikes.numeroLikes;
+            }
+
+            setAvaliacoes(ratings);
+            console.log(ratings)
+
+        } catch (error) {
+            if(error.response) {
+                toast.error(error.response.data);
+            } else {
+                toast.error(error.message);
+            }            
+        }
+    }
+
+    async function postAvaliacao() {
+        try {            
+            await postarAvaliacao(idProduto, idCliente, comentario, nota);
             await buscarProduto();
 
             toast.success('Comentário adicionado. Obrigado pela contribuição!')
@@ -85,8 +108,27 @@ export default function Pedido() {
         }
     }
 
+    async function handleLike(avaliacao) {
+        try {
+            if(avaliacao.deuLike) {
+                await tirarLike(idCliente, avaliacao.id);
+            } else {
+                await darLike(idCliente, avaliacao.id);
+            }
+
+            buscarRatings();
+
+        } catch (error) {
+            if(error.response) 
+                toast.error(error.response.data);
+            else
+                toast.error(error.message);
+        }
+    }
+
     useEffect(() => {
         buscarProduto();
+        buscarRatings();
     }, [])
 
     useEffect(() => {
@@ -318,14 +360,21 @@ export default function Pedido() {
                                 <img src="/assets/images/estrelasRate.png" alt="" />
 
                                 <p>{avaliacao.comentario}</p>
-                                <p className="coment-likes">29 pessoas gostaram deste comentário</p>
+                                
+                                {
+                                    avaliacao.likes > 0 &&
+                                    <p className="coment-likes">
+                                        {avaliacao.likes} pessoas gostaram deste comentário
+                                    </p>
+                                }
                             </div>
                             
-                            <button>
+                            <button className={avaliacao.deuLike && 'liked'} onClick={() => handleLike(avaliacao)}>
                                 <img src="/assets/images/icons/like.svg" alt="" />
                             </button>
                         </div>   
-                        )}
+                        )
+                        }
                         
                     </div>
                 </section>

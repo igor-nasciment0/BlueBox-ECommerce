@@ -994,6 +994,14 @@
                 align-self: center;
             }
 
+            > div > button.liked {
+                background-color: var(--cinza-imagens);
+
+                img {
+                    filter: invert(6%) sepia(30%) saturate(1567%) hue-rotate(182deg) brightness(99%) contrast(104%);
+                }
+            }
+
             @media (max-width: 768px) {
                 width: 100%;
 
