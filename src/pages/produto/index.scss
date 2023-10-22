@@ -1022,6 +1022,37 @@
             }
         }
 
+        .cont-sem-avaliacoes {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+
+            gap: 0;
+
+            > h3 {
+                font-size: 18px;
+                font-weight: 400;
+                margin-bottom: 5px;
+            }
+
+            > h4 {
+                font-size: 14px;
+                font-weight: 300;
+                margin-bottom: 12px;
+            }
+            
+            > div {
+                background-color: rgba($color: var(--cor-textos),$alpha: 0.15);
+                box-shadow: 0 0 10px 2px rgba($color: var(--cor-textos),$alpha: 0.2);
+            }
+
+            img {
+                width: 100%;
+                max-width: 300px;
+            }
+        }
+
         @media (max-width: 768px) {
             > div {
                 gap: 18px;

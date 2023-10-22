@@ -116,7 +116,7 @@ export default function Produto() {
 
             setComentario('');
 
-            setTimeout(() => window.location.reload(), 3000)            
+            setTimeout(() => window.location.reload(), 3000)
 
         } catch (error) {
             if (error.response) {
@@ -199,7 +199,7 @@ export default function Produto() {
                         <div className='mobile-container-cima'>
                             <div className="imagens">
                                 <div className="cont-imagem-principal">
-                                    <div style={{ background: useColor(imagemPrincipal.url)}}>
+                                    <div style={{ background: useColor(imagemPrincipal.url) }}>
                                         <InnerImageZoom className='img-principal' src={mostrarUrlImagem(imagemPrincipal.url)} zoomScale={1.2} />
                                     </div>
                                 </div>
@@ -216,7 +216,7 @@ export default function Produto() {
                                 <h1>{produto.nome}</h1>
 
                                 <div className="avaliacao">
-                                    <Rating value={notaGeral} precision={0.5} readOnly/>
+                                    <Rating value={notaGeral} precision={0.5} readOnly />
                                     ({numAvaliacoes} avaliações)
                                 </div>
 
@@ -353,66 +353,85 @@ export default function Produto() {
                     <div>
                         <div className="avaliacao-geral">
                             <h2>Avaliação Geral do Produto</h2>
-                            <h3>{notaGeral ? notaGeral.toFixed(1) : 'Nenhuma :('}</h3>
-                            <Rating size='large' value={notaGeral} precision={0.5} readOnly/>
+                            <h3>{notaGeral ? notaGeral.toFixed(1) : '0.0'}</h3>
+                            <Rating size='large' value={notaGeral} precision={0.5} readOnly />
                             <h4>{numAvaliacoes} avaliações</h4>
                         </div>
                         <div className="container-avalie">
                             <div>
                                 <h2>Já comprou este produto?</h2>
                                 <h3>Ajude os outros a saberem o que comprar.</h3>
-                                <Rating size='large' value={nota} precision={0.5} onChangeActive={(event, newValue) => {setNotaIndex(newValue)}} onChange={(event, newValue) => {
-                                                                                                                                                                            setAvaliando(true);
-                                                                                                                                                                            setNota(newValue);
-                                                                                                                                                                            }}/>
+                                <Rating size='large' value={nota} precision={0.5} onChangeActive={(event, newValue) => { setNotaIndex(newValue) }} onChange={(event, newValue) => {
+                                    setAvaliando(true);
+                                    setNota(newValue);
+                                }} />
                                 <p>{avaliacoesTextos[Math.ceil(notaIndex) - 1]}</p>
                             </div>
 
-                            <div style={{display: avaliando ? 'flex' : 'none'}}>
+                            <div style={{ display: avaliando ? 'flex' : 'none' }}>
                                 <textarea cols="30" rows="10" placeholder="Gostaria de dizer um pouco mais?" value={comentario} onChange={e => setComentario(e.target.value)}></textarea>
                                 <button onClick={postAvaliacao}>Postar</button>
                             </div>
                         </div>
                     </div>
 
-                    <div className="container-comentarios">
-                        <h2>Avaliações</h2>
+                    {
+                        avaliacoes.length === 0 ?
+                            <SemAvaliacoes /> :
 
-                        {avaliacoes.map(avaliacao =>
-                            <div>
-                                <div className="container-comentario">
+                            <div className="container-comentarios">
+                                <h2>Avaliações</h2>
+
+                                {avaliacoes.map(avaliacao =>
                                     <div>
-                                        <img src={avaliacao.imgCliente ? mostrarUrlImagem(avaliacao.imgCliente) : '/assets/images/usuario.png'} alt="" />
-                                        <div>
-                                            <h4>{avaliacao.nomeCliente}</h4>
-                                            <h5>{formatarData(avaliacao.dataPostagem)}</h5>
+                                        <div className="container-comentario">
+                                            <div>
+                                                <img src={avaliacao.imgCliente ? mostrarUrlImagem(avaliacao.imgCliente) : '/assets/images/usuario.png'} alt="" />
+                                                <div>
+                                                    <h4>{avaliacao.nomeCliente}</h4>
+                                                    <h5>{formatarData(avaliacao.dataPostagem)}</h5>
+                                                </div>
+                                            </div>
+
+                                            <Rating value={avaliacao.nota} size='small' precision={0.5} readOnly />
+
+                                            <p>{avaliacao.comentario}</p>
+
+                                            {
+                                                avaliacao.likes > 0 &&
+                                                <p className="coment-likes">
+                                                    {avaliacao.likes} pessoas gostaram deste comentário
+                                                </p>
+                                            }
                                         </div>
+
+                                        <button className={avaliacao.deuLike && 'liked'} onClick={() => handleLike(avaliacao)}>
+                                            <img src="/assets/images/icons/like.svg" alt="" />
+                                        </button>
                                     </div>
+                                )
+                                }
 
-                                    <Rating value={avaliacao.nota} size='small' precision={0.5} readOnly/>
-
-                                    <p>{avaliacao.comentario}</p>
-
-                                    {
-                                        avaliacao.likes > 0 &&
-                                        <p className="coment-likes">
-                                            {avaliacao.likes} pessoas gostaram deste comentário
-                                        </p>
-                                    }
-                                </div>
-
-                                <button className={avaliacao.deuLike && 'liked'} onClick={() => handleLike(avaliacao)}>
-                                    <img src="/assets/images/icons/like.svg" alt="" />
-                                </button>
                             </div>
-                        )
-                        }
+                    }
 
-                    </div>
+
                 </section>
             </div>
 
             <Rodape />
+        </div>
+    )
+}
+
+function SemAvaliacoes() {
+    return (
+        <div className="cont-sem-avaliacoes">
+            <h3>Parece que ninguém avaliou este produto ainda.</h3>
+            <h4>Seja o primeiro!</h4>
+            <div>
+                <img src="/assets/images/backgrounds/link-confused-2.png" alt="" />
+            </div>
         </div>
     )
 }

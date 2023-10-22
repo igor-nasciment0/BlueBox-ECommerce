@@ -22,6 +22,12 @@ export async function postarAvaliacao(idProduto, idCliente, comentario, nota) {
     return r.data;
 }
 
+export async function deletarAvaliacao(idAvaliacao) {
+    let r = await api.delete(`/produto/avaliacao/${idAvaliacao}`);
+
+    return r.data;
+}
+
 export async function verificarLike(idCliente, idAvaliacao) {
     let r = await api.get(`/produto/avaliacao/${idAvaliacao}/like?cliente=${idCliente}`);
 

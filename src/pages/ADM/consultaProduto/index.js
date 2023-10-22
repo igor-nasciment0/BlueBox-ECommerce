@@ -8,6 +8,7 @@ import 'react-confirm-alert/src/react-confirm-alert.css';
 import { useNavigate } from "react-router-dom";
 import { buscarImagens, buscarProduto, deletarProduto, excluirImagem } from "../../../api/produtoAPI";
 import { toast, ToastContainer } from "react-toastify";
+import { buscarAvaliacoes, deletarAvaliacao } from "../../../api/avaliacaoAPI";
 
 export default function ConsultaProduto()
 {
@@ -36,11 +37,18 @@ export default function ConsultaProduto()
                 onClick: async () => {
                     try {
                         let imagens = await buscarImagens(id);
+                        let avaliacoes = await buscarAvaliacoes(id);
 
                         for (let i = 0; i < imagens.length; i++) {
                             let imagem = imagens[i];
 
                             await excluirImagem(imagem.id);
+                        }
+
+                        for (let i = 0; i < avaliacoes.length; i++) {
+                            let a = avaliacoes[i];
+
+                            await deletarAvaliacao(a.id);
                         }
 
                         let resp = await deletarProduto(id);
