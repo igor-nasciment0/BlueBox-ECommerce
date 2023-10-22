@@ -16,7 +16,7 @@ import 'react-inner-image-zoom/lib/InnerImageZoom/styles.css';
 import Color, { useColor } from 'color-thief-react'
 
 import { toast, ToastContainer } from 'react-toastify';
-import { buscarAvaliacoes, darLike, postarAvaliacao, tirarLike, verificarLike, verificarNumeroLikes } from '../../api/avaliacaoAPI';
+import { buscarAvaliacoes, darLike, deletarAvaliacao, postarAvaliacao, tirarLike, verificarLike, verificarNumeroLikes } from '../../api/avaliacaoAPI';
 import { get } from 'local-storage';
 
 import Rating from '@mui/material/Rating';
@@ -123,6 +123,31 @@ export default function Produto() {
                 toast.error(error.response.data)
             } else {
                 toast.error(error.message)
+            }
+        }
+    }
+
+    async function excluirAvaliacao(idAvaliacao) {
+        try {
+            let r = await verificarNumeroLikes(idAvaliacao);
+
+            for (let i = 0; i < r.likes.length; i++) {
+                let like = r.likes[i];
+
+                await tirarLike(like.idCliente, like.idAvaliacao);
+            }
+
+            await deletarAvaliacao(idAvaliacao);
+
+            toast.success('Avaliação deletada com sucesso.')
+
+            setTimeout(() => window.location.reload(), 3000);
+
+        } catch (error) {
+            if (error.response) {
+                toast.error(error.response.data)
+            } else {
+                toast.error(error.message);
             }
         }
     }
@@ -402,6 +427,11 @@ export default function Produto() {
                                                 <p className="coment-likes">
                                                     {avaliacao.likes} pessoas gostaram deste comentário
                                                 </p>
+                                            }
+
+                                            {
+                                                idCliente === avaliacao.idCliente &&
+                                                <button className='btn-excluir' onClick={() => excluirAvaliacao(avaliacao.id)}>Excluir Comentário</button>
                                             }
                                         </div>
 

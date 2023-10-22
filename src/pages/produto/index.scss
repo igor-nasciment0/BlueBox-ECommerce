@@ -990,6 +990,20 @@
                     font-weight: 500;
                     color: rgba(var(--cor-textos), 0.6);
                 }
+
+                > button {
+                    background: none;
+                    border: none;
+
+                    color: rgb(var(--azul-claro));
+                    text-align: left;
+                    font-size: 12px;
+                    cursor: pointer;
+                }
+
+                > button:hover {
+                    text-decoration: underline;
+                }
             }
 
             > div > button

@@ -8,7 +8,7 @@ import 'react-confirm-alert/src/react-confirm-alert.css';
 import { useNavigate } from "react-router-dom";
 import { buscarImagens, buscarProduto, deletarProduto, excluirImagem } from "../../../api/produtoAPI";
 import { toast, ToastContainer } from "react-toastify";
-import { buscarAvaliacoes, deletarAvaliacao } from "../../../api/avaliacaoAPI";
+import { buscarAvaliacoes, deletarAvaliacao, tirarLike, verificarNumeroLikes } from "../../../api/avaliacaoAPI";
 
 export default function ConsultaProduto()
 {
@@ -47,6 +47,15 @@ export default function ConsultaProduto()
 
                         for (let i = 0; i < avaliacoes.length; i++) {
                             let a = avaliacoes[i];
+                            
+                            let likes = await verificarNumeroLikes(a.id)
+                            likes = likes.likes;
+                            
+                            for (let i = 0; i < likes.length; i++) {
+                                let like = likes[i];
+                                
+                                await tirarLike(like.idCliente, like.idAvaliacao);
+                            }
 
                             await deletarAvaliacao(a.id);
                         }
