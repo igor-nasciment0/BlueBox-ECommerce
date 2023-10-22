@@ -66,20 +66,24 @@
 
             .cont-imagem-principal
             {
-                padding: 50px 30px;
+                padding: 30px;
                 border: 1.5px solid rgba($color: var(--cor-textos),$alpha: 0.3);
                 box-shadow: 0 0 5px 0 rgba($color: var(--cor-textos),$alpha: 0.2);
                 border-radius: 5px;
-    
+
                 margin-bottom: 15px;
     
                 display: flex;
                 justify-content: center;
                 align-items: center;
+
+
     
-                img
+                .img-principal .iiz__img
                 {
-                    width: 100%;
+                    height: 100vh;
+                    max-height: 400px;
+                    object-fit: contain;
                 }
             }
     
@@ -87,7 +91,7 @@
             {
                 display: flex;
                 flex-direction: row;
-                justify-content: space-between;
+
                 gap: 12px;
                 width: 100%;
                 
@@ -103,11 +107,14 @@
                     align-items: center;
 
                     max-width: 150px;
+                    max-height: 120px;
                 }
     
                img
                {
                     width: 100%;
+                    height: 100%;
+                    object-fit: contain;
                }
             }
         }
@@ -998,7 +1005,9 @@
                 background-color: var(--cinza-imagens);
 
                 img {
-                    filter: invert(6%) sepia(30%) saturate(1567%) hue-rotate(182deg) brightness(99%) contrast(104%);
+                    filter: brightness(0) saturate(100%);
+                    filter: invert(6%) sepia(30%) saturate(1567%) hue-rotate(182deg) brightness(50%) contrast(104%);
+                    opacity: 1;
                 }
             }
 

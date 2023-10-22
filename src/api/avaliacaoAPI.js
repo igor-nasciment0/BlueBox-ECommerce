@@ -23,21 +23,19 @@ export async function postarAvaliacao(idProduto, idCliente, comentario, nota) {
 }
 
 export async function verificarLike(idCliente, idAvaliacao) {
-    let body = {idCliente: idCliente};
-
-    let r = await api.get(`/produto/avaliacao/${idAvaliacao}/like`, body);
+    let r = await api.get(`/produto/avaliacao/${idAvaliacao}/like?cliente=${idCliente}`);
 
     return r.data;
 }
 
 export async function darLike(idCliente, idAvaliacao) {
-    let r = await api.post(`/produto/avaliacao/${idAvaliacao}/like`, {idCliente: idCliente});
+    let r = await api.post(`/produto/avaliacao/${idAvaliacao}/like?cliente=${idCliente}`);
 
     return r;
 }
 
 export async function tirarLike(idCliente, idAvaliacao) {
-    let r = await api.delete(`/produto/avaliacao/${idAvaliacao}/like`, {idCliente: idCliente});
+    let r = await api.delete(`/produto/avaliacao/${idAvaliacao}/like?cliente=${idCliente}`);
 
     return r;
 }
