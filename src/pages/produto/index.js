@@ -41,9 +41,13 @@ export default function Produto() {
 
     const [comentario, setComentario] = useState('');
 
-    const [nota, setNota] = useState(5);
+    const [avaliando, setAvaliando] = useState(false);
+    const [notaIndex, setNotaIndex] = useState(-1);
+    const [nota, setNota] = useState(0);
     const [notaGeral, setNotaGeral] = useState(3.8);
     const [numAvaliacoes, setNumAvaliacoes] = useState(0)
+
+    const avaliacoesTextos = ['Odiei', 'Não gostei', 'Razoável', 'Bom', 'Adorei!'];
 
     const conversor = new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' });
 
@@ -75,8 +79,11 @@ export default function Produto() {
         try {
             let ratings = await buscarAvaliacoes(idProduto);
 
+            let mediaNotas = 0;
+
             for (let i = 0; i < ratings.length; i++) {
                 let r = ratings[i];
+                mediaNotas += r.nota;
 
                 let boolLike = await verificarLike(idCliente, r.id);
                 let numLikes = await verificarNumeroLikes(r.id);
@@ -84,6 +91,9 @@ export default function Produto() {
                 r.deuLike = boolLike.deuLike;
                 r.likes = numLikes.numeroLikes;
             }
+
+            setNotaGeral(mediaNotas / ratings.length);
+            setNumAvaliacoes(ratings.length);
 
             setAvaliacoes(ratings);
             console.log(ratings)
@@ -105,6 +115,8 @@ export default function Produto() {
             toast.success('Comentário adicionado. Obrigado pela contribuição!')
 
             setComentario('');
+
+            setTimeout(() => window.location.reload(), 3000)            
 
         } catch (error) {
             if (error.response) {
@@ -341,7 +353,7 @@ export default function Produto() {
                     <div>
                         <div className="avaliacao-geral">
                             <h2>Avaliação Geral do Produto</h2>
-                            <h3>{notaGeral}</h3>
+                            <h3>{notaGeral ? notaGeral.toFixed(1) : 'Nenhuma :('}</h3>
                             <Rating size='large' value={notaGeral} precision={0.5} readOnly/>
                             <h4>{numAvaliacoes} avaliações</h4>
                         </div>
@@ -349,11 +361,14 @@ export default function Produto() {
                             <div>
                                 <h2>Já comprou este produto?</h2>
                                 <h3>Ajude os outros a saberem o que comprar.</h3>
-                                <Rating size='large' value={nota} precision={0.5} onChange={(event, newValue) => setNota(newValue)}/>
-                                <p>Adorei!</p>
+                                <Rating size='large' value={nota} precision={0.5} onChangeActive={(event, newValue) => {setNotaIndex(newValue)}} onChange={(event, newValue) => {
+                                                                                                                                                                            setAvaliando(true);
+                                                                                                                                                                            setNota(newValue);
+                                                                                                                                                                            }}/>
+                                <p>{avaliacoesTextos[Math.ceil(notaIndex) - 1]}</p>
                             </div>
 
-                            <div>
+                            <div style={{display: avaliando ? 'flex' : 'none'}}>
                                 <textarea cols="30" rows="10" placeholder="Gostaria de dizer um pouco mais?" value={comentario} onChange={e => setComentario(e.target.value)}></textarea>
                                 <button onClick={postAvaliacao}>Postar</button>
                             </div>
