@@ -270,7 +270,7 @@ export default function CadastroProduto() {
                             </div>
 
                             <div className="inicial-info">
-                                <input type="text" value={peso} onChange={e => setPeso(e.target.value)} placeholder='Peso aproximado'/>
+                                <input type="text" value={peso} onChange={e => setPeso(e.target.value)} placeholder='Peso aproximado (KG)'/>
                             </div>
                             <p>Descrição</p>
                             <textarea cols="30" value={descricao} onChange={e => setDescricao(e.target.value)} rows="10" placeholder='Ex: God of War: Collection tem como proposta central trazer o esplendor da série através de visuais em alta definição e uma jogabilidade ainda mais fluida. O game apresenta um compilado dos dois títulos mais aclamados da geração passada, agora com jogabilidade e gráficos melhorados, mas todas a qualidade da série mantida. A taxa estável de 60 quadros por segundo mostra que o terceiro PlayStation não encontra problemas em reproduzir os dois games com a aplicação de filtros de correção de...'></textarea>

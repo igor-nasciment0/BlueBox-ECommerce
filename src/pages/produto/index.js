@@ -21,6 +21,9 @@ import { get } from 'local-storage';
 
 import Rating from '@mui/material/Rating';
 
+import { simularEnvio } from '../../api/envioAPI';
+import InputMask from 'react-input-mask'; 
+
 export default function Produto() {
     const context = useContext(TemaContext);
     let tema = context.tema;
@@ -38,16 +41,16 @@ export default function Produto() {
     const [descricao, setDescricao] = useState([]);
 
     const [avaliacoes, setAvaliacoes] = useState([]);
-
     const [comentario, setComentario] = useState('');
-
     const [avaliando, setAvaliando] = useState(false);
     const [notaIndex, setNotaIndex] = useState(-1);
     const [nota, setNota] = useState(0);
     const [notaGeral, setNotaGeral] = useState(3.8);
     const [numAvaliacoes, setNumAvaliacoes] = useState(0)
-
     const avaliacoesTextos = ['Odiei', 'Não gostei', 'Razoável', 'Bom', 'Adorei!'];
+
+    const [cep, setCep] = useState('');
+    const [entregas, setEntregas] = useState([]);
 
     const conversor = new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' });
 
@@ -170,6 +173,22 @@ export default function Produto() {
         }
     }
 
+    async function simular() {
+        try {
+
+            let entregaRapida = await simularEnvio(produto, cep, precoReal, 'prazo');
+            let entregaBarata = await simularEnvio(produto, cep, precoReal, 'preco');
+
+            setEntregas([entregaBarata[0], entregaRapida[0]]);
+            
+        } catch (error) {
+            if (error.response)
+                toast.error(error.response.data);
+            else
+                toast.error(error.message);
+        }
+    } 
+
     useEffect(() => {
         buscarProduto();
         buscarRatings();
@@ -282,38 +301,27 @@ export default function Produto() {
 
                             <div className="input-cep">
                                 <h3>Descobrir formas de entrega</h3>
-                                <input type="text" placeholder="Digite seu CEP" />
+                                <InputMask placeholder='Digite seu CEP' mask="99999-999" value={cep} onChange={e => setCep(e.target.value)}/>
                             </div>
 
                             <div className="container-entregas">
-                                <div className="entrega">
-                                    <h2>Entrega mais Rápida</h2>
+                                {entregas.map((entrega, index) => {
+                                    <div className="entrega">
+                                        <h2>Entrega mais {index === 0 ? 'Rápida' : 'Barata'}</h2>
 
-                                    <div>
-                                        <img src="/assets/images/loggiLogo.png" alt="" />
                                         <div>
-                                            <h4>Entrega Loggi</h4>
-                                            <p>Receba em até 2 dias úteis</p>
-                                            <h5>R$ 10.99</h5>
+                                            <img src={entrega.url_logo} alt="" />
+                                            <div>
+                                                <h4>Entrega {entrega.transp_nome}</h4>
+                                                <p>Receba em cerca de {entrega.prazoEnt} dias úteis</p>
+                                                <h5>R$ {entrega.vlrFrete}</h5>
+                                            </div>
                                         </div>
-                                    </div>
-                                </div>
-
-                                <div className="entrega">
-                                    <h2>Entrega mais Rápida</h2>
-
-                                    <div>
-                                        <img src="/assets/images/loggiLogo.png" alt="" />
-                                        <div>
-                                            <h4>Entrega Loggi</h4>
-                                            <p>Receba em até 2 dias úteis</p>
-                                            <h5>R$ 10.99</h5>
-                                        </div>
-                                    </div>
-                                </div>
+                                    </div>    
+                                })}
                             </div>
 
-                            <button className="btn-comprar" onClick={separarEspecificacoes}>Comprar agora</button>
+                            <button className="btn-comprar" onClick={simular}>Comprar agora</button>
                             <button className="btn-carrinho">Adicionar ao carrinho</button>
                         </div>
                     </section>
