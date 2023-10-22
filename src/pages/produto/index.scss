@@ -1042,6 +1042,7 @@
             align-items: center;
             text-align: center;
 
+            margin-top: 16px;
             gap: 0;
 
             > h3 {
@@ -1064,6 +1065,20 @@
             img {
                 width: 100%;
                 max-width: 300px;
+            }
+
+            @media (max-width: 768px) {
+                > h3 {
+                    font-size: 16px;
+                }
+
+                > h4 {
+                    font-size: 12px;
+                }
+
+                img {
+                    max-width: 200px;
+                }
             }
         }
 
