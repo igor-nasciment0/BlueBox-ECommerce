@@ -292,6 +292,12 @@
 }
 
 @media (max-width: 768px) {
+    .especs-pedido {
+        > p {
+            font-size: 11px;
+        }
+    }
+    
     .metodos-pagamento {
         .metodos {
             > button {
@@ -301,4 +307,6 @@
         }
     }
 }
+
+
 }
