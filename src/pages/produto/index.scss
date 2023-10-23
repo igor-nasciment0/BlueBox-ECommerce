@@ -285,14 +285,35 @@
                     margin-bottom: 6px;
                 }
 
-                input
+                div
                 {
-                    padding: 10px 16px;
                     width: 100%;
                     border: none;
                     border-radius: 100px;
                     background-color: var(--fundo-componentes2);
-                    color: rgb(var(--cor-textos));
+                    
+                    display: flex;
+
+                    input {
+                        background: none;
+                        border: none;
+                        color: rgb(var(--cor-textos));
+                        width: 100%;
+                        padding: 10px 16px;
+                    }
+
+                    button {
+                        background-color: var(--azul-marca);
+                        border: none;
+                        color: #FFF;
+                        border-top-right-radius: 100px;
+                        border-bottom-right-radius: 100px;
+
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        padding: 0 12px;
+                    }
                 }
 
                 input::placeholder {

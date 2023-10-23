@@ -99,7 +99,6 @@ export default function Produto() {
             setNumAvaliacoes(ratings.length);
 
             setAvaliacoes(ratings);
-            console.log(ratings)
 
         } catch (error) {
             if (error.response) {
@@ -182,8 +181,9 @@ export default function Produto() {
             setEntregas([entregaBarata[0], entregaRapida[0]]);
             
         } catch (error) {
+            console.log(error);
             if (error.response)
-                toast.error(error.response.data);
+                toast.error(error.response.data.error.mensagem);
             else
                 toast.error(error.message);
         }
@@ -301,9 +301,13 @@ export default function Produto() {
 
                             <div className="input-cep">
                                 <h3>Descobrir formas de entrega</h3>
-                                <InputMask placeholder='Digite seu CEP' mask="99999-999" value={cep} onChange={e => setCep(e.target.value)}/>
+                                <div>
+                                    <InputMask placeholder='Digite seu CEP' mask="99999-999" value={cep} onChange={e => setCep(e.target.value)}/>                                
+                                    <button><img src="/assets/images/icons/arrow-right.svg" alt="" /></button>
+                                </div>
                             </div>
 
+                            {entregas.length > 0 &&
                             <div className="container-entregas">
                                 {entregas.map((entrega, index) => {
                                     <div className="entrega">
@@ -320,6 +324,7 @@ export default function Produto() {
                                     </div>    
                                 })}
                             </div>
+                            }
 
                             <button className="btn-comprar" onClick={simular}>Comprar agora</button>
                             <button className="btn-carrinho">Adicionar ao carrinho</button>
