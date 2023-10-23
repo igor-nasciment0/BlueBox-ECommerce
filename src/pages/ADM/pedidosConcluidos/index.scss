@@ -63,6 +63,7 @@
                 margin-bottom: 10px;
                 white-space: nowrap;
                 overflow-y: auto;
+                padding-right: 10px;
                 
 
 
@@ -105,8 +106,7 @@
             }
 
             .pedidos-concluidos::-webkit-scrollbar-track {
-                background: #ACACAC;
-                border-radius: 10px;
+                background: #EBEBEB;
             }
 
             .tudo {
