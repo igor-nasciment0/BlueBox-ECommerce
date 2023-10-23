@@ -53,6 +53,21 @@
 .produtos{
     overflow-y: scroll;
     height: 300px;
+    padding-right: 10px;
+}
+
+.produtos::-webkit-scrollbar {
+    width: 8px;
+}
+
+.produtos::-webkit-scrollbar-thumb {
+    background: #000000;
+    border-radius: 5px;
+}
+
+.produtos::-webkit-scrollbar-track {
+    background: #969696e5;
+    border-radius: 10px;
 }
 
 .especs-pedido{
