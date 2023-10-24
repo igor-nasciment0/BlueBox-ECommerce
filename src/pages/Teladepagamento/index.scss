@@ -330,6 +330,22 @@
                 max-width: 500px!important;
             }
         }
+
+        .metodos-pagamento {
+            flex-direction: column;
+            
+            > p {
+                max-width: none;
+                text-align: center;
+                margin-bottom: 10px;
+            }
+
+            .metodos {
+                > button {
+                    width: 89px;
+                }
+            }
+        }
     }
 }
 
@@ -361,15 +377,14 @@
             max-width: 380px;
 
             > p {
-                font-size: 12px;
-                max-width: 100px;
+                max-width: none;
+                text-align: center;
+                margin-bottom: 10px;
             }
 
             .metodos {
                 > button {
-                    margin: 0px 5px;
-                    height: 60px;
-                    width: 50px;
+                    width: 75px;
                 }
             }
         }
