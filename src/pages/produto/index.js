@@ -8,8 +8,8 @@ import { Link, redirect, useParams } from 'react-router-dom/dist';
 import { useContext, useEffect, useState } from 'react';
 import { TemaContext } from '../../theme';
 import AnchorLink from 'react-anchor-link-smooth-scroll';
-import { buscarImagens, buscarProdutoPorID, mostrarUrlImagem } from '../../api/produtoAPI';
-import { formatarData, separarEspecificacoes, separarTexto } from '../../api/funcoesGerais';
+import { buscarImagens, buscarProdutoPorID, buscarProdutos, buscarRelacionados, mostrarUrlImagem } from '../../api/produtoAPI';
+import { formatarData, separarEspecificacoes, separarTexto, valorEmReais } from '../../api/funcoesGerais';
 
 import InnerImageZoom from 'react-inner-image-zoom';
 import 'react-inner-image-zoom/lib/InnerImageZoom/styles.css';
@@ -39,6 +39,8 @@ export default function Produto() {
     const [especificacoes, setEspecificacoes] = useState([]);
     const [descricao, setDescricao] = useState([]);
 
+    const [produtosRelacionados, setProdutosRelacionados] = useState([]);
+
     const [avaliacoes, setAvaliacoes] = useState([]);
     const [comentario, setComentario] = useState('');
     const [avaliando, setAvaliando] = useState(false);
@@ -50,8 +52,6 @@ export default function Produto() {
 
     const [cep, setCep] = useState('');
     const [entregas, setEntregas] = useState([]);
-
-    const conversor = new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' });
 
     async function buscarProduto() {
         try {
@@ -173,17 +173,19 @@ export default function Produto() {
 
     async function simular() {
         try {
-
             let entregas = await simularFrete(produto, cep, precoReal, 'prazo');
+            console.log(entregas);
 
-            let entregaRapida = entregas[entregas.length - 1];
+            let entregaRapida = entregas.sort((a, b) => {
+                return a.prazoEntMin - b.prazoEntMin;
+            })[0];
 
             let entregaBarata = entregas.sort((a, b) => {
                 return a.vlrFrete - b.vlrFrete;
             })[0];
 
             setEntregas([entregaRapida,
-                entregaBarata]);
+                         entregaBarata]);
 
         } catch (error) {
             console.log(error);
@@ -200,6 +202,22 @@ export default function Produto() {
         }
     }
 
+    async function buscarRelac() {
+        try { 
+            let relacionados = await buscarRelacionados(produto);
+            console.log(relacionados);
+
+            relacionados.sort(() => Math.random() - 0.5);
+            setProdutosRelacionados(relacionados);
+
+        } catch (error) {
+            if (error.response)
+                toast.error(error.response.data);
+            else
+                toast.error(error.message);           
+        }
+    }
+
     useEffect(() => {
         buscarProduto();
         buscarRatings();
@@ -213,11 +231,9 @@ export default function Produto() {
         setEspecificacoes(separarEspecificacoes(produto.especificacoes));
         setDescricao(separarTexto(produto.descricao));
         setPreco(produto.preco);
-    }, [produto]);
 
-    function valorEmReais(valor) {
-        return conversor.format(Number(valor));
-    }
+        buscarRelac();
+    }, [produto]);
 
     function calcularDesconto(valorNormal, valorPromocao) {
         let desconto = (valorNormal - valorPromocao) / valorNormal * 100
@@ -269,11 +285,13 @@ export default function Produto() {
 
                             <div className="info">
                                 <h1>{produto.nome}</h1>
-
-                                <div className="avaliacao">
-                                    <Rating value={notaGeral} precision={0.5} readOnly />
-                                    ({numAvaliacoes} avaliações)
-                                </div>
+                                {
+                                    numAvaliacoes > 0 &&
+                                    <div className="avaliacao">
+                                        <Rating value={notaGeral} precision={0.5} readOnly />
+                                        ({numAvaliacoes} avaliações)
+                                    </div> 
+                                }
 
                                 <div className="preco">
                                     <div>
@@ -288,8 +306,6 @@ export default function Produto() {
                                         </div>
                                     }
                                 </div>
-
-                                <Link>Ver os meios de pagamento</Link>
 
                                 <div className="sobre">
                                     <h4>Sobre</h4>
@@ -364,13 +380,13 @@ export default function Produto() {
 
                         <div className='container-produtos'>
                             <div>
-                                <CardProduto />
-                                <CardProduto />
+                                <CardProduto infoProduto={produtosRelacionados[0]}/>
+                                <CardProduto infoProduto={produtosRelacionados[1]}/>
                             </div>
 
                             <div>
-                                <CardProduto />
-                                <CardProduto />
+                                <CardProduto infoProduto={produtosRelacionados[2]}/>
+                                <CardProduto infoProduto={produtosRelacionados[3]}/>
                             </div>
                         </div>
                     </section>
@@ -428,8 +444,12 @@ export default function Produto() {
                                 <h2>Já comprou este produto?</h2>
                                 <h3>Ajude os outros a saberem o que comprar.</h3>
                                 <Rating size='large' value={nota} precision={0.5} onChangeActive={(event, newValue) => { setNotaIndex(newValue) }} onChange={(event, newValue) => {
-                                    setAvaliando(true);
-                                    setNota(newValue);
+                                    if(!idCliente) {
+                                        toast.info('É preciso fazer login para deixar uma avaliação')
+                                    } else {
+                                        setAvaliando(true);
+                                        setNota(newValue);
+                                    }
                                 }} />
                                 <p>{avaliacoesTextos[Math.ceil(notaIndex) - 1]}</p>
                             </div>

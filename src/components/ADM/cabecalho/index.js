@@ -1,7 +1,8 @@
 import { Link, useNavigate } from 'react-router-dom';
 import storage from 'local-storage';
 import './index.scss';
-import { useEffect } from 'react';
+import { useContext, useEffect } from 'react';
+import { TemaContext } from '../../../theme';
 
 export default function CabecalhoADM() {
 
@@ -11,6 +12,8 @@ export default function CabecalhoADM() {
     //     if(!storage('adm-login'))
     //         navigate('/adm/login');
     // })
+
+    const tema = useContext(TemaContext);
 
     return(
         <header className="cabecalho-adm">
@@ -32,8 +35,8 @@ export default function CabecalhoADM() {
 
                     <div className='linha'/>
 
-                    <Link>
-                        <img src="/assets/images/icons/adm/cabecalho/bell.svg" alt="" />
+                    <Link onClick={tema.trocarTema}>
+                        <img src="/assets/images/icons/sun.svg" alt="" />
                     </Link>
                 </div>
 

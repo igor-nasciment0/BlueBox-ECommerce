@@ -5,7 +5,7 @@ import { useContext, useEffect, useState } from "react";
 
 import 'react-confirm-alert/src/react-confirm-alert.css';
 import { useNavigate } from "react-router-dom";
-import { buscarProduto } from "../../../api/produtoAPI";
+import { buscarProdutos } from "../../../api/produtoAPI";
 import { toast, ToastContainer } from "react-toastify";
 import { TemaContext } from "../../../theme";
 import { alterarValorPromocional, alternarPromocao } from "../../../api/promocoesAPI";
@@ -21,7 +21,7 @@ export default function Promocoes()
 
     async function buscar() {
         try {
-            let produtos = await buscarProduto(busca);
+            let produtos = await buscarProdutos(busca);
 
             produtos.sort((produto, produto2) => {
                 if(produto.promocao && !produto2.promocao)
@@ -117,18 +117,6 @@ export default function Promocoes()
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>00000001</td>
-                                    <td>Resident Evil 1 - Playstation 1</td>
-                                    <td>R$100,00</td>
-                                    <td>R$100,00</td>
-                                    <td className="container-edit">
-                                        <button>
-                                            <img src="/assets/images/icons/adm/check.svg" alt="" />
-                                        </button>
-                                    </td>
-                                </tr>
-
                                 {listaProdutos.map(
                                     produto =>
                                     <LinhaTbPromocao produto={produto} alterarBtPromo={alterarBtPromo} alterarValorPromo={alterarValorPromo} buscar={buscar}/>

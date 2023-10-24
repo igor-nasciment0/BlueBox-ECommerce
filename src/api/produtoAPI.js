@@ -4,10 +4,26 @@ const api = axios.create({
     baseURL: 'http://localhost:5033'
 })
 
-export async function buscarProduto(busca) {
-    let produtos = await api.get('/produto?nome=' + busca);
+export async function buscarProdutos(busca, ordem, filtro) {
+    let produtos = await api.get(`/produto?nome=${busca}&ordem=${ordem}&filtro=${filtro}`);
 
     return produtos.data;
+}
+
+export async function buscarRelacionados(produto) {
+    let porNome = await buscarProdutos(produto.nome);
+    let porCategoria = await buscarProdutos(produto.categoria);
+    let porMarca = await buscarProdutos(produto.categoria);
+
+    let relacionados = [...porNome, ...porCategoria, ...porMarca];
+
+    for(let i = 0; i < relacionados.length; i++) {
+        if(relacionados[i].id === produto.id) {
+            relacionados = relacionados.splice(i, 1);
+        }
+    }
+
+    return relacionados;
 }
 
 export async function buscarProdutoPorID(id) {

@@ -6,7 +6,7 @@ import Rodape from '../../components/rodape'
 import CardProduto from '../../components/cardProduto'
 import { useContext, useState } from 'react';
 import { TemaContext } from '../../theme';
-import { buscarProduto } from '../../api/produtoAPI';
+import { buscarProdutos } from '../../api/produtoAPI';
 import { set } from 'local-storage';
 
 export default function Pesquisa()
@@ -28,7 +28,7 @@ export default function Pesquisa()
   const [filtro, setFiltro] = useState('')
 
   async function buscarFilme(){
-    const resp = await buscarProduto(filtro)
+    const resp = await buscarProdutos(filtro)
 
     setFiltro(resp)
   }

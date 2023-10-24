@@ -1,17 +1,21 @@
 import "./index.scss";
 import CabecalhoADM from '../../../components/ADM/cabecalho'
 import BarraLateral from '../../../components/ADM/barraLateral'
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 
 import { confirmAlert } from 'react-confirm-alert';
 import 'react-confirm-alert/src/react-confirm-alert.css';
 import { useNavigate } from "react-router-dom";
-import { buscarImagens, buscarProduto, deletarProduto, excluirImagem } from "../../../api/produtoAPI";
+import { buscarImagens, buscarProdutos, deletarProduto, excluirImagem } from "../../../api/produtoAPI";
 import { toast, ToastContainer } from "react-toastify";
 import { buscarAvaliacoes, deletarAvaliacao, tirarLike, verificarNumeroLikes } from "../../../api/avaliacaoAPI";
+import { TemaContext } from "../../../theme";
 
 export default function ConsultaProduto()
 {
+
+    const context = useContext(TemaContext);
+    let tema = context.tema;
 
     const [listaProdutos, setListaProdutos] = useState([]);
     const [busca, setBusca] = useState('');
@@ -20,7 +24,7 @@ export default function ConsultaProduto()
 
     async function buscar() {
         try {
-            let produtos = await buscarProduto(busca);
+            let produtos = await buscarProdutos(busca);
             setListaProdutos(produtos);   
         } catch (error) {
             console.log(error.message);
@@ -91,7 +95,7 @@ export default function ConsultaProduto()
     );
 
     return(
-        <div className="pagina-consulta-produto">
+        <div className={"pagina-consulta-produto " + tema}>
             <CabecalhoADM/>
 
             <main>
@@ -138,23 +142,6 @@ export default function ConsultaProduto()
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>00000001</td>
-                                    <td>Resident Evil 1 - Playstation 1</td>
-                                    <td>10</td>
-                                    <td>Usado</td>
-                                    <td className="no-border-right">R$100,00</td>
-                                    <td className="container-edit">
-                                        <button>
-                                            <img src="/assets/images/icons/adm/edit.svg" alt="" />
-                                        </button>
-
-                                        <button>
-                                            <img src="/assets/images/icons/adm/delete.svg" alt="" />
-                                        </button>
-                                    </td>
-                                </tr>
-
                                 {listaProdutos.map(
                                     produto =>
                                     <tr>

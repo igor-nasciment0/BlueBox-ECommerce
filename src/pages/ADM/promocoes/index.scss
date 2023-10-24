@@ -8,6 +8,12 @@
     background-color: var(--fundo-tela);
     color: var(--preto-textos);
 
+    transition: 0.3s;
+
+    * {
+        transition: 0.1s;
+    }
+
     main
     {
         display: flex;

@@ -5,7 +5,14 @@
     align-items: center;
 
     min-height: 100vh;
-    color: var(--preto-textos);
+    color: rgb(var(--cor-textos));
+    background-color: var(--fundo-tela);
+
+    transition: 0.3s;
+
+    * {
+        transition: 0.1s;
+    }
 
     main
     {
@@ -111,7 +118,7 @@
 
             table
             {
-                background-color: #FFF;
+                background-color: var(--fundo-componentes);
                 border-spacing: 0;
                 border-collapse: collapse;
                 font-size: 16px;

@@ -1,26 +1,68 @@
 import { Link, useActionData, useNavigate } from 'react-router-dom';
 import './index.scss';
-import { useContext, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { TemaContext } from '../../theme';
+import { toast } from 'react-toastify';
+import { buscarImagens, buscarProdutoPorID, mostrarUrlImagem } from '../../api/produtoAPI';
+import { valorEmReais } from '../../api/funcoesGerais';
 
-export default function CardProduto(props)
+export default function CardProduto({infoProduto, idProduto})
 {
+    console.log(infoProduto);
+
     let context = useContext(TemaContext);
     let tema = context.tema;
 
+    const [produto, setProduto] = useState({});
+    const [imagem, setImagem] = useState('');
+    const [precoReal, setPrecoReal] = useState(0);
+
     const navigate = useNavigate();
+
+    async function getData() {
+        try {
+            if(infoProduto) {
+                setProduto(infoProduto);
+                idProduto = infoProduto.id;
+            } else {
+                let resp = await buscarProdutoPorID(idProduto);
+                setProduto(resp);
+            }
+
+            let respImg = await buscarImagens(idProduto);
+            
+            for(let i = 0; i < respImg.length; i++) {
+                let imagem = respImg[i];
+
+                if(imagem.primaria) {
+                    setImagem(imagem);
+                }
+            }
+            
+        } catch (error) {
+            if(error.response)
+                toast.error(error.response.data);
+            else 
+                toast.error(error.message);
+        }
+    }
+
+    useEffect(() => {
+        getData();
+        setPrecoReal(produto.promocao ? produto.valorPromocional : produto.preco)
+    }, [infoProduto, idProduto, produto])
     
     return(
-        <div className={'card-produto ' + tema} onClick={() => navigate('/produto')}>
-            <img src='/assets/images/foto_produto.png' alt="Assassin's Creed" />
-            <h2>Assassins Creed Brotherhood (Seminovo)</h2>
-            <h4 className='preco-anterior'>R$ 44,99</h4>
-            <h3 className='preco'>R$ 29,99</h3>
+        <div className={'card-produto ' + tema} onClick={() => navigate('/produto/' + produto.id)}>
+            <img src={mostrarUrlImagem(imagem.url)} alt="Assassin's Creed" />
+            <h2>{produto.nome}</h2>
+            {produto.promocao && <h4 className='preco-anterior'>{valorEmReais(produto.preco)}</h4>}
+            <h3 className='preco'>{valorEmReais(precoReal)}</h3>
 
-            <p>Ou em até 10x de R$2,99</p>
+            <p>Ou em até 10x de {valorEmReais(precoReal/10)}</p>
             <p>PIX: 10% de Desconto</p>
 
-            <Link href="">Comprar</Link>
+            <Link to={'/produto/' + produto.id}>Comprar</Link>
         </div>
     )
 }

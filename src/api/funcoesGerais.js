@@ -59,3 +59,9 @@ export function formatarData(data) {
         ${dataObject.getFullYear()}
     `
 }
+
+export function valorEmReais(valor) {
+    const conversor = new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' });
+    
+    return conversor.format(Number(valor));
+}
