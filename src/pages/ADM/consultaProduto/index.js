@@ -145,13 +145,15 @@ export default function ConsultaProduto()
                                     <td>Usado</td>
                                     <td className="no-border-right">R$100,00</td>
                                     <td className="container-edit">
-                                        <button>
-                                            <img src="/assets/images/icons/adm/edit.svg" alt="" />
-                                        </button>
+                                        <div>
+                                          <button>
+                                              <img src="/assets/images/icons/adm/edit.svg" alt="" />
+                                          </button>
 
-                                        <button>
-                                            <img src="/assets/images/icons/adm/delete.svg" alt="" />
-                                        </button>
+                                          <button>
+                                              <img src="/assets/images/icons/adm/delete.svg" alt="" />
+                                          </button>
+                                        </div>
                                     </td>
                                 </tr>
 
@@ -164,16 +166,18 @@ export default function ConsultaProduto()
                                         <td>{produto.usado ? 'Usado' : 'Novo'}</td>
                                         <td className="no-border-right">{produto.preco}</td>
                                         <td className="container-edit">
-                                            <button onClick={() => navigate('/adm/cadastro-produto', {state: produto})}>
-                                                <img src="/assets/images/icons/adm/edit.svg" alt="" />
-                                            </button>
+                                            <div>
+                                              <button onClick={() => navigate('/adm/cadastro-produto', {state: produto})}>
+                                                  <img src="/assets/images/icons/adm/edit.svg" alt="" />
+                                              </button>
 
-                                            <button onClick={() => {
-                                                deletar(produto.id, produto.nome)
-                                                buscar()    
-                                            }}>
-                                                <img src="/assets/images/icons/adm/delete.svg" alt="" />
-                                            </button>
+                                              <button onClick={() => {
+                                                  deletar(produto.id, produto.nome)
+                                                  buscar()    
+                                              }}>
+                                                  <img src="/assets/images/icons/adm/delete.svg" alt="" />
+                                              </button>
+                                            </div>
                                         </td>
                                     </tr>
                                 )}
