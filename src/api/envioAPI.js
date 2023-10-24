@@ -1,7 +1,8 @@
 import axios from "axios";
 
-export async function simularEnvio(produto, cep, preco, ordenar) {
-    let url = 'portal.kangu.com.br/tms/transporte/simular';
+export async function simularFrete(produto, cep, preco, ordenar) {
+    let url = 'https://portal.kangu.com.br/tms/transporte/simular';
+    url = 'https://corsproxy.io/?' + encodeURIComponent(url);
 
     let dados = {
         "cepOrigem": "04852-506",
@@ -22,12 +23,14 @@ export async function simularEnvio(produto, cep, preco, ordenar) {
         "ordernar": ordenar
       };
 
-      console.log(dados);
-
-    let resposta = await axios.post(`https://cors-anywhere.herokuapp.com/${url}`, dados, { headers: {
+    let resposta = await axios.post(url, dados, { headers: {
         token: '1ee4bf4ced3ba784a293d688abb162ac',
         "Content-Type": 'application/json'
     }})
+
+    if(resposta.data.error) {
+      throw new Error('CEP inválido.');
+    }
 
     return resposta.data;
 }

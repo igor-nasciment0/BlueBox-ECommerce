@@ -339,6 +339,14 @@
                         font-weight: 600;
                         color: var(--verde-claro);
 
+                        margin-bottom: 4px;
+                    }
+
+                    h3 {
+                        font-size: 10px;
+                        font-weight: 600;
+                        color: (var(--verde-claro));
+                        opacity: 0.6;
                         margin-bottom: 8px;
                     }
 
@@ -505,6 +513,7 @@
 
                     > div {
                         justify-content: center;   
+                        gap: 12px;
                     }
                 }
             }

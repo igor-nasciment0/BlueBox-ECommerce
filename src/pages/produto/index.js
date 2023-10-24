@@ -13,7 +13,6 @@ import { formatarData, separarEspecificacoes, separarTexto } from '../../api/fun
 
 import InnerImageZoom from 'react-inner-image-zoom';
 import 'react-inner-image-zoom/lib/InnerImageZoom/styles.css';
-import Color, { useColor } from 'color-thief-react'
 
 import { toast, ToastContainer } from 'react-toastify';
 import { buscarAvaliacoes, darLike, deletarAvaliacao, postarAvaliacao, tirarLike, verificarLike, verificarNumeroLikes } from '../../api/avaliacaoAPI';
@@ -21,8 +20,8 @@ import { get } from 'local-storage';
 
 import Rating from '@mui/material/Rating';
 
-import { simularEnvio } from '../../api/envioAPI';
-import InputMask from 'react-input-mask'; 
+import { simularFrete } from '../../api/envioAPI';
+import InputMask from 'react-input-mask';
 
 export default function Produto() {
     const context = useContext(TemaContext);
@@ -175,19 +174,31 @@ export default function Produto() {
     async function simular() {
         try {
 
-            let entregaRapida = await simularEnvio(produto, cep, precoReal, 'prazo');
-            let entregaBarata = await simularEnvio(produto, cep, precoReal, 'preco');
+            let entregas = await simularFrete(produto, cep, precoReal, 'prazo');
 
-            setEntregas([entregaBarata[0], entregaRapida[0]]);
-            
+            let entregaRapida = entregas[entregas.length - 1];
+
+            let entregaBarata = entregas.sort((a, b) => {
+                return a.vlrFrete - b.vlrFrete;
+            })[0];
+
+            setEntregas([entregaRapida,
+                entregaBarata]);
+
         } catch (error) {
             console.log(error);
-            if (error.response)
-                toast.error(error.response.data.error.mensagem);
-            else
+            if (error.response) {
+                if (error.response.data.error) {
+                    toast.error(error.response.data.error.mensagem);
+                } else {
+                    toast.error(error.response.data)
+                }
+            }
+            else {
                 toast.error(error.message);
+            }
         }
-    } 
+    }
 
     useEffect(() => {
         buscarProduto();
@@ -243,7 +254,7 @@ export default function Produto() {
                         <div className='mobile-container-cima'>
                             <div className="imagens">
                                 <div className="cont-imagem-principal">
-                                    <div style={{ background: useColor(imagemPrincipal.url) }}>
+                                    <div>
                                         <InnerImageZoom className='img-principal' src={mostrarUrlImagem(imagemPrincipal.url)} zoomScale={1.2} />
                                     </div>
                                 </div>
@@ -302,31 +313,48 @@ export default function Produto() {
                             <div className="input-cep">
                                 <h3>Descobrir formas de entrega</h3>
                                 <div>
-                                    <InputMask placeholder='Digite seu CEP' mask="99999-999" value={cep} onChange={e => setCep(e.target.value)}/>                                
-                                    <button><img src="/assets/images/icons/arrow-right.svg" alt="" /></button>
+                                    <InputMask placeholder='Digite seu CEP' mask="99999-999" value={cep} onChange={e => setCep(e.target.value)} />
+                                    <button onClick={simular}><img src="/assets/images/icons/arrow-right.svg" alt="" /></button>
                                 </div>
                             </div>
 
                             {entregas.length > 0 &&
-                            <div className="container-entregas">
-                                {entregas.map((entrega, index) => {
-                                    <div className="entrega">
-                                        <h2>Entrega mais {index === 0 ? 'Rápida' : 'Barata'}</h2>
+                                <div className="container-entregas">
+                                    {
+                                        entregas[0].transp_nome === entregas[1].transp_nome ?
+                                            <div className="entrega">
+                                                <h2>Entrega mais rápida e mais barata</h2>
+                                                <h3>Você tem sorte de encontrar uma dessas!</h3>
 
-                                        <div>
-                                            <img src={entrega.url_logo} alt="" />
-                                            <div>
-                                                <h4>Entrega {entrega.transp_nome}</h4>
-                                                <p>Receba em cerca de {entrega.prazoEnt} dias úteis</p>
-                                                <h5>R$ {entrega.vlrFrete}</h5>
+                                                <div>
+                                                    <img src={entregas[0].url_logo} alt="" />
+                                                    <div>
+                                                        <h4>Entrega {entregas[0].transp_nome}</h4>
+                                                        <p>Receba em cerca de {entregas[0].prazoEnt} dias úteis</p>
+                                                        <h5>R$ {entregas[0].vlrFrete}</h5>
+                                                    </div>
+                                                </div>
                                             </div>
-                                        </div>
-                                    </div>    
-                                })}
-                            </div>
+                                            :
+                                            entregas.map((entrega, index) =>
+                                                <div className="entrega">
+                                                    <h2>Entrega mais {index === 0 ? 'Rápida' : 'Barata'}</h2>
+
+                                                    <div>
+                                                        <img src={entrega.url_logo} alt="" />
+                                                        <div>
+                                                            <h4>Entrega {entrega.transp_nome}</h4>
+                                                            <p>Receba em cerca de {entrega.prazoEnt} dias úteis</p>
+                                                            <h5>R$ {entrega.vlrFrete}</h5>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            )
+                                    }
+                                </div>
                             }
 
-                            <button className="btn-comprar" onClick={simular}>Comprar agora</button>
+                            <button className="btn-comprar">Comprar agora</button>
                             <button className="btn-carrinho">Adicionar ao carrinho</button>
                         </div>
                     </section>
