@@ -84,6 +84,15 @@
                 width: 100%;
                 max-height: 500px;
                 overflow-y: scroll;
+
+                .container-edit {
+                    > div {
+                        display: flex;
+                        flex-direction: row;
+                        align-items: center;
+                        justify-content: center;
+                    }
+                }
             }
 
             ::-webkit-scrollbar
@@ -184,4 +193,38 @@
             }
         }
     }
+
+@media (max-width: 768px) {
+    .barra-lateral {
+        max-width: 180px;
+    }
+    
+    .input {
+        max-width: 300px!important;
+    }
+
+    .filtros {
+        justify-content: center!important;
+    }
+
+    .container-consulta {
+        padding: 55px 20px!important;
+    }
+
+    .container-edit {
+        > div {
+            flex-direction: column!important;
+            align-items: center;
+            justify-content: center;
+
+            > button {
+                margin-right: 0px!important;
+            }
+        }
+    }
+
+    .container-tabela::-webkit-scrollbar {
+        width: 8px!important;
+    }
+}
 }
