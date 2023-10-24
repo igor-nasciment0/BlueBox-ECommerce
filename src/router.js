@@ -18,6 +18,7 @@ import PedidoConcluido from './pages/ADM/pedidosConcluidos';
 import Contato from './pages/contato';
 import TelaPagamentoPix from './pages/pagina_Pagamento_pix';
 import Promocoes from './pages/ADM/promocoes';
+import Graficoreceita from './pages/ADM/graficoReceita'
 
 import { useEffect, useState } from 'react';
 import { TemaContext } from './theme';
@@ -76,6 +77,7 @@ export default function Router() {
                     <Route path='/adm/pedido-concluido' element={<PedidoConcluido />} />
                     <Route path='/adm/promocoes' element={<Promocoes />} />
                     <Route path='/adm/grafico-vendas' element={<Graficovendas />} />
+                    <Route path='/adm/grafico-receita' element={<Graficoreceita />} />
                 </Routes>
             </BrowserRouter>
         </TemaContext.Provider>
