@@ -201,7 +201,7 @@
         }
     }
 
-@media (max-width: 768px) {
+@media (max-width: 860px) {
     .barra-lateral {
         max-width: 180px;
     }
@@ -232,6 +232,30 @@
 
     .container-tabela::-webkit-scrollbar {
         width: 8px!important;
+    }
+}
+
+@media (max-width: 768px) {
+    .filtros {
+        align-self: center!important;
+        max-width: 300px;
+    }
+
+    .container-tabela {
+        > table {
+            font-size: 10px!important;
+        }
+    }
+
+    .container-edit {
+        > div {
+            > button {
+                > img {
+                    height: 30px!important;
+                    width: auto!important;
+                }
+            }
+        }
     }
 }
 }
