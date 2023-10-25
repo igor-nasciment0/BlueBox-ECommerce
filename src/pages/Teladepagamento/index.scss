@@ -25,10 +25,10 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    width: 100%;
    }
       
    .encomendas{
-    max-width: 850px;
     width: 100%;
     border-radius: 5px;
     border: 0px solid #000;
@@ -47,6 +47,11 @@
 
     div{
         margin-bottom: 5px;
+        width: 100%;
+    }
+
+    h1{
+        font-size: 22px;
     }
 }
 
@@ -71,8 +76,6 @@
 }
 
 .especs-pedido{
-    width: 100%;
-    max-width: 746px;
     height: 80px;
     flex-shrink: 0;
     background: #F5F5F5;
@@ -82,8 +85,10 @@
     justify-content: flex-start;
     align-items: center;
     margin-bottom: 20px!important;
+   
 
     p{
+        font-size: 12px;
         margin-left: 6px;
     }
 
@@ -92,7 +97,6 @@
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        padding-left: 40px;
         gap: 5px;
 
         p{
@@ -107,7 +111,7 @@
     flex-direction: row;
     display: flex;
     margin-top: 20px;
-    padding: 28px 17px;
+    padding: 12px 17px;
     justify-content: space-around;
     align-items: center;
     background: var(--cinza-imagens, #D9D9D9);
@@ -133,6 +137,7 @@
         border: none;
         color: #FFF;
         padding: 10px 12px;
+        font-size: 12px;
     }
 
     button:hover{
@@ -237,6 +242,7 @@
         h1{
             font-weight: 400;
             text-align: center;
+            font-size: 24px;
         }
 
         div{
@@ -316,7 +322,7 @@
     }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 630px) {
     .row-centralizer {
         display: flex;
         flex-direction: column;
