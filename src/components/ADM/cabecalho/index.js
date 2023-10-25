@@ -23,7 +23,7 @@ export default function CabecalhoADM() {
             
             <nav>
                 <div className="nav-icons">
-                    <Link>
+                    <Link to={'/adm/grafico-vendas'}>
                         <img src="/assets/images/icons/adm/cabecalho/squares.svg" alt=""/>
                     </Link>
 

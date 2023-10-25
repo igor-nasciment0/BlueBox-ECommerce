@@ -25,10 +25,10 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    width: 100%;
    }
       
    .encomendas{
-    max-width: 850px;
     width: 100%;
     border-radius: 5px;
     border: 0px solid #000;
@@ -47,6 +47,11 @@
 
     div{
         margin-bottom: 5px;
+        width: 100%;
+    }
+
+    h1{
+        font-size: 22px;
     }
 }
 
@@ -71,8 +76,6 @@
 }
 
 .especs-pedido{
-    width: 100%;
-    max-width: 746px;
     height: 80px;
     flex-shrink: 0;
     background: #F5F5F5;
@@ -82,9 +85,10 @@
     justify-content: flex-start;
     align-items: center;
     margin-bottom: 20px!important;
+    justify-content: space-between;
 
     p{
-        margin-left: 6px;
+        font-size: 12px;
     }
 
     div{
@@ -92,7 +96,6 @@
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        padding-left: 40px;
         gap: 5px;
 
         p{
@@ -133,6 +136,7 @@
         border: none;
         color: #FFF;
         padding: 10px 12px;
+        font-size: 12px;
     }
 
     button:hover{
@@ -237,6 +241,7 @@
         h1{
             font-weight: 400;
             text-align: center;
+            font-size: 24px;
         }
 
         div{
