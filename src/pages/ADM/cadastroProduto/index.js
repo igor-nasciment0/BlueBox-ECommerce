@@ -2,9 +2,9 @@ import { useContext, useEffect, useState } from 'react';
 import BarraLateral from '../../../components/ADM/barraLateral';
 import CabecalhoADM from '../../../components/ADM/cabecalho';
 import './index.scss';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useParams } from 'react-router-dom';
 import {ToastContainer, toast} from 'react-toastify';
-import { adicionarImagem, atualizarProduto, buscarCategorias, buscarImagens, buscarMarcas, cadastrarProduto, excluirImagem, mostrarUrlImagem } from '../../../api/produtoAPI';
+import { adicionarImagem, atualizarProduto, buscarCategorias, buscarImagens, buscarMarcas, buscarProdutoPorID, cadastrarProduto, excluirImagem, mostrarUrlImagem } from '../../../api/produtoAPI';
 import { TemaContext } from '../../../theme';
 
 export default function CadastroProduto() {
@@ -30,27 +30,44 @@ export default function CadastroProduto() {
     const [listaCategorias, setListaCategorias] = useState([]);
 
     const location = useLocation();
-    const [produto, setProduto] = useState(location.state);
+    const [produto, setProduto] = useState({});
+    const {id} = useParams();
+
+    async function buscarProduto() {
+        try {
+            let p = await buscarProdutoPorID(id);
+            setProduto(p);
+            
+        } catch (error) {
+            toast.error(error.response.data.message);
+        }
+    }
 
     useEffect(() => {
-        if(produto)
+        if(id) {
+            buscarProduto();
+        }
+    }, []);
+
+    useEffect(() => {
+        if(id)
         {
+            console.log(produto);
+
             setNomeProduto(produto.nome);
             setPreco(produto.preco);
             setQtdEstoque(produto.estoque);
             setDescricao(produto.descricao);
             setEspecificacoes(produto.especificacoes);
             setUsado(produto.usado);
-            setCategoria(produto.categoria);
-            setMarca(produto.marca);
+            setCategoria(produto.idCategoria);
+            setMarca(produto.idMarca);
             setPeso(produto.peso);
 
             setAtualizacao(true);
 
             buscarImagensProduto();
         }
-
-        console.log(produto);
     }, [produto])
 
     useEffect(() => {
@@ -76,8 +93,9 @@ export default function CadastroProduto() {
 
     async function atualizar() {
         try {
-            await atualizarProduto(produto.id, nomeProduto, preco, qtdEstoque, descricao, especificacoes, categoria, marca, usado, peso)
-            
+            let r = await atualizarProduto(produto.id, nomeProduto, preco, qtdEstoque, descricao, especificacoes, categoria, marca, usado, peso)
+            console.log(r);
+
             if(imagemPrimaria.type)
                 await adicionarImagem(produto.id, true, imagemPrimaria);
 
@@ -89,6 +107,7 @@ export default function CadastroProduto() {
             }
 
             toast.success('Produto atualizado com sucesso!');
+            buscarProduto();
         } catch (error) {
             if(error.response) {
                 toast.error(error.response.data);
@@ -265,12 +284,12 @@ export default function CadastroProduto() {
                         <div className="info-abt-produto">
                             <div className="inicial-info">
                                 <input type="text" value={nomeProduto} onChange={e => setNomeProduto(e.target.value)} placeholder='Nome do produto' className="nome-produto" />
-                                <input type="number" value={preco} onChange={e => setPreco(Number(e.target.value))} placeholder='Preço'/>
+                                <input type="number" value={preco} onChange={e => {if(!(Number(e.target.value) < 0)) setPreco(Number(e.target.value))}} placeholder='Preço'/>
                                 <input type="text" value={qtdEstoque} onChange={e => setQtdEstoque(Number(e.target.value))} placeholder='Quantidade'/>
                             </div>
 
                             <div className="inicial-info">
-                                <input type="text" value={peso} onChange={e => setPeso(e.target.value)} placeholder='Peso aproximado (KG)'/>
+                                <input type="number" value={peso} onChange={e => {setPeso(Number(e.target.value))}} placeholder='Peso aproximado (gramas)'/>
                             </div>
                             <p>Descrição</p>
                             <textarea cols="30" value={descricao} onChange={e => setDescricao(e.target.value)} rows="10" placeholder='Ex: God of War: Collection tem como proposta central trazer o esplendor da série através de visuais em alta definição e uma jogabilidade ainda mais fluida. O game apresenta um compilado dos dois títulos mais aclamados da geração passada, agora com jogabilidade e gráficos melhorados, mas todas a qualidade da série mantida. A taxa estável de 60 quadros por segundo mostra que o terceiro PlayStation não encontra problemas em reproduzir os dois games com a aplicação de filtros de correção de...'></textarea>
@@ -284,7 +303,7 @@ export default function CadastroProduto() {
 
                                 <div className='estado-produto'>
                                     <div className='check-usado'>
-                                        <input type="checkbox" onChange={e => setUsado(e.target.checked)} className='check'/>
+                                        <input type="checkbox" checked={usado} value={usado} onChange={e => setUsado(e.target.checked)} className='check'/>
                                         <p>Produto usado</p>
                                     </div>
 

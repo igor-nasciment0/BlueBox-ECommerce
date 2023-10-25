@@ -26,6 +26,7 @@ import storage from 'local-storage';
 import StatusEntrega from './pages/entrega';
 import Telacartao from './pages/Tela_dados_cartão';
 import Graficovendas from './pages/ADM/graficoVendas';
+import NotFound from './pages/404';
 
 export default function Router() {
 
@@ -73,11 +74,14 @@ export default function Router() {
 
                     <Route path='/adm/login' element={<LoginAdm/>}/>
                     <Route path='/adm/cadastro-produto' element={<CadastroProduto/>}/>
+                    <Route path='/adm/atualizar-produto/:id' element={<CadastroProduto/>}/>
                     <Route path='/adm/consulta-produto' element={<ConsultaProduto />} />   
                     <Route path='/adm/pedido-concluido' element={<PedidoConcluido />} />
                     <Route path='/adm/promocoes' element={<Promocoes />} />
                     <Route path='/adm/grafico-vendas' element={<Graficovendas />} />
                     <Route path='/adm/grafico-receita' element={<Graficoreceita />} />
+
+                    <Route path='/*' element={<NotFound />}/>
                 </Routes>
             </BrowserRouter>
         </TemaContext.Provider>

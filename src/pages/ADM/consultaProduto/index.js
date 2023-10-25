@@ -142,25 +142,6 @@ export default function ConsultaProduto()
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>00000001</td>
-                                    <td>Resident Evil 1 - Playstation 1</td>
-                                    <td>10</td>
-                                    <td>Usado</td>
-                                    <td className="no-border-right">R$100,00</td>
-                                    <td className="container-edit">
-                                        <div>
-                                          <button>
-                                              <img src="/assets/images/icons/adm/edit.svg" alt="" />
-                                          </button>
-
-                                          <button>
-                                              <img src="/assets/images/icons/adm/delete.svg" alt="" />
-                                          </button>
-                                        </div>
-                                    </td>
-                                </tr>
-
                                 {listaProdutos.map(
                                     produto =>
                                     <tr>
@@ -171,7 +152,7 @@ export default function ConsultaProduto()
                                         <td className="no-border-right">{produto.preco}</td>
                                         <td className="container-edit">
                                             <div>
-                                              <button onClick={() => navigate('/adm/cadastro-produto', {state: produto})}>
+                                              <button onClick={() => navigate(`/adm/atualizar-produto/${produto.id}`)}>
                                                   <img src="/assets/images/icons/adm/edit.svg" alt="" />
                                               </button>
 
