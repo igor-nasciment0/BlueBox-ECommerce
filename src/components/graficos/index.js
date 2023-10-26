@@ -10,7 +10,7 @@ export default function Graficobarra(){
     datasets: [{
       label: "Ultimas Vendas",
       data: Userdata.map((data) => data.userGain),
-
+      backgroundColor: '#308FFF',
     }]
   })
 
