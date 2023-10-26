@@ -179,6 +179,19 @@
                         border-radius: 5px;
                         padding: 5px 10px;
                     }
+
+                    .container-edit {
+                        > div {
+                            display: flex;
+                            flex-direction: row;
+                            align-items: center;
+                            justify-content: center;
+
+                            > button {
+                                margin: 0px;
+                            }
+                        }
+                    }
                 }
 
                 button
@@ -203,4 +216,59 @@
             }
         }
     }
+
+@media (max-width: 860px) {
+    .barra-lateral {
+        max-width: 180px;
+    }
+    
+    .input {
+        max-width: 300px!important;
+    }
+
+    .filtros {
+        justify-content: center!important;
+    }
+
+    .container-consulta {
+        padding: 55px 20px!important;
+    }
+
+    .container-edit {
+            > button {
+                flex-direction: column!important;
+                align-items: center;
+                justify-content: center;
+                margin-right: 0px!important;
+            }
+    }
+
+    .container-tabela::-webkit-scrollbar {
+        width: 8px!important;
+    }
+}
+
+@media (max-width: 810px) {
+    .filtros {
+        align-self: center!important;
+        max-width: 300px;
+    }
+
+    .container-tabela {
+        > table {
+            font-size: 10px!important;
+        }
+    }
+
+    .container-edit {
+        > div {
+            > button {
+                > img {
+                    height: 30px!important;
+                    width: auto!important;
+                }
+            }
+        }
+    }
+}
 }
