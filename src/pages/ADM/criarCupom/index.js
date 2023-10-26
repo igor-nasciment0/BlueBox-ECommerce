@@ -1,7 +1,6 @@
 import BarraLateral from '../../../components/ADM/barraLateral';
 import CabecalhoADM from '../../../components/ADM/cabecalho';
 import './index.scss';
-import { TemaContext } from '../../../theme';
 
 export default function CriarCupom() {
     return (
