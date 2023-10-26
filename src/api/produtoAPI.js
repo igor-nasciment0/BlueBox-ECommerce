@@ -11,11 +11,11 @@ export async function buscarProdutos(busca, ordem, filtro) {
 }
 
 export async function buscarRelacionados(produto) {
-    let porNome = await buscarProdutos(produto.nome);
+
     let porCategoria = await buscarProdutos(produto.categoria);
     let porMarca = await buscarProdutos(produto.categoria);
 
-    let relacionados = [...porNome, ...porCategoria, ...porMarca];
+    let relacionados = [...porCategoria, ...porMarca];
 
     for(let i = 0; i < relacionados.length; i++) {
         if(relacionados[i].id === produto.id) {

@@ -490,7 +490,7 @@ export default function Produto() {
 
                                             {
                                                 idCliente === avaliacao.idCliente &&
-                                                <button className='btn-excluir' onClick={() => excluirAvaliacao(avaliacao.id)}>Excluir Comentário</button>
+                                                <button className='btn-excluir' onClick={() => excluirAvaliacao(avaliacao.id)}>Excluir comentário</button>
                                             }
                                         </div>
 
