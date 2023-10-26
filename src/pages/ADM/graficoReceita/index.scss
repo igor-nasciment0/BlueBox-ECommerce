@@ -32,13 +32,14 @@
 
       .relatorio-titulo {
         margin-bottom: 0px !important;
+        color: white;
       }
 
       .info-produto {
         width: 100%;
         max-width: 1080px;
         padding: 20px;
-        background-color: #c7c7c780;
+        background-color: var(--azul-marca);
         border-radius: 10px;
         display: flex;
         flex-direction: column;
