@@ -18,10 +18,10 @@ export default function CriarCupom() {
                     <div className='definir-cupom'>
                         <div>
                             <p>Definir Cupom:</p>
-                            <input type="text" />
+                            <input type="text" placeholder='Inserir Código'/>
                         </div>
                         <div>
-                            <input type="text" />
+                            <input type="text" placeholder='Porcentagem de Desconto'/>
                         </div>
                         <div>
                             <p>Data de Expiração:</p>
