@@ -179,6 +179,19 @@
                         border-radius: 5px;
                         padding: 5px 10px;
                     }
+
+                    .container-edit {
+                        > div {
+                            display: flex;
+                            flex-direction: row;
+                            align-items: center;
+                            justify-content: center;
+
+                            > button {
+                                margin: 0px;
+                            }
+                        }
+                    }
                 }
 
                 button
@@ -235,7 +248,7 @@
     }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 810px) {
     .filtros {
         align-self: center!important;
         max-width: 300px;

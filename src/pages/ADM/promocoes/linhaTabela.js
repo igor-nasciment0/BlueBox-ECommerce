@@ -16,24 +16,25 @@ export default function LinhaTbPromocao({produto, alterarBtPromo, alterarValorPr
             
             
             <td className="container-edit">
-                {produto.promocao ? 
-                    <button onClick={() => {
-                        alterarBtPromo(false, produto.id);
-                        buscar();
-                    }}>
-                        <img src="/assets/images/icons/adm/delete.svg" alt="" />
-                    </button>
+                <div>
+                    {produto.promocao ? 
+                        <button onClick={() => {
+                            alterarBtPromo(false, produto.id);
+                            buscar();
+                        }}>
+                            <img src="/assets/images/icons/adm/delete.svg" alt="" />
+                        </button>
 
-                    :
+                        :
 
-                    <button onClick={() => {
-                        alterarBtPromo(true, produto.id);
-                        buscar();
-                    }}>
-                        <img src="/assets/images/icons/adm/check.svg" alt="" />
-                    </button>
-                }
-
+                        <button onClick={() => {
+                            alterarBtPromo(true, produto.id);
+                            buscar();
+                        }}>
+                            <img src="/assets/images/icons/adm/check.svg" alt="" />
+                        </button>
+                    }
+                </div>
             </td>
         </tr>
     )
