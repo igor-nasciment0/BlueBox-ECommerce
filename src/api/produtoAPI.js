@@ -19,7 +19,8 @@ export async function buscarRelacionados(produto) {
 
     for(let i = 0; i < relacionados.length; i++) {
         if(relacionados[i].id === produto.id) {
-            relacionados = relacionados.splice(i, 1);
+            relacionados.splice(i, 1)
+            i--;
         }
     }
 
@@ -65,7 +66,7 @@ export async function atualizarProduto(id, nomeProduto, preco, qtdEstoque, descr
 
     let resp = await api.put('/produto/' + id, infoProduto);
 
-    return resp.data;
+    return resp;
 }
 
 export async function deletarProduto(id) {

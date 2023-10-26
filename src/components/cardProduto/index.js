@@ -8,8 +8,6 @@ import { valorEmReais } from '../../api/funcoesGerais';
 
 export default function CardProduto({infoProduto, idProduto})
 {
-    console.log(infoProduto);
-
     let context = useContext(TemaContext);
     let tema = context.tema;
 

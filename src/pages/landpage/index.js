@@ -6,13 +6,31 @@ import Rodape from '../../components/rodape/'
 import CardProduto from '../../components/cardProduto';
 import { Link } from 'react-router-dom';
 import AnchorLink from 'react-anchor-link-smooth-scroll';
-import { useContext } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { TemaContext } from '../../theme';
+import { buscarProdutos } from '../../api/produtoAPI';
 
 export default function Landpage()
 {
     let context = useContext(TemaContext); 
     let tema = context.tema;
+
+    const [destaques, setDestaques] = useState([]);
+
+    async function buscarDestaques() {
+        try {
+            let ultimos = await buscarProdutos('', 'data', '');
+
+            setDestaques(ultimos);
+
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+    useEffect(() => {
+        buscarDestaques();
+    }, []);
 
     return(
         <div className={"pagina-landpage " + tema}>    
@@ -86,13 +104,13 @@ export default function Landpage()
 
                     <div className='container-produtos'>
                         <div>
-                            <CardProduto />
-                            <CardProduto />
+                            <CardProduto infoProduto={destaques[0]}/>
+                            <CardProduto infoProduto={destaques[1]}/>
                         </div>
 
                         <div>
-                            <CardProduto />
-                            <CardProduto />
+                            <CardProduto infoProduto={destaques[2]}/>
+                            <CardProduto infoProduto={destaques[3]}/>
                         </div>
                     </div>
                 </section>

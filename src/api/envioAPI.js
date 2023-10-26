@@ -8,10 +8,10 @@ export async function simularFrete(produto, cep, preco, ordenar) {
         "cepOrigem": "04852-506",
         "cepDestino": cep,
         "vlrMerc": preco,
-        "pesoMerc": produto.peso/100,
+        "pesoMerc": produto.peso/1000,
         "produtos": [
           {
-            "peso": produto.peso/100,
+            "peso": produto.peso/1000,
             "altura": 20,
             "largura": 15,
             "comprimento": 4,

@@ -205,8 +205,6 @@ export default function Produto() {
     async function buscarRelac() {
         try { 
             let relacionados = await buscarRelacionados(produto);
-            console.log(relacionados);
-
             relacionados.sort(() => Math.random() - 0.5);
             setProdutosRelacionados(relacionados);
 
