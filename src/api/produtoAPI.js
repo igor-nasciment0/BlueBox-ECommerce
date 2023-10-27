@@ -1,8 +1,4 @@
-import axios from "axios";
-
-const api = axios.create({
-    baseURL: 'http://localhost:5033'
-})
+import {api} from './API_URL'; 
 
 export async function buscarProdutos(busca, ordem, filtro) {
     let produtos = await api.get(`/produto?nome=${busca}&ordem=${ordem}&filtro=${filtro}`);
