@@ -1,8 +1,4 @@
-import axios from "axios"
-
-const api = axios.create({
-    baseURL: 'http://localhost:5033'
-})
+import { api } from "./API_URL.JS";
 
 export async function buscarAvaliacoes(idProduto) {
     let avaliacoes = await api.get(`/produto/${idProduto}/avaliacao`);
