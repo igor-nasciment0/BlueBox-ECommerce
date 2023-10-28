@@ -1,4 +1,4 @@
-import { api } from "./API_URL.JS";
+import api from "./API_URL";
 
 export async function loginAdm(email, senha) {
     let login = {

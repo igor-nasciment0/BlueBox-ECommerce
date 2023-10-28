@@ -1,4 +1,4 @@
-import axios from "axios";
+import api from "./API_URL";
 
 export async function simularFrete(produto, cep, preco, ordenar) {
     let url = 'https://portal.kangu.com.br/tms/transporte/simular';
