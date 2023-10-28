@@ -1,4 +1,4 @@
-import api from "./API_URL";
+import api from "./API_URL.js";
 
 export async function buscarAvaliacoes(idProduto) {
     let avaliacoes = await api.get(`/produto/${idProduto}/avaliacao`);

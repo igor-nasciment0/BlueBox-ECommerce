@@ -1,4 +1,4 @@
-import api from "./API_URL";
+import api from "./API_URL.js";
 
 export async function alternarPromocao(btPromo, idProduto) {
     let resp = await api.put(`/promocao/${idProduto}?promocao=${btPromo}`);
