@@ -1,4 +1,4 @@
-import api from "./API_URL.js";
+import api from "./apiURL.js";
 
 export async function cadastroCliente(nome, sobrenome, email, senha, telefone, cpf, dataNascimento) {
     let credenciais = {
