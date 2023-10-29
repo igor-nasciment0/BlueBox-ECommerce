@@ -9,7 +9,7 @@ export async function buscarProdutos(busca, ordem, filtro) {
 export async function buscarRelacionados(produto) {
 
     let porCategoria = await buscarProdutos(produto.categoria);
-    let porMarca = await buscarProdutos(produto.categoria);
+    let porMarca = await buscarProdutos(produto.marca);
 
     let relacionados = [...porCategoria, ...porMarca];
 

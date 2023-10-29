@@ -19,7 +19,7 @@ export default function CardProduto({infoProduto, idProduto})
 
     async function getData() {
         try {
-            if(infoProduto) {
+            if(infoProduto !== undefined) {
                 setProduto(infoProduto);
                 idProduto = infoProduto.id;
             } else {
@@ -52,10 +52,15 @@ export default function CardProduto({infoProduto, idProduto})
     
     return(
         <div className={'card-produto ' + tema} onClick={() => navigate('/produto/' + produto.id)}>
-            <img src={mostrarUrlImagem(imagem.url)} alt="Assassin's Creed" />
+            <div>
+               <img src={mostrarUrlImagem(imagem.url)} alt="Assassin's Creed" /> 
+            </div>
+
             <h2>{produto.nome}</h2>
             {produto.promocao && <h4 className='preco-anterior'>{valorEmReais(produto.preco)}</h4>}
-            <h3 className='preco'>{valorEmReais(precoReal)}</h3>
+            <h3 className='preco' style={{color: produto.promocao && 'var(--verde-claro)'}}>
+                {valorEmReais(precoReal)}
+            </h3>
 
             <p>Ou em até 10x de {valorEmReais(precoReal/10)}</p>
             <p>PIX: 10% de Desconto</p>

@@ -4,7 +4,7 @@ import Cabecalho from "../../components/cabecalho";
 import Rodape from "../../components/rodape";
 import CardProduto from "../../components/cardProduto";
 
-import { Link, redirect, useParams } from "react-router-dom/dist";
+import { redirect, useParams } from "react-router-dom/dist";
 import { useContext, useEffect, useState } from "react";
 import { TemaContext } from "../../theme";
 import AnchorLink from "react-anchor-link-smooth-scroll";
@@ -16,6 +16,7 @@ import {
   buscarRelacionados,
   mostrarUrlImagem,
 } from "../../api/produtoAPI";
+
 import {
   formatarData,
   separarEspecificacoes,
@@ -53,6 +54,8 @@ export default function Produto() {
   const [produto, setProduto] = useState({});
   const [imagemPrincipal, setImagemPrincipal] = useState({});
   const [imagensSecundarias, setImagensSecundarias] = useState([]);
+  const [corSombra, setCorSombra] = useState(''); 
+
   const [precoReal, setPrecoReal] = useState(10);
   const [preco, setPreco] = useState(0);
   const [especificacoes, setEspecificacoes] = useState([]);
@@ -67,6 +70,7 @@ export default function Produto() {
   const [nota, setNota] = useState(0);
   const [notaGeral, setNotaGeral] = useState(3.8);
   const [numAvaliacoes, setNumAvaliacoes] = useState(0);
+
   const avaliacoesTextos = [
     "Odiei",
     "Não gostei",
@@ -81,6 +85,12 @@ export default function Produto() {
   async function buscarProduto() {
     try {
       let p = await buscarProdutoPorID(idProduto);
+      console.log(p);
+      
+      if(!p.id) {
+        navigate('/404');
+      }
+      
       setProduto(p);
 
       let arrayProvisorio = [];
@@ -174,8 +184,8 @@ export default function Produto() {
   }
 
   async function handleLike(avaliacao) {
-    try {   
-      if(!get('user-login')) 
+    try {
+      if (!get('user-login'))
         throw new Error('É preciso estar logado para deixar o like!')
 
       if (avaliacao.deuLike) {
@@ -233,7 +243,7 @@ export default function Produto() {
   useEffect(() => {
     buscarProduto();
     buscarRatings();
-  }, []);
+  }, [idProduto]);
 
   useEffect(() => {
     produto.promocao
@@ -262,8 +272,8 @@ export default function Produto() {
 
   const navigate = useNavigate();
 
-  const toComponentB=()=>{
-navigate('/pagamento',{state:{nome:produto.nome, valor:produto.preco,}});
+  const toComponentB = () => {
+    navigate('/pagamento', { state: { nome: produto.nome, valor: produto.preco, } });
   }
 
 
@@ -423,7 +433,7 @@ navigate('/pagamento',{state:{nome:produto.nome, valor:produto.preco,}});
                 </div>
               )}
 
-              <button className="btn-comprar" onClick={()=>{toComponentB()}}>Comprar agora</button>
+              <button className="btn-comprar" onClick={() => { toComponentB() }}>Comprar agora</button>
               <button className="btn-carrinho">Adicionar ao carrinho</button>
             </div>
           </section>
