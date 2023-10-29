@@ -54,7 +54,7 @@ export default function Produto() {
   const [produto, setProduto] = useState({});
   const [imagemPrincipal, setImagemPrincipal] = useState({});
   const [imagensSecundarias, setImagensSecundarias] = useState([]);
-  const [corSombra, setCorSombra] = useState(''); 
+  const [carregando, setCarregando] = useState(false);
 
   const [precoReal, setPrecoReal] = useState(10);
   const [preco, setPreco] = useState(0);
@@ -72,7 +72,7 @@ export default function Produto() {
   const [numAvaliacoes, setNumAvaliacoes] = useState(0);
 
   const avaliacoesTextos = [
-    "Odiei",
+    "Detestei",
     "Não gostei",
     "Razoável",
     "Bom",
@@ -203,6 +203,11 @@ export default function Produto() {
 
   async function simular() {
     try {
+      if(cep.length !== 9) 
+        throw new Error('CEP inválido')
+
+      setCarregando(true);
+
       let entregas = await simularFrete(produto, cep, precoReal, "prazo");
       console.log(entregas);
 
@@ -227,6 +232,8 @@ export default function Produto() {
         toast.error(error.message);
       }
     }
+
+    setCarregando(false);
   }
 
   async function buscarRelac() {
@@ -390,6 +397,10 @@ export default function Produto() {
                     <img src="/assets/images/icons/arrow-right.svg" alt="" />
                   </button>
                 </div>
+              </div>
+
+              <div className="carregando" style={{display: !carregando && 'none'}}>
+                <img src="/assets/images/BeanEater.gif" alt="Carregando..." />
               </div>
 
               {entregas.length > 0 && (

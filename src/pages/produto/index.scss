@@ -277,7 +277,7 @@
                 flex-direction: column;
                 align-items: center;
                 width: 100%;
-                margin-bottom: 20px;
+                margin-bottom: 10px;
 
                 h3
                 {
@@ -321,6 +321,17 @@
 
                 input::placeholder {
                     color: rgba(var(--cor-textos),0.6);
+                }
+            }
+
+            .carregando {
+                display: flex;
+                justify-content: center;
+                margin-bottom: 10px;
+                transition: 0.3s;
+
+                img {
+                    width: 60px;
                 }
             }
 
