@@ -3,6 +3,7 @@ import Rodape from "../../components/rodape";
 import { useLocation } from "react-router-dom";
 import { Link } from "react-router-dom";
 import "./index.scss";
+import Produto from "../produto";
 
 export default function TeladePagamento() {
   const location = useLocation();
@@ -20,7 +21,7 @@ export default function TeladePagamento() {
 
               <div className="produtos">
                 <div className="especs-pedido">
-                  <img src={location.state.foto} alt="" />
+                  <img src={Produto.foto} alt="" />
                   <p>{location.state.nome}</p>
                   <div>
                     <p>Qtd</p>
