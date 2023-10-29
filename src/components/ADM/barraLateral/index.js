@@ -78,7 +78,7 @@ export default function BarraLateral() {
                     <img src="/assets/images/icons/adm/barraLateral/arrow-right.svg" alt="Início" />
                 </Link>
 
-                <Link>
+                <Link to={'/adm/criar-cupom'}>
                     <div className="icone">
                         <img src="/assets/images/icons/adm/barraLateral/coupon.svg" alt="" />
                     </div>
