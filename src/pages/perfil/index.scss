@@ -28,24 +28,28 @@
         .perfil {
             display: flex;
             flex-direction: row;
+            justify-content: center;
             
             height: 100%;
             width: 100%;
             max-width: 800px;
 
             align-items: center;
-            justify-content: flex-start;
             padding: 20px 20px;
             border-radius: 10px;
             box-shadow: 0px 0px 8px rgba(var(--cor-textos), 0.3);
             background-color: var(--fundo-componentes);
+
+            .ladoEsq, .ladoDir {
+                padding: 0 50px;
+            }
 
             .ladoEsq {
                 display: flex;
                 flex-direction: column;
                 align-items: center;
                 justify-content: center;
-                margin-left: 60px;
+
 
                 .imagem {
                     display: flex;
@@ -117,17 +121,18 @@
                 height: 450px;
                 width: 2px;
                 background-color: rgb(139, 139, 139);
-                margin: 0px auto;
             }
 
             .ladoDir {
+                padding-right: 0;
+
                 > h1 {
                     font-size: 20px;
                     margin: 15px 0px;
                 }
 
                 > h3 {
-                    margin: 20px 0px 9px 0px;
+                    margin: 15px 0px 6px 0px;
                     font-size: 14px;
                 }
 
@@ -142,10 +147,7 @@
 
                 .infoTrocavel {
                     display: flex;
-                    flex-direction: row;
-                    align-items: center;
-                    height: 30px;
-                    width: 200px;
+                    flex-direction: column;
                                         
                     > div {
                         background-color: var(--fundo-componentes2);
@@ -154,11 +156,35 @@
                         min-width: 25vw;
                         max-width: 100%;
                         padding: 7px;
-                        margin-right: 14px;
                     }
 
-                    > a {
+                    > button {
+                        background: none;
+                        border: none;
+
+                        font-weight: 600;
+                        cursor: pointer;
+
+                        margin-top: 5px;
                         color: #00ccff;
+                        align-self: flex-end;
+                        width: min-content;
+                    }
+
+                    input {
+                        width: 100%;
+                        border: none;
+                        background-color: var(--cinza-imagens);
+                        border-radius: 3px;
+
+                        box-shadow: rgba(var(--cor-textos), 0.2);
+                        padding: 5px;
+
+                        font-size: 16px;
+                    }
+
+                    > button:hover {
+                        text-decoration: underline;
                     }
                 }
 
@@ -205,6 +231,8 @@
                 align-items: center;
                 justify-content: center;
                 margin-left: 0px!important;
+
+                padding: 0 20px !important;
             }
 
             .barra {
@@ -216,6 +244,8 @@
             }
 
             .ladoDir {
+                padding: 0 20px !important;
+
                 > h1 {
                     text-align: center;
                 }

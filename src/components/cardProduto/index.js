@@ -60,7 +60,7 @@ export default function CardProduto({infoProduto, idProduto})
             <p>Ou em até 10x de {valorEmReais(precoReal/10)}</p>
             <p>PIX: 10% de Desconto</p>
 
-            <Link to={'/produto/' + produto.id}>Comprar</Link>
+            <Link>Comprar</Link>
         </div>
     )
 }

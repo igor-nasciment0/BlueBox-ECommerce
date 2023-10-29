@@ -174,7 +174,10 @@ export default function Produto() {
   }
 
   async function handleLike(avaliacao) {
-    try {
+    try {   
+      if(!get('user-login')) 
+        throw new Error('É preciso estar logado para deixar o like!')
+
       if (avaliacao.deuLike) {
         await tirarLike(idCliente, avaliacao.id);
       } else {
@@ -183,8 +186,8 @@ export default function Produto() {
 
       buscarRatings();
     } catch (error) {
-      if (error.response) toast.error(error.response.data);
-      else toast.error(error.message);
+      if (error.response) toast.info(error.response.data);
+      else toast.info(error.message);
     }
   }
 

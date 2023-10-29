@@ -27,6 +27,17 @@ export async function loginCliente(email, senha) {
     return resp;
 }
 
+export async function atualizarDadosCliente(idCliente, email, telefone) {
+    let dados = {
+        email: email, 
+        telefone: telefone
+    }
+
+    let resp = await api.put(`/usuario/${idCliente}`, dados);
+
+    return resp;
+}
+
 export async function trocarFotoPerfil(idCliente, imagem) {
     const formData = new FormData();
     formData.append('imagem', imagem);
