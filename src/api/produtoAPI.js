@@ -111,3 +111,30 @@ export async function buscarCategorias() {
     
     return categorias.data;
 }
+
+export async function buscarImagemPrimaria(idProduto){
+    let imagens = await buscarImagens(idProduto);
+
+    for (let i = 0; i < imagens.length; i++) {
+        let imagem = imagens[i];
+
+        if(imagem.primaria) 
+            return imagem;
+    }
+}
+
+export async function buscarImagensSecundarias(idProduto){
+    let imagens = await buscarImagens(idProduto);
+
+    let arraySecundario = [];
+
+    for (let i = 0; i < imagens.length; i++) {
+        let imagem = imagens[i];
+
+        if(!imagem.primaria) 
+            arraySecundario.push(imagem);
+    }
+
+    return arraySecundario;
+}
+
