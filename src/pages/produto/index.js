@@ -280,7 +280,7 @@ export default function Produto() {
   const navigate = useNavigate();
 
   const toComponentB = () => {
-    navigate('/carrinho', { state: { nome: produto.nome, valor: produto.preco, } });
+    navigate('/carrinho', { state: { idProduto: produto.id, valor: produto.preco, } });
   }
 
   return (

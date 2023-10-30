@@ -5,7 +5,9 @@ import Rodape from '../../components/rodape/';
 import { useContext } from 'react';
 import { TemaContext } from '../../theme';
 import { useLocation } from 'react-router-dom';
-import buscarImagens from '../../api/produtoAPI' 
+import { buscarImagemPrimaria, mostrarUrlImagem } from '../../api/produtoAPI' 
+import { useState } from 'react';
+import { useEffect } from 'react';
 
 
 export default function Carrinho()
@@ -14,6 +16,19 @@ export default function Carrinho()
     let tema = context.tema;
 
     const location = useLocation();
+
+    const [fotoProduto, setFotoProduto] = useState()
+
+    async function buscaInfo() {
+        let buscaImagem = await buscarImagemPrimaria(location.state.nome)
+        let urlImagem = mostrarUrlImagem(buscaImagem.url)
+
+        setFotoProduto(urlImagem)
+    }
+
+    useEffect(() => {
+        buscaInfo()
+    }, [])
 
     return(
         <div className={'pagina-carrinho ' + tema}>
@@ -27,11 +42,11 @@ export default function Carrinho()
                         <div className='container-carrinho'>
                             <div className='produto-container'>
                                 <div className='produto'>
-                                    <img src='/assets/images/foto_produto.png' alt="" />
+                                    <img src= {fotoProduto} alt="" />
                                 
                                     <div className='produto-especificacoes'>
-                                        <h2>{location.state.nome}</h2>
-                                        <h3>{}</h3>
+                                        <h2></h2>
+                                        <h3></h3>
                                         <h4>Disponível</h4>
 
                                         <div className='container-operadores'>
