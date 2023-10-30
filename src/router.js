@@ -20,6 +20,7 @@ import TelaPagamentoPix from './pages/pagina_Pagamento_pix';
 import Promocoes from './pages/ADM/promocoes';
 import Graficoreceita from './pages/ADM/graficoReceita'
 import CriarCupom from './pages/ADM/criarCupom';
+import PedidoPendente from './pages/ADM/pedidosPendentes';
 
 import { useEffect, useState } from 'react';
 import { TemaContext } from './theme';
@@ -28,6 +29,7 @@ import StatusEntrega from './pages/entrega';
 import Telacartao from './pages/Tela_dados_cartão';
 import Graficovendas from './pages/ADM/graficoVendas';
 import NotFound from './pages/404';
+
 
 export default function Router() {
 
@@ -76,7 +78,8 @@ export default function Router() {
                     <Route path='/adm/login' element={<LoginAdm/>}/>
                     <Route path='/adm/cadastro-produto' element={<CadastroProduto/>}/>
                     <Route path='/adm/atualizar-produto/:id' element={<CadastroProduto/>}/>
-                    <Route path='/adm/consulta-produto' element={<ConsultaProduto />} />   
+                    <Route path='/adm/consulta-produto' element={<ConsultaProduto />} />
+                    <Route path='/adm/pedido-pendente' element={<PedidoPendente />} />   
                     <Route path='/adm/pedido-concluido' element={<PedidoConcluido />} />
                     <Route path='/adm/promocoes' element={<Promocoes />} />
                     <Route path='/adm/grafico-vendas' element={<Graficovendas />} />
