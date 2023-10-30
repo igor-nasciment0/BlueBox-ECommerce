@@ -7,7 +7,8 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useContext, useEffect, useState } from 'react';
 import storage from 'local-storage';
 import { mostrarUrlImagem } from '../../api/produtoAPI';
-import { trocarFotoPerfil } from '../../api/clienteAPI';
+import { atualizarDadosCliente, trocarFotoPerfil } from '../../api/clienteAPI';
+import InputMask from 'react-input-mask';
 
 import { toast, ToastContainer } from 'react-toastify';
 import { TemaContext } from '../../theme';
@@ -17,12 +18,16 @@ export default function Perfil() {
   const context = useContext(TemaContext);
   let tema = context.tema;
 
-
   const [infoUser, setInfoUser] = useState({});
   const [nascimento, setNascimento] = useState(new Date());
-  const [img, setImg] = useState();
 
-  const [atualizacao, setAtualizacao] = useState();
+  const [img, setImg] = useState();
+  const [email, setEmail] = useState('');
+  const [telefone, setTelefone] = useState('');
+  const [updateEmail, setUpdateEmail] = useState(false);
+  const [updateTel, setUpdateTel] = useState(false);
+  const [updateFoto, setUpdateFoto] = useState();
+
   const [carregando, setCarregando] = useState(false);
 
   const navigate = useNavigate();
@@ -32,9 +37,13 @@ export default function Perfil() {
 
     if (info) {
       setInfoUser(info);
+      console.log(info);
       setNascimento(new Date(info.dataNascimento));
       setImg(info.imgPerfil);
+      setEmail(info.email);
+      setTelefone(info.telefone);
     } else {
+      navigate('/')
     }
   }, [])
 
@@ -43,25 +52,27 @@ export default function Perfil() {
     navigate('/');
   }
 
-  async function fotoPerfil() {
+  async function alterarInfo() {
     try {
       if(!carregando)
       {
         setCarregando(true);
 
-        let resp = await trocarFotoPerfil(infoUser.id, img);
+        await atualizarDadosCliente(infoUser.id, email, telefone);
 
-        if (resp.status === 204)
-        {
-          toast.success('Imagem alterada com sucesso! Faça login novamente.');
-          storage.remove('user-login');
-        }
+        if(updateFoto)
+          await trocarFotoPerfil(infoUser.id, img);
+
+        toast.success('Dados alterados com sucesso! Faça login novamente.');
+        storage.remove('user-login');
 
         setTimeout(() => {
           navigate('/login');
         }, 3000);
       }      
     } catch (error) {
+      console.log(error);
+
       if (error.response)
         toast.error(error.response.data);
       else
@@ -72,10 +83,11 @@ export default function Perfil() {
   }
 
   function mostrarImagem() {
-    if (typeof img === 'object')
+    if(img.type) {
       return URL.createObjectURL(img);
-    else
+    } else {
       return mostrarUrlImagem(img);
+    }
   }
 
   return (
@@ -101,11 +113,11 @@ export default function Perfil() {
             <div className='imagem'>
               <input type="file" id='inputImg' onChange={e => {
                 setImg(e.target.files[0])
-                setAtualizacao(true)
+                setUpdateFoto(true)
               }} />
               
               {!img ? <img src="/assets/images/usuario.png" alt="Insira uma foto de perfil!" onClick={(() => document.getElementById('inputImg').click())} /> :
-                <img src={mostrarImagem(img)} alt="FotoPerfil" />}
+                <img src={mostrarImagem()} alt="FotoPerfil" />}
             </div>
 
             <div className='trocaImg'>
@@ -135,17 +147,23 @@ export default function Perfil() {
             <h3>E-mail</h3>
             <div className='infoTrocavel'>
               <div>
-                <p>{infoUser.email}</p>
+                {updateEmail ?
+                  <input type="text" value={email} onChange={e => setEmail(e.target.value)}/> :
+                  <p>{infoUser.email}</p>
+                }
               </div>
-              <a href="">Trocar</a>
+              <button onClick={() => setUpdateEmail(true)}>Trocar</button>
             </div>
 
             <h3>Número de Telefone</h3>
             <div className='infoTrocavel'>
               <div>
-                <p>{infoUser.telefone}</p>
+                {updateTel ? 
+                  <InputMask mask="+55 (99) 99999-9999" type="text" value={telefone} onChange={e => setTelefone(e.target.value)}/> :
+                  <p>{infoUser.telefone}</p> 
+                }
               </div>
-              <a href="">Trocar</a>
+              <button onClick={() => setUpdateTel(true)}>Trocar</button>
             </div>
 
             <h3>Data de Nascimento</h3>
@@ -165,7 +183,7 @@ export default function Perfil() {
           </div>
         </div>
 
-        {atualizacao && <button className='confirm-btn' onClick={fotoPerfil}>Confirmar mudanças</button>}
+        {(updateFoto || updateEmail || updateTel) && <button className='confirm-btn' onClick={alterarInfo}>Confirmar mudanças</button>}
       </div>
 
       <Rodape />

@@ -90,6 +90,7 @@
     p{
         font-size: 12px;
         margin-left: 6px;
+        width: 100%;
     }
 
     div{
@@ -131,16 +132,17 @@
         max-width: 410px;
     }
 
-    button{
+    a{
         border-radius: 5px;
         background: var(--azul-textos, #1C84FF);
         border: none;
         color: #FFF;
         padding: 10px 12px;
         font-size: 12px;
+        text-decoration: none;
     }
 
-    button:hover{
+    a:hover{
         cursor: pointer;
         color: #1C84FF;
         background-color: #FFF;

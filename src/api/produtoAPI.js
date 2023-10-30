@@ -1,4 +1,4 @@
-import { api } from "./API_URL.JS";
+import api from "./apiURL.js";
 
 export async function buscarProdutos(busca, ordem, filtro) {
     let produtos = await api.get(`/produto?nome=${busca}&ordem=${ordem}&filtro=${filtro}`);
@@ -9,7 +9,7 @@ export async function buscarProdutos(busca, ordem, filtro) {
 export async function buscarRelacionados(produto) {
 
     let porCategoria = await buscarProdutos(produto.categoria);
-    let porMarca = await buscarProdutos(produto.categoria);
+    let porMarca = await buscarProdutos(produto.marca);
 
     let relacionados = [...porCategoria, ...porMarca];
 

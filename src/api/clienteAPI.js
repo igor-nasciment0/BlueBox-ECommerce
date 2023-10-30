@@ -1,4 +1,4 @@
-import { api } from "./API_URL.JS";
+import api from "./apiURL.js";
 
 export async function cadastroCliente(nome, sobrenome, email, senha, telefone, cpf, dataNascimento) {
     let credenciais = {
@@ -23,6 +23,17 @@ export async function loginCliente(email, senha) {
     }
   
     let resp = await api.post('/usuario/login', credenciais);
+
+    return resp;
+}
+
+export async function atualizarDadosCliente(idCliente, email, telefone) {
+    let dados = {
+        email: email, 
+        telefone: telefone
+    }
+
+    let resp = await api.put(`/usuario/${idCliente}`, dados);
 
     return resp;
 }

@@ -29,7 +29,6 @@ export default function CadastroProduto() {
     const [listaMarcas, setListaMarcas] = useState([]);
     const [listaCategorias, setListaCategorias] = useState([]);
 
-    const location = useLocation();
     const [produto, setProduto] = useState({});
     const {id} = useParams();
 
@@ -204,9 +203,7 @@ export default function CadastroProduto() {
     }
 
     async function deletarImagem(img) { 
-        console.log(img);
         if(atualizacao && img.id) {
-            console.log(img.id);
             await excluirImagem(img.id);
         }
     }
