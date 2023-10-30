@@ -5,6 +5,8 @@ import Rodape from '../../components/rodape/';
 import { useContext } from 'react';
 import { TemaContext } from '../../theme';
 import { useLocation } from 'react-router-dom';
+import buscarImagens from '../../api/produtoAPI' 
+
 
 export default function Carrinho()
 {
@@ -29,7 +31,7 @@ export default function Carrinho()
                                 
                                     <div className='produto-especificacoes'>
                                         <h2>{location.state.nome}</h2>
-                                        <h3>Produto seminovo / usado</h3>
+                                        <h3>{}</h3>
                                         <h4>Disponível</h4>
 
                                         <div className='container-operadores'>

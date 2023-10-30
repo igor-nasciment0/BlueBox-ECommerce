@@ -283,7 +283,6 @@ export default function Produto() {
     navigate('/carrinho', { state: { nome: produto.nome, valor: produto.preco, } });
   }
 
-
   return (
     <div className={"pagina-produto " + tema}>
       <Cabecalho />
