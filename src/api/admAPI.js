@@ -1,6 +1,4 @@
-import axios from "axios";
-
-import {api} from './API_URL'; 
+import api from "./apiURL.js";
 
 export async function loginAdm(email, senha) {
     let login = {

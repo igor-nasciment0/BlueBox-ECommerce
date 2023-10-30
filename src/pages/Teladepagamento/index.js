@@ -1,8 +1,15 @@
 import Cabecalho from "../../components/cabecalho";
 import Rodape from "../../components/rodape";
+import { useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 import "./index.scss";
+import Produto from "../produto";
 
 export default function TeladePagamento() {
+  const location = useLocation();
+
+  const valorDesc = (location.state.valor * 15) / (100).toFixed(2);
+
   return (
     <div className="teladePagamento">
       <Cabecalho />
@@ -14,8 +21,8 @@ export default function TeladePagamento() {
 
               <div className="produtos">
                 <div className="especs-pedido">
-                  <img src="/assets/images/foto_produto.png" alt="" />
-                  <p>God of War: Saga (3 Jogos) (Seminovo) - PS3</p>
+                  <img src={Produto.foto} alt="" />
+                  <p>{location.state.nome}</p>
                   <div>
                     <p>Qtd</p>
                     <p> 2 </p>
@@ -23,63 +30,7 @@ export default function TeladePagamento() {
 
                   <div>
                     <p>Subtotal</p>
-                    <p>29,99</p>
-                  </div>
-                </div>
-
-                <div className="especs-pedido">
-                  <img src="/assets/images/foto_produto.png" alt="" />
-                  <p>God of War: Saga (3 Jogos) (Seminovo) - PS3</p>
-                  <div>
-                    <p>Qtd</p>
-                    <p> 2 </p>
-                  </div>
-
-                  <div>
-                    <p>Subtotal</p>
-                    <p>29,99</p>
-                  </div>
-                </div>
-
-                <div className="especs-pedido">
-                  <img src="/assets/images/foto_produto.png" alt="" />
-                  <p>God of War: Saga (3 Jogos) (Seminovo) - PS3</p>
-                  <div>
-                    <p>Qtd</p>
-                    <p> 2 </p>
-                  </div>
-
-                  <div>
-                    <p>Subtotal</p>
-                    <p>29,99</p>
-                  </div>
-                </div>
-
-                <div className="especs-pedido">
-                  <img src="/assets/images/foto_produto.png" alt="" />
-                  <p>God of War: Saga (3 Jogos) (Seminovo) - PS3</p>
-                  <div>
-                    <p>Qtd</p>
-                    <p> 2 </p>
-                  </div>
-
-                  <div>
-                    <p>Subtotal</p>
-                    <p>29,99</p>
-                  </div>
-                </div>
-
-                <div className="especs-pedido">
-                  <img src="/assets/images/foto_produto.png" alt="" />
-                  <p>God of War: Saga (3 Jogos) (Seminovo) - PS3</p>
-                  <div>
-                    <p>Qtd</p>
-                    <p> 2 </p>
-                  </div>
-
-                  <div>
-                    <p>Subtotal</p>
-                    <p>29,99</p>
+                    <p>{location.state.valor}</p>
                   </div>
                 </div>
               </div>
@@ -88,10 +39,10 @@ export default function TeladePagamento() {
             <div className="metodos-pagamento">
               <p>Escolha seu metodo de pagamento:</p>
               <div className="metodos">
-                <button>PIX</button>
-                <button>Cartão de credito</button>
-                <button>Cartão de debito</button>
-                <button>Boleto</button>
+                <Link to={'/tela-pix'}>PIX</Link>
+                <Link to={'/tela-cartão'}>Cartão de credito</Link>
+                <Link to={'/tela-cartão'}>Cartão de debito</Link>
+                <Link>Boleto</Link>
               </div>
             </div>
 
@@ -107,19 +58,19 @@ export default function TeladePagamento() {
                 <div className="linha"></div>
                 <div>
                   <p>Subtotal</p>
-                  <p>29,90</p>
+                  <p>{location.state.valor}</p>
                 </div>
                 <div>
                   <p>Frete</p>
-                  <p>29,90</p>
+                  <p>50,00</p>
                 </div>
                 <div>
                   <p className="total">Total</p>
-                  <p className="total">29,90</p>
+                  <p className="total">{location.state.valor}</p>
                 </div>
                 <div>
                   <p className="pix">Pix</p>
-                  <p className="pix">27,90</p>
+                  <p className="pix">{valorDesc}</p>
                 </div>
 
                 <p>Até 15% de desconto no pix</p>

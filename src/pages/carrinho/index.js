@@ -4,11 +4,14 @@ import Cabecalho from '../../components/cabecalho/';
 import Rodape from '../../components/rodape/';
 import { useContext } from 'react';
 import { TemaContext } from '../../theme';
+import { useLocation } from 'react-router-dom';
 
 export default function Carrinho()
 {
     const context = useContext(TemaContext);
     let tema = context.tema;
+
+    const location = useLocation();
 
     return(
         <div className={'pagina-carrinho ' + tema}>
@@ -25,7 +28,7 @@ export default function Carrinho()
                                     <img src='/assets/images/foto_produto.png' alt="" />
                                 
                                     <div className='produto-especificacoes'>
-                                        <h2>God of War: Saga (3 Jogos) (Seminovo) - PS3</h2>
+                                        <h2>{location.state.nome}</h2>
                                         <h3>Produto seminovo / usado</h3>
                                         <h4>Disponível</h4>
 
