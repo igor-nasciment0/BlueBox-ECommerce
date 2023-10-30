@@ -280,7 +280,7 @@ export default function Produto() {
   const navigate = useNavigate();
 
   const toComponentB = () => {
-    navigate('/pagamento', { state: { nome: produto.nome, valor: produto.preco, } });
+    navigate('/carrinho', { state: { nome: produto.nome, valor: produto.preco, } });
   }
 
 
@@ -444,8 +444,8 @@ export default function Produto() {
                 </div>
               )}
 
-              <button className="btn-comprar" onClick={() => { toComponentB() }}>Comprar agora</button>
-              <button className="btn-carrinho">Adicionar ao carrinho</button>
+              <button className="btn-comprar">Comprar agora</button>
+              <button className="btn-carrinho" onClick={() => { toComponentB() }}>Adicionar ao carrinho</button>
             </div>
           </section>
 
