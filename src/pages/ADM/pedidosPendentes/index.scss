@@ -36,6 +36,7 @@
                 max-width: 950px;
                 padding: 30px;
                 margin-bottom: 40px;
+                overflow-y: scroll;
 
                 .produto {
                     display: flex;
@@ -43,7 +44,7 @@
                     align-items: center;
                     justify-content: space-between;
                     padding: 25px 50px;
-                    height: 130px;
+                    height: 120px;
                     width: 100%;
                     max-width: 900px;
                     border: 1px solid rgba(0, 0, 0, 0.20);
@@ -94,6 +95,29 @@
                 }
             }
 
+            .aprovacao::-webkit-scrollbar
+            {
+                width: 18px;
+                margin-left: 6px;
+            }
+
+            .aprovacao::-webkit-scrollbar-track
+            {
+                background-color: #ACACAC;
+                padding: 4px;
+                border-radius: 100px;
+            }
+
+            .aprovacao::-webkit-scrollbar-thumb
+            {
+                background-color: #152039;
+                border-radius: 100px;
+                margin: 4px;
+
+                border: 4px solid transparent;
+                background-clip: content-box;
+            }
+
             .preparo {
                 display: flex;
                 flex-direction: column;
@@ -107,6 +131,7 @@
                 max-width: 950px;
                 padding: 30px;
                 margin-bottom: 40px;
+                overflow-y: scroll;
 
                 .produto {
                     display: flex;
@@ -165,6 +190,29 @@
                 }
             }
 
+            .preparo::-webkit-scrollbar
+            {
+                width: 18px;
+                margin-left: 6px;
+            }
+
+            .preparo::-webkit-scrollbar-track
+            {
+                background-color: #ACACAC;
+                padding: 4px;
+                border-radius: 100px;
+            }
+
+            .preparo::-webkit-scrollbar-thumb
+            {
+                background-color: #152039;
+                border-radius: 100px;
+                margin: 4px;
+
+                border: 4px solid transparent;
+                background-clip: content-box;
+            }
+
             .caminho {
                 display: flex;
                 flex-direction: column;
@@ -178,6 +226,7 @@
                 max-width: 950px;
                 padding: 30px;
                 margin-bottom: 40px;
+                overflow-y: scroll;
 
                 .produto {
                     display: flex;
@@ -222,6 +271,29 @@
                         cursor: pointer;
                     }
                 }
+            }
+            
+            .caminho::-webkit-scrollbar
+            {
+                width: 18px;
+                margin-left: 6px;
+            }
+
+            .caminho::-webkit-scrollbar-track
+            {
+                background-color: #ACACAC;
+                padding: 4px;
+                border-radius: 100px;
+            }
+
+            .caminho::-webkit-scrollbar-thumb
+            {
+                background-color: #152039;
+                border-radius: 100px;
+                margin: 4px;
+
+                border: 4px solid transparent;
+                background-clip: content-box;
             }
         }
     }
