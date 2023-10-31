@@ -72,7 +72,16 @@ export default function Pesquisa()
 
           <h3>Preço</h3>
 
-          <input type="range" />
+          <div className='marcacaoResp'>
+            <div className='caixaResp'>
+              <input type="checkbox" />
+              <p>Menor Preço</p>
+            </div>
+            <div className='caixaResp'>
+              <input type="checkbox" />
+              <p>Maior Preço</p>
+            </div>
+          </div>
 
           <h3>Categorias</h3>
 
@@ -124,7 +133,16 @@ export default function Pesquisa()
 
           <h2>Preço</h2>
 
-          <input type="range" />
+          <div className='caixaMarcacao'>
+            <div className='caixa'>
+              <input type="checkbox" />
+              <p>Menor Preço</p>
+            </div>
+            <div className='caixa'>
+              <input type="checkbox" />
+              <p>Maior Preço</p>
+            </div>
+          </div>
           
           <h2>Categorias</h2>
 
