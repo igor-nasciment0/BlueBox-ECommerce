@@ -37,7 +37,7 @@ import {
   verificarLike,
   verificarNumeroLikes,
 } from "../../api/avaliacaoAPI";
-import { get } from "local-storage";
+import { get, set } from "local-storage";
 
 import Rating from "@mui/material/Rating";
 
@@ -85,7 +85,6 @@ export default function Produto() {
   async function buscarProduto() {
     try {
       let p = await buscarProdutoPorID(idProduto);
-      console.log(p);
       
       if(!p.id) {
         navigate('/404');
@@ -245,6 +244,16 @@ export default function Produto() {
       if (error.response) toast.error(error.response.data);
       else toast.error(error.message);
     }
+  }
+
+  function adicionarCarrinho() {
+    let arrayCarrinho = get('carrinho');
+
+    arrayCarrinho.push(produto);
+
+    set('carrinho', arrayCarrinho);
+
+    toast.success('Produto adicionado ao carrinho.')
   }
 
   useEffect(() => {
@@ -444,7 +453,7 @@ export default function Produto() {
               )}
 
               <button className="btn-comprar">Comprar agora</button>
-              <button className="btn-carrinho" onClick={() => { toComponentB() }}>Adicionar ao carrinho</button>
+              <button className="btn-carrinho" onClick={adicionarCarrinho}>Adicionar ao carrinho</button>
             </div>
           </section>
 
