@@ -34,6 +34,7 @@ export default function UserLogin() {
       if (resp.status === 200)
       {
         storage('user-login', resp.data[0]);
+        storage('carrinho', []);
 
         ref.current.continuousStart();
         toast.success('Logado com sucesso!')
@@ -41,6 +42,7 @@ export default function UserLogin() {
           navigate('/');
         }, 3000);
       }
+
     } catch (error) {
       if (error.response) {
         toast.error(error.response.data)

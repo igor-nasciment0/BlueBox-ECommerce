@@ -4,11 +4,55 @@ import Cabecalho from '../../components/cabecalho/';
 import Rodape from '../../components/rodape/';
 import { useContext } from 'react';
 import { TemaContext } from '../../theme';
+import { useLocation } from 'react-router-dom';
+import { buscarImagemPrimaria, mostrarUrlImagem } from '../../api/produtoAPI' 
+import { useState } from 'react';
+import { useEffect } from 'react';
+import { get } from 'local-storage';
+import ProdutoCarrinho from './produtoCarrinho';
+import { valorEmReais } from '../../api/funcoesGerais';
+
 
 export default function Carrinho()
 {
     const context = useContext(TemaContext);
     let tema = context.tema;
+
+    const location = useLocation();
+
+    const [totalProdutos, setTotalProdutos] = useState();
+    const [produtosCarrinho, setProdutosCarrinho] = useState([]);
+
+    async function buscaInfo() {
+        let carrinho = get('carrinho');
+
+        for(let i = 0; i < carrinho.length; i++) {
+            let produto = carrinho[i];
+            let img = await buscarImagemPrimaria(produto.id);
+            produto.img = img.url;
+            produto.qtd = 1;
+        }
+
+        console.log(carrinho);
+        setProdutosCarrinho(carrinho);
+    }
+
+    useEffect(() => {
+        buscaInfo();
+    }, [])
+
+    useEffect(() => {
+        let t = 0;
+
+        for (let i = 0; i < produtosCarrinho.length; i++) {
+            let produto = produtosCarrinho[i];
+            
+            t = t + (produto.promocao ? produto.valorPromocional : produto.preco) * produto.qtd;
+        }
+
+        setTotalProdutos(t);
+
+    })
 
     return(
         <div className={'pagina-carrinho ' + tema}>
@@ -20,54 +64,9 @@ export default function Carrinho()
                 <div className='container-tela'>
                     <section className='sec-carrinho'>
                         <div className='container-carrinho'>
-                            <div className='produto-container'>
-                                <div className='produto'>
-                                    <img src='/assets/images/foto_produto.png' alt="" />
-                                
-                                    <div className='produto-especificacoes'>
-                                        <h2>God of War: Saga (3 Jogos) (Seminovo) - PS3</h2>
-                                        <h3>Produto seminovo / usado</h3>
-                                        <h4>Disponível</h4>
-
-                                        <div className='container-operadores'>
-                                            <div className='operador-qtd'>
-                                                <h4>Qtd.</h4>
-                                                <div>
-                                                    <button> - </button>
-                                                    <div> 1 </div>
-                                                    <button> + </button>
-                                                </div>
-                                            </div>
-
-                                            <button>Excluir</button>
-                                            <a href="">Ver semelhantes</a>
-                                        
-                                            <div className='preco-mobile'>R$ 44,99</div>
-                                        </div>
-                                    </div>
-
-                                    <div className='produto-preco'>
-                                        <h2>Preço:</h2>
-                                        <h4>R$ 44,99</h4>
-                                        <h3>R$ 29,99</h3>
-                                    </div>  
-                                </div>
-
-                                <div className='container-operadores mobile'>
-                                    <div className='operador-qtd'>
-                                        <div>
-                                            <button> - </button>
-                                            <div> 1 </div>
-                                            <button> + </button>
-                                        </div>
-                                    </div>
-
-                                    <button>Excluir</button>
-                                    <a href="">Ver similares</a>
-                                
-                                    <div className='preco-mobile'>44,99</div>
-                                </div>
-                            </div>
+                            {produtosCarrinho.map(produto => 
+                                <ProdutoCarrinho produto={produto} resetar={() => setProdutosCarrinho([...produtosCarrinho])}/>
+                            )}
                         </div>
                     </section>
 
@@ -75,17 +74,19 @@ export default function Carrinho()
                         <div className='sec-total-precos'>
                             <div className='total'>
                                 <h3>Total:</h3>
-                                <p>R$ 40.98</p>
+                                <p>{valorEmReais(totalProdutos)}</p>
                             </div>
 
+                            {produtosCarrinho.map(produto => 
                             <div>
-                                <h4>(1 produto)</h4>
-                                <p>29.99</p>
+                                <h4>({produto.qtd} produtos)</h4>
+                                <p>{valorEmReais(produto.qtd * (produto.promocao ? produto.valorPromocional : produto.preco))}</p>
                             </div>
-
+                            )}
+                            
                             <div className='total-produtos'>
                                 <h4>Produtos</h4>
-                                <p>29.99</p>
+                                <p>{valorEmReais(totalProdutos)}</p>
                             </div>
 
                             <div className='frete'>

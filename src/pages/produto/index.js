@@ -37,7 +37,7 @@ import {
   verificarLike,
   verificarNumeroLikes,
 } from "../../api/avaliacaoAPI";
-import { get } from "local-storage";
+import { get, set } from "local-storage";
 
 import Rating from "@mui/material/Rating";
 
@@ -54,7 +54,7 @@ export default function Produto() {
   const [produto, setProduto] = useState({});
   const [imagemPrincipal, setImagemPrincipal] = useState({});
   const [imagensSecundarias, setImagensSecundarias] = useState([]);
-  const [corSombra, setCorSombra] = useState(''); 
+  const [carregando, setCarregando] = useState(false);
 
   const [precoReal, setPrecoReal] = useState(10);
   const [preco, setPreco] = useState(0);
@@ -72,7 +72,7 @@ export default function Produto() {
   const [numAvaliacoes, setNumAvaliacoes] = useState(0);
 
   const avaliacoesTextos = [
-    "Odiei",
+    "Detestei",
     "Não gostei",
     "Razoável",
     "Bom",
@@ -85,7 +85,6 @@ export default function Produto() {
   async function buscarProduto() {
     try {
       let p = await buscarProdutoPorID(idProduto);
-      console.log(p);
       
       if(!p.id) {
         navigate('/404');
@@ -203,6 +202,11 @@ export default function Produto() {
 
   async function simular() {
     try {
+      if(cep.length !== 9) 
+        throw new Error('CEP inválido')
+
+      setCarregando(true);
+
       let entregas = await simularFrete(produto, cep, precoReal, "prazo");
       console.log(entregas);
 
@@ -227,6 +231,8 @@ export default function Produto() {
         toast.error(error.message);
       }
     }
+
+    setCarregando(false);
   }
 
   async function buscarRelac() {
@@ -238,6 +244,16 @@ export default function Produto() {
       if (error.response) toast.error(error.response.data);
       else toast.error(error.message);
     }
+  }
+
+  function adicionarCarrinho() {
+    let arrayCarrinho = get('carrinho');
+
+    arrayCarrinho.push(produto);
+
+    set('carrinho', arrayCarrinho);
+
+    toast.success('Produto adicionado ao carrinho.')
   }
 
   useEffect(() => {
@@ -272,10 +288,9 @@ export default function Produto() {
 
   const navigate = useNavigate();
 
-  const paginaProduto = () => {
+  const toComponentB = () => {
     navigate('/pagamento', { state: { nome: produto.nome, valor: produto.preco, } });
   }
-
 
   return (
     <div className={"pagina-produto " + tema}>
@@ -392,6 +407,10 @@ export default function Produto() {
                 </div>
               </div>
 
+              <div className="carregando" style={{display: !carregando && 'none'}}>
+                <img src="/assets/images/BeanEater.gif" alt="Carregando..." />
+              </div>
+
               {entregas.length > 0 && (
                 <div className="container-entregas">
                   {entregas[0].transp_nome === entregas[1].transp_nome ? (
@@ -433,7 +452,7 @@ export default function Produto() {
                 </div>
               )}
 
-              <button className="btn-comprar" onClick={() => { paginaProduto() }}>Comprar agora</button>
+              <button className="btn-comprar" onClick={() => { toComponentB() }}>Comprar agora</button>
               <button className="btn-carrinho">Adicionar ao carrinho</button>
             </div>
           </section>

@@ -48,7 +48,7 @@ export default function BarraLateral() {
                     <img src="/assets/images/icons/adm/barraLateral/arrow-right.svg" alt="Início" />
                 </Link>
 
-                <Link>
+                <Link to={'/adm/pedido-pendente'}>
                     <div className="icone">
                         <img src="/assets/images/icons/adm/barraLateral/open-box.svg" alt="" />
                     </div>
@@ -58,7 +58,7 @@ export default function BarraLateral() {
                     <img src="/assets/images/icons/adm/barraLateral/arrow-right.svg" alt="Início" />
                 </Link>
 
-                <Link>
+                <Link to={'/adm/pedido-concluido'}>
                     <div className="icone">
                         <img src="/assets/images/icons/adm/barraLateral/box-checked.svg" alt="" />
                     </div>
@@ -78,7 +78,7 @@ export default function BarraLateral() {
                     <img src="/assets/images/icons/adm/barraLateral/arrow-right.svg" alt="Início" />
                 </Link>
 
-                <Link>
+                <Link to={'/adm/criar-cupom'}>
                     <div className="icone">
                         <img src="/assets/images/icons/adm/barraLateral/coupon.svg" alt="" />
                     </div>
