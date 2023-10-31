@@ -2,7 +2,14 @@
     .main {
         display: flex;
         flex-direction: row;
-        background-color: #EBEBEB;
+        background-color: var(--fundo-tela);
+        color: rgb(var(--cor-textos));
+
+        transition: 0.3s; 
+
+        * {
+            transition: 0.1s;
+        }
 
         .container-cupom {
             display: flex;

@@ -109,7 +109,7 @@ export default function Promocoes()
                         <table>
                             <thead>
                                 <tr key="">
-                                    <td>Código de Barra</td>
+                                    <td>ID</td>
                                     <td>Nome do Produto</td>
                                     <td>Valor do Produto</td>
                                     <td>Valor promocional</td>

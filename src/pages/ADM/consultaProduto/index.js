@@ -133,7 +133,7 @@ export default function ConsultaProduto()
                         <table>
                             <thead>
                                 <tr key="">
-                                    <td>Código de Barra</td>
+                                    <td>ID</td>
                                     <td>Nome do Produto</td>
                                     <td>QTD</td>
                                     <td>Novo/Usado</td>
