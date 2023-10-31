@@ -112,8 +112,6 @@ export default function Pesquisa()
         </div>
       </div>
 
-      <h1>Novidades</h1>
-
       <div className='s1'>
         <div className='filtro'>
           <h1>Filtrar</h1>
@@ -172,6 +170,9 @@ export default function Pesquisa()
           <a href="">Colecionáveis</a>
         </div>
         <div className='produtosInsta'>
+
+          <h1 className='titulo'>Novidades</h1>
+
           <div className='produtos'>
             <div className='cartoesProduto'>
               <CardProduto />
