@@ -123,6 +123,7 @@
                 border-spacing: 0;
                 border-collapse: collapse;
                 font-size: 16px;
+                font-weight: 500;
                 text-align: center;
             
                 width: calc(100% - 8px);
@@ -150,8 +151,6 @@
 
                 tbody
                 {
-                    font-weight: 400;
-
                     td
                     {
                         padding: 4px 8px;
@@ -170,7 +169,7 @@
                     }
 
                     .unchecked {
-                        background-color: rgba($color: #000000, $alpha: 0.5);
+                        background-color: rgba($color: #000000, $alpha: 0.4);
                     }
 
                     input {

@@ -6,6 +6,8 @@ import { TemaContext } from '../../../theme';
 import { buscarProdutos } from '../../../api/produtoAPI';
 import { toast } from 'react-toastify';
 import { valorEmReais } from '../../../api/funcoesGerais';
+import { adicionarCupom, adicionarProdutosCupom } from '../../../api/cupomAPI';
+import ToastCont from '../../../components/toastContainer';
 
 export default function CriarCupom() {
 
@@ -17,12 +19,19 @@ export default function CriarCupom() {
     const [dataExpiracao, setDataExpiracao] = useState('');
 
     const [listaProdutos, setListaProdutos] = useState([]);
+    const [prodSelecionados, setProdSelecionados] = useState([]);
     const [busca, setBusca] = useState('');
+
+    const [selecionarTudo, setSelecionarTudo] = useState(true);
 
     async function buscar() {
         try {
             let p = await buscarProdutos(busca);
-            console.log(p);
+
+            p = p.filter(function (produtoLista) {
+                return !prodSelecionados.find(produto => produto.id === produtoLista.id);
+            })
+
             setListaProdutos(p);
         } catch (error) {
             toast.error('Não foi possível carregar os produtos. Tente novamente mais tarde.')
@@ -31,10 +40,28 @@ export default function CriarCupom() {
 
     useEffect(() => {
         buscar();
-    }, [])
+    }, [prodSelecionados, busca])
 
     async function criarCupom() {
+        try {
+            let cupom = await adicionarCupom(codigo, porcentagem, dataExpiracao);
 
+            console.log(cupom);
+
+            await adicionarProdutosCupom(prodSelecionados, cupom.id);
+
+        } catch (error) {
+            console.log(error);
+            toast.error(error.response.data)
+        }
+    }
+
+    function handleSelecionarTudo() {
+        if(selecionarTudo) {
+            setProdSelecionados([...prodSelecionados, ...listaProdutos]);
+        } else {
+            setProdSelecionados([]);
+        }
     }
 
     return (
@@ -42,6 +69,7 @@ export default function CriarCupom() {
             <CabecalhoADM />
 
             <div className='main'>
+                <ToastCont />
                 <BarraLateral />
 
                 <div className='container-cupom'>
@@ -52,25 +80,25 @@ export default function CriarCupom() {
                     <div className='definir-cupom'>
                         <div>
                             <p>Definir Cupom:</p>
-                            <input type="text" placeholder='Inserir Código' />
+                            <input type="text" value={codigo} onChange={e => setCodigo(e.target.value)} placeholder='Inserir Código' />
                         </div>
                         <div>
-                            <input type="text" placeholder='Porcentagem de Desconto' />
+                            <input type="text" value={porcentagem} onChange={e => setPorcentagem(e.target.value)} placeholder='Porcentagem de Desconto' />
                         </div>
                         <div>
                             <p>Data de Expiração:</p>
-                            <input type="date" />
+                            <input type="date" value={dataExpiracao} onChange={e => setDataExpiracao(e.target.value)} />
                         </div>
                     </div>
 
                     <div className='pesquisa'>
                         <div className="busca">
                             <img src="/assets/images/icons/search.svg" alt="" />
-                            <input type="text" placeholder="Nome ou Código de Barra do Produto..." />
+                            <input type="text" value={busca} onChange={e => setBusca(e.target.value)} placeholder="Nome, categoria ou marca do produto" />
                         </div>
 
                         <div className='tudo'>
-                            <input type="checkbox" />
+                            <input type="checkbox" value={selecionarTudo} onChange={() => setSelecionarTudo(!selecionarTudo)} onClick={handleSelecionarTudo}/>
                             <p>Selecionar Tudo</p>
                         </div>
 
@@ -98,18 +126,30 @@ export default function CriarCupom() {
                                 </tr>
                             </thead>
                             <tbody>
-                                {listaProdutos.map(produto => 
+                                {prodSelecionados.map((produto, index) =>
                                     <tr key="">
                                         <td>{produto.id}</td>
                                         <td>{produto.nome}</td>
                                         <td>{valorEmReais(produto.preco)}</td>
                                         <td>
                                             <div>
-                                                <button>
-                                                    <img src="/assets/images/icons/adm/check.svg" alt="" />
-                                                </button>
-                                                <button>
+                                                <button onClick={() => setProdSelecionados(prodSelecionados.toSpliced(index, 1))}>
                                                     <img src="/assets/images/icons/adm/delete.svg" alt="" />
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                )}
+
+                                {listaProdutos.map(produto =>
+                                    <tr key="" className='unchecked'>
+                                        <td>{produto.id}</td>
+                                        <td>{produto.nome}</td>
+                                        <td>{valorEmReais(produto.preco)}</td>
+                                        <td>
+                                            <div>
+                                                <button onClick={() => setProdSelecionados([...prodSelecionados, produto])}>
+                                                    <img src="/assets/images/icons/adm/check.svg" alt="" />
                                                 </button>
                                             </div>
                                         </td>
@@ -120,7 +160,7 @@ export default function CriarCupom() {
                     </div>
 
                     <div className='salvar'>
-                        <button>Salvar Cupom</button>
+                        <button onClick={criarCupom}>Salvar Cupom</button>
                     </div>
                 </div>
             </div>
