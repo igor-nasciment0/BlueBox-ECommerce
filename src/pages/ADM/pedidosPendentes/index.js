@@ -1,10 +1,16 @@
+import { useContext } from 'react';
 import BarraLateral from '../../../components/ADM/barraLateral';
 import CabecalhoADM from '../../../components/ADM/cabecalho';
 import './index.scss';
+import { TemaContext } from '../../../theme';
 
 export default function PedidoPendente() {
+
+    const context = useContext(TemaContext);
+    let tema = context.tema;
+
     return (
-        <div className='pagina-pedido-pendente'>
+        <div className={'pagina-pedido-pendente ' + tema}>
             <CabecalhoADM />
 
             <div className='main'>
@@ -17,12 +23,7 @@ export default function PedidoPendente() {
                     <div className='aprovacao'>
                         <div className='produto'>
                             <div>
-                                <h6>Produto</h6>
-                                <p>God of War: Saga (3 Jogos) (Seminovo) - PS3</p>
-                            </div>
-                            <div>
-                                <h6>QTD.</h6>
-                                <p>1</p>
+                                <p>4 Produtos</p>
                             </div>
                             <div>
                                 <h6>Comprador</h6>
@@ -45,12 +46,7 @@ export default function PedidoPendente() {
                     <div className='preparo'>
                         <div className='produto'>
                             <div>
-                                <h6>Produto</h6>
-                                <p>God of War: Saga (3 Jogos) (Seminovo) - PS3</p>
-                            </div>
-                            <div>
-                                <h6>QTD.</h6>
-                                <p>1</p>
+                                <p>4 Produtos</p>
                             </div>
                             <div>
                                 <h6>Comprador</h6>
@@ -69,12 +65,7 @@ export default function PedidoPendente() {
                     <div className='caminho'>
                         <div className='produto'>
                             <div>
-                                <h6>Produto</h6>
-                                <p>God of War: Saga (3 Jogos) (Seminovo) - PS3</p>
-                            </div>
-                            <div>
-                                <h6>QTD.</h6>
-                                <p>1</p>
+                                <p>4 Produtos</p>
                             </div>
                             <div>
                                 <h6>Comprador</h6>

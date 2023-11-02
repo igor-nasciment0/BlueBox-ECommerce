@@ -2,10 +2,16 @@ import BarraLateral from "../../../components/ADM/barraLateral";
 import CabecalhoADM from "../../../components/ADM/cabecalho";
 import "./index.scss";
 import Graficobarra from "../../../components/graficos";
+import { useContext } from "react";
+import { TemaContext } from "../../../theme";
 
 export default function Graficoreceita() {
+
+  const context = useContext(TemaContext);
+  let tema = context.tema;
+
   return (
-    <div className="grafico-receita">
+    <div className={"grafico-receita " + tema}>
       <CabecalhoADM />
       <main>
         <BarraLateral />

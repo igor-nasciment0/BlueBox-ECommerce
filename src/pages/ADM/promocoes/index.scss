@@ -217,12 +217,8 @@
     }
 
 @media (max-width: 860px) {
-    .barra-lateral {
-        max-width: 180px;
-    }
-    
     .input {
-        max-width: 300px!important;
+        max-width: 600px!important;
     }
 
     .filtros {
@@ -250,12 +246,12 @@
 @media (max-width: 810px) {
     .filtros {
         align-self: center!important;
-        max-width: 300px;
+        max-width: 400px;
     }
 
     .container-tabela {
         > table {
-            font-size: 10px!important;
+            font-size: 12px!important;
         }
     }
 
