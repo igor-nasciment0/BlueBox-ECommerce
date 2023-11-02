@@ -19,12 +19,14 @@ export default function ConsultaProduto()
 
     const [listaProdutos, setListaProdutos] = useState([]);
     const [busca, setBusca] = useState('');
+    const [filtro, setFiltro] = useState('');
+    const [ordem, setOrdem] = useState('');
 
     const navigate = useNavigate();
 
     async function buscar() {
         try {
-            let produtos = await buscarProdutos(busca);
+            let produtos = await buscarProdutos(busca, ordem, filtro);
             setListaProdutos(produtos);   
         } catch (error) {
             console.log(error.message);
@@ -91,7 +93,7 @@ export default function ConsultaProduto()
         () => {
             buscar()
         },
-        [busca]
+        [busca, ordem, filtro]
     );
 
     return(
@@ -116,16 +118,21 @@ export default function ConsultaProduto()
                 <div className="container-consulta">
                     <div className="input">
                         <img src="/assets/images/icons/search.svg" alt="" />
-                        <input type="text" placeholder="Nome, Categoria, ou Marca do Produto" onChange={(e) => setBusca(e.target.value)}/>
+                        <input type="text" placeholder="Nome, Categoria, ou Marca do Produto" value={busca} onChange={(e) => setBusca(e.target.value)}/>
                     </div>
 
                     <div className="filtros">
-                        <select>
+                        <select value={filtro} onChange={e => setFiltro(e.target.value)}>
                             <option value="0" key="">Filtrar</option>
+                            <option value="promocao" key="">Produtos em promoção</option>
                         </select>
 
-                        <select>
+                        <select value={ordem} onChange={e => setOrdem(e.target.value)}>
                             <option value="" key="">Ordenar por</option>
+                            <option value="alfabetico" key="">A-Z</option>
+                            <option value="preco_asc" key="">Preço (crescente)</option>
+                            <option value="preco_desc" key="">Preço (decrescente)</option>
+                            <option value="data" key="">Data de cadastro</option>
                         </select>
                     </div>
                     

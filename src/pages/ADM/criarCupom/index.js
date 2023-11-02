@@ -21,12 +21,14 @@ export default function CriarCupom() {
     const [listaProdutos, setListaProdutos] = useState([]);
     const [prodSelecionados, setProdSelecionados] = useState([]);
     const [busca, setBusca] = useState('');
+    const [filtro, setFiltro] = useState('');
+    const [ordem, setOrdem] = useState('');
 
     const [selecionarTudo, setSelecionarTudo] = useState(true);
 
     async function buscar() {
         try {
-            let p = await buscarProdutos(busca);
+            let p = await buscarProdutos(busca, ordem, filtro);
 
             p = p.filter(function (produtoLista) {
                 return !prodSelecionados.find(produto => produto.id === produtoLista.id);
@@ -40,7 +42,7 @@ export default function CriarCupom() {
 
     useEffect(() => {
         buscar();
-    }, [prodSelecionados, busca])
+    }, [prodSelecionados, busca, ordem, filtro])
 
     async function criarCupom() {
         try {
@@ -102,15 +104,20 @@ export default function CriarCupom() {
                             <p>Selecionar Tudo</p>
                         </div>
 
-                        <div className='filtrar'>
-                            <select>
-                                <option value="0">Filtrar</option>
+                        <div>
+                            <select className='filtrar' value={filtro} onChange={e => setFiltro(e.target.value)}>
+                                <option value="0" key="">Filtrar</option>
+                                <option value="promocao" key="">Produtos em promoção</option>
                             </select>
                         </div>
 
-                        <div className="ordenar">
-                            <select>
-                                <option value="0">Ordenar por: A a Z</option>
+                        <div>
+                            <select className="ordenar" value={ordem} onChange={e => setOrdem(e.target.value)}>
+                                <option value="" key="">Ordenar por</option>
+                                <option value="alfabetico" key="">A-Z</option>
+                                <option value="preco_asc" key="">Preço (crescente)</option>
+                                <option value="preco_desc" key="">Preço (decrescente)</option>
+                                <option value="data" key="">Data de cadastro</option>
                             </select>
                         </div>
                     </div>

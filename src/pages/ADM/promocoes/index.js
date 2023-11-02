@@ -17,11 +17,13 @@ export default function Promocoes()
     let tema = context.tema;
 
     const [listaProdutos, setListaProdutos] = useState([]);
+
     const [busca, setBusca] = useState('');
+    const [ordem, setOrdem] = useState('');
 
     async function buscar() {
         try {
-            let produtos = await buscarProdutos(busca);
+            let produtos = await buscarProdutos(busca, ordem);
 
             produtos.sort((produto, produto2) => {
                 if(produto.promocao && !produto2.promocao)
@@ -92,16 +94,16 @@ export default function Promocoes()
                 <div className="container-consulta">
                     <div className="input">
                         <img src="/assets/images/icons/search.svg" alt="" />
-                        <input type="text" placeholder="Nome, Categoria, ou Marca do Produto" onChange={(e) => setBusca(e.target.value)}/>
+                        <input type="text" placeholder="Nome, Categoria, ou Marca do Produto" value={busca} onChange={(e) => setBusca(e.target.value)}/>
                     </div>
 
                     <div className="filtros">
-                        <select>
-                            <option value="0" key="">Filtrar</option>
-                        </select>
-
-                        <select>
-                            <option value="0" key="">Ordenar por</option>
+                        <select value={ordem} onChange={e => setOrdem(e.target.value)}>
+                            <option value="" key="">Ordenar por</option>
+                            <option value="alfabetico" key="">A-Z</option>
+                            <option value="preco_asc" key="">Preço (crescente)</option>
+                            <option value="preco_desc" key="">Preço (decrescente)</option>
+                            <option value="data" key="">Data de cadastro</option>
                         </select>
                     </div>
                     
