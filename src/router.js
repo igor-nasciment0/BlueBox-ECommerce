@@ -30,7 +30,6 @@ import Telacartao from './pages/Tela_dados_cartão';
 import Graficovendas from './pages/ADM/graficoVendas';
 import NotFound from './pages/404';
 
-
 export default function Router() {
 
     let temaSistema = window.matchMedia('(prefers-color-scheme: light)');

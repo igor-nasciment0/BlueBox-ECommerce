@@ -10,9 +10,12 @@ import { useContext, useEffect, useState } from 'react';
 import { TemaContext } from '../../theme';
 import { buscarProdutos } from '../../api/produtoAPI';
 
-export default function Landpage()
-{
-    let context = useContext(TemaContext); 
+import { CarouselProvider, Slider, Slide, ButtonBack, ButtonNext } from 'pure-react-carousel';
+import 'pure-react-carousel/dist/react-carousel.es.css';
+import { useMediaQuery } from '@mui/material';
+
+export default function Landpage() {
+    let context = useContext(TemaContext);
     let tema = context.tema;
 
     const [destaques, setDestaques] = useState([]);
@@ -32,9 +35,9 @@ export default function Landpage()
         buscarDestaques();
     }, []);
 
-    return(
-        <div className={"pagina-landpage " + tema}>    
-            <Cabecalho/>
+    return (
+        <div className={"pagina-landpage " + tema}>
+            <Cabecalho />
             <FaixaCategorias />
 
             <main>
@@ -60,40 +63,40 @@ export default function Landpage()
                                             <h4>Em todos os produtos da loja</h4>
                                         </div>
                                     </div>
-                                    
+
                                     <div className='ben-baixo'>
                                         <div>
                                             <img src='/assets/images/icons/box.svg' alt="Pacote entregue" />
-                                            <h3>Seu produto em<br/>bom estado</h3>
+                                            <h3>Seu produto em<br />bom estado</h3>
                                             <h4>Ou seu dinheiro de volta</h4>
                                         </div>
-                                    </div>                            
+                                    </div>
                                 </div>
                             </div>
-                        </div>    
-                    </div>     
+                        </div>
+                    </div>
                 </section>
 
                 <section className='sec02-cards'>
                     <div className='container-cards'>
                         <div className='card-mk'>
                             <div className='card-text'>
-                                <h2>Aproveite<br/>nossos<br/>descontos</h2>
+                                <h2>Aproveite<br />nossos<br />descontos</h2>
                                 <Link to={'/'}>Confira</Link>
-                            </div>               
+                            </div>
                         </div>
 
                         <div className='card-fifa'>
                             <div className='card-text'>
-                                <h2>Faça login e <br/> descubra a <br/> BlueBox</h2>
-                                <Link to={'/login'}>Entrar</Link>                            
+                                <h2>Faça login e <br /> descubra a <br /> BlueBox</h2>
+                                <Link to={'/login'}>Entrar</Link>
                             </div>
                         </div>
 
                         <div className='card-doll'>
                             <div className='card-text'>
-                                <h2>Descubra mais<br/>sobre nós!</h2>
-                                <AnchorLink offset='100' href='#sobre'>Saiba mais</AnchorLink>                            
+                                <h2>Descubra mais<br />sobre nós!</h2>
+                                <AnchorLink offset='100' href='#sobre'>Saiba mais</AnchorLink>
                             </div>
                         </div>
                     </div>
@@ -104,14 +107,41 @@ export default function Landpage()
 
                     <div className='container-produtos'>
                         <div>
-                            <CardProduto infoProduto={destaques[0]}/>
-                            <CardProduto infoProduto={destaques[1]}/>
-                        </div>
+                            <CarouselProvider naturalSlideWidth={280} naturalSlideHeight={530}
+                                totalSlides={4}
+                                visibleSlides={useMediaQuery('(max-width: 900px)') ? 2 : 4}>
+                                <Slider>
+                                    <Slide>
+                                        <div className='container-produto'>
+                                            <CardProduto infoProduto={destaques[0]} />
+                                        </div>
+                                    </Slide>
 
-                        <div>
-                            <CardProduto infoProduto={destaques[2]}/>
-                            <CardProduto infoProduto={destaques[3]}/>
-                        </div>
+                                    <Slide>
+                                        <div className='container-produto'>
+                                            <CardProduto infoProduto={destaques[0]} />
+                                        </div>
+                                    </Slide>
+
+                                    <Slide>
+                                        <div className='container-produto'>
+                                            <CardProduto infoProduto={destaques[0]} />
+                                        </div>
+                                    </Slide>
+
+                                    <Slide>
+                                        <div className='container-produto'>
+                                            <CardProduto infoProduto={destaques[0]} />
+                                        </div>
+                                    </Slide>
+                                </Slider>
+
+                                <div className='botoes'>
+                                    <ButtonBack><img src="/assets/images/icons/arrow-left.svg" alt="" /></ButtonBack>
+                                    <ButtonNext><img src="/assets/images/icons/arrow-right.svg" alt="" /></ButtonNext>
+                                </div>
+                            </CarouselProvider>
+                        </div>                    
                     </div>
                 </section>
 
@@ -124,7 +154,7 @@ export default function Landpage()
                     <div className='pac-img-container'>
                         <img src='/assets/images/backgrounds/pac-man.png' alt="Fundo Pac-Man" />
                     </div>
-                    
+
                     <div className='pac-text'>
                         <h2>Sente falta dos velhos tempos?</h2>
                         <p>Na BlueBox, você encontra jogos antigos e raros em bom estado para poder reviver as boas memórias sem preocupações. :)</p>
@@ -133,7 +163,7 @@ export default function Landpage()
 
                 <section className='sec06-sobre' id='sobre'>
                     <h1>Sobre nós</h1>
-                    <img src='/assets/images/logo.svg' alt="Logo da BlueBox"/>
+                    <img src='/assets/images/logo.svg' alt="Logo da BlueBox" />
 
                     <div>
                         <p>Conheça a BlueBox: uma plataforma pioneira de jogos usados. Fundada por entusiastas apaixonados por games, a BlueBox oferece uma seleção diversificada de jogos usados de alta qualidade a preços acessíveis.</p>
@@ -142,9 +172,9 @@ export default function Landpage()
                         <p>Junte-se à BlueBox e descubra uma maneira acessível, confiável e sustentável de desfrutar dos seus jogos favoritos.</p>
                     </div>
                 </section>
-            </main>       
+            </main>
 
-            <Rodape/>
+            <Rodape />
         </div>
     )
 }
