@@ -1129,8 +1129,10 @@
             } 
 
             .avaliacao-geral {
-                span {
+                > span {
                     width: 180px;
+                    display: flex;
+                    justify-content: center;
                 }
 
                 h2 {
