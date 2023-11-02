@@ -97,12 +97,12 @@ export default function TelaCadastro(){
                             <button className="Log-wit-google"> <img src="/assets/images/google.png" alt="" /> <span>Entrar com o Google</span></button>
                         </div>
                     </section>
-                </main>
 
-                <div className="google-cadastro-resp">
-                      <h1>Cadastre-se com Google</h1>
-                      <button className="Sing-wit-google-resp"> <img src="/assets/images/google.png" alt="" /> <span>Entrar com o Google</span></button>
+                    <div className="google-cadastro-resp">
+                        <h1>Cadastre-se com Google</h1>
+                        <button className="Sing-wit-google-resp"> <img src="/assets/images/google.png" alt="" /> <span>Entrar com o Google</span></button>
                     </div>
+                </main>
             </div>
             <Rodape/>
         </div>
