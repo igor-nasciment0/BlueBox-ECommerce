@@ -51,7 +51,7 @@
                 margin-bottom: 40px;
                 overflow-y: scroll;
 
-                .produto {
+                .pedido {
                     display: flex;
                     flex-direction: row;
                     align-items: center;
@@ -94,17 +94,30 @@
 
                     >button {
                         border-radius: 10px;
-                        background: var(--azul-textos, #1C84FF);
+                        text-transform: uppercase;
                         border: none;
                         color: #FFF;
-                        height: 30px;
                         width: 100%;
                         max-width: 100px;
                         font-size: 14px;
-                        font-weight: 500;
+                        font-weight: 700;
                         cursor: pointer;
+
+                        padding: 8px 10px;
                     }
                 }
+            }
+
+            .aprovacao .pedido button {
+                background-color: var(--azul-marca);
+            }
+
+            .preparo .pedido button {
+                background-color: var(--azul-claro);
+            }
+
+            .caminho .pedido button {
+                background-color: var(--verde-claro);
             }
 
             .aprovacao::-webkit-scrollbar, .preparo::-webkit-scrollbar, .caminho::-webkit-scrollbar {
