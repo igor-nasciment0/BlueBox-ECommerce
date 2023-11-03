@@ -285,7 +285,7 @@ export default function Produto() {
     arrayProvisorio[imgIndex] = imagemPrincipal;
     setImagensSecundarias(arrayProvisorio);
   }
-
+ n
   const navigate = useNavigate();
 
   const toComponentB = () => {
@@ -453,7 +453,7 @@ export default function Produto() {
               )}
 
               <button className="btn-comprar" onClick={() => { toComponentB() }}>Comprar agora</button>
-              <button className="btn-carrinho">Adicionar ao carrinho</button>
+              <button className="btn-carrinho" onClick={adicionarCarrinho}>Adicionar ao carrinho</button>
             </div>
           </section>
 
