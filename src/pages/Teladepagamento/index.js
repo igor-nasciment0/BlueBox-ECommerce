@@ -6,10 +6,8 @@ import "./index.scss";
 import Produto from "../produto";
 
 export default function TeladePagamento({produto}) {
-  
-  const location = useLocation();
 
-  const valorDesc = (location.state.valor * 15) / (100).toFixed(2);
+  const location = useLocation();
 
   return (
     <div className="teladePagamento">
