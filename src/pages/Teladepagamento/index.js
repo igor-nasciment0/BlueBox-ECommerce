@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import "./index.scss";
 import Produto from "../produto";
 
-export default function TeladePagamento() {
+export default function TeladePagamento({produto}) {
   const location = useLocation();
 
   const valorDesc = (location.state.valor * 15) / (100).toFixed(2);
@@ -21,7 +21,7 @@ export default function TeladePagamento() {
 
               <div className="produtos">
                 <div className="especs-pedido">
-                  <img src={Produto.foto} alt="" />
+                  <img src={produto.foto} alt="" />
                   <p>{location.state.nome}</p>
                   <div>
                     <p>Qtd</p>
