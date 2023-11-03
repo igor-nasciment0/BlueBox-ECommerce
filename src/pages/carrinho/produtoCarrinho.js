@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import { valorEmReais } from "../../api/funcoesGerais";
 import { mostrarUrlImagem } from "../../api/produtoAPI";
+import { useNavigate } from "react-router-dom";
 
 export default function ProdutoCarrinho({ produto, resetar }) {
 
@@ -29,6 +30,14 @@ export default function ProdutoCarrinho({ produto, resetar }) {
         }
     }, [])
 
+    const navigate = useNavigate();
+
+    const toComponentB = () => {
+      navigate("/pagamento", {
+        state: { nome: produto.nome, valor: produto.preco, imagem: produto.imagem.url},
+      });
+    };
+
     return (
         <div className='produto-container'>
             <div className='produto'>
@@ -51,7 +60,7 @@ export default function ProdutoCarrinho({ produto, resetar }) {
                             </div>
                         </div>
 
-                        <button>Excluir</button>
+                        <button  onClick={()=>{toComponentB()}}>Excluir</button>
                         <a href="">Ver semelhantes</a>
 
                         <div className='preco-mobile'>{valorEmReais(produto.preco)}</div>

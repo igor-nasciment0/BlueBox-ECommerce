@@ -21,7 +21,7 @@ export default function TeladePagamento({produto}) {
 
               <div className="produtos">
                 <div className="especs-pedido">
-                  <img src={produto.foto} alt="" />
+                  
                   <p>{location.state.nome}</p>
                   <div>
                     <p>Qtd</p>

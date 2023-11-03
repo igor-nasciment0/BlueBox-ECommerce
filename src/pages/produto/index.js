@@ -85,11 +85,11 @@ export default function Produto() {
   async function buscarProduto() {
     try {
       let p = await buscarProdutoPorID(idProduto);
-      
-      if(!p.id) {
-        navigate('/404');
+
+      if (!p.id) {
+        navigate("/404");
       }
-      
+
       setProduto(p);
 
       let arrayProvisorio = [];
@@ -184,8 +184,8 @@ export default function Produto() {
 
   async function handleLike(avaliacao) {
     try {
-      if (!get('user-login'))
-        throw new Error('É preciso estar logado para deixar o like!')
+      if (!get("user-login"))
+        throw new Error("É preciso estar logado para deixar o like!");
 
       if (avaliacao.deuLike) {
         await tirarLike(idCliente, avaliacao.id);
@@ -202,8 +202,7 @@ export default function Produto() {
 
   async function simular() {
     try {
-      if(cep.length !== 9) 
-        throw new Error('CEP inválido')
+      if (cep.length !== 9) throw new Error("CEP inválido");
 
       setCarregando(true);
 
@@ -247,13 +246,13 @@ export default function Produto() {
   }
 
   function adicionarCarrinho() {
-    let arrayCarrinho = get('carrinho');
+    let arrayCarrinho = get("carrinho");
 
     arrayCarrinho.push(produto);
 
-    set('carrinho', arrayCarrinho);
+    set("carrinho", arrayCarrinho);
 
-    toast.success('Produto adicionado ao carrinho.')
+    toast.success("Produto adicionado ao carrinho.");
   }
 
   useEffect(() => {
@@ -285,12 +284,8 @@ export default function Produto() {
     arrayProvisorio[imgIndex] = imagemPrincipal;
     setImagensSecundarias(arrayProvisorio);
   }
- 
-  const navigate = useNavigate();
 
-  const toComponentB = () => {
-    navigate('/pagamento', { state: { nome: produto.nome, valor: produto.preco, } });
-  }
+  const navigate = useNavigate();
 
   return (
     <div className={"pagina-produto " + tema}>
@@ -407,7 +402,10 @@ export default function Produto() {
                 </div>
               </div>
 
-              <div className="carregando" style={{display: !carregando && 'none'}}>
+              <div
+                className="carregando"
+                style={{ display: !carregando && "none" }}
+              >
                 <img src="/assets/images/BeanEater.gif" alt="Carregando..." />
               </div>
 
@@ -452,8 +450,14 @@ export default function Produto() {
                 </div>
               )}
 
-              <button className="btn-comprar" onClick={() => { toComponentB() }}>Comprar agora</button>
-              <button className="btn-carrinho" onClick={adicionarCarrinho}>Adicionar ao carrinho</button>
+              <button
+                className="btn-comprar"
+              >
+                Comprar agora
+              </button>
+              <button className="btn-carrinho" onClick={adicionarCarrinho}>
+                Adicionar ao carrinho
+              </button>
             </div>
           </section>
 
