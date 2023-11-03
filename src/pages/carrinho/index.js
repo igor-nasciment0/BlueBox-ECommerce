@@ -13,7 +13,7 @@ import ProdutoCarrinho from "./produtoCarrinho";
 import { valorEmReais } from "../../api/funcoesGerais";
 import { useNavigate } from "react-router-dom";
 
-export default function Carrinho() {
+export default function Carrinho(props) {
   const context = useContext(TemaContext);
   let tema = context.tema;
 
