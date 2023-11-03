@@ -285,7 +285,7 @@ export default function Produto() {
     arrayProvisorio[imgIndex] = imagemPrincipal;
     setImagensSecundarias(arrayProvisorio);
   }
- n
+ 
   const navigate = useNavigate();
 
   const toComponentB = () => {
