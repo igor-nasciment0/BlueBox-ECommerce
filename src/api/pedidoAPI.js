@@ -16,13 +16,13 @@ export async function avancarEstadoPedido(idEstado, idPedido) {
     let url;
 
     switch (idEstado) {
-        case '1':
+        case 1:
             url = `/pedido/${idPedido}/aprovar`;
             break;
-        case '2':
+        case 2:
             url = `/pedido/${idPedido}/saiu`;
             break;
-        case '3':
+        case 3:
             url = `/pedido/${idPedido}/concluir`;
             break;  
         default:

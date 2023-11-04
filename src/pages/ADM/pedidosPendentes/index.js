@@ -7,6 +7,7 @@ import { avancarEstadoPedido, buscarPedidoPorEstado, buscarProdutosPedido } from
 import ToastCont from '../../../components/toastContainer';
 import { toast } from 'react-toastify';
 import { formatarData } from '../../../api/funcoesGerais';
+import { PedidoAguardando, PedidoCaminho, PedidoPreparo } from './pedidos';
 
 export default function PedidoPendente() {
 
@@ -23,6 +24,10 @@ export default function PedidoPendente() {
             let emPreparo = await buscarPedidoPorEstado('2');
             let aCaminho = await buscarPedidoPorEstado('3');
 
+            aprov.forEach(pedido => pedido.produtos = []);
+            emPreparo.forEach(pedido => pedido.produtos = []);
+            aCaminho.forEach(pedido => pedido.produtos = []);
+
             setAprovacao(aprov);
             setPreparo(emPreparo);
             setEmEntrega(aCaminho);
@@ -37,42 +42,9 @@ export default function PedidoPendente() {
         }
     }
 
-    async function buscarProdutos(pedido) {
-        try {
-            let produtos = await buscarProdutosPedido(pedido.id);
-
-            pedido.produtos = produtos;
-
-        } catch (error) {
-            console.log(error);
-        }
-    }
-
-    async function avancarEstado(pedido) {
-        try {
-            await avancarEstadoPedido(pedido.idEstado, pedido.id);
-
-            toast.success('Sucesso!')
-
-            setTimeout(() => window.location.reload(), 3000);
-            
-        } catch (error) {
-            if(error.response) 
-                toast.error(error.response.data)
-            else
-                toast.error(error.message)
-        }
-    }
-
     useEffect(() => {
         buscarPedidos();
     }, []);
-
-    useEffect(() => {
-        aprovacao.forEach(pedido => buscarProdutos(pedido));
-        preparo.forEach(pedido => buscarProdutos(pedido));
-        emEntrega.forEach(pedido => buscarProdutos(pedido));
-    }, [aprovacao, preparo, emEntrega]);
 
     return (
         <div className={'pagina-pedido-pendente ' + tema}>
@@ -108,25 +80,7 @@ export default function PedidoPendente() {
                         </div>
 
                         {aprovacao.map(pedido =>
-                            <div className='pedido'>
-                                <div>
-                                    <p>{pedido.produtos.length} Produtos</p>
-                                </div>
-                                <div>
-                                    <h6>Comprador</h6>
-                                    <p>{pedido.nomeCliente + ' ' + pedido.sobreNomeCliente}</p>
-                                </div>
-                                <div>
-                                    <h6>Data de Pagamento</h6>
-                                    <p>{formatarData(pedido.dataCompra)}</p>
-                                </div>
-                                <div>
-                                    <h6>Método</h6>
-                                    <p>{pedido.tipoPagamento}</p>
-                                </div>
-                                <img src="/assets/images/icons/adm/BotãoOlhar.svg" alt='Ver detalhes' />
-                                <button onClick={() => avancarEstado(pedido)}>Aprovar</button>
-                            </div>
+                            <PedidoAguardando pedido={pedido}/>
                         )}
                     </div>
 
@@ -149,21 +103,7 @@ export default function PedidoPendente() {
                         </div>
 
                         {preparo.map(pedido =>
-                            <div className='pedido'>
-                                <div>
-                                    <p>{pedido.produtos.length} Produtos</p>
-                                </div>
-                                <div>
-                                    <h6>Comprador</h6>
-                                    <p>{pedido.nomeCliente + ' ' + pedido.sobreNomeCliente}</p>
-                                </div>
-                                <div>
-                                    <h6>Aprovação do Pgt.</h6>
-                                    <p>{formatarData(pedido.dataAprovacao)}</p>
-                                </div>
-                                <img src="/assets/images/icons/adm/BotãoOlhar.svg" alt='Ver detalhes' />
-                                <button onClick={() => avancarEstado(pedido)}>Pronto</button>
-                            </div>
+                            <PedidoPreparo pedido={pedido}/>
                         )}
                     </div>
 
@@ -186,21 +126,7 @@ export default function PedidoPendente() {
                         </div>
 
                         {emEntrega.map(pedido =>
-                            <div className='pedido'>
-                                <div>
-                                    <p>{pedido.produtos.length} Produtos</p>
-                                </div>
-                                <div>
-                                    <h6>Comprador</h6>
-                                    <p>{pedido.nomeCliente + ' ' + pedido.sobreNomeCliente}</p>
-                                </div>
-                                <div>
-                                    <h6>Saiu Para Entrega</h6>
-                                    <p>{formatarData(pedido.dataSaida)}</p>
-                                </div>
-                                <img src="/assets/images/icons/adm/BotãoOlhar.svg" alt='Ver detalhes'/>
-                                <button onClick={() => avancarEstado(pedido)}>Concluir <br/> pedido</button>
-                            </div>
+                            <PedidoCaminho pedido={pedido}/>
                         )}
                     </div>
                 </div>
