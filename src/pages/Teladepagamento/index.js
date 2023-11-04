@@ -69,7 +69,7 @@ export default function TeladePagamento({produto}) {
                 </div>
                 <div>
                   <p className="pix">Pix</p>
-                  <p className="pix">{valorDesc}</p>
+                  <p className="pix">{}</p>
                 </div>
 
                 <p>Até 15% de desconto no pix</p>
