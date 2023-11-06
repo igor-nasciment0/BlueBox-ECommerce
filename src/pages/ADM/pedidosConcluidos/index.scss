@@ -1,71 +1,70 @@
 .pagina-pedidos-concluidos {
-    background-color: #EBEBEB;
+    
+    background-color: var(--fundo-tela);
+    color: rgb(var(--cor-textos));
+
+    transition: 0.3s; 
+
+    * {
+        transition: 0.1s;
+    }
+
+    min-height: 100vh;
 
     .s1 {
         display: flex;
         flex-direction: row;
-
-        .barra-lateral {
-            height: 817px;
-        }
         
         .conteudo {
             display: flex;
             flex-direction: column;
             align-items: center;
             width: 100%;
-            padding: 50px 0px;
+            padding: 30px 20px;
 
             > h1 {
-                margin-bottom: 20px;
+                margin-bottom: 10px;
                 font-weight: 500;
                 font-size: 26px;
+
+                @media (max-width: 900px) {
+                    font-size: 22px;
+                }
             }
 
             .ordenar {
-                display: flex;
-                flex-direction: row;
-                align-items: center;
-                justify-content: flex-end;
-                height: 20px;
-                width: 100%;
-                max-width: 950px;
-                margin-bottom: 10px;
-                
-                > div {
-                    display: flex;
-                    flex-direction: row;
-                    align-items: center;
-                    justify-content: center;
-                    background-color: #fff;
-                    border-radius: 8px;
-                    padding: 6px;
-                    box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.25);
 
-                    > img {
-                        margin-left: 10px;
-                        height: 14px;
-                        width: auto;
-                    }
+                align-self: flex-end;
+                margin-bottom: 20px;
+
+                select
+                {
+                    border: none;
+                    border-radius: 100px;
+                    box-shadow: 0 4px 4px 0 rgba($color: #000000, $alpha: 0.25);
+
+                    width: 100%;
+                    max-width: 300px;
+                    padding: 5px;
+                    padding-left: 12px;
                 }
             }
 
             .pedidos-concluidos {
                 display: flex;
                 flex-direction: column;
+                gap: 10px;
+
                 padding: 20px;
-                height: 100%;
                 max-height: 500px;
                 width: 100%;
                 max-width: 950px;
                 border-radius: 10px;
-                background-color: #fff;
+                background-color: var(--fundo-componentes);
                 margin-bottom: 10px;
                 white-space: nowrap;
                 overflow-y: auto;
                 padding-right: 10px;
-                
-
 
                 .pedidos {
                     display: flex;
@@ -73,8 +72,7 @@
                     align-items: center;
                     justify-content: space-between;
                     padding: 20px 30px;
-                    background-color: #EBEBEB;
-                    margin-bottom: 10px;
+                    background-color: var(--fundo-componentes2);
                     border: 1px solid rgba(0, 0, 0, 0.20);
                     box-shadow: 0px 0px 2px 0px rgba(0, 0, 0, 0.25);
 
@@ -83,6 +81,13 @@
                         flex-direction: column;
                         align-items: center;
                         justify-content: center;
+                        max-width: 120px;
+                        text-align: center;
+
+                        * {
+                            width: 100%;
+                            text-wrap: wrap;
+                        }
                     
                         > p {
                             margin-bottom: 6px;
@@ -92,6 +97,16 @@
                         > h6 {
                             font-size: 12px;
                         }
+                    }
+
+                    > .check {
+                        width: 30px;
+                        height: 30px;
+                    }
+
+                    > .olhar {
+                        width: 35px;
+                        height: 35px;
                     }
                 }
             }
@@ -106,7 +121,8 @@
             }
 
             .pedidos-concluidos::-webkit-scrollbar-track {
-                background: #EBEBEB;
+                background: rgba(var(--cor-textos), 0.3);
+                border-radius: 10px;
             }
 
             .tudo {

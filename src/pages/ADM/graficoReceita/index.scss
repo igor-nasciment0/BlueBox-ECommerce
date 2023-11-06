@@ -7,13 +7,18 @@
   background-color: var(--fundo-tela);
   color: rgb(var(--cor-textos));
 
+  transition: 0.3s; 
+
+  * {
+      transition: 0.1s;
+  }
+
   main {
     display: flex;
     flex-direction: row;
     height: 100%;
     width: 100%;
     flex-grow: 1;
-    background-color: #ebebeb;
 
     .info-geral {
       padding: 16px;

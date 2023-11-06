@@ -3,113 +3,138 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    height: 100%;
 
-    padding: 28px;
-    background-color: var(--azul-escuro);
-    color: #FFF;
+        padding: 28px;
+        background-color: var(--azul-escuro);
+        color: #FFF;
 
-    .user-info
-    {
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        gap: 10px;
-
-        padding-left: 5px;
-        margin-bottom: 25px;
-
-        img
-        {
-            width: 60px;
-            height: 60px;
-        }
-
-        div
-        {
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-
-            h2
-            {
-                font-size: 16px;
-                font-weight: 600;
-            }
-
-            h3
-            {
-                font-size: 12px;
-                font-weight: 600;
-                color: rgba($color: #A5ABCB, $alpha: 0.65);
-            }
-        }
-    }
-
-    > hr
-    {
-        width: 100%;
-        border: 1px solid #FFF;
-        margin-bottom: 23px;
-    }
-
-    > h2
-    {
-        font-size: 16px;
-        font-weight: 500;
-        margin-bottom: 35px;
-    }
-
-    > nav
-    {
-        display: flex;
-        flex-direction: column;
-        gap: 20px;
-
-        > a
+        .user-info
         {
             display: flex;
             flex-direction: row;
             align-items: center;
+            gap: 10px;
 
-            text-decoration: none;
-            padding: 0 3px;
+            padding-left: 5px;
+            margin-bottom: 25px;
 
-            > img
-            {
-                width: 16px;
-                height: 16px;
-                color: #FFF;
-            }
-        }
-
-        .icone
-        {
-            width: 40px;
-            height: 40px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-
-            margin-right: 12px;
-        
             img
             {
-                width: 100%;
-                height: 100%;
-                color: #ACACAC;
+                width: 60px;
+                height: 60px;
+            }
+
+            div
+            {
+                display: flex;
+                flex-direction: column;
+                gap: 8px;
+
+                h2
+                {
+                    font-size: 16px;
+                    font-weight: 600;
+                }
+
+                h3
+                {
+                    font-size: 12px;
+                    font-weight: 600;
+                    color: rgba($color: #A5ABCB, $alpha: 0.65);
+                }
             }
         }
 
-        h3
+        > hr
         {
             width: 100%;
-            text-decoration: none;
-
-            font-size: 16px;
-            color: #ACACAC;
-            font-weight: 600;
+            border: 1px solid #FFF;
+            margin-bottom: 23px;
         }
-    }
+
+        > h2
+        {
+            font-size: 16px;
+            font-weight: 500;
+            margin-bottom: 35px;
+        }
+
+        > nav
+        {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+
+            > a
+            {
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+
+                text-decoration: none;
+                padding: 0 3px;
+
+                > img
+                {
+                    width: 16px;
+                    height: 16px;
+                    color: #FFF;
+                }
+            }
+
+            .icone
+            {
+                width: 40px;
+                height: 40px;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+
+                margin-right: 12px;
+            
+                img
+                {
+                    width: 100%;
+                    height: 100%;
+                    color: #ACACAC;
+                }
+            }
+
+            h3
+            {
+                width: 100%;
+                text-decoration: none;
+
+                font-size: 16px;
+                color: #ACACAC;
+                font-weight: 600;
+            }
+        }
+
+        .mobile-sair {
+            display: none;
+        }
+
+        @media (max-width: 1024px) {
+            position: sticky;
+            height: 100%;
+            max-width: 320px;
+            overflow-y: scroll;
+
+            .mobile-sair {
+                display: inline-block;
+                background: none;
+                border: none;
+                margin-top: 25px;
+
+                img {
+                    width: 20px;
+                    height: 20px;
+                    box-shadow: rgba($color: #A5ABCB, $alpha: 0.65);
+                }
+            }
+        }
+    }    
 }
+

@@ -56,6 +56,11 @@
     align-self: center;
     padding: 12px;
     font-family: 'montserrat';
+
+
+    @media (max-width: 430px) {
+        font-size: 22px;
+    }
 }
 
 .Dados-Container input{
@@ -219,7 +224,7 @@
 
 @media (max-width: 430px) {
     .Dados-Container {
-        max-width: 3000px;
+        padding: 30px 20px;
 
         > input {
             width: 250px;

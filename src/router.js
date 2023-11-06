@@ -30,7 +30,6 @@ import Telacartao from './pages/Tela_dados_cartão';
 import Graficovendas from './pages/ADM/graficoVendas';
 import NotFound from './pages/404';
 
-
 export default function Router() {
 
     let temaSistema = window.matchMedia('(prefers-color-scheme: light)');
@@ -75,6 +74,7 @@ export default function Router() {
                     <Route path='/tela-pix' element={<TelaPagamentoPix />} />
                     <Route path='/entrega' element={<StatusEntrega/>}/>
 
+                    <Route path='/adm/' element={<Graficovendas />} />
                     <Route path='/adm/login' element={<LoginAdm/>}/>
                     <Route path='/adm/cadastro-produto' element={<CadastroProduto/>}/>
                     <Route path='/adm/atualizar-produto/:id' element={<CadastroProduto/>}/>
@@ -82,7 +82,6 @@ export default function Router() {
                     <Route path='/adm/pedido-pendente' element={<PedidoPendente />} />   
                     <Route path='/adm/pedido-concluido' element={<PedidoConcluido />} />
                     <Route path='/adm/promocoes' element={<Promocoes />} />
-                    <Route path='/adm/grafico-vendas' element={<Graficovendas />} />
                     <Route path='/adm/grafico-receita' element={<Graficoreceita />} />
                     <Route path='/adm/criar-cupom' element={<CriarCupom />} />
 

@@ -1,11 +1,17 @@
+import { useContext } from "react";
 import BarraLateral from "../../../components/ADM/barraLateral";
 import CabecalhoADM from "../../../components/ADM/cabecalho";
 import Graficobarra from "../../../components/graficos";
 import "./index.scss";
+import { TemaContext } from "../../../theme";
 
 export default function Graficovendas() {
+
+  const context = useContext(TemaContext);
+  let tema = context.tema;
+
   return (
-    <div className="pagina-grafico-vendas">
+    <div className={"pagina-grafico-vendas " + tema}>
       <CabecalhoADM />
       <main>
         <BarraLateral />

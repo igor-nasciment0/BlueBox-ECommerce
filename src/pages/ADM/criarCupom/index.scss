@@ -1,14 +1,27 @@
 .pagina-criar-cupom {
+
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+
     .main {
         display: flex;
         flex-direction: row;
-        background-color: #EBEBEB;
+        background-color: var(--fundo-tela);
+        color: rgb(var(--cor-textos));
+
+        flex-grow: 1;
+
+        transition: 0.3s; 
+
+        * {
+            transition: 0.1s;
+        }
 
         .container-cupom {
             display: flex;
             flex-direction: column;
             align-items: center;
-            height: 89.1vh;
             width: 100%;
             padding: 30px;
             
@@ -16,6 +29,10 @@
                 font-size: 26px;
                 font-weight: 600;
                 margin-bottom: 5px;
+
+                @media (max-width: 900px) {
+                    font-size: 22px;
+                } 
             }
 
             > p {
@@ -112,9 +129,8 @@
                 }
 
                 .filtrar {
-                    height: 30px;
                     width: 100%;
-                    max-width: 150px;
+                    max-width: 200px;
                     justify-content: flex-start;
                     border-radius: 27.5px;
                     background: #FFF;
@@ -131,9 +147,8 @@
                 }
 
                 .ordenar {
-                    height: 30px;
                     width: 100%;
-                    max-width: 180px;
+                    max-width: 200px;
                     justify-content: flex-start;
                     border-radius: 27.5px;
                     background: #FFF;
@@ -142,6 +157,7 @@
                     > select {
                         width: 100%;
                         border: none;
+                        outline: none;
                     }
 
                     > select:focus {
@@ -163,7 +179,12 @@
                     border-spacing: 0;
                     border-collapse: collapse;
                     font-size: 16px;
+                    font-weight: 500;
                     text-align: center;
+
+                    @media (max-width: 900px) {
+                        font-size: 12px;
+                    }
                 
                     width: calc(100% - 8px);
                     margin-right: 8px;
@@ -190,8 +211,6 @@
 
                     tbody
                     {
-                        font-weight: 400;
-
                         td
                         {
                             padding: 4px 8px;
@@ -203,10 +222,10 @@
 
                         tr:hover {
                             background-color: rgba($color: #000000, $alpha: 0.2);
+                        }
 
-                            .container-edit button {
-                                visibility: visible;
-                            }
+                        .unchecked {
+                            background-color: rgba($color: #000000, $alpha: 0.4);
                         }
                     }
 
@@ -257,7 +276,7 @@
 
             .salvar {
                 display: flex;
-                justify-content: end;
+                justify-content: flex-end;
                 width: 100%;
 
                 > button {

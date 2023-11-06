@@ -1,7 +1,7 @@
-.card-produto
-{
+.card-produto {
     padding: 20px;
     width: 100%;
+    height: 100%;
     max-width: 340px;
 
     display: flex;
@@ -17,6 +17,7 @@
     color: rgb(var(--cor-textos));
 
     div {
+        width: 100%;
         flex-grow: 1;
         display: flex;
         flex-direction: column;
@@ -25,47 +26,42 @@
         margin-bottom: 30px;
     }
 
-    img
-    {
+    img {
+        width: 100%;
         max-width: 200px;
         max-height: 250px;
         box-shadow: 0 0 8px rgba($color: #000000, $alpha: 0.4);
 
-        @media (max-width: 768px) {
+        @media (max-width: 500px) {
             max-width: 150px;
         }
     }
 
-    > h2
-    {
+    >h2 {
         font-weight: 600;
         font-size: 15px;
         margin-bottom: 16px;
     }
 
-    > .preco-anterior
-    {
+    >.preco-anterior {
         font-size: 12px;
         font-weight: 600;
         text-decoration: line-through;
-    } 
+    }
 
-    > .preco
-    {
+    >.preco {
         font-size: 28px;
         font-weight: 700;
         margin-bottom: 12px;
     }
 
-    > p
-    {
+    >p {
         font-size: 12px;
         font-weight: 500;
         margin-bottom: 6px;
     }
 
-    > a
-    {
+    >a {
         margin-top: 14px;
 
         text-transform: uppercase;
@@ -81,29 +77,80 @@
         transition: 0.5s;
     }
 
-    > a:hover {
+    >a:hover {
         background-color: #7682a0;
     }
 
+    @media (max-width: 900px) {
 
-    
+        padding: 15px;
+
+        h2 {
+            font-size: 13px;
+        }
+
+        a {
+            display: none;
+        }
+
+        >img {
+            margin-bottom: 5px;
+        }
+
+        >h2 {
+            margin-bottom: 7px;
+        }
+
+        .preco {
+            margin-bottom: 8px;
+        }
+    }
+
+    @media (max-width: 600px) {
+
+        h2 {
+            font-size: 12px;
+        }
+
+        .preco {
+            font-size: 25px;
+        }
+
+    }
+
+    @media (max-width: 450px) {
+
+        h2 {
+            font-size: 11px;
+        }
+
+        p {
+            font-weight: 600;
+            font-size: 8px;
+        }
+
+        .preco-anterior {
+            font-size: 11px;
+        }
+
+        .preco {
+            font-size: 18px;
+        }
+    }
 }
 
-.tema-cinza
-{
+.tema-cinza {
     background-color: var(--cinza-fundo);
     color: var(--preto-textos);
     border: 1px solid rgba($color: #000000, $alpha: 0.2);
 }
 
-.tema-claro
-{
+.tema-claro {
     background-color: #FFF;
     color: var(--preto-textos);
 }
 
-.tema-escuro
-{
+.tema-escuro {
     background-color: var(--cinza-componentes);
-    color: #FFF;    
+    color: #FFF;
 }

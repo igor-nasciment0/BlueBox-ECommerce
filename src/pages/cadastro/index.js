@@ -4,11 +4,12 @@ import Rodape from "../../components/rodape"
 import './index.scss'
 import InputMask from 'react-input-mask';
 
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useNavigate } from "react-router-dom";
 import { TemaContext } from "../../theme";
 import { cadastroCliente } from "../../api/clienteAPI";
+import ToastCont from "../../components/toastContainer";
 
 export default function TelaCadastro(){
 
@@ -58,18 +59,8 @@ export default function TelaCadastro(){
             <Cabecalho/>
             <div className="gradient">
                 <main className="Cadastro-container">                  
-                    <ToastContainer
-                        position="bottom-center"
-                        autoClose={3000}
-                        hideProgressBar={false}
-                        newestOnTop={false}
-                        closeOnClick
-                        rtl={false}
-                        pauseOnFocusLoss
-                        draggable
-                        pauseOnHover
-                        theme="colored"
-                    />
+                    <ToastCont />
+                    
                     <section className="Cadastro">
                         <div className="Dados-container">
                             <h1>Criar Conta</h1>
@@ -106,12 +97,12 @@ export default function TelaCadastro(){
                             <button className="Log-wit-google"> <img src="/assets/images/google.png" alt="" /> <span>Entrar com o Google</span></button>
                         </div>
                     </section>
-                </main>
 
-                <div className="google-cadastro-resp">
-                      <h1>Cadastre-se com Google</h1>
-                      <button className="Sing-wit-google-resp"> <img src="/assets/images/google.png" alt="" /> <span>Entrar com o Google</span></button>
+                    <div className="google-cadastro-resp">
+                        <h1>Cadastre-se com Google</h1>
+                        <button className="Sing-wit-google-resp"> <img src="/assets/images/google.png" alt="" /> <span>Entrar com o Google</span></button>
                     </div>
+                </main>
             </div>
             <Rodape/>
         </div>
