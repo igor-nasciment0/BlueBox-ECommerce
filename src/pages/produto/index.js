@@ -597,7 +597,7 @@ export default function Produto() {
                       />
                       <div>
                         <h4>{avaliacao.nomeCliente}</h4>
-                        <h5>{formatarData(avaliacao.dataPostagem)}</h5>
+                        <h5>{formatarData(avaliacao.dataPostagem, true)}</h5>
                       </div>
                     </div>
 

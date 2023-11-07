@@ -72,7 +72,7 @@ export default function Router() {
                     <Route path='/perfil' element={<Perfil />} />
                     <Route path='/tela-cartão' element={<Telacartao />} />
                     <Route path='/tela-pix' element={<TelaPagamentoPix />} />
-                    <Route path='/entrega' element={<StatusEntrega/>}/>
+                    <Route path='/entrega/:idPedido/produto/:idProduto' element={<StatusEntrega/>}/>
 
                     <Route path='/adm/' element={<Graficovendas />} />
                     <Route path='/adm/login' element={<LoginAdm/>}/>

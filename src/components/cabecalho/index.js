@@ -3,7 +3,7 @@ import { TemaContext } from '../../theme';
 import './index.scss';
 
 import storage from 'local-storage';
-import { Link, redirect, useNavigate } from 'react-router-dom';
+import { Link, redirect } from 'react-router-dom';
 
 export default function Cabecalho() {
     const [infoLogin, setInfoLogin] = useState();
@@ -118,7 +118,6 @@ function CabDeslogado() {
 
 function CabLogado({ login }) {
     let tema = useContext(TemaContext);
-    const navigate = useNavigate();
 
     const [display, setDisplay] = useState({ display: 'none' });
 
@@ -132,7 +131,7 @@ function CabLogado({ login }) {
 
     function sair() {
         storage.remove('user-login');
-        window.location.reload();
+        redirect('/');
     }
 
     return (
@@ -200,9 +199,9 @@ function CabLogado({ login }) {
                     <img src="/assets/images/icons/menu.svg" alt="" />
                 </button>
 
-                <button onclick={() => navigate('/carrinho')}>
-                    <img src="/assets/images/icons/cart.svg" alt="" />
-                </button>
+                <Link to={'/carrinho'} className='carrinho-button'>
+                    <img src="/assets/images/icons/cart.svg" alt=""/>
+                </Link>
             </div>
 
             <div className='menu-cabecalho' style={display}>

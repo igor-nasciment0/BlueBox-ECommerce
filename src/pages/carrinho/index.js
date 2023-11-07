@@ -4,7 +4,7 @@ import Cabecalho from "../../components/cabecalho/";
 import Rodape from "../../components/rodape/";
 import { useContext } from "react";
 import { TemaContext } from "../../theme";
-import { useLocation } from "react-router-dom";
+import { redirect, useLocation } from "react-router-dom";
 import { buscarImagemPrimaria, mostrarUrlImagem } from "../../api/produtoAPI";
 import { useState } from "react";
 import { useEffect } from "react";
@@ -13,11 +13,12 @@ import ProdutoCarrinho from "./produtoCarrinho";
 import { valorEmReais } from "../../api/funcoesGerais";
 import { useNavigate } from "react-router-dom";
 
-export default function Carrinho(props) {
+export default function Carrinho() {
   const context = useContext(TemaContext);
   let tema = context.tema;
 
   const location = useLocation();
+  const navigate = useNavigate();
 
   const [totalProdutos, setTotalProdutos] = useState();
   const [produtosCarrinho, setProdutosCarrinho] = useState([]);
@@ -37,11 +38,16 @@ export default function Carrinho(props) {
       produto.qtd = 1;
     }
 
-    console.log(carrinho);
     setProdutosCarrinho(carrinho);
   }
 
   useEffect(() => {
+    let login = get('user-login');
+
+/*     if(!login) {
+      navigate('/login')
+    } */
+
     buscaInfo();
   }, []);
 
@@ -59,8 +65,6 @@ export default function Carrinho(props) {
 
     setTotalProdutos(t);
   });
-
-  const navigate = useNavigate();
 
   const toComponentB = () => {
     navigate("/pagamento", { state: { nome: produtosCarrinho.nome } });

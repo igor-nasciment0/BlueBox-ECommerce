@@ -1,16 +1,81 @@
 import './index.scss';
-import {useContext} from 'react';
-import {TemaContext} from '../../theme';
+import { useContext, useEffect, useState } from 'react';
+import { TemaContext } from '../../theme';
 import Cabecalho from '../../components/cabecalho'
-import { Link } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import Rodape from '../../components/rodape';
 
 import BarraProgresso from './barraProgresso';
+import { toast } from 'react-toastify';
+import { buscarPedidoPorID, buscarProdutosPedido, calcularPrecoProdutos, outrosProdutos, produtoAtual } from '../../api/pedidoAPI';
+import { formatarData, limitarString, valorEmReais } from '../../api/funcoesGerais';
+import { mostrarUrlImagem } from '../../api/produtoAPI';
+import { get } from 'local-storage';
 
 export default function StatusEntrega() {
 
     const context = useContext(TemaContext);
     let tema = context.tema;
+
+    const idPedido = useParams().idPedido;
+    const idProduto = useParams().idProduto;
+
+    const [produtoPrincipal, setProdutoPrincipal] = useState({});
+    const [produtosSecundarios, setProdutosSecundarios] = useState({});
+    const [infoPedido, setInfoPedido] = useState({});
+
+    const [imgPagamento, setImgPagamento] = useState('');
+
+    const navigate = useNavigate();
+
+    let login = get('user-login');
+
+    if(!login) {
+        navigate('/login')
+    }
+
+    async function BuscarPedido() {
+        try {
+            let informacaoPedido = await buscarPedidoPorID(idPedido);
+            let todosProdutos = await buscarProdutosPedido(idPedido);
+            let produtoAt = await produtoAtual(idProduto, todosProdutos);
+            let outProdutos = await outrosProdutos(idProduto, todosProdutos);
+
+            setInfoPedido(informacaoPedido);
+            setProdutoPrincipal(produtoAt);
+            setProdutosSecundarios(outProdutos);
+
+            console.log(informacaoPedido);
+
+        } catch (error) {
+            if (error.response) {
+                toast.error(error.response.data);
+            } else {
+                toast.error(error.message);
+            }
+        }
+    }
+
+    useEffect(() => {
+        BuscarPedido();
+    }, [])
+
+    useEffect(() => {
+        switch(infoPedido.tipoPagamento) {
+            case 'Cartão de Crédito':
+                setImgPagamento('/assets/images/credit-card.svg')
+                break;
+            case 'PIX':
+                setImgPagamento('/assets/images/PIX-logo.png')
+                break;
+            default:
+                setImgPagamento('/assets/images/icons/money.svg')
+        }
+
+        if(login) if(infoPedido.idCliente && infoPedido.idCliente != login.id) {
+            navigate('/not-authorized');
+        }
+    }, [infoPedido])
 
     return (
         <div className={"pagina-entrega " + tema}>
@@ -27,59 +92,88 @@ export default function StatusEntrega() {
                                 <div>
                                     <div>
                                         <h2>Pedido</h2>
-                                        <h3>God of War: Saga (3 Jogos) (Seminovo) - PS3</h3>
-                                        <h4>1 unidade / <span>Valor: R$ 29,99</span></h4>
+                                        <h3 onClick={() => navigate('/produto/' + produtoPrincipal.idProduto)}>{produtoPrincipal.nomeProduto}</h3>
+                                        <h4>{produtoPrincipal.quantidade} unidades /
+                                            <span>Valor: {valorEmReais(produtoPrincipal.precoProduto * produtoPrincipal.quantidade)}</span>
+                                        </h4>
                                     </div>
 
-                                    <img src="/assets/images/foto_produto.png" alt="Foto do Produto" />
+                                    <img onClick={() => navigate('/produto/' + produtoPrincipal.idProduto)} src={mostrarUrlImagem(produtoPrincipal.imagem)} alt="Foto do Produto" />
                                 </div>
 
-                                <div className='cont-outros-produtos'>
-                                    <div>
-                                        +
-                                        <h4>God of War: Saga...</h4>
-                                        <img src="/assets/images/foto_produto.png" alt="" />
+                                {produtosSecundarios.length > 0 &&
+                                    <div className='cont-outros-produtos'>
+                                        {produtosSecundarios.map(produto =>
+                                            <div onClick={() => navigate('/entrega/5/produto/' + produto.idProduto)}>
+                                                +
+                                                <h4>{limitarString(produto.nomeProduto, 16)}</h4>
+                                                <img src={mostrarUrlImagem(produto.imagem)} alt="" />
+                                            </div>
+                                        )}
                                     </div>
-                                </div>
+                                }
                             </div>
 
                             <div className="cont-pagamento">
                                 <div>
-                                    <h2>Pagamento</h2> 
-                                    <h3>PIX – <span>R$ 68,98</span></h3>
-                                    <h4>Aprovado em 23/07/2023</h4>
+                                    <h2>Pagamento</h2>
+                                    <h3>{infoPedido.tipoPagamento} – <span>{valorEmReais(infoPedido.valorFrete + infoPedido.valorProdutos)}</span></h3>
+
+                                    <h4>
+                                        {infoPedido.dataAprovacao ? 
+                                            `Aprovado em ${formatarData(infoPedido.dataAprovacao, true)}` :
+                                            'Aguardando aprovação'
+                                        }
+                                    </h4>
+                                    
                                 </div>
-                                <img src="/assets/images/PIX-logo.png" alt="" />
+                                <img src={imgPagamento} alt="" />
                             </div>
                         </div>
 
                         <div className='cont-detalhes'>
                             <h2>Detalhes da Compra</h2>
-                            <h3>Efetuada em 23/07/2023</h3>
+                            <h3>Efetuada em {formatarData(infoPedido.dataCompra)}</h3>
 
                             <div>
-                                <h4>Produtos (2)</h4>
-                                <p>R$ 59,98</p>
+                                <h4>Produtos</h4>
+                                <p>{valorEmReais(infoPedido.valorProdutos)}</p>
                             </div>
+
+                            <div className='subcategoria'>
+                                <h4>Este Produto</h4>
+                                <p>{valorEmReais(produtoPrincipal.precoProduto * produtoPrincipal.quantidade)}</p>
+                            </div>
+
+                            {produtosSecundarios.length > 0 &&
+                            <div className='subcategoria'>
+                                <h4>Outros Produtos</h4>
+                                <p>{valorEmReais(calcularPrecoProdutos(produtosSecundarios))}</p>
+                            </div>
+                            }                            
 
                             <div>
                                 <h4>Frete</h4>
-                                <p>R$ 10,00</p>
+                                <p>{valorEmReais(infoPedido.valorFrete)}</p>
                             </div>
 
                             <div>
                                 <h4>Total</h4>
-                                <p>R$ 68,98</p>
+                                <p>{valorEmReais(infoPedido.valorFrete + infoPedido.valorProdutos)}</p>
                             </div>
                         </div>
                     </section>
 
                     <div className='processo-entrega'>
-                        <h3>Entrega Pendente</h3>
-                        <h2>Data prevista de Entrega: 29/07/2023</h2>
+                        <h3>Entrega {infoPedido.dataEntrega ? 'Concluída' : 'Pendente'}</h3>
+                        {
+                            !infoPedido.dataEntrega && 
+                            <h2>Data prevista de Entrega: {formatarData(infoPedido.previsaoEntrega)}</h2>
+                        }
+
                         <p>Desculpe por fazer você esperar :(</p>
 
-                        <BarraProgresso/>
+                        <BarraProgresso infoPedido={infoPedido}/>
                     </div>
 
                     <h2>Problemas com esta compra?</h2>
@@ -87,7 +181,7 @@ export default function StatusEntrega() {
                 </main>
             </div>
 
-            <Rodape/>
+            <Rodape />
         </div>
     )
 }

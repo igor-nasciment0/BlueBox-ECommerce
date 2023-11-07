@@ -43,7 +43,7 @@ export default function Perfil() {
       setEmail(info.email);
       setTelefone(info.telefone);
     } else {
-      navigate('/')
+      navigate('/login')
     }
   }, [])
 

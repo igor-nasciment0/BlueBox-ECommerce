@@ -4,44 +4,55 @@ import Stepper from '@mui/material/Stepper';
 import Step from '@mui/material/Step';
 import StepLabel from '@mui/material/StepLabel';
 import StepContent from '@mui/material/StepContent';
+import { formatarData } from '../../api/funcoesGerais';
 
-const steps = [
-  {
-    img: '/assets/images/icons/checkBox.svg',
-    label: 'Pagamento Aprovado',
-    description: `23/07/2023`,
-  },
-  {
-    img: '/assets/images/icons/prancheta.svg',
-    label: 'Em preparação',
-    description: '27/07/2023',
-  },
-  {
-    img: '/assets/images/icons/caminhao-de-entrega.svg',
-    label: 'A caminho',
-    description: `28/07/2023`,
-  },
-  {
-    img: '/assets/images/icons/cara-feliz.svg',
-    label: 'Entregue!',
-    description: `29/07/2023`,
-    blue: true
-  }
-];
-
-export default function BarraProgresso() {
+export default function BarraProgresso({infoPedido}) {
+  
   return (
     <div className='barra-progresso'>
-      <BarraProgressoHorizontal />
-      <BarraProgressoVertical />
+      <BarraProgressoHorizontal infoPedido={infoPedido}/>
+      <BarraProgressoVertical infoPedido={infoPedido}/>
     </div>
   )
 }
 
-function BarraProgressoVertical() {
+function BarraProgressoVertical({infoPedido}) {
+
+  let passoAtivo;
+
+  if(infoPedido.idEstado != 4) {
+    passoAtivo = infoPedido.idEstado - 1;
+  } else {
+    passoAtivo = infoPedido.idEstado;
+  }
+
+  const steps = [
+    {
+      img: '/assets/images/icons/checkBox.svg',
+      label: 'Aguardando Aprovação',
+      description: formatarData(infoPedido.dataCompra),
+    },
+    {
+      img: '/assets/images/icons/prancheta.svg',
+      label: 'Em preparação',
+      description: formatarData(infoPedido.dataAprovacao),
+    },
+    {
+      img: '/assets/images/icons/caminhao-de-entrega.svg',
+      label: 'A caminho',
+      description: formatarData(infoPedido.dataSaida),
+    },
+    {
+      img: '/assets/images/icons/cara-feliz.svg',
+      label: 'Entregue!',
+      description: formatarData(infoPedido.dataEntrega),
+      blue: true
+    }
+  ];
+
   return (
     <Box sx={{ maxWidth: 400 }} className="barra-vertical">
-      <Stepper activeStep={0} orientation="vertical">
+      <Stepper activeStep={passoAtivo} orientation="vertical">
         {steps.map(step => (
           <Step expanded={true}>
             <StepLabel>
@@ -58,10 +69,44 @@ function BarraProgressoVertical() {
   );
 }
 
-function BarraProgressoHorizontal() {
+function BarraProgressoHorizontal({infoPedido}) {
+
+  let passoAtivo;
+
+  if(infoPedido.idEstado != 4) {
+    passoAtivo = infoPedido.idEstado - 1;
+  } else {
+    passoAtivo = infoPedido.idEstado;
+    console.log(passoAtivo);
+  }
+
+  const steps = [
+    {
+      img: '/assets/images/icons/checkBox.svg',
+      label: 'Aguardando Aprovação',
+      description: formatarData(infoPedido.dataCompra),
+    },
+    {
+      img: '/assets/images/icons/prancheta.svg',
+      label: 'Em preparação',
+      description: formatarData(infoPedido.dataAprovacao),
+    },
+    {
+      img: '/assets/images/icons/caminhao-de-entrega.svg',
+      label: 'A caminho',
+      description: formatarData(infoPedido.dataSaida),
+    },
+    {
+      img: '/assets/images/icons/cara-feliz.svg',
+      label: 'Entregue!',
+      description: formatarData(infoPedido.dataEntrega),
+      blue: true
+    }
+  ];
+
   return (
     <Box sx={{ width: '100%' }} className="barra-horizontal">
-      <Stepper activeStep={2} alternativeLabel>
+      <Stepper activeStep={passoAtivo} alternativeLabel>
         {steps.map(step =>
           <Step>
             <StepLabel>

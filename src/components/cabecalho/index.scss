@@ -169,7 +169,7 @@
                 max-width: 600px;
             }
 
-            button {
+            button, .carrinho-button {
                 display: flex;
                 flex-direction: row;
                 justify-content: center;
@@ -240,7 +240,7 @@
 
     @media (max-width: 600px) {
         .container-cabecalho-mobile {
-            button img {
+            button img, .carrinho-button img {
                 width: 30px;
                 height: 30px;
             }
@@ -287,7 +287,7 @@
                 height: 35px;
             }
 
-            button img {
+            button img, .carrinho-button img {
                 width: 25px;
                 height: 25px;
             }
