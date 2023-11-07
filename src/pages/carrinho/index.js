@@ -8,7 +8,7 @@ import { useLocation } from "react-router-dom";
 import { buscarImagemPrimaria, mostrarUrlImagem } from "../../api/produtoAPI";
 import { useState } from "react";
 import { useEffect } from "react";
-import { get } from "local-storage";
+import { get, set } from "local-storage";
 import ProdutoCarrinho from "./produtoCarrinho";
 import { valorEmReais } from "../../api/funcoesGerais";
 import { useNavigate } from "react-router-dom";
@@ -24,6 +24,11 @@ export default function Carrinho(props) {
 
   async function buscaInfo() {
     let carrinho = get("carrinho");
+
+    if (!carrinho) {
+      carrinho = [];
+      set('carrinho', []);
+    }
 
     for (let i = 0; i < carrinho.length; i++) {
       let produto = carrinho[i];
@@ -49,7 +54,7 @@ export default function Carrinho(props) {
       t =
         t +
         (produto.promocao ? produto.valorPromocional : produto.preco) *
-          produto.qtd;
+        produto.qtd;
     }
 
     setTotalProdutos(t);
@@ -71,6 +76,11 @@ export default function Carrinho(props) {
         <div className="container-tela">
           <section className="sec-carrinho">
             <div className="container-carrinho">
+              {produtosCarrinho.length === 0 &&
+
+                <div className="msg-vazio">Seu carrinho está vazio!</div >
+              }
+
               {produtosCarrinho.map((produto) => (
                 <ProdutoCarrinho
                   produto={produto}
@@ -93,9 +103,9 @@ export default function Carrinho(props) {
                   <p>
                     {valorEmReais(
                       produto.qtd *
-                        (produto.promocao
-                          ? produto.valorPromocional
-                          : produto.preco)
+                      (produto.promocao
+                        ? produto.valorPromocional
+                        : produto.preco)
                     )}
                   </p>
                 </div>

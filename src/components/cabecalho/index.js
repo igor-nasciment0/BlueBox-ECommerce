@@ -3,35 +3,34 @@ import { TemaContext } from '../../theme';
 import './index.scss';
 
 import storage from 'local-storage';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, redirect, useNavigate } from 'react-router-dom';
 
-export default function Cabecalho()
-{
+export default function Cabecalho() {
     const [infoLogin, setInfoLogin] = useState();
 
     useEffect(() => {
         let login = storage('user-login')
 
-        if(login) {
+        if (login) {
             setInfoLogin(login)
         }
     }, []);
- 
-    return(
-        infoLogin ? <CabLogado login={infoLogin}/> : <CabDeslogado />
+
+    return (
+        infoLogin ? <CabLogado login={infoLogin} /> : <CabDeslogado />
     );
 }
 
 function CabDeslogado() {
     let tema = useContext(TemaContext);
 
-    const [display, setDisplay] = useState({display: 'none'});
+    const [display, setDisplay] = useState({ display: 'none' });
 
     function barraLateral(params) {
         if (display.display === 'none') {
-            setDisplay({display: 'flex'});
+            setDisplay({ display: 'flex' });
         } else {
-            setDisplay({display: 'none'});
+            setDisplay({ display: 'none' });
         }
     }
 
@@ -40,18 +39,18 @@ function CabDeslogado() {
             <div className="container-cabecalho">
                 <div className="logo">
                     <Link to="/">
-                        <img src="/assets/images/LogoComNome.svg" alt="Logo da BlueBox"/>
+                        <img src="/assets/images/LogoComNome.svg" alt="Logo da BlueBox" />
                     </Link>
                 </div>
 
                 <div className="input">
-                    <input type="text" placeholder="O que você está buscando?"/>
-                    <img src='/assets/images/icons/search.svg' alt=""/>
+                    <input type="text" placeholder="O que você está buscando?" />
+                    <img src='/assets/images/icons/search.svg' alt="" />
                 </div>
-                
-            
+
+
                 <div className="cab-link">
-                    <img src='/assets/images/icons/borg-head.svg' alt=""/>
+                    <img src='/assets/images/icons/borg-head.svg' alt="" />
 
                     <div>
                         <h2>Bem-vindo.</h2>
@@ -60,7 +59,7 @@ function CabDeslogado() {
                 </div>
 
                 <div className="cab-link">
-                    <img src='/assets/images/icons/gmail.svg' alt=""/>
+                    <img src='/assets/images/icons/gmail.svg' alt="" />
 
                     <div>
                         <h2>Precisa de ajuda?</h2>
@@ -81,21 +80,21 @@ function CabDeslogado() {
             <div className="container-cabecalho-mobile">
                 <div className="logo">
                     <Link to="/">
-                        <img src="/assets/images/LogoComNome.svg" alt="Logo da BlueBox"/>
-                        <img src="/assets/images/logo.svg" alt="Logo da BlueBox" className="logo-sem-nome"/>
+                        <img src="/assets/images/LogoComNome.svg" alt="Logo da BlueBox" />
+                        <img src="/assets/images/logo.svg" alt="Logo da BlueBox" className="logo-sem-nome" />
                     </Link>
                 </div>
 
                 <div className="input">
-                    <input type="text" placeholder="O que você está buscando?"/>
-                    <img src='/assets/images/icons/search.svg' alt=""/>
+                    <input type="text" placeholder="O que você está buscando?" />
+                    <img src='/assets/images/icons/search.svg' alt="" />
                 </div>
 
                 <button onClick={barraLateral}>
                     <img src="/assets/images/icons/menu.svg" alt="" />
                 </button>
             </div>
-            
+
             <div className='menu-cabecalho' style={display}>
                 <ul>
                     <li>
@@ -107,7 +106,7 @@ function CabDeslogado() {
                         <Link to={'/contato'}>Fale conosco</Link>
                     </li>
                 </ul>
-                <button onClick={() => {tema.trocarTema()}}>
+                <button onClick={() => { tema.trocarTema() }}>
                     <div className='fade-image-sun'>
                         <img src={'/assets/images/icons/sun.svg'} alt="" />
                     </div>
@@ -117,16 +116,17 @@ function CabDeslogado() {
     )
 }
 
-function CabLogado({login}) {
+function CabLogado({ login }) {
     let tema = useContext(TemaContext);
+    const navigate = useNavigate();
 
-    const [display, setDisplay] = useState({display: 'none'});
+    const [display, setDisplay] = useState({ display: 'none' });
 
-    function barraLateral(params) {
+    function barraLateral() {
         if (display.display === 'none') {
-            setDisplay({display: 'flex'});
+            setDisplay({ display: 'flex' });
         } else {
-            setDisplay({display: 'none'});
+            setDisplay({ display: 'none' });
         }
     }
 
@@ -140,16 +140,16 @@ function CabLogado({login}) {
             <div className="container-cabecalho">
                 <div className="logo">
                     <Link to="/">
-                        <img src='/assets/images/LogoComNome.svg' alt="Logo da BlueBox"/>
+                        <img src='/assets/images/LogoComNome.svg' alt="Logo da BlueBox" />
                     </Link>
                 </div>
 
                 <div className="input">
-                    <input type="text" placeholder="O que você está buscando?"/>
-                    <img src='/assets/images/icons/search.svg' alt=""/>
+                    <input type="text" placeholder="O que você está buscando?" />
+                    <img src='/assets/images/icons/search.svg' alt="" />
                 </div>
-                
-            
+
+
                 <nav>
                     <div>
                         <img src="/assets/images/icons/user.svg" alt="" />
@@ -168,7 +168,7 @@ function CabLogado({login}) {
                 </nav>
 
                 <div className="cab-link">
-                    <img src='/assets/images/icons/gmail.svg' alt=""/>
+                    <img src='/assets/images/icons/gmail.svg' alt="" />
 
                     <div>
                         <h2>Precisa de ajuda?</h2>
@@ -177,8 +177,8 @@ function CabLogado({login}) {
                 </div>
 
                 <button onClick={() => {
-                        tema.trocarTema()
-                    }
+                    tema.trocarTema()
+                }
                 }>
                     <img src='/assets/images/icons/sun.svg' alt="" />
                 </button>
@@ -186,25 +186,25 @@ function CabLogado({login}) {
             <div className="container-cabecalho-mobile">
                 <div className="logo">
                     <Link to="/">
-                        <img src="/assets/images/LogoComNome.svg" alt="Logo da BlueBox"/>
-                        <img src="/assets/images/logo.svg" alt="Logo da BlueBox" className="logo-sem-nome"/>
+                        <img src="/assets/images/LogoComNome.svg" alt="Logo da BlueBox" />
+                        <img src="/assets/images/logo.svg" alt="Logo da BlueBox" className="logo-sem-nome" />
                     </Link>
                 </div>
 
                 <div className="input">
-                    <input type="text" placeholder="O que você está buscando?"/>
-                    <img src='/assets/images/icons/search.svg' alt=""/>
+                    <input type="text" placeholder="O que você está buscando?" />
+                    <img src='/assets/images/icons/search.svg' alt="" />
                 </div>
 
                 <button onClick={barraLateral}>
                     <img src="/assets/images/icons/menu.svg" alt="" />
                 </button>
 
-                <button>
+                <button onclick={() => navigate('/carrinho')}>
                     <img src="/assets/images/icons/cart.svg" alt="" />
                 </button>
             </div>
-            
+
             <div className='menu-cabecalho' style={display}>
                 <ul>
                     <li>
@@ -223,7 +223,7 @@ function CabLogado({login}) {
                         <button onClick={sair}>Sair</button>
                     </li>
                 </ul>
-                <button onClick={() => {tema.trocarTema()}}>
+                <button onClick={() => { tema.trocarTema() }}>
                     <div className='fade-image-sun'>
                         <img src={'/assets/images/icons/sun.svg'} alt="" />
                     </div>
