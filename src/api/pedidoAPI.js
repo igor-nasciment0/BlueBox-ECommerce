@@ -1,5 +1,5 @@
 import api from './apiURL';
-import { buscarImagemPrimaria, buscarProdutoPorID } from './produtoAPI';
+import { buscarImagemPrimaria } from './produtoAPI';
 
 export async function buscarPedidoPorEstado(idEstado) {
     let r = await api.get(`/pedido/estado/${idEstado}`);
@@ -9,6 +9,12 @@ export async function buscarPedidoPorEstado(idEstado) {
 
 export async function buscarPedidoPorID(idPedido) {
     let r = await api.get(`/pedido/${idPedido}`);
+
+    return r.data;
+}
+
+export async function buscarPedidoPorCliente(idCliente) {
+    let r = await api.get(`/pedido/cliente/${idCliente}`);
 
     return r.data;
 }
@@ -90,3 +96,43 @@ export function calcularPrecoProdutos(produtos) {
 
     return preco;
 }
+
+export async function buscarProdutosArrayPedidos(pedidos) {
+    let arrayProdutosPedidos = [];
+
+    for(let i = 0; i < pedidos.length; i++) {
+        let pedido = pedidos[i];
+
+        let produtos = await buscarProdutosPedido(pedido.id);
+
+        for(let j = 0; j < produtos.length; j++) {
+            let produto = produtos[j];
+
+            produto.infoPedido = pedido;
+            let imagem = await buscarImagemPrimaria(produto.idProduto);
+
+            produto.imagem = imagem.url;
+        }
+
+        arrayProdutosPedidos.push(produtos[0]);
+    }
+
+    console.log(arrayProdutosPedidos);
+
+    return arrayProdutosPedidos;
+}
+
+/* export function separarPedidosPorMeses(produtosPedidos) {
+    let arrayMeses = [{
+        mes: new Date(produtosPedidos[0].infoPedido.dataCompra).getMonth() + 1,
+        ano: new Date(produtosPedidos[0].infoPedido.dataCompra).getF() + 1
+    }];
+
+
+
+    for(let i = 1; i < produtosPedidos.length; i++) {
+        let produtoAtual = produtosPedidos[i];
+
+
+    }
+} */

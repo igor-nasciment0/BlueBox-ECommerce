@@ -2,7 +2,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 import Landpage from './pages/landpage';
 import Carrinho from './pages/carrinho';
-import UserPedidos from './pages/user_pedidos';
+import UserPedidos from './pages/meus_pedidos';
 import Pesquisa from './pages/pesquisa';
 import TelaCadastro from './pages/cadastro';
 import Produto from './pages/produto'

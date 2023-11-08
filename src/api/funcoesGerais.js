@@ -51,7 +51,7 @@ export function separarTexto(texto) {
 
 export function formatarData(data, extenso) {
 
-    if(!data) {
+    if (!data) {
         return '';
     }
 
@@ -83,4 +83,15 @@ export function limitarString(string, limite) {
     } else {
         return string;
     }
+}
+
+export function formatarMesAno(data) {
+    if (!data) {
+        return '';
+    }
+
+    let dataObject = new Date(data);
+    let meses = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'];
+
+    return `${meses[dataObject.getMonth()]} / ${dataObject.getFullYear()}`
 }
