@@ -3,7 +3,7 @@ import { TemaContext } from '../../theme';
 import './index.scss';
 
 import storage from 'local-storage';
-import { Link, redirect } from 'react-router-dom';
+import { Link, redirect, useNavigate } from 'react-router-dom';
 
 export default function Cabecalho() {
     const [infoLogin, setInfoLogin] = useState();
@@ -25,8 +25,14 @@ function CabDeslogado() {
     let tema = useContext(TemaContext);
 
     const [display, setDisplay] = useState({ display: 'none' });
+    const [pesquisa, setPesquisa] = useState('');
+    const navigate = useNavigate();
 
-    function barraLateral(params) {
+    function pesquisar(pesquisa) {
+        navigate('/pesquisa?busca=' + pesquisa)
+    }
+
+    function barraLateral() {
         if (display.display === 'none') {
             setDisplay({ display: 'flex' });
         } else {
@@ -44,8 +50,10 @@ function CabDeslogado() {
                 </div>
 
                 <div className="input">
-                    <input type="text" placeholder="O que você está buscando?" />
-                    <img src='/assets/images/icons/search.svg' alt="" />
+                    <input type="text" placeholder="O que você está buscando?" value={pesquisa} onChange={e => setPesquisa(e.target.value)}
+                        onKeyDown={e => { if (e.key === 'Enter') pesquisar(pesquisa) }}
+                    />
+                    <img src='/assets/images/icons/search.svg' alt="" onClick={() => pesquisar(pesquisa)} />
                 </div>
 
 
@@ -120,6 +128,8 @@ function CabLogado({ login }) {
     let tema = useContext(TemaContext);
 
     const [display, setDisplay] = useState({ display: 'none' });
+    const [pesquisa, setPesquisa] = useState('');
+    const navigate = useNavigate();
 
     function barraLateral() {
         if (display.display === 'none') {
@@ -134,6 +144,10 @@ function CabLogado({ login }) {
         redirect('/');
     }
 
+    function pesquisar(pesquisa) {
+        navigate('/pesquisa?busca=' + pesquisa)
+    }
+
     return (
         <header className='common-cabecalho'>
             <div className="container-cabecalho">
@@ -144,8 +158,10 @@ function CabLogado({ login }) {
                 </div>
 
                 <div className="input">
-                    <input type="text" placeholder="O que você está buscando?" />
-                    <img src='/assets/images/icons/search.svg' alt="" />
+                    <input type="text" placeholder="O que você está buscando?" value={pesquisa} onChange={e => setPesquisa(e.target.value)}
+                        onKeyDown={e => { if (e.key === 'Enter') pesquisar(pesquisa) }}
+                    />
+                    <img src='/assets/images/icons/search.svg' alt="" onClick={() => pesquisar(pesquisa)} />
                 </div>
 
 
@@ -200,7 +216,7 @@ function CabLogado({ login }) {
                 </button>
 
                 <Link to={'/carrinho'} className='carrinho-button'>
-                    <img src="/assets/images/icons/cart.svg" alt=""/>
+                    <img src="/assets/images/icons/cart.svg" alt="" />
                 </Link>
             </div>
 

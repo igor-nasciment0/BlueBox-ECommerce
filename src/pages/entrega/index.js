@@ -83,7 +83,7 @@ export default function StatusEntrega() {
 
             <div className='gradient'>
                 <main>
-                    <Link><img src="/assets/images/icons/arrow-left.svg" alt="" />Voltar</Link>
+                    <Link onClick={() => navigate(-1)}><img src="/assets/images/icons/arrow-left.svg" alt="" />Voltar</Link>
                     <h1>Status da compra</h1>
 
                     <section>

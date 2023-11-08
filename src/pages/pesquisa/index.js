@@ -4,15 +4,25 @@ import Cabecalho from '../../components/cabecalho';
 import FaixaCategorias from '../../components/faixa-categorias';
 import Rodape from '../../components/rodape'
 import CardProduto from '../../components/cardProduto'
-import { useContext, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { TemaContext } from '../../theme';
-import { buscarProdutos } from '../../api/produtoAPI';
-import { set } from 'local-storage';
+import { buscarProdutos, buscarProdutosPagina } from '../../api/produtoAPI';
+import { Link, useLocation, useNavigate, useSearchParams } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import ToastCont from '../../components/toastContainer';
 
 export default function Pesquisa()
 {
   const context = useContext(TemaContext);
   let tema = context.tema;
+
+  const location = useLocation();
+  const navigate = useNavigate();
+  const busca = new URLSearchParams(location.search).get('busca');
+
+  const [page, setPage] = useSearchParams();
+
+  // const page = new URLSearchParams(location.search).get('page');
 
   const [displayBarra, setDisplayBarra] = useState({
     display: 'none'
@@ -25,27 +35,36 @@ export default function Pesquisa()
       setDisplayBarra({display: 'none'})  
   }
 
-  const [filtro, setFiltro] = useState('')
+  const [produtos, setProdutos] = useState([])
 
-  async function buscarFilme(){
-    const resp = await buscarProdutos(filtro)
-
-    setFiltro(resp)
+  async function buscarProdutos(){
+    try {
+      let produtos = await buscarProdutosPagina(busca, '', '', page.get('page'));
+      console.log(produtos);
+    } catch (error) {
+      console.log(error);
+      toast.error('Não foi possível realizar a busca.');
+    }
   }
+
+  useEffect(() => {
+    buscarProdutos();
+  }, [])
 
   return(
     <div className={'pesquisaBody ' + tema}>
       <Cabecalho/>
       <FaixaCategorias/>
+      <ToastCont />
     
       <div className='infoNavegacao'>
-        <a href=''>Página inicial...</a>
+        <Link to={'/'}>Página inicial...</Link>
         <p>|</p>
         <p>Resultado da pesquisa</p>
       </div>
 
       <div className='logoFiltro'>
-        <img src="/assets/images/3pontos.png" alt="" onClick={barraLateral} className={displayBarra.display === 'flex' && 'img-branco'}/>
+        <img src="/assets/images/3pontos.png" alt="" onClick={barraLateral} className={(displayBarra.display === 'flex' || tema === 'dark') && 'img-branco'}/>
       </div>
 
       <div className='filtroResp' style={displayBarra}>
@@ -169,6 +188,7 @@ export default function Pesquisa()
           <a href="">Jogos de Mesa</a>
           <a href="">Colecionáveis</a>
         </div>
+
         <div className='produtosInsta'>
 
           <h1 className='titulo'>Novidades</h1>

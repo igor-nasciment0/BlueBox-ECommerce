@@ -2,14 +2,20 @@
 
     background-color: var(--fundo-tela);
     color: rgb(var(--cor-textos));
+    display: flex;
+    flex-direction: column;
+    
 
     transition: 0.3s; 
+
+    min-height: 100vh;
 
     * {
         transition: 0.1s;
     }
 
     .main {
+        flex-grow: 1;
         display: flex;
         flex-direction: row;
 
