@@ -138,7 +138,7 @@ export default function UserPedidos() {
 
                                                 <div className='compra-status'>
                                                     <h3>Status</h3>
-                                                    <div>Pendente</div>
+                                                    <div>{produto.infoPedido.estado}</div>
                                                     <Link to={`/entrega/${produto.idPedido}/produto/${produto.idProduto}`}>Ver pedido</Link>
                                                 </div>
                                             </div>
