@@ -11,8 +11,7 @@ import { Link, useLocation, useNavigate, useSearchParams } from 'react-router-do
 import { toast } from 'react-toastify';
 import ToastCont from '../../components/toastContainer';
 
-export default function Pesquisa()
-{
+export default function Pesquisa() {
   const context = useContext(TemaContext);
   let tema = context.tema;
 
@@ -20,27 +19,36 @@ export default function Pesquisa()
   const navigate = useNavigate();
   const busca = new URLSearchParams(location.search).get('busca');
 
-  const [page, setPage] = useSearchParams();
+  const [pageObject] = useSearchParams();
+  if (!pageObject.get('page'))
+    pageObject.set('page', 1);
 
-  // const page = new URLSearchParams(location.search).get('page');
+  let page = Number(pageObject.get('page'));
 
   const [displayBarra, setDisplayBarra] = useState({
     display: 'none'
   })
 
   function barraLateral() {
-    if(displayBarra.display === 'none')
-      setDisplayBarra({display: 'flex'})
-    else 
-      setDisplayBarra({display: 'none'})  
+    if (displayBarra.display === 'none')
+      setDisplayBarra({ display: 'flex' })
+    else
+      setDisplayBarra({ display: 'none' })
   }
 
   const [produtos, setProdutos] = useState([])
 
-  async function buscarProdutos(){
+  async function buscarProdutos() {
     try {
-      let produtos = await buscarProdutosPagina(busca, '', '', page.get('page'));
-      console.log(produtos);
+      let prod = await buscarProdutosPagina(busca, '', '', page);
+      
+      let array = []
+
+      for (let i = 0; i < prod.length / 5; i++) {
+        array.push(prod.slice(i * 4, (i + 1) * 4));
+      }
+
+      setProdutos(array);
     } catch (error) {
       console.log(error);
       toast.error('Não foi possível realizar a busca.');
@@ -49,14 +57,14 @@ export default function Pesquisa()
 
   useEffect(() => {
     buscarProdutos();
-  }, [])
+  }, [busca, page])
 
-  return(
+  return (
     <div className={'pesquisaBody ' + tema}>
-      <Cabecalho/>
-      <FaixaCategorias/>
+      <Cabecalho />
+      <FaixaCategorias />
       <ToastCont />
-    
+
       <div className='infoNavegacao'>
         <Link to={'/'}>Página inicial...</Link>
         <p>|</p>
@@ -64,13 +72,13 @@ export default function Pesquisa()
       </div>
 
       <div className='logoFiltro'>
-        <img src="/assets/images/3pontos.png" alt="" onClick={barraLateral} className={(displayBarra.display === 'flex' || tema === 'dark') && 'img-branco'}/>
+        <img src="/assets/images/3pontos.png" alt="" onClick={barraLateral} className={(displayBarra.display === 'flex' || tema === 'dark') && 'img-branco'} />
       </div>
 
       <div className='filtroResp' style={displayBarra}>
 
         <div className='logoFiltro'>
-          <img src="/assets/images/3pontos.png" alt="" onClick={barraLateral} className={displayBarra.display === 'flex' && 'img-branco'}/>
+          <img src="/assets/images/3pontos.png" alt="" onClick={barraLateral} className={displayBarra.display === 'flex' && 'img-branco'} />
         </div>
 
         <div className='secFiltro'>
@@ -138,7 +146,7 @@ export default function Pesquisa()
           <h2>Tipo</h2>
 
           <div className='caixaMarcacao'>
-            <div className='caixa'>              
+            <div className='caixa'>
               <input type="checkbox" />
               <p>Novo</p>
             </div>
@@ -160,7 +168,7 @@ export default function Pesquisa()
               <p>Maior Preço</p>
             </div>
           </div>
-          
+
           <h2>Categorias</h2>
 
           <a href="">Playstation 1</a>
@@ -191,50 +199,31 @@ export default function Pesquisa()
 
         <div className='produtosInsta'>
 
-          <h1 className='titulo'>Novidades</h1>
+          <h1 className='titulo'>Resultado</h1>
 
           <div className='produtos'>
-            <div className='cartoesProduto'>
-              <CardProduto />
-              <CardProduto />
-              <CardProduto />
-              <CardProduto />
-            </div>
-            <div className='cartoesProduto'>
-              <CardProduto />
-              <CardProduto />
-              <CardProduto />
-              <CardProduto />
-            </div>
+            {produtos.map(arrayProduto =>
+              <div className='cartoesProduto'>
+                {arrayProduto.map(produto =>
+                  <CardProduto infoProduto={produto} />
+                )}
+              </div>
+            )}
           </div>
-          
+
           <div className='nav'>
-            <div className='setas'>
-              <img src= "/assets/images/icons/setaEsq.svg" alt="SetaEsq" />
+            <div className='setas' onClick={() => { if (page > 1) navigate(`/pesquisa?busca=${busca}&page=${page - 1}`) }}>
+              <img src="/assets/images/icons/setaEsq.svg" alt="SetaEsq" />
             </div>
 
             <div className='numPagina'>
-              <a href="">1</a>
+              <p>Página {page}</p>
             </div>
 
-            <div className='numPagina'>
-              <a href="">2</a>
-            </div>
-          
-            <div className='numPagina'>
-              <a href="">3</a>
-            </div>
-          
-            <p>...</p>
-
-            <div className='numPagina'>
-              <a href="">35</a>
+            <div className='setas' onClick={() => { if (produtos.length !== 30) navigate(`/pesquisa?busca=${busca}&page=${page + 1}`) }}>
+              <img src="/assets/images/icons/arrow-right.svg" alt="SetaDir" />
             </div>
 
-            <div className='setas'>
-               <img src="/assets/images/icons/arrow-right.svg" alt="SetaDir" />
-            </div>
-            
           </div>
 
           <div className='instagram'>
@@ -250,7 +239,7 @@ export default function Pesquisa()
         </div>
       </div>
 
-      <Rodape/>
+      <Rodape />
     </div>
   )
 }
