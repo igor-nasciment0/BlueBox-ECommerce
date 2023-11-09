@@ -13,11 +13,10 @@ import ProdutoCarrinho from "./produtoCarrinho";
 import { valorEmReais } from "../../api/funcoesGerais";
 import { useNavigate } from "react-router-dom";
 
-export default function Carrinho() {
+export default function Carrinho(props) {
   const context = useContext(TemaContext);
   let tema = context.tema;
 
-  const location = useLocation();
   const navigate = useNavigate();
 
   const [totalProdutos, setTotalProdutos] = useState();
@@ -65,9 +64,9 @@ export default function Carrinho() {
 
     setTotalProdutos(t);
   }, [produtosCarrinho]);
-
-  const toComponentB = () => {
-    navigate("/pagamento", { state: { nome: produtosCarrinho.nome } });
+  
+  function toComponentB() {
+    navigate("/pagamento", { state: { nome: produtosCarrinho.nome, preco: produtosCarrinho.preco, qtd: produtosCarrinho.qtd} });
   };
 
   return (

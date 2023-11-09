@@ -3,11 +3,12 @@ import Rodape from "../../components/rodape";
 import { useLocation } from "react-router-dom";
 import { Link } from "react-router-dom";
 import "./index.scss";
-import Produto from "../produto";
 
-export default function TeladePagamento({produto}) {
+export default function TeladePagamento() {
 
   const location = useLocation();
+
+  console.log(location.state);
 
   return (
     <div className="teladePagamento">
@@ -24,12 +25,12 @@ export default function TeladePagamento({produto}) {
                   <p>{location.state.nome}</p>
                   <div>
                     <p>Qtd</p>
-                    <p> 2 </p>
+                    <p>{location.state.qtd}</p>
                   </div>
 
                   <div>
                     <p>Subtotal</p>
-                    <p>{location.state.valor}</p>
+                    <p>{location.state.preco}</p>
                   </div>
                 </div>
               </div>

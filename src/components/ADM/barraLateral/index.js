@@ -35,7 +35,7 @@ export default function BarraLateral() {
                 <h2>Bem Vindo, Carlos.</h2>
 
                 <nav>
-                    <Link to={'/adm/grafico-vendas'}>
+                    <Link to={'/adm/'}>
                         <div className="icone">
                             <img src="/assets/images/icons/adm/barraLateral/casa.svg" alt="" />
                         </div>
