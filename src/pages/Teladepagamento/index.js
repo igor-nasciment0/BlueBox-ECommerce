@@ -4,6 +4,7 @@ import { useLocation } from "react-router-dom";
 import { Link } from "react-router-dom";
 import "./index.scss";
 
+
 export default function TeladePagamento() {
 
   const location = useLocation();
@@ -66,7 +67,7 @@ export default function TeladePagamento() {
                 </div>
                 <div>
                   <p className="total">Total</p>
-                  <p className="total">{location.state.valor}</p>
+                  <p className="total">{location.state.preco}</p>
                 </div>
                 <div>
                   <p className="pix">Pix</p>
