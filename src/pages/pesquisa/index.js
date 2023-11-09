@@ -37,22 +37,29 @@ export default function Pesquisa() {
   }
 
   const [produtos, setProdutos] = useState([])
+  const [proxTela, setProxTela] = useState(false);
 
   async function buscarProdutos() {
     try {
       let prod = await buscarProdutosPagina(busca, '', '', page);
-      
-      let array = []
 
-      for (let i = 0; i < prod.length / 5; i++) {
-        array.push(prod.slice(i * 4, (i + 1) * 4));
+      prod = [...prod, ...prod, ...prod, ...prod, ...prod, ...prod, ...prod, ...prod, ...prod, ...prod, ...prod]
+
+      setProdutos(prod);
+
+      let prodProximaTela = await buscarProdutosPagina(busca, '', '', page + 1);
+      if(prodProximaTela.length > 0) {
+        setProxTela(true);
       }
 
-      setProdutos(array);
     } catch (error) {
       console.log(error);
       toast.error('Não foi possível realizar a busca.');
     }
+  }
+
+  async function produtosProximaPagina() {
+
   }
 
   useEffect(() => {
@@ -203,16 +210,12 @@ export default function Pesquisa() {
 
           <div className='produtos'>
             {produtos.map(arrayProduto =>
-              <div className='cartoesProduto'>
-                {arrayProduto.map(produto =>
-                  <CardProduto infoProduto={produto} />
-                )}
-              </div>
+              <CardProduto infoProduto={arrayProduto}/>
             )}
           </div>
 
           <div className='nav'>
-            <div className='setas' onClick={() => { if (page > 1) navigate(`/pesquisa?busca=${busca}&page=${page - 1}`) }}>
+            <div className={'setas ' + (!(page > 1) && 'gray')} onClick={() => { if (page > 1) navigate(`/pesquisa?busca=${busca}&page=${page - 1}`) }}>
               <img src="/assets/images/icons/setaEsq.svg" alt="SetaEsq" />
             </div>
 
@@ -220,7 +223,7 @@ export default function Pesquisa() {
               <p>Página {page}</p>
             </div>
 
-            <div className='setas' onClick={() => { if (produtos.length !== 30) navigate(`/pesquisa?busca=${busca}&page=${page + 1}`) }}>
+            <div className={'setas ' + (!proxTela && 'gray')} onClick={() => { if (proxTela) navigate(`/pesquisa?busca=${busca}&page=${page + 1}`) }}>
               <img src="/assets/images/icons/arrow-right.svg" alt="SetaDir" />
             </div>
 

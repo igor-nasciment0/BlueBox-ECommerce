@@ -15,7 +15,7 @@ export default function NotFound() {
             <div className="gradient">
                 <h2>Onde estamos?</h2>
                 <h3>Alagoinha?</h3>
-                <img src="https://custom-doodle.com/wp-content/uploads/doodle/kirby-flying-on-an-umbrella-pixel/kirby-flying-on-an-umbrella-pixel-doodle.gif" 
+                <img src="/assets/images/kirby-flying.gif" 
                     alt="Kirby voa" />
 
                 <p>Esta página não existe, ou você não tem permissão para acessá-la.</p>

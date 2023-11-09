@@ -1,6 +1,7 @@
 .pesquisaBody {
 
     transition: 0.3s;
+
     * {
         transition: 0.1s;
     }
@@ -16,32 +17,32 @@
         margin-left: 50px;
     }
 
-    .infoNavegacao > a {
+    .infoNavegacao>a {
         text-decoration: none;
         margin: 0px 10px;
         font-size: 14px;
         color: var(--azul-claro);
     }
 
-    .infoNavegacao > p {
+    .infoNavegacao>p {
         margin: 0px 10px;
         font-size: 14px;
     }
 
-    .infoNavegacao > a:hover {
+    .infoNavegacao>a:hover {
         color: rgba(var(--cor-textos), 0.7);
         cursor: pointer;
     }
 
-    > .logoFiltro {
+    >.logoFiltro {
         display: none;
 
         @media(max-width: 768px) {
             display: inline-block;
         }
-    } 
+    }
 
-    > h1 {
+    >h1 {
         font-size: 25px;
         text-align: center;
     }
@@ -56,7 +57,7 @@
         display: flex;
         flex-direction: column;
         align-items: center;
-        padding: 50px 35px;
+        padding: 35px 16px;
         border-radius: 11px;
         background: linear-gradient(180deg, #213051 0%, #0C111C 100%);
         height: auto;
@@ -65,20 +66,19 @@
         text-align: center;
     }
 
-    .filtro > h1 {
-        margin-bottom: 20px;
-        font-size: 30px;
+    .filtro>h1 {
+        margin-bottom: 16px;
+        font-size: 20px;
         font-weight: 600;
     }
 
-    .filtro > h2 {
-        margin-top: 15px;
+    .filtro>h2 {
         margin-bottom: 10px;
-        font-size: 20px;
+        font-size: 16px;
         font-weight: 500;
     }
 
-    .filtro > a {
+    .filtro>a {
         text-decoration: none;
         color: #ffffff;
         font-size: 14px;
@@ -86,7 +86,7 @@
         transition: 0.5s;
     }
 
-    .filtro > a:hover {
+    .filtro>a:hover {
         color: #e6e6e6;
         font-size: 16px;
         transition: 0.5s;
@@ -104,13 +104,13 @@
         margin: 0px 8px;
     }
 
-    .caixa > input {
+    .caixa>input {
         margin-right: 5px;
         cursor: pointer;
     }
 
-    .caixa > p {
-        font-size: 10px;
+    .caixa>p {
+        font-size: 14px;
         text-align: center;
     }
 
@@ -121,19 +121,32 @@
         align-items: center;
         height: auto;
         width: 100%;
-        padding: 0 16px;   
+        padding: 0 16px;
     }
 
     .titulo {
+        font-size: 22px;
         margin-bottom: 30px;
     }
 
     .produtos {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
+        display: grid;
+        width: 100%;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        gap: 16px;
         margin-bottom: 30px;
-        gap: 20px;
+
+        @media (max-width: 1100px) {
+            grid-template-columns: 1fr 1fr 1fr;
+        }
+
+        @media (max-width: 950px) {
+            grid-template-columns: 1fr 1fr;
+        }
+
+        @media (max-width: 480px) {
+            grid-template-columns: 1fr;
+        }
     }
 
     .cartoesProduto {
@@ -151,7 +164,7 @@
         width: 100%;
         margin-bottom: auto;
 
-        > p {
+        >p {
             font-size: 20px;
             letter-spacing: 2px;
         }
@@ -166,12 +179,17 @@
             border-radius: 3px;
             background-color: #152039;
             margin: 0px 10px;
+            cursor: pointer;
 
-            > img {
+            >img {
                 height: 13px;
                 width: 13px;
-                cursor: pointer;
             }
+        }
+
+        .gray {
+            background-color: rgba(var(--cor-textos), 0.5);
+            cursor: auto;
         }
 
         .numPagina {
@@ -181,15 +199,14 @@
             justify-content: center;
             height: 30px;
             border-radius: 3px;
-            background-color: #e6e6e6;
             margin: 0px 10px;
 
-            > a {
+            >a {
                 color: #000000;
                 text-decoration: none;
             }
         }
-  
+
     }
 
 
@@ -204,7 +221,7 @@
         border-radius: 10px;
         background: var(--azul-marca, #152039);
 
-        > a {
+        >a {
             color: #ffffff;
             text-decoration: none;
             text-align: center;
@@ -222,7 +239,7 @@
             width: 100px;
             position: absolute;
             right: 150px;
-            background: linear-gradient(-90deg, #152039 50.24%, rgba(21, 32, 57, 0.00) 92.42%);    
+            background: linear-gradient(-90deg, #152039 50.24%, rgba(21, 32, 57, 0.00) 92.42%);
         }
 
         .stardewValley {
@@ -230,7 +247,7 @@
             border-radius: 10px;
             height: 100%;
 
-            > img {
+            >img {
                 width: 500px;
                 margin-right: 20px;
             }
@@ -244,12 +261,12 @@
 
     @media (max-width: 1024px) {
         .instagram {
-            > a {
+            >a {
                 margin: 0px 10px;
             }
-            
+
             .stardewValley {
-                > img {
+                >img {
                     min-width: none;
                     max-width: 360px;
                 }
@@ -264,13 +281,13 @@
             display: none;
         }
 
-        > .logoFiltro {
+        >.logoFiltro {
             position: absolute;
             top: 75px;
             left: 25px;
             z-index: 1;
-                
-            > img {
+
+            >img {
                 height: auto;
                 width: 100%;
                 max-width: 50px;
@@ -293,13 +310,13 @@
             overflow-y: scroll;
             max-height: 100vh;
 
-            > .logoFiltro {
+            >.logoFiltro {
                 position: absolute;
                 top: 20px;
                 left: 25px;
                 z-index: 1;
-                    
-                > img {
+
+                >img {
                     height: auto;
                     width: 100%;
                     max-width: 50px;
@@ -311,40 +328,43 @@
                 flex-direction: column;
                 align-items: center;
 
-                > h2 {
-                    font-size: 26px;
-                    margin-bottom: 10px;
-                    color: #ffffff;
-                }
-
-                > h3 {
+                >h2 {
                     font-size: 20px;
                     margin-bottom: 10px;
                     color: #ffffff;
+                    font-weight: 600;
                 }
 
-                > input {
+                >h3 {
+                    font-size: 16px;
+                    margin-bottom: 10px;
+                    color: #ffffff;
+                    font-weight: 500;
+                }
+
+                >input {
                     margin-bottom: 10px;
                 }
 
                 .marcacaoResp {
                     display: flex;
                     flex-direction: row;
-                    margin-bottom: 10px;
+                    margin-bottom: 20px;
 
                     .caixaResp {
                         display: flex;
                         flex-direction: column;
                         align-items: center;
-                        margin: 0px 10px;
+                        margin: 0px 16px;
 
-                        > p {
+                        >p {
+                            font-size: 14px;
                             color: #ffffff;
                         }
                     }
                 }
 
-                > a {
+                >a {
                     text-decoration: none;
                     color: #ffffff;
                     font-size: 14px;
@@ -352,7 +372,7 @@
                     transition: 0.5s;
                 }
 
-                > a:hover {
+                >a:hover {
                     color: #e6e6e6;
                     font-size: 16px;
                     transition: 0.5s;
@@ -370,17 +390,17 @@
         }
 
         .card-produto {
-            > img {
-                max-width: 200px!important;
+            >img {
+                max-width: 200px !important;
             }
 
-            > h2  {
+            >h2 {
                 text-align: center;
             }
 
-            > a {
+            >a {
                 width: 100%;
-                max-width: 500px!important;
+                max-width: 500px !important;
                 text-align: center;
             }
         }
@@ -388,7 +408,7 @@
         .cartoesProduto {
             flex-direction: column;
         }
-        
+
         .sec-categorias {
             display: none;
         }
