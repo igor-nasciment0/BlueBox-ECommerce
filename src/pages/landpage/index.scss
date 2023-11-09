@@ -398,7 +398,7 @@
     .sec03-produtos
     {
         padding-top: 25px;
-        padding-bottom: 50px;
+        padding-bottom: 70px;
 
         background: rgb(3,12,30);
         background: linear-gradient(0deg, rgba(3,12,30,1) 20%, rgba(255,255,255,0) 100%);
@@ -431,7 +431,7 @@
         }
 
         .container-produto {
-            max-height: 500px;
+            max-height: 525px;
             height: 100%;
             padding: 0 10px;
             width: 100%;
@@ -462,7 +462,7 @@
             display: flex;
 
             position: absolute;
-            bottom: 0;
+            bottom: -25px;
             left: 0;
             right: 0;
             margin: 0 auto;

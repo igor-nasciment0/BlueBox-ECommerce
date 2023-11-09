@@ -22,9 +22,11 @@ export default function Landpage() {
 
     async function buscarDestaques() {
         try {
-            let ultimos = await buscarProdutos('', 'data', '');
+            let dest = await buscarProdutos('', 'promoData');
 
-            setDestaques(ultimos);
+            dest = dest.slice(0, 20)
+
+            setDestaques(dest);
 
         } catch (error) {
             console.log(error);
@@ -108,32 +110,16 @@ export default function Landpage() {
                     <div className='container-produtos'>
                         <div>
                             <CarouselProvider naturalSlideWidth={280} naturalSlideHeight={530}
-                                totalSlides={4}
+                                totalSlides={destaques.length}
                                 visibleSlides={useMediaQuery('(max-width: 900px)') ? 2 : 4}>
                                 <Slider>
-                                    <Slide>
-                                        <div className='container-produto'>
-                                            <CardProduto infoProduto={destaques[0]} />
-                                        </div>
-                                    </Slide>
-
-                                    <Slide>
-                                        <div className='container-produto'>
-                                            <CardProduto infoProduto={destaques[0]} />
-                                        </div>
-                                    </Slide>
-
-                                    <Slide>
-                                        <div className='container-produto'>
-                                            <CardProduto infoProduto={destaques[0]} />
-                                        </div>
-                                    </Slide>
-
-                                    <Slide>
-                                        <div className='container-produto'>
-                                            <CardProduto infoProduto={destaques[0]} />
-                                        </div>
-                                    </Slide>
+                                    {destaques.map(produto => 
+                                        <Slide>
+                                            <div className='container-produto'>
+                                                <CardProduto infoProduto={produto} />
+                                            </div>
+                                        </Slide>    
+                                    )}
                                 </Slider>
 
                                 <div className='botoes'>

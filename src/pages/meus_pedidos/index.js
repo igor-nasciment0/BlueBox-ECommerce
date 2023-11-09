@@ -44,7 +44,7 @@ export default function UserPedidos() {
 
     function colocarNovaData(produto, index) {
         if(produtosPedidos[index-1]) {
-            return formatarMesAno(produto.infoPedido.dataCompra) != formatarMesAno(produtosPedidos[index - 1].infoPedido.dataCompra)
+            return formatarMesAno(produto.infoPedido.dataCompra) !== formatarMesAno(produtosPedidos[index - 1].infoPedido.dataCompra)
         } else {
             return true
         }
