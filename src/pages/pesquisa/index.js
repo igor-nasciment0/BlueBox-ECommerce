@@ -39,15 +39,27 @@ export default function Pesquisa() {
   const [produtos, setProdutos] = useState([])
   const [proxTela, setProxTela] = useState(false);
 
+  const[filtroUsado, setFiltroUsado] = useState('');
+  const[ordemPreco, setOrdemPreco] = useState('');
+
+  function marcarCaixa(valor, valorAtual, setValor) {
+    if(valorAtual !== valor) {
+      setValor(valor);
+    } else {
+      setValor('');
+    }
+  }
+
   async function buscarProdutos() {
     try {
-      let prod = await buscarProdutosPagina(busca, '', '', page);
+      let prod = await buscarProdutosPagina(busca, ordemPreco, filtroUsado, page);
+      console.log(prod);
 
       prod = [...prod, ...prod, ...prod, ...prod, ...prod, ...prod, ...prod, ...prod, ...prod, ...prod, ...prod]
 
       setProdutos(prod);
 
-      let prodProximaTela = await buscarProdutosPagina(busca, '', '', page + 1);
+      let prodProximaTela = await buscarProdutosPagina(busca, ordemPreco, filtroUsado, page + 1);
       if(prodProximaTela.length > 0) {
         setProxTela(true);
       }
@@ -58,13 +70,9 @@ export default function Pesquisa() {
     }
   }
 
-  async function produtosProximaPagina() {
-
-  }
-
   useEffect(() => {
     buscarProdutos();
-  }, [busca, page])
+  }, [busca, page, filtroUsado, ordemPreco])
 
   return (
     <div className={'pesquisaBody ' + tema}>
@@ -154,11 +162,11 @@ export default function Pesquisa() {
 
           <div className='caixaMarcacao'>
             <div className='caixa'>
-              <input type="checkbox" />
+              <input type="checkbox" checked={filtroUsado === 'novo'} onClick={() => marcarCaixa('novo', filtroUsado, setFiltroUsado)}/>
               <p>Novo</p>
             </div>
             <div className='caixa'>
-              <input type="checkbox" />
+              <input type="checkbox" checked={filtroUsado === 'usado'} onClick={() => marcarCaixa('usado', filtroUsado, setFiltroUsado)}/>
               <p>Usado</p>
             </div>
           </div>
@@ -167,11 +175,11 @@ export default function Pesquisa() {
 
           <div className='caixaMarcacao'>
             <div className='caixa'>
-              <input type="checkbox" />
+              <input type="checkbox" checked={ordemPreco === 'menor_preco'} onClick={() => marcarCaixa('menor_preco', ordemPreco, setOrdemPreco)}/>
               <p>Menor Preço</p>
             </div>
             <div className='caixa'>
-              <input type="checkbox" />
+              <input type="checkbox" checked={ordemPreco === 'maior_preco'} onClick={() => marcarCaixa('maior_preco', ordemPreco, setOrdemPreco)}/>
               <p>Maior Preço</p>
             </div>
           </div>

@@ -53,7 +53,7 @@ export default function CardProduto({infoProduto, idProduto})
     return(
         <div className={'card-produto ' + tema} onClick={() => navigate('/produto/' + produto.id)}>
             <div>
-               <img src={mostrarUrlImagem(imagem.url)} alt="Assassin's Creed" /> 
+               <img src={mostrarUrlImagem(imagem.url)} alt={produto.nome} /> 
             </div>
 
             <h2>{produto.nome}</h2>
