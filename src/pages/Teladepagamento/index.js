@@ -3,12 +3,36 @@ import Rodape from "../../components/rodape";
 import { useLocation } from "react-router-dom";
 import { Link } from "react-router-dom";
 import "./index.scss";
+import { useEffect, useState } from "react";
+import Carrinho from "../carrinho";
+import { buscarImagemPrimaria } from "../../api/produtoAPI";
 
 export default function TeladePagamento() {
+  const [produtosCarrinho, setProdutosCarrinho] = useState([]);
 
-  const location = useLocation();
+  useEffect(() => {
+    buscaInfo();
+  }, []);
 
-  console.log(location.state);
+
+  async function buscaInfo() {
+    let carrinho = localStorage.getItem("carrinho");
+
+    if (!carrinho) {
+      carrinho = [];
+      localStorage.setItem("carrinho", []);
+    }
+
+    for (let i = 0; i < carrinho.length; i++) {
+      let produto = carrinho[i];
+      let img = await buscarImagemPrimaria(produto.id);
+      produto.img = img.url;
+      produto.qtd = 1;
+    }
+    alert('oi')
+    //console.log(carrinho)
+    setProdutosCarrinho(carrinho);
+  }
 
   return (
     <div className="teladePagamento">
@@ -20,28 +44,29 @@ export default function TeladePagamento() {
               <h1>Pedido</h1>
 
               <div className="produtos">
-                <div className="especs-pedido">
-                  
-                  <p>{location.state.nome}</p>
-                  <div>
-                    <p>Qtd</p>
-                    <p>{location.state.qtd}</p>
-                  </div>
+                {produtosCarrinho.map((carrinho) => (
+                  <div className="especs-pedido">
+                    <p>{carrinho.nome}</p>
+                    <div>
+                      <p>Qtd</p>
+                      <p>{}</p>
+                    </div>
 
-                  <div>
-                    <p>Subtotal</p>
-                    <p>{location.state.preco}</p>
+                    <div>
+                      <p>Subtotal</p>
+                      <p>{carrinho.preco}</p>
+                    </div>
                   </div>
-                </div>
+                ))}
               </div>
             </div>
 
             <div className="metodos-pagamento">
               <p>Escolha seu metodo de pagamento:</p>
               <div className="metodos">
-                <Link to={'/tela-pix'}>PIX</Link>
-                <Link to={'/tela-cartão'}>Cartão de credito</Link>
-                <Link to={'/tela-cartão'}>Cartão de debito</Link>
+                <Link to={"/tela-pix"}>PIX</Link>
+                <Link to={"/tela-cartão"}>Cartão de credito</Link>
+                <Link to={"/tela-cartão"}>Cartão de debito</Link>
                 <Link>Boleto</Link>
               </div>
             </div>
@@ -58,7 +83,7 @@ export default function TeladePagamento() {
                 <div className="linha"></div>
                 <div>
                   <p>Subtotal</p>
-                  <p>{location.state.valor}</p>
+                  <p>{}</p>
                 </div>
                 <div>
                   <p>Frete</p>
@@ -66,7 +91,7 @@ export default function TeladePagamento() {
                 </div>
                 <div>
                   <p className="total">Total</p>
-                  <p className="total">{location.state.valor}</p>
+                  <p className="total">{}</p>
                 </div>
                 <div>
                   <p className="pix">Pix</p>

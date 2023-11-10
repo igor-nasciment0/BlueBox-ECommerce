@@ -18,7 +18,7 @@ export default function Carrinho(props) {
   let tema = context.tema;
 
   const navigate = useNavigate();
-
+  
   const [totalProdutos, setTotalProdutos] = useState();
   const [produtosCarrinho, setProdutosCarrinho] = useState([]);
 
@@ -66,7 +66,7 @@ export default function Carrinho(props) {
   }, [produtosCarrinho]);
   
   function toComponentB() {
-    navigate("/pagamento", { state: { nome: produtosCarrinho.nome, preco: produtosCarrinho.preco, qtd: produtosCarrinho.qtd} });
+    navigate("/pagamento");
   };
 
   return (
