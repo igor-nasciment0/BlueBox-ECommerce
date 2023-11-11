@@ -6,25 +6,25 @@ export default function FaixaCategorias() {
             <ul>
                 <div>
                     <li>
-                        <a href="">Playstation</a> <img src='/assets/images/icons/arrow-down.svg' alt=''/>
+                        <h4>Playstation</h4> <img src='/assets/images/icons/arrow-down.svg' alt=''/>
                     </li>
                     <li>
-                        <a href="">Xbox</a> <img src='/assets/images/icons/arrow-down.svg' alt=''/>
+                        <h4>Xbox</h4> <img src='/assets/images/icons/arrow-down.svg' alt=''/>
                     </li>
                     <li>
-                        <a href="">Nintendo</a> <img src='/assets/images/icons/arrow-down.svg' alt=''/>
+                        <h4>Nintendo</h4> <img src='/assets/images/icons/arrow-down.svg' alt=''/>
                     </li>
                 </div>
 
                 <div>
                     <li>
-                        <a href="">Acessórios</a> <img src='/assets/images/icons/arrow-down.svg' alt=''/>
+                        <h4>Consoles</h4> <img src='/assets/images/icons/arrow-down.svg' alt=''/>
                     </li>
                     <li>
-                        <a href="">Raridades</a> <img src='/assets/images/icons/arrow-down.svg' alt=''/>
+                        <h4>Acessórios</h4> <img src='/assets/images/icons/arrow-down.svg' alt=''/>
                     </li>
                     <li>
-                        <a href="">Outros</a> <img src='/assets/images/icons/arrow-down.svg' alt=''/>
+                        <h4>Raridades</h4> <img src='/assets/images/icons/arrow-down.svg' alt=''/>
                     </li>
                 </div>
             </ul>

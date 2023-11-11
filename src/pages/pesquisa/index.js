@@ -39,28 +39,36 @@ export default function Pesquisa() {
   const [produtos, setProdutos] = useState([])
   const [proxTela, setProxTela] = useState(false);
 
-  const[filtroUsado, setFiltroUsado] = useState('');
-  const[ordemPreco, setOrdemPreco] = useState('');
+  const [filtroUsado, setFiltroUsado] = useState('');
+  const [ordemPreco, setOrdemPreco] = useState('');
+  const [categoria, setCategoria] = useState('');
 
   function marcarCaixa(valor, valorAtual, setValor) {
-    if(valorAtual !== valor) {
+    if (valorAtual !== valor) {
       setValor(valor);
     } else {
       setValor('');
     }
   }
 
+  function selecionado(cat) {
+    if (categoria === cat) {
+      return { color: "var(--azul-claro)" }
+    } else
+      return {}
+  }
+
   async function buscarProdutos() {
     try {
-      let prod = await buscarProdutosPagina(busca, ordemPreco, filtroUsado, page);
-      console.log(prod);
+      console.log(categoria);
+      let prod = await buscarProdutosPagina(busca, categoria, ordemPreco, filtroUsado, page);
 
       prod = [...prod, ...prod, ...prod, ...prod, ...prod, ...prod, ...prod, ...prod, ...prod, ...prod, ...prod]
 
       setProdutos(prod);
 
-      let prodProximaTela = await buscarProdutosPagina(busca, ordemPreco, filtroUsado, page + 1);
-      if(prodProximaTela.length > 0) {
+      let prodProximaTela = await buscarProdutosPagina(busca, categoria, ordemPreco, filtroUsado, page + 1);
+      if (prodProximaTela.length > 0) {
         setProxTela(true);
       }
 
@@ -72,7 +80,7 @@ export default function Pesquisa() {
 
   useEffect(() => {
     buscarProdutos();
-  }, [busca, page, filtroUsado, ordemPreco])
+  }, [busca, page, filtroUsado, ordemPreco, categoria])
 
   return (
     <div className={'pesquisaBody ' + tema}>
@@ -103,11 +111,11 @@ export default function Pesquisa() {
 
           <div className='marcacaoResp'>
             <div className='caixaResp'>
-              <input type="checkbox" />
+              <input type="checkbox" checked={filtroUsado === 'novo'} onClick={() => marcarCaixa('novo', filtroUsado, setFiltroUsado)} />
               <p>Novo</p>
             </div>
             <div className='caixaResp'>
-              <input type="checkbox" />
+              <input type="checkbox" checked={filtroUsado === 'usado'} onClick={() => marcarCaixa('usado', filtroUsado, setFiltroUsado)} />
               <p>Usado</p>
             </div>
           </div>
@@ -116,41 +124,29 @@ export default function Pesquisa() {
 
           <div className='marcacaoResp'>
             <div className='caixaResp'>
-              <input type="checkbox" />
+              <input type="checkbox" checked={ordemPreco === 'menor_preco'} onClick={() => marcarCaixa('menor_preco', ordemPreco, setOrdemPreco)} />
               <p>Menor Preço</p>
             </div>
             <div className='caixaResp'>
-              <input type="checkbox" />
+              <input type="checkbox" checked={ordemPreco === 'maior_preco'} onClick={() => marcarCaixa('maior_preco', ordemPreco, setOrdemPreco)} />
               <p>Maior Preço</p>
             </div>
           </div>
 
           <h3>Categorias</h3>
 
-          <a href="">Playstation 1</a>
-          <a href="">Playstation 2</a>
-          <a href="">Playstation 3</a>
-          <a href="">Playstation 4</a>
-          <a href="">Playstation 5</a>
-          <a href="">Playstation Portable</a>
-          <a href="">Playstation Vita</a>
-          <a href="">Xbox 360</a>
-          <a href="">Xbox One</a>
-          <a href="">Xbox Series X & S</a>
-          <a href="">Nintendo 64</a>
-          <a href="">Nintendo GameCube</a>
-          <a href="">Wii</a>
-          <a href="">Nintendo Switch</a>
-          <a href="">Game Boy</a>
-          <a href="">Nintendo 3DS & 2DS</a>
-          <a href="">Controle</a>
-          <a href="">Mouse</a>
-          <a href="">Teclado</a>
-          <a href="">Notebook</a>
-          <a href="">PC Gamer</a>
-          <a href="">Action Figures</a>
-          <a href="">Jogos de Mesa</a>
-          <a href="">Colecionáveis</a>
+          <h4 style={selecionado("Playstation")} onClick={() => setCategoria('Playstation')}>Playstation</h4>
+          <h4 style={selecionado("Xbox")} onClick={() => setCategoria('Xbox')}>Xbox</h4>
+          <h4 style={selecionado("Nintendo")} onClick={() => setCategoria('Nintendo')}>Nintendo</h4>
+          <h4 style={selecionado("Consoles")} onClick={() => setCategoria('Consoles')}>Consoles</h4>
+          <h4 style={selecionado("Acessórios")} onClick={() => setCategoria('Acessórios')}>Acessórios</h4>
+          <h4 style={selecionado("Raridades")} onClick={() => setCategoria('Raridades')}>Raridades</h4>
+
+          <button className='limpar' onClick={() => {
+            setFiltroUsado('');
+            setCategoria('');
+            setOrdemPreco('');
+          }}>Limpar Filtros</button>
         </div>
       </div>
 
@@ -162,11 +158,11 @@ export default function Pesquisa() {
 
           <div className='caixaMarcacao'>
             <div className='caixa'>
-              <input type="checkbox" checked={filtroUsado === 'novo'} onClick={() => marcarCaixa('novo', filtroUsado, setFiltroUsado)}/>
+              <input type="checkbox" checked={filtroUsado === 'novo'} onClick={() => marcarCaixa('novo', filtroUsado, setFiltroUsado)} />
               <p>Novo</p>
             </div>
             <div className='caixa'>
-              <input type="checkbox" checked={filtroUsado === 'usado'} onClick={() => marcarCaixa('usado', filtroUsado, setFiltroUsado)}/>
+              <input type="checkbox" checked={filtroUsado === 'usado'} onClick={() => marcarCaixa('usado', filtroUsado, setFiltroUsado)} />
               <p>Usado</p>
             </div>
           </div>
@@ -175,41 +171,29 @@ export default function Pesquisa() {
 
           <div className='caixaMarcacao'>
             <div className='caixa'>
-              <input type="checkbox" checked={ordemPreco === 'menor_preco'} onClick={() => marcarCaixa('menor_preco', ordemPreco, setOrdemPreco)}/>
+              <input type="checkbox" checked={ordemPreco === 'menor_preco'} onClick={() => marcarCaixa('menor_preco', ordemPreco, setOrdemPreco)} />
               <p>Menor Preço</p>
             </div>
             <div className='caixa'>
-              <input type="checkbox" checked={ordemPreco === 'maior_preco'} onClick={() => marcarCaixa('maior_preco', ordemPreco, setOrdemPreco)}/>
+              <input type="checkbox" checked={ordemPreco === 'maior_preco'} onClick={() => marcarCaixa('maior_preco', ordemPreco, setOrdemPreco)} />
               <p>Maior Preço</p>
             </div>
           </div>
 
           <h2>Categorias</h2>
 
-          <a href="">Playstation 1</a>
-          <a href="">Playstation 2</a>
-          <a href="">Playstation 3</a>
-          <a href="">Playstation 4</a>
-          <a href="">Playstation 5</a>
-          <a href="">Playstation Portable</a>
-          <a href="">Playstation Vita</a>
-          <a href="">Xbox 360</a>
-          <a href="">Xbox One</a>
-          <a href="">Xbox Series X & S</a>
-          <a href="">Nintendo 64</a>
-          <a href="">Nintendo GameCube</a>
-          <a href="">Wii</a>
-          <a href="">Nintendo Switch</a>
-          <a href="">Game Boy</a>
-          <a href="">Nintendo 3DS & 2DS</a>
-          <a href="">Controle</a>
-          <a href="">Mouse</a>
-          <a href="">Teclado</a>
-          <a href="">Notebook</a>
-          <a href="">PC Gamer</a>
-          <a href="">Action Figures</a>
-          <a href="">Jogos de Mesa</a>
-          <a href="">Colecionáveis</a>
+          <h4 style={selecionado("Playstation")} onClick={() => setCategoria('Playstation')}>Playstation</h4>
+          <h4 style={selecionado("Xbox")} onClick={() => setCategoria('Xbox')}>Xbox</h4>
+          <h4 style={selecionado("Nintendo")} onClick={() => setCategoria('Nintendo')}>Nintendo</h4>
+          <h4 style={selecionado("Consoles")} onClick={() => setCategoria('Consoles')}>Consoles</h4>
+          <h4 style={selecionado("Acessórios")} onClick={() => setCategoria('Acessórios')}>Acessórios</h4>
+          <h4 style={selecionado("Raridades")} onClick={() => setCategoria('Raridades')}>Raridades</h4>
+
+          <button className='limpar' onClick={() => {
+            setFiltroUsado('');
+            setCategoria('');
+            setOrdemPreco('');
+          }}>Limpar Filtros</button>
         </div>
 
         <div className='produtosInsta'>
@@ -218,7 +202,7 @@ export default function Pesquisa() {
 
           <div className='produtos'>
             {produtos.map(arrayProduto =>
-              <CardProduto infoProduto={arrayProduto}/>
+              <CardProduto infoProduto={arrayProduto} />
             )}
           </div>
 
