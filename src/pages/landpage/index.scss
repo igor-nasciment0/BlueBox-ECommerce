@@ -213,7 +213,7 @@
         .card-text h2
         {
             text-align: center;
-            font-size: 22px;
+            font-size: 18px;
             color: #FFFFFF;
             font-weight: 600;
 
@@ -431,7 +431,7 @@
         }
 
         .container-produto {
-            max-height: 525px;
+            max-height: 545px;
             height: 100%;
             padding: 0 10px;
             width: 100%;
@@ -446,10 +446,6 @@
             @media (max-width: 750px) {
                 max-height: 410px;
             }
-            
-            @media (max-width: 400px) {
-                max-height: 300px;
-            }
         }
 
         .carousel__inner-slide {
@@ -462,7 +458,7 @@
             display: flex;
 
             position: absolute;
-            bottom: -25px;
+            bottom: -35px;
             left: 0;
             right: 0;
             margin: 0 auto;
@@ -475,6 +471,10 @@
                     width: 20px;
                     height: 20px;
                 }
+            }
+
+            @media (max-width: 900px) {
+                bottom: 0
             }
         }
     }

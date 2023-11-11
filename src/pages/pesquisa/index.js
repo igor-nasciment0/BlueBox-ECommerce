@@ -6,7 +6,7 @@ import Rodape from '../../components/rodape'
 import CardProduto from '../../components/cardProduto'
 import { useContext, useEffect, useState } from 'react';
 import { TemaContext } from '../../theme';
-import { buscarProdutos, buscarProdutosPagina } from '../../api/produtoAPI';
+import { buscarProdutosPagina } from '../../api/produtoAPI';
 import { Link, useLocation, useNavigate, useSearchParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import ToastCont from '../../components/toastContainer';
@@ -17,7 +17,10 @@ export default function Pesquisa() {
 
   const location = useLocation();
   const navigate = useNavigate();
-  const busca = new URLSearchParams(location.search).get('busca');
+  let busca = new URLSearchParams(location.search).get('busca');
+
+  if (!busca)
+    busca = '';
 
   const [pageObject] = useSearchParams();
   if (!pageObject.get('page'))
@@ -62,9 +65,7 @@ export default function Pesquisa() {
     try {
       console.log(categoria);
       let prod = await buscarProdutosPagina(busca, categoria, ordemPreco, filtroUsado, page);
-
-      prod = [...prod, ...prod, ...prod, ...prod, ...prod, ...prod, ...prod, ...prod, ...prod, ...prod, ...prod]
-
+      
       setProdutos(prod);
 
       let prodProximaTela = await buscarProdutosPagina(busca, categoria, ordemPreco, filtroUsado, page + 1);
@@ -77,6 +78,15 @@ export default function Pesquisa() {
       toast.error('Não foi possível realizar a busca.');
     }
   }
+
+  useEffect(() => {
+    let state = location.state;
+    if (state) {
+      if (state.cat) {
+        setCategoria(state.cat)
+      }
+    }
+  }, [location])
 
   useEffect(() => {
     buscarProdutos();
@@ -92,10 +102,6 @@ export default function Pesquisa() {
         <Link to={'/'}>Página inicial...</Link>
         <p>|</p>
         <p>Resultado da pesquisa</p>
-      </div>
-
-      <div className='logoFiltro'>
-        <img src="/assets/images/3pontos.png" alt="" onClick={barraLateral} className={(displayBarra.display === 'flex' || tema === 'dark') && 'img-branco'} />
       </div>
 
       <div className='filtroResp' style={displayBarra}>
@@ -198,11 +204,17 @@ export default function Pesquisa() {
 
         <div className='produtosInsta'>
 
+          <div className='logoFiltro'>
+            <img src="/assets/images/3pontos.png" alt="" onClick={barraLateral} className={(displayBarra.display === 'flex' || tema === 'dark') && 'img-branco'} />
+          </div>
+
           <h1 className='titulo'>Resultado</h1>
 
           <div className='produtos'>
             {produtos.map(arrayProduto =>
-              <CardProduto infoProduto={arrayProduto} />
+              <div className='container-produto'>
+                <CardProduto infoProduto={arrayProduto} />
+              </div>
             )}
           </div>
 
@@ -222,8 +234,8 @@ export default function Pesquisa() {
           </div>
 
           <div className='instagram'>
-            <a href="">Nos siga no Instagram</a>
-            <a href="">Novidades toda semana!</a>
+            <p>Nos siga no Instagram</p>
+            <p>Novidades toda semana!</p>
             <div className='stardewValley'>
               <div className='degrade'></div>
               <img src="/assets/images/backgrounds/stardewvalleyWallpaper.png" alt="Stardew Valley" />

@@ -34,7 +34,7 @@
         cursor: pointer;
     }
 
-    >.logoFiltro {
+    .logoFiltro {
         display: none;
 
         @media(max-width: 768px) {
@@ -64,6 +64,8 @@
         color: white;
 
         text-align: center;
+
+        margin-right: 16px;
     }
 
     .filtro>h1 {
@@ -141,7 +143,8 @@
         align-items: center;
         height: auto;
         width: 100%;
-        padding: 0 16px;
+
+        position: relative;
     }
 
     .titulo {
@@ -155,6 +158,27 @@
         grid-template-columns: 1fr 1fr 1fr 1fr;
         gap: 16px;
         margin-bottom: 30px;
+        align-items: center;
+
+        .container-produto {
+            height: 100%;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .card-produto {
+            > div {
+                width: 200px;
+                height: 260px;
+
+                img {
+                    height: 100%;
+                    width: auto;
+                }
+            }
+        }
 
         @media (max-width: 1100px) {
             grid-template-columns: 1fr 1fr 1fr;
@@ -166,6 +190,18 @@
 
         @media (max-width: 480px) {
             grid-template-columns: 1fr;
+
+            .card-produto {
+                > div {
+                    width: 220px;
+                    height: 220px;
+
+                    img {
+                        height: 100%;
+                        width: auto;
+                    }
+                }
+            }
         }
     }
 
@@ -241,7 +277,7 @@
         border-radius: 10px;
         background: var(--azul-marca, #152039);
 
-        >a {
+        >p {
             color: #ffffff;
             text-decoration: none;
             text-align: center;
@@ -301,10 +337,10 @@
             display: none;
         }
 
-        >.logoFiltro {
+        .logoFiltro {
             position: absolute;
-            top: 75px;
-            left: 25px;
+            top: -10px;
+            left: 0px;
             z-index: 1;
 
             >img {
@@ -334,8 +370,8 @@
 
             >.logoFiltro {
                 position: absolute;
-                top: 20px;
-                left: 25px;
+                top: 10px;
+                left: 10px;
                 z-index: 1;
 
                 >img {
@@ -423,7 +459,7 @@
         }
 
         .s1 {
-            padding: 40px 30px;
+            padding: 40px 20px;
         }
 
         .produtosInsta {
@@ -449,10 +485,6 @@
 
         .cartoesProduto {
             flex-direction: column;
-        }
-
-        .sec-categorias {
-            display: none;
         }
 
         .filtro {
