@@ -345,8 +345,7 @@
 
             >img {
                 height: auto;
-                width: 100%;
-                max-width: 50px;
+                width: 30px;
             }
         }
 
@@ -370,14 +369,13 @@
 
             >.logoFiltro {
                 position: absolute;
-                top: 10px;
-                left: 10px;
+                top: 20px;
+                left: 20px;
                 z-index: 1;
 
                 >img {
                     height: auto;
-                    width: 100%;
-                    max-width: 50px;
+                    width: 30px;
                 }
             }
 

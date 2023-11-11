@@ -83,7 +83,11 @@ export default function Pesquisa() {
     let state = location.state;
     if (state) {
       if (state.cat) {
-        setCategoria(state.cat)
+        setCategoria(state.cat);
+      }
+
+      if(state.ordem) {
+        setOrdemPreco(state.ordem);
       }
     }
   }, [location])

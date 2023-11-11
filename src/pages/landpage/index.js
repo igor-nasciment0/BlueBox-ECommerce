@@ -99,7 +99,7 @@ export default function Landpage() {
                         <div className='card-mk'>
                             <div className='card-text'>
                                 <h2>Aproveite<br />nossos<br />descontos</h2>
-                                <Link to={'/'}>Confira</Link>
+                                <Link to={'/pesquisa'} state={{ordem: "promoData"}}>Confira</Link>
                             </div>
                         </div>
 
