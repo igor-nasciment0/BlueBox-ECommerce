@@ -13,14 +13,17 @@ import ProdutoCarrinho from "./produtoCarrinho";
 import { valorEmReais } from "../../api/funcoesGerais";
 import { useNavigate } from "react-router-dom";
 
-export default function Carrinho(props) {
+export default function Carrinho() {
   const context = useContext(TemaContext);
   let tema = context.tema;
 
   const navigate = useNavigate();
   
-  const [totalProdutos, setTotalProdutos] = useState();
+  const [totalProdutos, setTotalProdutos] = useState(0);
+  const [frete, setFrete] = useState(0);
   const [produtosCarrinho, setProdutosCarrinho] = useState([]);
+  
+  const [decidindoFrete, setDecidindoFrete] = useState(false);
 
   async function buscaInfo() {
     let carrinho = get("carrinho");
@@ -64,6 +67,10 @@ export default function Carrinho(props) {
 
     setTotalProdutos(t);
   }, [produtosCarrinho]);
+
+  useEffect(() => {
+    set('carrinho', produtosCarrinho);
+  }, [produtosCarrinho])
   
   function toComponentB() {
     navigate("/pagamento");

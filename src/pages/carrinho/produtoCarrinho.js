@@ -27,7 +27,7 @@ export default function ProdutoCarrinho({ produto, resetar, } ) {
         } else {
             setPrecoReal(produto.preco);
         }
-    }, [])
+    }, [produto])
 
     return (
         <div className='produto-container'>
@@ -60,7 +60,7 @@ export default function ProdutoCarrinho({ produto, resetar, } ) {
 
                 <div className='produto-preco'>
                     <h2>Preço:</h2>
-                    <h4>{produto.promocao && valorEmReais(produto.valorPromocional)}</h4>
+                    <h4>{produto.promocao && valorEmReais(produto.preco)}</h4>
                     <h3>{valorEmReais(precoReal)}</h3>
                 </div>
             </div>
