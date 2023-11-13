@@ -18,7 +18,7 @@ export default function Carrinho(props) {
   let tema = context.tema;
 
   const navigate = useNavigate();
-  
+
   const [totalProdutos, setTotalProdutos] = useState();
   const [produtosCarrinho, setProdutosCarrinho] = useState([]);
 
@@ -27,7 +27,7 @@ export default function Carrinho(props) {
 
     if (!carrinho) {
       carrinho = [];
-      set('carrinho', []);
+      set("carrinho", []);
     }
 
     for (let i = 0; i < carrinho.length; i++) {
@@ -41,9 +41,9 @@ export default function Carrinho(props) {
   }
 
   useEffect(() => {
-    let login = get('user-login');
+    let login = get("user-login");
 
-/*     if(!login) {
+    /*     if(!login) {
       navigate('/login')
     } */
 
@@ -59,14 +59,18 @@ export default function Carrinho(props) {
       t =
         t +
         (produto.promocao ? produto.valorPromocional : produto.preco) *
-        produto.qtd;
+          produto.qtd;
     }
 
     setTotalProdutos(t);
   }, [produtosCarrinho]);
-  
-  function toComponentB() {
-    navigate("/pagamento");
+
+  useEffect(() => {
+    set('carrinho', produtosCarrinho)
+  }, [produtosCarrinho])
+
+  const toComponentB = () => {
+    navigate("/pagamento", { state: { preco: totalProdutos } });
   };
 
   return (
@@ -79,10 +83,9 @@ export default function Carrinho(props) {
         <div className="container-tela">
           <section className="sec-carrinho">
             <div className="container-carrinho">
-              {produtosCarrinho.length === 0 &&
-
-                <div className="msg-vazio">Seu carrinho está vazio!</div >
-              }
+              {produtosCarrinho.length === 0 && (
+                <div className="msg-vazio">Seu carrinho está vazio!</div>
+              )}
 
               {produtosCarrinho.map((produto) => (
                 <ProdutoCarrinho
@@ -106,9 +109,9 @@ export default function Carrinho(props) {
                   <p>
                     {valorEmReais(
                       produto.qtd *
-                      (produto.promocao
-                        ? produto.valorPromocional
-                        : produto.preco)
+                        (produto.promocao
+                          ? produto.valorPromocional
+                          : produto.preco)
                     )}
                   </p>
                 </div>
