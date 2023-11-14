@@ -31,7 +31,21 @@
             padding: 40px 30px;
             border-radius: 10px;
 
-            input{
+            .escolhaCartao{
+                display: flex;
+                width: 100%;
+                flex-direction: column;
+                gap: 10px;
+
+                >div{
+                    width: 100%;
+                    gap: 10px;
+                    flex-direction: row;
+                    display: flex;
+                }
+            }
+
+            >input{
                 background-color: var(--azul-marca);
                 width: 100%;
                 border: none;
@@ -51,6 +65,7 @@
             background-color: #fff;
             padding: 30px;
             border-radius: 10px;
+            width: 500px;      
 
             .borda-resumo{
                 border: 2px solid rgba(0, 0, 0, 0.30);
@@ -95,6 +110,7 @@
                 h1{
                     font-weight: 400;
                     text-align: center;
+                    font-size: 24px;
                 }
         
                 div{
@@ -119,6 +135,7 @@
 
                     p{
                         font-size: 16px;
+                        width: 100%;
                     }
                 }
 
@@ -127,13 +144,15 @@
                     color: var(--cinza-claro-texto, #424242);
                     display: flex;
                     align-items: center;
+                    justify-content: center;
                     gap: 8px;
                     border: none;
                     border-radius: 10px;
                     background-color: var(--verde-claro);
                     padding: 10px 40px;
                     color: white;
-                    font-size: 18px;
+                    font-size: 16px;
+                    width: 100%;
                     font-weight: 600;
                     transition: 0.2s;
                 }
@@ -163,6 +182,13 @@
                 >img{
                     width: 100%;
                 }
+            }
+
+
+
+            .resumo-pagamento{
+                max-width: none;
+                width: 100% !important;
             }
 
             .linha{

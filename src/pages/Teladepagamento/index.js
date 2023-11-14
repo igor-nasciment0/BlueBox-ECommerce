@@ -1,19 +1,20 @@
 import Cabecalho from "../../components/cabecalho";
 import Rodape from "../../components/rodape";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import "./index.scss";
 import { useEffect, useState } from "react";
-import Carrinho from "../carrinho";
 import { buscarImagemPrimaria, mostrarUrlImagem } from "../../api/produtoAPI";
-import { get, set } from "local-storage";
+import { get } from "local-storage";
 import { valorEmReais } from "../../api/funcoesGerais";
 
 export default function TeladePagamento() {
   const [produtosCarrinho, setProdutosCarrinho] = useState([]);
 
+  const navigate = useNavigate();
   const location = useLocation();
   const descontoPix = location.state.preco - (location.state.preco * 15) / 100 
+  console.log(descontoPix);
 
   useEffect(() => {
     buscaInfo();
@@ -33,6 +34,10 @@ export default function TeladePagamento() {
 
     console.log(carrinho);
     setProdutosCarrinho(carrinho);
+  }
+
+  const pagarCredito = () => {
+    navigate("/tela-cartão", {state: {valor: location.state.preco, valorPix: descontoPix}})
   }
 
   return (
@@ -66,10 +71,9 @@ export default function TeladePagamento() {
             <div className="metodos-pagamento">
               <p>Escolha seu metodo de pagamento:</p>
               <div className="metodos">
-                <Link to={"/tela-pix"}>PIX</Link>
-                <Link to={"/tela-cartão"}>Cartão de credito</Link>
+                <Link on to={"/tela-pix"}>PIX</Link>
+                <button on onClick={pagarCredito} >Cartão de credito</button>
                 <Link to={"/tela-cartão"}>Cartão de debito</Link>
-                <Link>Boleto</Link>
               </div>
             </div>
 

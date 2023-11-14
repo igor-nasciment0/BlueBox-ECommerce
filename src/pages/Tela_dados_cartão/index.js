@@ -1,8 +1,34 @@
 import Cabecalho from "../../components/cabecalho";
 import Rodape from "../../components/rodape";
+import { useLocation } from "react-router-dom";
 import "./index.scss";
+import { valorEmReais } from "../../api/funcoesGerais";
+import { useState } from "react";
+import ReactInputMask from "react-input-mask";
+import { toast } from "react-toastify";
 
 export default function Telacartao() {
+  const [numCartao, setNumCartao] = useState("");
+  const [nome, setNome] = useState("");
+  const [bandeira, setBandeira] = useState("");
+  const [escolhaCartao, setEscolhaCartão] = useState("");
+
+  const location = useLocation();
+
+  async function novoPedido() {
+    let idPagamento;
+
+    try {
+      if (escolhaCartao == "Cartão de crédito") idPagamento = 1;
+      else if (escolhaCartao == "Cartão de débito") idPagamento = 2;
+      else throw new Error("Metodo de pagamento obrigatório");
+
+    } 
+    catch (error) {
+      toast.error("Metodo de pagamento obrigatório")
+    }
+  }
+
   return (
     <div className="Tela-Cartao">
       <Cabecalho />
@@ -10,10 +36,43 @@ export default function Telacartao() {
         <img src="/assets/images/logo-transparente.png" alt="" />
         <div className="pagamento-cartao">
           <div className="dados-cartao">
-            <input type="text" placeholder="Numero do cartão" />
-            <input type="text" placeholder="Nome" />
-            <input type="text" placeholder="CEP" />
-            <input type="text" placeholder="CPF" />
+            <ReactInputMask
+              type="text"
+              mask={"9999-9999-9999-9999-"}
+              value={numCartao}
+              onChange={(e) => setNumCartao(e.target.value)}
+              placeholder="Numero do cartão"
+            />
+            <input
+              type="text"
+              onChange={(e) => setBandeira(e.target.value)}
+              placeholder="Bandeira do cartão"
+            />
+            <input
+              type="text"
+              onChange={(e) => setNome(e.target.value)}
+              placeholder="Titular do cartão"
+            />
+
+            <div className="escolhaCartao">
+              <div>
+                <input
+                  type="radio"
+                  onChange={(e) => setEscolhaCartão("Cartão de crédito")}
+                  name="cartao"
+                />
+                <label>Cartão de crédito</label>
+              </div>
+
+              <div>
+                <input
+                  type="radio"
+                  onChange={(e) => setEscolhaCartão("Cartão de débito")}
+                  name="cartao"
+                />
+                <label>Cartão de débito</label>
+              </div>
+            </div>
 
             <div className="bandeira-cartoes">
               <img src="/assets/images/Bandeiracartão.png" alt="" />
@@ -25,7 +84,7 @@ export default function Telacartao() {
               <div className="linha"></div>
               <div>
                 <p>Subtotal</p>
-                <p>29,90</p>
+                <p>{location.state.valor}</p>
               </div>
               <div>
                 <p>Frete</p>
@@ -33,11 +92,11 @@ export default function Telacartao() {
               </div>
               <div>
                 <p className="total">Total</p>
-                <p className="total">29,90</p>
+                <p className="total">{location.state.valor}</p>
               </div>
               <div>
-                <p className="pix">Crédito:</p>
-                <p className="pix">25,49</p>
+                <p className="pix">PIX:</p>
+                <p className="pix">{valorEmReais(location.state.valorPix)}</p>
               </div>
 
               <p>Até 15% de desconto no pix</p>
@@ -47,22 +106,22 @@ export default function Telacartao() {
 
               <div className="specs-pagamento">
                 <p>Método:</p>
-                <p>Cartão de Crédito</p>
+                <p>{escolhaCartao.toUpperCase()}</p>
               </div>
 
               <div className="specs-pagamento">
                 <p>Numero:</p>
-                <p>0000-0000-0000</p>
+                <p>{numCartao.toUpperCase()}</p>
               </div>
 
               <div className="specs-pagamento">
                 <p>Rede:</p>
-                <p>Visa</p>
+                <p>{bandeira.toUpperCase()}</p>
               </div>
 
               <div className="specs-pagamento">
                 <p>Nome do titular:</p>
-                <p>Carlos Henrique Da silva P.</p>
+                <p>{nome.toUpperCase()}</p>
               </div>
 
               <button className="finalizar-pedido">
