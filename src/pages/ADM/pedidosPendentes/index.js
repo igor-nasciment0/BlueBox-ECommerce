@@ -58,9 +58,9 @@ export default function PedidoPendente() {
                         <h2>Produto</h2>
 
                         <div>
-                            <div className='nome'>
+                            <div className='alinhamentoNome'>
                                 <h6>Nome</h6>
-                                <div>
+                                <div  className='nome'>
                                     <p>God of War: Saga (3 Jogos) (Seminovo) - PS3</p>
                                 </div>
                             </div>
@@ -125,7 +125,7 @@ export default function PedidoPendente() {
                         <div className='entrega'>
 
                             <div className='titulo'>
-                                <img src="" alt="" />
+                                <img src="/assets/images/icons/adm/gps.svg" alt="" />
                                 <h2>Entrega</h2>
                             </div>
 
@@ -179,21 +179,21 @@ export default function PedidoPendente() {
 
                             </div>
 
-                            <div>
+                            <div className='infoLong'>
                                 <h6>Nome de Usuário</h6>
                                 <div>
                                     <p>Carlos Henrique</p>
                                 </div>
                             </div>
 
-                            <div>
+                            <div className='infoLong'>
                                 <h6>Número de Telefone</h6>
                                 <div>
                                     <p>99999-9999</p>
                                 </div>
                             </div>
 
-                            <div>
+                            <div className='infoLong'>
                                 <h6>N° do Pedido</h6>
                                 <div>
                                     <p>123.456.789.987.654.321.0</p>
@@ -206,39 +206,39 @@ export default function PedidoPendente() {
                         <div className='pagamento'>
                             
                             <div className='titulo'>
-                                <img src="" alt="" />
+                                <img src="/assets/images/icons/adm/money.svg" alt="" />
                                 <h2>Entrega</h2>
                             </div> 
 
-                            <div>
+                            <div className='infoLong'>
                                 <h6>Método</h6>
                                 <div>
                                     <p>Cartão de Crédito</p>
                                 </div>
                             </div>
 
-                            <div>
+                            <div className='infoLong'>
                                 <h6>Número do Cartão</h6>
                                 <div>
                                     <p>xxxx-xxxx-xxxx-9876</p>
                                 </div>
                             </div>
 
-                            <div>
+                            <div className='infoLong'>
                                 <h6>Cupom</h6>
                                 <div>
                                     <p>ACHEINAGAVETA123</p>
                                 </div>
                             </div>
 
-                            <div>
+                            <div className='infoLong'>
                                 <h6>Nome da Conta</h6>
                                 <div>
                                     <p>CARLOS H. DA SILVA PINTO</p>
                                 </div>
                             </div>
 
-                            <div>
+                            <div className='infoLong'>
                                 <h6>Data de pagamento</h6>
                                 <div>
                                     <p>01/01/2023</p>
