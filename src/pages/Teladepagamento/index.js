@@ -29,7 +29,6 @@ export default function TeladePagamento() {
       let produto = carrinho[i];
       let img = await buscarImagemPrimaria(produto.id);
       produto.img = img.url;
-      produto.qtd = 1;
     }
 
     console.log(carrinho);
