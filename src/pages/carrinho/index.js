@@ -12,6 +12,7 @@ import { get, set } from "local-storage";
 import ProdutoCarrinho from "./produtoCarrinho";
 import { valorEmReais } from "../../api/funcoesGerais";
 import { useNavigate } from "react-router-dom";
+import { toast } from 'react-toastify';
 
 export default function Carrinho() {
   const context = useContext(TemaContext);
@@ -22,6 +23,7 @@ export default function Carrinho() {
   const [totalProdutos, setTotalProdutos] = useState(0);
   const [frete, setFrete] = useState(0);
   const [produtosCarrinho, setProdutosCarrinho] = useState([]);
+  const [cep, setCep] = useState('');
   
   const [decidindoFrete, setDecidindoFrete] = useState(false);
 
@@ -41,6 +43,16 @@ export default function Carrinho() {
     }
 
     setProdutosCarrinho(carrinho);
+  }
+
+  async function buscarFretes() {
+    try {
+
+      
+      
+    } catch (error) {
+      toast.error('Não foi possível buscar os fretes. Tente novamente mais tarde.')
+    }
   }
 
   useEffect(() => {
@@ -76,6 +88,9 @@ export default function Carrinho() {
     navigate("/pagamento", { state: { preco: totalProdutos } });
   };
 
+  let disableProsseguir = produtosCarrinho.length > 1 ||
+                          frete === 0;
+
   return (
     <div className={"pagina-carrinho " + tema}>
       <Cabecalho />
@@ -90,10 +105,11 @@ export default function Carrinho() {
                 <div className="msg-vazio">Seu carrinho está vazio!</div>
               )}
 
-              {produtosCarrinho.map((produto) => (
+              {produtosCarrinho.map((produto, index) => (
                 <ProdutoCarrinho
                   produto={produto}
                   resetar={() => setProdutosCarrinho([...produtosCarrinho])}
+                  index={index}
                 />
               ))}
             </div>
@@ -150,15 +166,16 @@ export default function Carrinho() {
               </div>
             </div>
 
-            <a
-              href=""
+            <button
+              disabled={disableProsseguir}
               onClick={() => {
                 toComponentB();
               }}
+
             >
               {" "}
               Prosseguir
-            </a>
+            </button>
           </section>
         </div>
       </main>

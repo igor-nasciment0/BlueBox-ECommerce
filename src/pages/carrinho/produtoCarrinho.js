@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react"
 import { valorEmReais } from "../../api/funcoesGerais";
 import { mostrarUrlImagem } from "../../api/produtoAPI";
+import { Link } from "react-router-dom";
+import { get, set } from "local-storage";
 
-export default function ProdutoCarrinho({ produto, resetar, } ) {
+export default function ProdutoCarrinho({ produto, resetar, index} ) {
 
     const [qtd, setQtd] = useState(1);
     const [precoReal, setPrecoReal] = useState(produto.qtd);
@@ -19,6 +21,16 @@ export default function ProdutoCarrinho({ produto, resetar, } ) {
         
         produto.qtd = produto.qtd - 1;
         resetar();
+    }
+
+    function excluirProduto() {
+        let arrayCarrinho = get("carrinho");
+
+        let carrinhoSemItem = [...arrayCarrinho.slice(0, index), ...arrayCarrinho.slice(index + 1, arrayCarrinho.length)]; 
+    
+        set('carrinho', carrinhoSemItem);
+
+        window.location.reload();
     }
 
     useEffect(() => {
@@ -51,8 +63,8 @@ export default function ProdutoCarrinho({ produto, resetar, } ) {
                             </div>
                         </div>
 
-                        <button>Excluir</button>
-                        <a href="">Ver semelhantes</a>
+                        <button onClick={excluirProduto}>Excluir</button>
+                        <Link to={`/produto/${produto.id}`}>Ver na loja</Link>
 
                         <div className='preco-mobile'>{valorEmReais(produto.preco)}</div>
                     </div>
