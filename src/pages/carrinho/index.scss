@@ -188,6 +188,8 @@
         border: none;
         height: fit-content;
 
+        cursor: pointer;
+
         font-size: 14px;
         font-weight: 400;
         color: var(--azul-claro);
@@ -199,10 +201,16 @@
     {
         text-decoration: none;
 
+        cursor: pointer;
+
         font-size: 14px;
         font-weight: 400;
         color: var(--azul-claro);
     }
+
+    .container-operadores > a:hover, .container-operadores > button:hover {
+        text-decoration: underline;
+    } 
 
     .preco-mobile {
         display: none;
@@ -367,20 +375,34 @@
         font-weight: 600;
     }
 
-    .sec-total > a
+    .sec-total > button
     {
         width: 100%;
         
+        border: none;
         text-transform: uppercase;
         text-decoration: none;
         font-size: 16px;
         font-weight: 500;
+
+        cursor: pointer;
 
         padding: 12px;
         border-radius: 10px;
 
         background-color: var(--azul-marca);
         color: #FFFFFF;
+
+        transition: 0.3s;
+    }
+
+    .sec-total > button:enabled:hover {
+        transform: scale(1.02);
+    }
+
+    .sec-total > button:disabled {
+        background-color: rgba($color: var(--cor-textos), $alpha: 0.3);
+        color: rgb(var(--cor-textos));
     }
 
     @media (max-width: 1024px) {
