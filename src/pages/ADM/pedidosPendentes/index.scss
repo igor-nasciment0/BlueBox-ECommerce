@@ -19,6 +19,260 @@
         display: flex;
         flex-direction: row;
 
+        .produtoDesc {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            position: absolute;
+            top: 18px;
+            right: 38px;
+            width: 100%;
+            max-width: 900px;
+            background-color: #d9d9d9;
+            padding: 20px;
+            z-index: 1000px;
+
+            .produto {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                background-color: #FFF;
+                padding: 20px;
+                border-radius: 10px;
+                margin-bottom: 20px;
+                
+                > h2 {
+                    font-weight: 400;
+                }
+
+                > div {
+                    display: flex;
+                    flex-direction: row;
+                    margin-top: 10px;
+
+                    .alinhamentoNome {
+                        align-items: start;
+
+                        .nome {
+                            width: 400px;
+                        }
+                    }
+
+                    > div {
+                        display: flex;
+                        flex-direction: column;
+                        align-items: center;
+                        margin: 0px 30px;
+
+                        > h6 {
+                            margin-bottom: 7px;
+                        }
+
+                        > div {
+                            color: #FFF;
+                            background-color: #152039;
+                            padding: 10px 25px;
+                            border-radius: 15px;
+
+                            > p {
+                                font-size: 13px;
+                            }
+                        }
+                    }
+                }
+            }
+
+            .linhaTempo {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                background-color: #FFF;
+                padding: 20px;
+                border-radius: 10px;
+                margin-bottom: 20px;
+                
+                > h2 {
+                    font-weight: 400;
+                }
+
+                > div {
+                    display: flex;
+                    flex-direction: row;
+                    margin-top: 20px;
+
+                    > div {
+                        display: flex;
+                        flex-direction: column;
+                        align-items: center;
+                        margin: 0px 30px;
+
+                        > h6 {
+                            margin-bottom: 7px;
+                        }
+
+                        > div {
+                            color: #FFF;
+                            background-color: #152039;
+                            padding: 10px 25px;
+                            border-radius: 15px;
+
+                            > p {
+                                font-size: 13px;
+                            }
+                        }
+                    }
+                }
+            }
+
+            .entregaPagamento {
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+                width: 100%;
+                
+                padding: 0px 50px;
+
+                .entrega {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    width: 100%;
+                    max-width: 380px;
+                    background-color: #FFF;
+                    border-radius: 10px;
+                    padding: 20px;
+
+                    .titulo {
+                        display: flex;
+                        align-items: center;
+                        width: 100%;
+                        margin-bottom: 15px;
+
+                        > img {
+                            margin-right: 10px;
+                        }
+
+                        > h2 {
+                            font-weight: 400;
+                            font-size: 24px;
+                        }
+                    }
+
+                    .info {
+                        display: flex;
+                        flex-direction: row;
+                        margin-bottom: 20px;
+        
+                            > div {
+                                display: flex;
+                                flex-direction: column;
+                                align-items: center;
+                                margin: 0px 10px;
+        
+                                > h6 {
+                                    margin-bottom: 7px;
+                                    font-size: 10px;
+                                    text-align: center;
+                                }
+        
+                                > div {
+                                    color: #FFF;
+                                    background-color: #152039;
+                                    height: 30px;
+                                    width: 100%;
+                                    max-width: 100px;
+                                    padding: 10px;
+                                    border-radius: 10px;
+        
+                                    > p {
+                                        font-size: 10px;
+                                        width: 100px;
+                                    }
+                                }
+                            }
+                    }
+
+                    .infoLong {
+                        display: flex;
+                        flex-direction: column;
+                        width: 100%;
+                        margin-bottom: 10px;
+
+                        > h6 {
+                            margin-bottom: 7px;
+                            font-size: 10px;
+                        }
+
+                        > div {
+                            color: #FFF;
+                                    background-color: #152039;
+                                    height: 30px;
+                                    width: 100%;
+                                    padding: 10px;
+                                    border-radius: 10px;
+        
+                                    > p {
+                                        font-size: 10px;
+                                    }
+                        }
+                    }
+                }
+
+                .pagamento {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    width: 100%;
+                    max-width: 400px;
+                    background-color: #FFF;
+                    border-radius: 10px;
+                    padding: 20px;
+                    margin-left: 20px;
+                    
+                    .titulo {
+                        display: flex;
+                        align-items: center;
+                        width: 100%;
+                        margin-bottom: 15px;
+
+                        > img {
+                            margin-right: 10px;
+                        }
+
+                        > h2 {
+                            font-weight: 400;
+                            font-size: 24px;
+                        }
+                    }
+
+                    .infoLong {
+                        display: flex;
+                        flex-direction: column;
+                        width: 100%;
+                        margin-bottom: 10px;
+
+                        > h6 {
+                            margin-bottom: 7px;
+                            font-size: 10px;
+                        }
+
+                        > div {
+                            color: #FFF;
+                                    background-color: #152039;
+                                    height: 30px;
+                                    width: 100%;
+                                    padding: 10px;
+                                    border-radius: 10px;
+        
+                                    > p {
+                                        font-size: 10px;
+                                    }
+                        }
+                    }
+                }
+            }
+        }
+
         .pedidos {
             display: flex;
             flex-direction: column;
