@@ -30,7 +30,7 @@ export default function Carrinho() {
 
     if (!carrinho) {
       carrinho = [];
-      set('carrinho', []);
+      set("carrinho", []);
     }
 
     for (let i = 0; i < carrinho.length; i++) {
@@ -44,9 +44,9 @@ export default function Carrinho() {
   }
 
   useEffect(() => {
-    let login = get('user-login');
+    let login = get("user-login");
 
-/*     if(!login) {
+    /*     if(!login) {
       navigate('/login')
     } */
 
@@ -62,18 +62,18 @@ export default function Carrinho() {
       t =
         t +
         (produto.promocao ? produto.valorPromocional : produto.preco) *
-        produto.qtd;
+          produto.qtd;
     }
 
     setTotalProdutos(t);
   }, [produtosCarrinho]);
 
   useEffect(() => {
-    set('carrinho', produtosCarrinho);
+    set('carrinho', produtosCarrinho)
   }, [produtosCarrinho])
-  
-  function toComponentB() {
-    navigate("/pagamento");
+
+  const toComponentB = () => {
+    navigate("/pagamento", { state: { preco: totalProdutos } });
   };
 
   return (
@@ -86,10 +86,9 @@ export default function Carrinho() {
         <div className="container-tela">
           <section className="sec-carrinho">
             <div className="container-carrinho">
-              {produtosCarrinho.length === 0 &&
-
-                <div className="msg-vazio">Seu carrinho está vazio!</div >
-              }
+              {produtosCarrinho.length === 0 && (
+                <div className="msg-vazio">Seu carrinho está vazio!</div>
+              )}
 
               {produtosCarrinho.map((produto) => (
                 <ProdutoCarrinho
@@ -113,9 +112,9 @@ export default function Carrinho() {
                   <p>
                     {valorEmReais(
                       produto.qtd *
-                      (produto.promocao
-                        ? produto.valorPromocional
-                        : produto.preco)
+                        (produto.promocao
+                          ? produto.valorPromocional
+                          : produto.preco)
                     )}
                   </p>
                 </div>

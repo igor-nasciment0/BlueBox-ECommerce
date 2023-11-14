@@ -5,37 +5,38 @@ import { Link } from "react-router-dom";
 import "./index.scss";
 import { useEffect, useState } from "react";
 import Carrinho from "../carrinho";
-import { buscarImagemPrimaria } from "../../api/produtoAPI";
+import { buscarImagemPrimaria, mostrarUrlImagem } from "../../api/produtoAPI";
+import { get, set } from "local-storage";
+import { valorEmReais } from "../../api/funcoesGerais";
 
 export default function TeladePagamento() {
   const [produtosCarrinho, setProdutosCarrinho] = useState([]);
+
+  const location = useLocation();
+  const descontoPix = location.state.preco - (location.state.preco * 15) / 100 
 
   useEffect(() => {
     buscaInfo();
   }, []);
 
-
   async function buscaInfo() {
-    let carrinho = localStorage.getItem("carrinho");
+    let carrinho = get("carrinho");
 
     if (!carrinho) {
-      carrinho = [];
-      localStorage.setItem("carrinho", []);
     }
 
     for (let i = 0; i < carrinho.length; i++) {
       let produto = carrinho[i];
       let img = await buscarImagemPrimaria(produto.id);
       produto.img = img.url;
-      produto.qtd = 1;
     }
-    alert('oi')
-    //console.log(carrinho)
+
+    console.log(carrinho);
     setProdutosCarrinho(carrinho);
   }
 
   return (
-    <div className="teladePagamento">
+    <div className="teladePagamento" >
       <Cabecalho />
       <main className="pedido">
         <div className="row-centralizer">
@@ -46,10 +47,11 @@ export default function TeladePagamento() {
               <div className="produtos">
                 {produtosCarrinho.map((carrinho) => (
                   <div className="especs-pedido">
+                    <img src={mostrarUrlImagem(carrinho.img)} alt="" />
                     <p>{carrinho.nome}</p>
                     <div>
                       <p>Qtd</p>
-                      <p>{}</p>
+                      <p>{carrinho.qtd}</p>
                     </div>
 
                     <div>
@@ -83,7 +85,7 @@ export default function TeladePagamento() {
                 <div className="linha"></div>
                 <div>
                   <p>Subtotal</p>
-                  <p>{}</p>
+                  <p>{valorEmReais(location.state.preco)}</p>
                 </div>
                 <div>
                   <p>Frete</p>
@@ -91,11 +93,11 @@ export default function TeladePagamento() {
                 </div>
                 <div>
                   <p className="total">Total</p>
-                  <p className="total">{}</p>
+                  <p className="total">{valorEmReais(location.state.preco)}</p>
                 </div>
                 <div>
                   <p className="pix">Pix</p>
-                  <p className="pix">{}</p>
+                  <p className="pix">{valorEmReais(descontoPix)}</p>
                 </div>
 
                 <p>Até 15% de desconto no pix</p>

@@ -6,8 +6,11 @@ export async function buscarProdutos(busca, ordem, filtro) {
     return produtos.data;
 }
 
-export async function buscarProdutosPagina(busca, ordem, filtro, pagina) {
-    let produtos = await api.get(`/produto/pagina/${pagina}?nome=${busca}&ordem=${ordem}&filtro=${filtro}`)
+export async function buscarProdutosPagina(busca, categoria, ordem, filtro, pagina) {
+    if(!pagina)
+        pagina = 1;
+
+    let produtos = await api.get(`/produto/pagina/${pagina}?nome=${busca}&categoria=${categoria}&ordem=${ordem}&filtro=${filtro}`)
 
     return produtos.data;
 }

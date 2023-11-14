@@ -64,7 +64,7 @@ export default function TelaPagamentoPix() {
             />
           </svg>
 
-          <button className="copiar-codigo">Copiar código PIX</button>
+          <button className="copiar-codigo">Finalizar Compra</button>
           <div className="passos">
             <p>
               1. Acesse o app do seu banco ou internet banking de preferência.

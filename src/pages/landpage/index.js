@@ -33,6 +33,21 @@ export default function Landpage() {
         }
     }
 
+    function useSlidesVisiveis() {
+        let px900 = useMediaQuery('(max-width: 900px)');
+        let px400 = useMediaQuery('(max-width: 450px)');
+
+        if(px900) {
+            if(px400) {
+                return 1
+            } else {
+                return 2
+            }
+        } else {
+            return 4
+        }
+    }
+
     useEffect(() => {
         buscarDestaques();
     }, []);
@@ -84,14 +99,14 @@ export default function Landpage() {
                         <div className='card-mk'>
                             <div className='card-text'>
                                 <h2>Aproveite<br />nossos<br />descontos</h2>
-                                <Link to={'/'}>Confira</Link>
+                                <Link to={'/pesquisa'} state={{ordem: "promoData"}}>Confira</Link>
                             </div>
                         </div>
 
                         <div className='card-fifa'>
                             <div className='card-text'>
-                                <h2>Faça login e <br /> descubra a <br /> BlueBox</h2>
-                                <Link to={'/login'}>Entrar</Link>
+                                <h2>Deseja raridades? <br/> Procure na BlueBox!</h2>
+                                <Link to={'/pesquisa'} state={{cat: "Raridades"}}>Buscar</Link>
                             </div>
                         </div>
 
@@ -111,7 +126,8 @@ export default function Landpage() {
                         <div>
                             <CarouselProvider naturalSlideWidth={280} naturalSlideHeight={530}
                                 totalSlides={destaques.length}
-                                visibleSlides={useMediaQuery('(max-width: 900px)') ? 2 : 4}>
+                                visibleSlides={useSlidesVisiveis()}
+                                >
                                 <Slider>
                                     {destaques.map(produto => 
                                         <Slide>

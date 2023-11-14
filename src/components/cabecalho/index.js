@@ -29,6 +29,7 @@ function CabDeslogado() {
     const navigate = useNavigate();
 
     function pesquisar(pesquisa) {
+        console.log('a');
         navigate('/pesquisa?busca=' + pesquisa)
     }
 
