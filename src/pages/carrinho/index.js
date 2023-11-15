@@ -15,6 +15,7 @@ import { toast } from 'react-toastify';
 import InputMask from 'react-input-mask';
 import { buscarCEP, calcularFreteCarrinho, descobrirCep } from "../../api/envioAPI";
 import ToastCont from "../../components/toastContainer";
+import { buscarEndereco, inserirEndereco, mudarEndereco } from "../../api/enderecoAPI";
 
 export default function Carrinho() {
   const context = useContext(TemaContext);
@@ -38,7 +39,7 @@ export default function Carrinho() {
   const [carregando, setCarregando] = useState(false);
   const [entregas, setEntregas] = useState([]);
 
-  async function buscaInfo() {
+  async function buscaCarrinho() {
     let carrinho = get("carrinho");
 
     if (!carrinho) {
@@ -55,6 +56,58 @@ export default function Carrinho() {
     setProdutosCarrinho(carrinho);
   }
 
+  async function buscaEndereco() {
+    let cliente = get('user-login');
+
+    if(cliente.idEndereco) {
+      let endereco = await buscarEndereco(cliente.idEndereco);
+      console.log(endereco);
+
+      setCep(endereco.cep);
+      setCidade(endereco.cidade);
+      setEstado(endereco.estado);
+      setBairro(endereco.bairro);
+      setLogradouro(endereco.logradouro);
+      setNumero(endereco.numero);
+
+      setPreenchendoEndereco(true)
+    }
+  }
+
+  async function atualizarEndereco() {
+    let atualizar = false;
+
+    let cliente = get('user-login');
+
+    if(cliente.idEndereco) {
+      let endereco = await buscarEndereco(cliente.idEndereco);
+      
+      atualizar = cep !== endereco.cep ||
+                  cidade !== endereco.cidade ||
+                  estado !== endereco.estado ||
+                  bairro !== endereco.bairro ||
+                  logradouro !== endereco.logradouro ||
+                  Number(numero) !== Number(endereco.numero);
+    } else {
+      atualizar = true;
+    }
+
+    if(atualizar) {
+      try {
+        let novoEndereco = await inserirEndereco(cep, estado, cidade, bairro, logradouro, numero);
+
+        await mudarEndereco(cliente.id, novoEndereco.idEndereco);
+
+        cliente.idEndereco = novoEndereco.idEndereco;
+
+        set('user-login', cliente);
+        
+      } catch (error) {
+        console.log(error);
+      }  
+    }
+  }
+ 
   async function buscarFretes() {
     setCarregando(true);
 
@@ -113,7 +166,8 @@ export default function Carrinho() {
       navigate('/login')
     } */
 
-    buscaInfo();
+    buscaCarrinho();
+    buscaEndereco();
   }, []);
 
   useEffect(() => {
@@ -140,7 +194,12 @@ export default function Carrinho() {
   }, [cidade, estado, bairro, logradouro, numero])
 
   const toComponentB = () => {
-    navigate("/pagamento", { state: { precoProdutos: totalProdutos, frete: frete } });
+    navigate("/pagamento", { state: { precoProdutos: totalProdutos, frete: frete, endereco: {cep: cep,
+                                                                                             estado: estado,
+                                                                                             cidade: cidade,
+                                                                                             bairro: bairro,
+                                                                                             logradouro: logradouro,
+                                                                                             numero: numero} } });
   };
 
   return (
@@ -228,7 +287,7 @@ export default function Carrinho() {
               }
 
 
-              {preenchendoEndereço &&
+              {preenchendoEndereço && produtosCarrinho.length >= 1 &&
                 <div className="campos-endereco">
                   <section>
                     <div>
@@ -255,7 +314,7 @@ export default function Carrinho() {
 
                     <div>
                       <h4>Nº</h4>
-                      <input type="text" value={numero} onChange={e => setNumero(e.target.value)} />
+                      <input type="text" value={numero} onChange={e => {if(!isNaN(Number(e.target.value))) setNumero(Number(e.target.value))}} />
                     </div>
                   </section>
                 </div>
@@ -289,7 +348,7 @@ export default function Carrinho() {
             <button
               disabled={produtosCarrinho.length > 1 || frete === 0}
               onClick={() => {
-                toComponentB();
+                atualizarEndereco();
               }}
 
             >
