@@ -13,7 +13,7 @@ export default function TeladePagamento() {
 
   const navigate = useNavigate();
   const location = useLocation();
-  const descontoPix = location.state.preco - (location.state.preco * 15) / 100 
+  const descontoPix = location.state.precoProdutos - (location.state.precoProdutos * 15) / 100 
   console.log(descontoPix);
 
   useEffect(() => {
@@ -37,7 +37,7 @@ export default function TeladePagamento() {
   }
 
   const pagarCredito = () => {
-    navigate("/tela-cartão", {state: {valor: location.state.preco, valorPix: descontoPix}})
+    navigate("/tela-cartão", {state: {valor: location.state.precoProdutos, valorPix: descontoPix}})
   }
 
   return (
@@ -71,9 +71,9 @@ export default function TeladePagamento() {
             <div className="metodos-pagamento">
               <p>Escolha seu metodo de pagamento:</p>
               <div className="metodos">
-                <Link on to={"/tela-pix"}>PIX</Link>
-                <button on onClick={pagarCredito} >Cartão de credito</button>
-                <Link to={"/tela-cartão"}>Cartão de debito</Link>
+                <button onClick={pagarCredito} >PIX</button>
+                <button onClick={pagarCredito} >Cartão de credito</button>
+                <button onClick={pagarCredito} >Cartão de debito</button>
               </div>
             </div>
 
@@ -89,15 +89,15 @@ export default function TeladePagamento() {
                 <div className="linha"></div>
                 <div>
                   <p>Subtotal</p>
-                  <p>{valorEmReais(location.state.preco)}</p>
+                  <p>{valorEmReais(location.state.precoProdutos)}</p>
                 </div>
                 <div>
                   <p>Frete</p>
-                  <p>50,00</p>
+                  <p>{valorEmReais(location.state.frete)}</p>
                 </div>
                 <div>
                   <p className="total">Total</p>
-                  <p className="total">{valorEmReais(location.state.preco)}</p>
+                  <p className="total">{valorEmReais(location.state.precoProdutos)}</p>
                 </div>
                 <div>
                   <p className="pix">Pix</p>

@@ -22,7 +22,6 @@ export default function Telacartao() {
       if (escolhaCartao == "Cartão de crédito") idPagamento = 1;
       else if (escolhaCartao == "Cartão de débito") idPagamento = 2;
       else throw new Error("Metodo de pagamento obrigatório");
-
     } 
     catch (error) {
       toast.error("Metodo de pagamento obrigatório")
@@ -84,7 +83,7 @@ export default function Telacartao() {
               <div className="linha"></div>
               <div>
                 <p>Subtotal</p>
-                <p>{location.state.valor}</p>
+                <p>{valorEmReais(location.state.valor)}</p>
               </div>
               <div>
                 <p>Frete</p>
@@ -92,7 +91,7 @@ export default function Telacartao() {
               </div>
               <div>
                 <p className="total">Total</p>
-                <p className="total">{location.state.valor}</p>
+                <p className="total">{valorEmReais(location.state.valor)}</p>
               </div>
               <div>
                 <p className="pix">PIX:</p>
