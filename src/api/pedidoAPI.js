@@ -1,6 +1,18 @@
 import api from './apiURL';
 import { buscarImagemPrimaria } from './produtoAPI';
 
+export async function cadastrarPedido(idCliente, valorProdutos, valorFrete, idTipoPagamento, produto){
+    let r = await api.post(`/pedido`, {
+        idCliente: idCliente,
+        valorProdutos: valorProdutos,
+        valorFrete: valorFrete,
+        idTipoPagamento: idTipoPagamento,
+        produto: produto,
+    })
+
+    return r.data
+}
+
 export async function buscarPedidoPorEstado(idEstado) {
     let r = await api.get(`/pedido/estado/${idEstado}`);
 

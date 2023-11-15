@@ -6,6 +6,7 @@ import { valorEmReais } from "../../api/funcoesGerais";
 import { useState } from "react";
 import ReactInputMask from "react-input-mask";
 import { toast } from "react-toastify";
+import storage from "local-storage"
 
 export default function Telacartao() {
   const [numCartao, setNumCartao] = useState("");
@@ -22,6 +23,10 @@ export default function Telacartao() {
       if (escolhaCartao == "Cartão de crédito") idPagamento = 1;
       else if (escolhaCartao == "Cartão de débito") idPagamento = 2;
       else throw new Error("Metodo de pagamento obrigatório");
+      const usuario = storage('user-login').id
+      const totalCompra = location.state.valor
+
+      let resp = await novoPedido(usuario, )
     } 
     catch (error) {
       toast.error("Metodo de pagamento obrigatório")
