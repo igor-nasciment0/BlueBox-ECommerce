@@ -347,10 +347,7 @@ export default function Carrinho() {
 
             <button
               disabled={produtosCarrinho.length > 1 || frete === 0}
-              onClick={() => {
-                atualizarEndereco();
-              }}
-              
+              onChange={toComponentB}
 
             >
               {" "}
