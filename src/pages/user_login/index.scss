@@ -191,13 +191,18 @@
         flex-direction: column;
         align-items: center;
         justify-content: center;        
-        max-width: max-content;
+        width: 100%;
         padding: none;
+
+        .Login {
+            justify-content: center;
+            align-items: center;
+        }
     }
 
     .Dados-Container {
         min-width: auto;
-        max-width: 395px;
+        max-width: 450px;
         border-radius: 15px;
         min-width: 100px;
     }

@@ -12,7 +12,6 @@ import { useNavigate } from "react-router-dom/dist";
 import {
   buscarImagens,
   buscarProdutoPorID,
-  buscarProdutos,
   buscarRelacionados,
   mostrarUrlImagem,
 } from "../../api/produtoAPI";
@@ -246,20 +245,45 @@ export default function Produto() {
   }
 
   function adicionarCarrinho() {
-    let arrayCarrinho = get("carrinho");
+    try {
+      let login = get('user-login');
+      let arrayCarrinho = get("carrinho");
 
-    for(let i = 0; i < arrayCarrinho.length; i++) {
-      if(idProduto === arrayCarrinho[i].id) {
-        toast.info('Este produto já está em seu carrinho.')
-        return;
+      if (!login) {
+        throw new Error('Faça login para comprar e usar o carrinho.')
       }
+
+      for (let i = 0; i < arrayCarrinho.length; i++) {
+        if (idProduto === arrayCarrinho[i].id) {
+          throw new Error('Este produto já está em seu carrinho.')
+        }
+      }
+
+      arrayCarrinho.push({ ...produto, qtd: 1 });
+
+      set("carrinho", arrayCarrinho);
+
+      toast.success("Produto adicionado ao carrinho.");
+    } catch (error) {
+      toast.info(error.message);
     }
+  }
 
-    arrayCarrinho.push(produto);
+  function comprar() {
+    try {
+      let login = get('user-login');
 
-    set("carrinho", arrayCarrinho);
+      if (!login) {
+        throw new Error('Faça login para comprar e usar o carrinho.')
+      }
 
-    toast.success("Produto adicionado ao carrinho.");
+      set('carrinho', [{ ...produto, qtd: 1 }]);
+
+      navigate('/carrinho');
+      
+    } catch (error) {
+      toast.info(error.message);
+    }
   }
 
   useEffect(() => {
@@ -421,7 +445,6 @@ export default function Produto() {
                   {entregas[0].transp_nome === entregas[1].transp_nome ? (
                     <div className="entrega">
                       <h2>Entrega mais rápida e mais barata</h2>
-                      <h3>Você tem sorte de encontrar uma dessas!</h3>
 
                       <div>
                         <img src={entregas[0].url_logo} alt="" />
@@ -459,6 +482,7 @@ export default function Produto() {
 
               <button
                 className="btn-comprar"
+                onClick={comprar}
               >
                 Comprar agora
               </button>
