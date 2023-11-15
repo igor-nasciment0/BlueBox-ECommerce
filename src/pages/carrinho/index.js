@@ -12,22 +12,27 @@ import { get, set } from "local-storage";
 import ProdutoCarrinho from "./produtoCarrinho";
 import { valorEmReais } from "../../api/funcoesGerais";
 import { useNavigate } from "react-router-dom";
+import { toast } from 'react-toastify';
 
-export default function Carrinho(props) {
+export default function Carrinho() {
   const context = useContext(TemaContext);
   let tema = context.tema;
 
   const navigate = useNavigate();
   
-  const [totalProdutos, setTotalProdutos] = useState();
+  const [totalProdutos, setTotalProdutos] = useState(0);
+  const [frete, setFrete] = useState(0);
   const [produtosCarrinho, setProdutosCarrinho] = useState([]);
+  const [cep, setCep] = useState('');
+  
+  const [decidindoFrete, setDecidindoFrete] = useState(false);
 
   async function buscaInfo() {
     let carrinho = get("carrinho");
 
     if (!carrinho) {
       carrinho = [];
-      set('carrinho', []);
+      set("carrinho", []);
     }
 
     for (let i = 0; i < carrinho.length; i++) {
@@ -40,10 +45,20 @@ export default function Carrinho(props) {
     setProdutosCarrinho(carrinho);
   }
 
-  useEffect(() => {
-    let login = get('user-login');
+  async function buscarFretes() {
+    try {
 
-/*     if(!login) {
+      
+      
+    } catch (error) {
+      toast.error('Não foi possível buscar os fretes. Tente novamente mais tarde.')
+    }
+  }
+
+  useEffect(() => {
+    let login = get("user-login");
+
+    /*     if(!login) {
       navigate('/login')
     } */
 
@@ -59,15 +74,22 @@ export default function Carrinho(props) {
       t =
         t +
         (produto.promocao ? produto.valorPromocional : produto.preco) *
-        produto.qtd;
+          produto.qtd;
     }
 
     setTotalProdutos(t);
   }, [produtosCarrinho]);
-  
-  function toComponentB() {
-    navigate("/pagamento");
+
+  useEffect(() => {
+    set('carrinho', produtosCarrinho)
+  }, [produtosCarrinho])
+
+  const toComponentB = () => {
+    navigate("/pagamento", { state: { preco: totalProdutos } });
   };
+
+  let disableProsseguir = produtosCarrinho.length > 1 ||
+                          frete === 0;
 
   return (
     <div className={"pagina-carrinho " + tema}>
@@ -79,15 +101,15 @@ export default function Carrinho(props) {
         <div className="container-tela">
           <section className="sec-carrinho">
             <div className="container-carrinho">
-              {produtosCarrinho.length === 0 &&
+              {produtosCarrinho.length === 0 && (
+                <div className="msg-vazio">Seu carrinho está vazio!</div>
+              )}
 
-                <div className="msg-vazio">Seu carrinho está vazio!</div >
-              }
-
-              {produtosCarrinho.map((produto) => (
+              {produtosCarrinho.map((produto, index) => (
                 <ProdutoCarrinho
                   produto={produto}
                   resetar={() => setProdutosCarrinho([...produtosCarrinho])}
+                  index={index}
                 />
               ))}
             </div>
@@ -106,9 +128,9 @@ export default function Carrinho(props) {
                   <p>
                     {valorEmReais(
                       produto.qtd *
-                      (produto.promocao
-                        ? produto.valorPromocional
-                        : produto.preco)
+                        (produto.promocao
+                          ? produto.valorPromocional
+                          : produto.preco)
                     )}
                   </p>
                 </div>
@@ -145,15 +167,16 @@ export default function Carrinho(props) {
               </div>
             </div>
 
-            <a
-              href=""
+            <button
+              disabled={disableProsseguir}
               onClick={() => {
                 toComponentB();
               }}
+
             >
               {" "}
               Prosseguir
-            </a>
+            </button>
           </section>
         </div>
       </main>

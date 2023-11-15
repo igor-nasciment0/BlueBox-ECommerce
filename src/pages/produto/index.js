@@ -248,6 +248,13 @@ export default function Produto() {
   function adicionarCarrinho() {
     let arrayCarrinho = get("carrinho");
 
+    for(let i = 0; i < arrayCarrinho.length; i++) {
+      if(idProduto === arrayCarrinho[i].id) {
+        toast.info('Este produto já está em seu carrinho.')
+        return;
+      }
+    }
+
     arrayCarrinho.push(produto);
 
     set("carrinho", arrayCarrinho);

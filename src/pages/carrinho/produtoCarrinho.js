@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react"
 import { valorEmReais } from "../../api/funcoesGerais";
 import { mostrarUrlImagem } from "../../api/produtoAPI";
+import { Link } from "react-router-dom";
+import { get, set } from "local-storage";
 
-export default function ProdutoCarrinho({ produto, resetar, } ) {
+export default function ProdutoCarrinho({ produto, resetar, index} ) {
 
     const [qtd, setQtd] = useState(1);
     const [precoReal, setPrecoReal] = useState(produto.qtd);
@@ -21,13 +23,23 @@ export default function ProdutoCarrinho({ produto, resetar, } ) {
         resetar();
     }
 
+    function excluirProduto() {
+        let arrayCarrinho = get("carrinho");
+
+        let carrinhoSemItem = [...arrayCarrinho.slice(0, index), ...arrayCarrinho.slice(index + 1, arrayCarrinho.length)]; 
+    
+        set('carrinho', carrinhoSemItem);
+
+        window.location.reload();
+    }
+
     useEffect(() => {
         if (produto.promocao) {
             setPrecoReal(produto.valorPromocional);
         } else {
             setPrecoReal(produto.preco);
         }
-    }, [])
+    }, [produto])
 
     return (
         <div className='produto-container'>
@@ -51,8 +63,8 @@ export default function ProdutoCarrinho({ produto, resetar, } ) {
                             </div>
                         </div>
 
-                        <button>Excluir</button>
-                        <a href="">Ver semelhantes</a>
+                        <button onClick={excluirProduto}>Excluir</button>
+                        <Link to={`/produto/${produto.id}`}>Ver na loja</Link>
 
                         <div className='preco-mobile'>{valorEmReais(produto.preco)}</div>
                     </div>
@@ -60,7 +72,7 @@ export default function ProdutoCarrinho({ produto, resetar, } ) {
 
                 <div className='produto-preco'>
                     <h2>Preço:</h2>
-                    <h4>{produto.promocao && valorEmReais(produto.valorPromocional)}</h4>
+                    <h4>{produto.promocao && valorEmReais(produto.preco)}</h4>
                     <h3>{valorEmReais(precoReal)}</h3>
                 </div>
             </div>
