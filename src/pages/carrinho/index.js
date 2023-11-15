@@ -128,6 +128,7 @@ export default function Carrinho(props) {
             <div className="sec-total-input">
               <p>Escolha a forma de entrega</p>
               <input type="text" placeholder="Digite seu CEP" />
+              <button>Náo sei meu CEP</button>
             </div>
 
             <div className="container-entregas">

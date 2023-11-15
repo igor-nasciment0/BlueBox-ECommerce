@@ -309,8 +309,18 @@
         border-radius: 100px;
         border: none;
 
+        margin-bottom: 10px;
+
         box-shadow: 0 4px 4px 0 rgba($color: #000000, $alpha: 0.2);
         background-color: var(--fundo-componentes2);
+    }
+
+    .sec-total-input > button {
+        padding: 5px 35px;
+
+        font-size: 12px;
+        font-weight: 500;
+        color: rgba($color: var(--cor-textos), $alpha: 0.75);
     }
 
     .sec-total-input > input::placeholder

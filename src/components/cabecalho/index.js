@@ -29,7 +29,6 @@ function CabDeslogado() {
     const navigate = useNavigate();
 
     function pesquisar(pesquisa) {
-        console.log('a');
         navigate('/pesquisa?busca=' + pesquisa)
     }
 
@@ -52,7 +51,7 @@ function CabDeslogado() {
 
                 <div className="input">
                     <input type="text" placeholder="O que você está buscando?" value={pesquisa} onChange={e => setPesquisa(e.target.value)}
-                        onKeyDown={e => { if (e.key === 'Enter') pesquisar(pesquisa) }}
+                        onKeyDown={e => { if (e.key === '13') pesquisar(pesquisa) }}
                     />
                     <img src='/assets/images/icons/search.svg' alt="" onClick={() => pesquisar(pesquisa)} />
                 </div>
@@ -78,7 +77,6 @@ function CabDeslogado() {
 
                 <button onClick={() => {
                     tema.trocarTema()
-                    console.log(tema.tema);
                 }}>
                     <div className='fade-image-sun'>
                         <img src={'/assets/images/icons/sun.svg'} alt="" />
@@ -95,7 +93,9 @@ function CabDeslogado() {
                 </div>
 
                 <div className="input">
-                    <input type="text" placeholder="O que você está buscando?" />
+                    <input type="text" placeholder="O que você está buscando?" value={pesquisa} onChange={e => setPesquisa(e.target.value)}
+                        onKeyDown={e => { if (e.key === 'Enter') pesquisar(pesquisa) }}
+                    />
                     <img src='/assets/images/icons/search.svg' alt="" />
                 </div>
 
@@ -208,7 +208,9 @@ function CabLogado({ login }) {
                 </div>
 
                 <div className="input">
-                    <input type="text" placeholder="O que você está buscando?" />
+                    <input type="text" placeholder="O que você está buscando?" value={pesquisa} onChange={e => setPesquisa(e.target.value)}
+                        onKeyDown={e => { if (e.key === 'Enter') pesquisar(pesquisa) }}
+                    />
                     <img src='/assets/images/icons/search.svg' alt="" />
                 </div>
 

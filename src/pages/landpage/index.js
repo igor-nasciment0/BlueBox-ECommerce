@@ -124,7 +124,7 @@ export default function Landpage() {
 
                     <div className='container-produtos'>
                         <div>
-                            <CarouselProvider naturalSlideWidth={280} naturalSlideHeight={530}
+                            <CarouselProvider naturalSlideWidth={280} naturalSlideHeight={530} isPlaying interval={3000} infinite
                                 totalSlides={destaques.length}
                                 visibleSlides={useSlidesVisiveis()}
                                 >
