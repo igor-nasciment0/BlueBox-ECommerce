@@ -112,7 +112,7 @@ export default function Carrinho() {
     setCarregando(true);
 
     try {
-      if (cidade && estado && bairro && logradouro && numero) {
+      if (cidade && estado && bairro && logradouro && numero && produtosCarrinho.length > 0) {
 
         let entregasPossiveis;
 

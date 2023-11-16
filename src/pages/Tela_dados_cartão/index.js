@@ -33,10 +33,12 @@ export default function Telacartao() {
 
         produto[i] = {
           id: carrinhoProduto.id,
-          qtd: carrinhoProduto.qtd,
           preco: carrinhoProduto.preco,
+          qtd: carrinhoProduto.qtd,
         };
       }
+
+      toast.success('Pagamento finalizado com sucesso =)')
 
       const totalCompra = location.state.valor;
 
