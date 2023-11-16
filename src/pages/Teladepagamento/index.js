@@ -37,7 +37,7 @@ export default function TeladePagamento() {
   }
 
   const pagarCredito = () => {
-    navigate("/tela-cartão", {state: {valor: location.state.precoProdutos, valorPix: descontoPix}})
+    navigate("/tela-cartão", {state: {valor: location.state.precoProdutos, valorPix: descontoPix, valorFrete: location.state.frete, produtos: produtosCarrinho }})
   }
 
   return (

@@ -6,7 +6,8 @@ import { valorEmReais } from "../../api/funcoesGerais";
 import { useState } from "react";
 import ReactInputMask from "react-input-mask";
 import { toast } from "react-toastify";
-import storage from "local-storage"
+import storage from "local-storage";
+import { cadastrarPedido } from "../../api/pedidoAPI";
 
 export default function Telacartao() {
   const [numCartao, setNumCartao] = useState("");
@@ -23,13 +24,34 @@ export default function Telacartao() {
       if (escolhaCartao == "Cartão de crédito") idPagamento = 1;
       else if (escolhaCartao == "Cartão de débito") idPagamento = 2;
       else throw new Error("Metodo de pagamento obrigatório");
-      const usuario = storage('user-login').id
-      const totalCompra = location.state.valor
+      const usuario = storage("user-login").id;
+      const carrinhoProdutos = storage("carrinho");
+      let produto = [];
 
-      let resp = await novoPedido(usuario, )
-    } 
-    catch (error) {
-      toast.error("Metodo de pagamento obrigatório")
+      for (let i = 0; i < carrinhoProdutos.length; i++) {
+        let carrinhoProduto = carrinhoProdutos[i];
+
+        produto[i] = {
+          id: carrinhoProduto.id,
+          qtd: carrinhoProduto.qtd,
+          preco: carrinhoProduto.preco,
+        };
+      }
+
+      const totalCompra = location.state.valor;
+
+      console.log(totalCompra);
+
+      let resp = await cadastrarPedido(
+        usuario,
+        totalCompra,
+        location.state.valorFrete,
+        idPagamento,
+        produto
+      );
+    } catch (error) {
+      console.log(error);
+      toast.error("Metodo de pagamento obrigatório");
     }
   }
 
@@ -42,7 +64,7 @@ export default function Telacartao() {
           <div className="dados-cartao">
             <ReactInputMask
               type="text"
-              mask={"9999-9999-9999-9999-"}
+              mask={"9999-9999-9999-999-"}
               value={numCartao}
               onChange={(e) => setNumCartao(e.target.value)}
               placeholder="Numero do cartão"
@@ -92,7 +114,7 @@ export default function Telacartao() {
               </div>
               <div>
                 <p>Frete</p>
-                <p>29,90</p>
+                <p>{location.state.valorFrete}</p>
               </div>
               <div>
                 <p className="total">Total</p>
@@ -128,8 +150,9 @@ export default function Telacartao() {
                 <p>{nome.toUpperCase()}</p>
               </div>
 
-              <button className="finalizar-pedido">
+              <button className="finalizar-pedido" onClick={() => novoPedido()}>
                 FINALIZAR PEDIDO
+                
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="21"
