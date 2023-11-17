@@ -18,7 +18,7 @@ export default function TeladePagamento() {
   const [precoProdutos, setPrecoProdutos] = useState(0);
 
   const [usandoCupom, setUsandoCupom] = useState(false);
-  const [cupom, setCupom] = useState('');
+  const [cupom, setCupom] = useState("");
 
   const navigate = useNavigate();
   const location = useLocation();
@@ -42,7 +42,9 @@ export default function TeladePagamento() {
       let img = await buscarImagemPrimaria(produto.id);
       produto.img = img.url;
 
-      produto.precoReal = produto.promocao ? produto.valorPromocional : produto.preco;
+      produto.precoReal = produto.promocao
+        ? produto.valorPromocional
+        : produto.preco;
       preco += produto.precoReal;
     }
 
@@ -67,7 +69,6 @@ export default function TeladePagamento() {
 
   async function usarCupom() {
     try {
-
       let cupomServiu = false;
 
       for (let i = 0; i < produtosCarrinho.length; i++) {
@@ -78,7 +79,8 @@ export default function TeladePagamento() {
 
         if (resp.cupomServe) {
           cupomServiu = true;
-          produto.precoReal = produto.precoReal - produto.precoReal * resp.desconto;
+          produto.precoReal =
+            produto.precoReal - produto.precoReal * resp.desconto;
         }
       }
 
@@ -104,7 +106,7 @@ export default function TeladePagamento() {
 
   const pagarCredito = () => {
     const precoTotal = precoProdutos + location.state.frete;
-    let descontoPix = precoTotal - (precoTotal * 15 / 100)
+    let descontoPix = precoTotal - (precoTotal * 15) / 100;
 
     let info = { 
       valor: precoProdutos, 
@@ -118,7 +120,7 @@ export default function TeladePagamento() {
   }
 
   return (
-    <div className={"teladePagamento " + tema} >
+    <div className={"teladePagamento " + tema}>
       <Cabecalho />
       <ToastCont />
       <main className="pedido">
@@ -166,11 +168,17 @@ export default function TeladePagamento() {
                 </div>
                 <div>
                   <p className="total">Total</p>
-                  <p className="total">{valorEmReais(precoProdutos + location.state.frete)}</p>
+                  <p className="total">
+                    {valorEmReais(precoProdutos + location.state.frete)}
+                  </p>
                 </div>
                 <div>
                   <p className="pix">Pix</p>
-                  <p className="pix">{valorEmReais((precoProdutos + location.state.frete) * 0.85)}</p>
+                  <p className="pix">
+                    {valorEmReais(
+                      (precoProdutos + location.state.frete) * 0.85
+                    )}
+                  </p>
                 </div>
 
                 <p>Até 15% de desconto no pix</p>
@@ -204,9 +212,16 @@ export default function TeladePagamento() {
                 {usandoCupom &&
                   <div className="input-cupom">
                     <div>
-                      <input placeholder="Código do Cupom" value={cupom} onChange={e => setCupom(e.target.value)} />
+                      <input
+                        placeholder="Código do Cupom"
+                        value={cupom}
+                        onChange={(e) => setCupom(e.target.value)} 
+                      />
                       <button onClick={usarCupom}>
-                        <img src="/assets/images/icons/arrow-right.svg" alt="" />
+                        <img
+                          src="/assets/images/icons/arrow-right.svg"
+                          alt=""
+                        />
                       </button>
                     </div>
                   </div>
