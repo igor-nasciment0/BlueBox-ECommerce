@@ -19,3 +19,9 @@ export async function adicionarProdutosCupom(produtos, idCupom) {
         await api.post('/cupom/produto', {idCupom: idCupom, idProduto: produto.id});
     }
 }
+
+export async function verificarCupom(codigo, idProduto) {
+    let r = await api.get(`/cupom?codigo=${codigo}&idProduto=${idProduto}`);
+
+    return r.data;
+}

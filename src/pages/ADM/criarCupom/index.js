@@ -52,6 +52,11 @@ export default function CriarCupom() {
 
             await adicionarProdutosCupom(prodSelecionados, cupom.id);
 
+            toast.success("Cupom adicionado!")
+            setTimeout(() => {
+                window.location.reload();
+            }, 3000)
+
         } catch (error) {
             console.log(error);
             toast.error(error.response.data)

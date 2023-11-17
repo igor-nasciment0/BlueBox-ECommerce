@@ -124,9 +124,9 @@ export async function buscarProdutosArrayPedidos(pedidos) {
             let imagem = await buscarImagemPrimaria(produto.idProduto);
 
             produto.imagem = imagem.url;
+            
+            arrayProdutosPedidos.push(produto);
         }
-
-        arrayProdutosPedidos.push(produtos[0]);
     }
 
     console.log(arrayProdutosPedidos);

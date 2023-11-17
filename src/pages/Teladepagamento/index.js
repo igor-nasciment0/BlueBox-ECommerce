@@ -3,18 +3,28 @@ import Rodape from "../../components/rodape";
 import { useLocation, useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import "./index.scss";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { buscarImagemPrimaria, mostrarUrlImagem } from "../../api/produtoAPI";
 import { get } from "local-storage";
 import { valorEmReais } from "../../api/funcoesGerais";
+import { TemaContext } from "../../theme";
+import ReactInputMask from "react-input-mask";
+import { toast } from "react-toastify";
+import ToastCont from "../../components/toastContainer";
+import { verificarCupom } from "../../api/cupomAPI";
 
 export default function TeladePagamento() {
   const [produtosCarrinho, setProdutosCarrinho] = useState([]);
+  const [precoProdutos, setPrecoProdutos] = useState(0);
+
+  const [usandoCupom, setUsandoCupom] = useState(false);
+  const [cupom, setCupom] = useState('');
 
   const navigate = useNavigate();
   const location = useLocation();
-  const descontoPix = location.state.precoProdutos - (location.state.precoProdutos * 15) / 100 
-  console.log(descontoPix);
+
+  const context = useContext(TemaContext);
+  let tema = context.tema;
 
   useEffect(() => {
     buscaInfo();
@@ -22,6 +32,7 @@ export default function TeladePagamento() {
 
   async function buscaInfo() {
     let carrinho = get("carrinho");
+    let preco = 0;
 
     if (!carrinho) {
     }
@@ -30,19 +41,74 @@ export default function TeladePagamento() {
       let produto = carrinho[i];
       let img = await buscarImagemPrimaria(produto.id);
       produto.img = img.url;
+
+      produto.precoReal = produto.promocao ? produto.valorPromocional : produto.preco;
+      preco += produto.precoReal;
     }
 
-    console.log(carrinho);
+    setPrecoProdutos(preco);
     setProdutosCarrinho(carrinho);
   }
 
+  function atualizarCarrinho() {
+    let preco = 0;
+    
+    console.log(produtosCarrinho);
+    
+    for(let i = 0; i < produtosCarrinho.length; i++) {
+      let produto = produtosCarrinho[i];
+      preco += produto.precoReal;
+      console.log(preco);
+    }
+
+    setPrecoProdutos(preco);
+    setProdutosCarrinho([...produtosCarrinho]);
+  }
+
+  async function usarCupom() {
+    try {
+
+      let cupomServiu = false;
+
+      for(let i = 0; i < produtosCarrinho.length; i++) {
+        let produto = produtosCarrinho[i];
+
+        let resp = await verificarCupom(cupom, produto.id);
+        console.log(resp);
+
+        if(resp.cupomServe) {
+          cupomServiu = true;
+          produto.precoReal = produto.precoReal - produto.precoReal * resp.desconto;
+        }
+      }
+
+      atualizarCarrinho();
+
+      if(cupomServiu)
+        toast.success('O cupom foi aplicado a todos os produtos aplicáveis.')
+      else
+        toast.error('O cupom não é aplicável a nenhum dos produtos.')
+
+    } catch (error) {
+      if(error.response) {
+        toast.error(error.response.data)
+      } else {
+        toast.error(error.message);
+      }
+    }
+  }
+
   const pagarCredito = () => {
-    navigate("/tela-cartão", {state: {valor: location.state.precoProdutos, valorPix: descontoPix, valorFrete: location.state.frete, produtos: produtosCarrinho }})
+    const precoTotal = precoProdutos + location.state.frete;
+    let descontoPix = precoTotal - (precoTotal * 15 / 100)
+
+    navigate("/tela-cartão", { state: { valor: precoProdutos, valorPix: descontoPix, valorFrete: location.state.frete, produtos: produtosCarrinho } })
   }
 
   return (
-    <div className="teladePagamento" >
+    <div className={"teladePagamento " + tema} >
       <Cabecalho />
+      <ToastCont />
       <main className="pedido">
         <div className="row-centralizer">
           <div className="info-pedido">
@@ -61,7 +127,7 @@ export default function TeladePagamento() {
 
                     <div>
                       <p>Subtotal</p>
-                      <p>{carrinho.preco}</p>
+                      <p>{valorEmReais(carrinho.precoReal)}</p>
                     </div>
                   </div>
                 ))}
@@ -69,7 +135,7 @@ export default function TeladePagamento() {
             </div>
 
             <div className="metodos-pagamento">
-              <p>Escolha seu metodo de pagamento:</p>
+              <p>Escolha seu método de pagamento:</p>
               <div className="metodos">
                 <button onClick={pagarCredito} >PIX</button>
                 <button onClick={pagarCredito} >Cartão de credito</button>
@@ -89,7 +155,7 @@ export default function TeladePagamento() {
                 <div className="linha"></div>
                 <div>
                   <p>Subtotal</p>
-                  <p>{valorEmReais(location.state.precoProdutos)}</p>
+                  <p>{valorEmReais(precoProdutos)}</p>
                 </div>
                 <div>
                   <p>Frete</p>
@@ -97,17 +163,17 @@ export default function TeladePagamento() {
                 </div>
                 <div>
                   <p className="total">Total</p>
-                  <p className="total">{valorEmReais(location.state.precoProdutos)}</p>
+                  <p className="total">{valorEmReais(precoProdutos + location.state.frete)}</p>
                 </div>
                 <div>
                   <p className="pix">Pix</p>
-                  <p className="pix">{valorEmReais(descontoPix)}</p>
+                  <p className="pix">{valorEmReais((precoProdutos + location.state.frete) * 0.85)}</p>
                 </div>
 
                 <p>Até 15% de desconto no pix</p>
                 <div className="linha2"></div>
 
-                <button>
+                <button className="cupom" onClick={() => setUsandoCupom(true)}>
                   Usar cupom{" "}
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -131,6 +197,19 @@ export default function TeladePagamento() {
                     </defs>
                   </svg>
                 </button>
+                
+                {usandoCupom &&
+                  <div className="input-cupom">
+                    <div>
+                      <input placeholder="Código do Cupom" value={cupom} onChange={e => setCupom(e.target.value)}/>
+                      <button onClick={usarCupom}>
+                        <img src="/assets/images/icons/arrow-right.svg" alt="" />
+                      </button>
+                    </div>
+                  </div>
+                }
+                
+
                 <button className="finalizar-pedido">
                   Finalizar pedido{" "}
                   <svg

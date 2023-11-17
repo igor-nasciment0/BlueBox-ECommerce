@@ -58,7 +58,7 @@ export default function StatusEntrega() {
 
     useEffect(() => {
         BuscarPedido();
-    }, [])
+    }, [idPedido, idProduto])
 
     useEffect(() => {
         switch(infoPedido.tipoPagamento) {
@@ -83,7 +83,7 @@ export default function StatusEntrega() {
 
             <div className='gradient'>
                 <main>
-                    <Link onClick={() => navigate(-1)}><img src="/assets/images/icons/arrow-left.svg" alt="" />Voltar</Link>
+                    <Link to={'/meus-pedidos'}><img src="/assets/images/icons/arrow-left.svg" alt="" />Voltar</Link>
                     <h1>Status da compra</h1>
 
                     <section>
@@ -98,13 +98,13 @@ export default function StatusEntrega() {
                                         </h4>
                                     </div>
 
-                                    <img onClick={() => navigate('/produto/' + produtoPrincipal.idProduto)} src={mostrarUrlImagem(produtoPrincipal.imagem)} alt="Foto do Produto" />
+                                    <img onClick={() => navigate('/produto/' + produtoPrincipal.idProduto)} src={mostrarUrlImagem(produtoPrincipal.imagem)} alt={produtoPrincipal.nomeProduto} />
                                 </div>
 
                                 {produtosSecundarios.length > 0 &&
                                     <div className='cont-outros-produtos'>
                                         {produtosSecundarios.map(produto =>
-                                            <div onClick={() => navigate('/entrega/5/produto/' + produto.idProduto)}>
+                                            <div onClick={() => navigate(`/entrega/${idPedido}/produto/` + produto.idProduto)}>
                                                 +
                                                 <h4>{limitarString(produto.nomeProduto, 16)}</h4>
                                                 <img src={mostrarUrlImagem(produto.imagem)} alt="" />

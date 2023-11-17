@@ -1,13 +1,15 @@
 import Cabecalho from "../../components/cabecalho";
 import Rodape from "../../components/rodape";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import "./index.scss";
 import { valorEmReais } from "../../api/funcoesGerais";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import ReactInputMask from "react-input-mask";
 import { toast } from "react-toastify";
-import storage from "local-storage";
+import storage, { set } from "local-storage";
 import { cadastrarPedido } from "../../api/pedidoAPI";
+import ToastCont from "../../components/toastContainer";
+import { TemaContext } from "../../theme";
 
 export default function Telacartao() {
   const [numCartao, setNumCartao] = useState("");
@@ -15,10 +17,17 @@ export default function Telacartao() {
   const [bandeira, setBandeira] = useState("");
   const [escolhaCartao, setEscolhaCartão] = useState("");
 
+  const [criandoPedido, setCriandoPedido] = useState(false);
+
+  const context = useContext(TemaContext);
+  let tema = context.tema;
+
   const location = useLocation();
+  const navigate = useNavigate();
 
   async function novoPedido() {
     let idPagamento;
+    setCriandoPedido(true);
 
     try {
       if (escolhaCartao == "Cartão de crédito") idPagamento = 1;
@@ -26,40 +35,47 @@ export default function Telacartao() {
       else throw new Error("Metodo de pagamento obrigatório");
       const usuario = storage("user-login").id;
       const carrinhoProdutos = storage("carrinho");
-      let produto = [];
+      let produtos = [];
 
       for (let i = 0; i < carrinhoProdutos.length; i++) {
         let carrinhoProduto = carrinhoProdutos[i];
 
-        produto[i] = {
+        produtos[i] = {
           id: carrinhoProduto.id,
-          preco: carrinhoProduto.preco,
-          qtd: carrinhoProduto.qtd,
+          preco: carrinhoProduto.promocao ? carrinhoProduto.valorPromocional : carrinhoProduto.preco,
+          quantidade: carrinhoProduto.qtd,
         };
       }
 
-      toast.success('Pagamento finalizado com sucesso =)')
-
       const totalCompra = location.state.valor;
 
-      console.log(totalCompra);
-
-      let resp = await cadastrarPedido(
+      await cadastrarPedido(
         usuario,
         totalCompra,
         location.state.valorFrete,
         idPagamento,
-        produto
+        produtos
       );
+      
+      toast.success('Pagamento finalizado com sucesso =)');
+      set('carrinho', []);
+
+      setTimeout(() => {
+        navigate('/checkout');
+      }, 3000)
+
+      setCriandoPedido(false);
     } catch (error) {
       console.log(error);
       toast.error("Metodo de pagamento obrigatório");
+      setCriandoPedido(false)
     }
   }
 
   return (
-    <div className="Tela-Cartao">
+    <div className={"Tela-Cartao " + tema}>
       <Cabecalho />
+      <ToastCont />
       <main>
         <img src="/assets/images/logo-transparente.png" alt="" />
         <div className="pagamento-cartao">
@@ -152,7 +168,7 @@ export default function Telacartao() {
                 <p>{nome.toUpperCase()}</p>
               </div>
 
-              <button className="finalizar-pedido" onClick={() => novoPedido()}>
+              <button className="finalizar-pedido" onClick={() => novoPedido()} disabled={criandoPedido}> 
                 FINALIZAR PEDIDO
                 
                 <svg

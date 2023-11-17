@@ -36,12 +36,11 @@
     }
 
     img {
-        width: auto;
+        width: 100%;
         height: 100%;
         box-shadow: 0 0 8px rgba($color: #000000, $alpha: 0.4);
         object-fit: contain;
         max-width: 263px;
-        width: 100%;
     }
 
     >h2 {

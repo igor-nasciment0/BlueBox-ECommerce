@@ -191,7 +191,7 @@ export default function Carrinho() {
 
   useEffect(() => {
     buscarFretes();
-  }, [cidade, estado, bairro, logradouro, numero])
+  }, [cidade, estado, bairro, logradouro, numero, produtosCarrinho])
 
   const toComponentB = () => {
     navigate("/pagamento", { state: { precoProdutos: totalProdutos, frete: frete, endereco: {cep: cep,

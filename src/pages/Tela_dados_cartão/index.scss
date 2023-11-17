@@ -6,13 +6,26 @@
 
     main{
         flex-grow: 1;
-        background: #D9D9D9;
+        background: var(--fundo-tela);
+        color: rgb(var(--cor-textos));
+
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
         gap: 20px;
         padding: 30px 0px;
+
+        transition: 0.3s;
+
+        * {
+            transition: 0.1s;
+        }
+
+        > img {
+            background-color: rgba(255, 255, 255, 0.438);
+            border-radius: 15px;
+        }
 
 
         .pagamento-cartao{
@@ -23,7 +36,7 @@
         .dados-cartao{
             display: flex;
             flex-direction: column;
-            background-color: #fff;
+            background-color: var(--fundo-componentes);
             max-width: 490px;
             width: 100%;
             justify-content: center;
@@ -62,13 +75,13 @@
         }
 
         .resumo-pagamento{
-            background-color: #fff;
+            background-color: var(--fundo-componentes);
             padding: 30px;
             border-radius: 10px;
             width: 500px;      
 
             .borda-resumo{
-                border: 2px solid rgba(0, 0, 0, 0.30);
+                border: 2px solid rgba(var(--cor-textos), 0.3);
                 width: 100%;
                 height: 100%;
                 padding: 15px 30px;
@@ -82,13 +95,13 @@
                 .linha2{
                     width: 64px;
                     height: 2px;
-                    background: #23272A;
+                    background: rgba(var(--cor-textos), 0.3);
                 }
         
                 >p{
                     font-size: 13px;
                     text-align: center;
-                    color: rgba(0, 0, 0, 0.60);
+                    color: rgba(var(--cor-textos), 0.60);
                 }
         
                 .pix{
@@ -104,7 +117,7 @@
                 .linha{
                     height: 2px;
                     width: 100%;
-                    background: rgba(0, 0, 0, 0.30);
+                    background: rgba(var(--cor-textos), 0.3);
                 }
         
                 h1{
@@ -119,12 +132,6 @@
                     justify-content: space-between;
                     align-items: flex-start;
                     width: 100%;
-                }
-
-                .linha2{
-                    width: 64px;
-                    height: 2px;
-                    background: #23272A;
                 }
 
                 .specs-pagamento{

@@ -167,19 +167,19 @@ function CabLogado({ login }) {
 
 
                 <nav>
-                    <div>
+                    <div onClick={() => navigate('/perfil')}>
                         <img src="/assets/images/icons/user.svg" alt="" />
-                        <Link to='/perfil'>{login.nome}</Link>
+                        <Link>{login.nome}</Link>
                     </div>
 
-                    <div>
+                    <div onClick={() => navigate('/carrinho')}>
                         <img src="/assets/images/icons/cart.svg" alt="" />
-                        <Link to='/carrinho'>Carrinho</Link>
+                        <Link>Carrinho</Link>
                     </div>
 
-                    <div>
+                    <div onClick={() => navigate('/meus-pedidos')}>
                         <img src="/assets/images/icons/truckCabecalho.svg" alt="" />
-                        <Link to='/meus-pedidos'>Pedidos</Link>
+                        <Link>Pedidos</Link>
                     </div>
                 </nav>
 
