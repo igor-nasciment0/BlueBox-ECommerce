@@ -22,11 +22,11 @@ export default function BarraLateral() {
             </button>
             <section className="barra-lateral" style={{display: display}}>
                 <div className="user-info">
-                    <img src="/assets/images/pessoa-aleatoria.png" alt="" />
+                    <img src="/assets/images/usuario.png" alt="" />
 
                     <div>
-                        <h2>Carlos H. S. Pinto</h2>
-                        <h3>Dark Programmer</h3>
+                        <h2>Admin</h2>
+                        <h3>Administrador</h3>
                     </div>
                 </div>
 

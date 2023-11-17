@@ -34,8 +34,8 @@ export default function CabecalhoADM() {
                 </div>
 
                 <div className="usuario">
-                    <img src="/assets/images/pessoa-aleatoria.png" alt="" />
-                    <h3>Carlos H. S. Pinto</h3>
+                    <img src="/assets/images/usuario.png" alt="" />
+                    <h3>Admin</h3>
                 </div>
             </nav>
         </header>
