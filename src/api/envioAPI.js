@@ -11,7 +11,7 @@ export async function simularFrete(produto, cep, preco, ordenar) {
         "pesoMerc": produto.peso/1000,
         "produtos": [
           {
-            "peso": produto.peso/1000,
+            "peso": 5,
             "altura": 20,
             "largura": 15,
             "comprimento": 4,
