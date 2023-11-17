@@ -30,7 +30,7 @@ export default function StatusEntrega() {
 
     let login = get('user-login');
 
-    if(!login) {
+    if (!login) {
         navigate('/login')
     }
 
@@ -61,8 +61,11 @@ export default function StatusEntrega() {
     }, [idPedido, idProduto])
 
     useEffect(() => {
-        switch(infoPedido.tipoPagamento) {
+        switch (infoPedido.tipoPagamento) {
             case 'Cartão de Crédito':
+                setImgPagamento('/assets/images/credit-card.svg')
+                break;
+            case 'Cartão de Débito':
                 setImgPagamento('/assets/images/credit-card.svg')
                 break;
             case 'PIX':
@@ -72,7 +75,7 @@ export default function StatusEntrega() {
                 setImgPagamento('/assets/images/icons/money.svg')
         }
 
-        if(login) if(infoPedido.idCliente && infoPedido.idCliente != login.id) {
+        if (login) if (infoPedido.idCliente && infoPedido.idCliente != login.id) {
             navigate('/not-authorized');
         }
     }, [infoPedido])
@@ -120,12 +123,12 @@ export default function StatusEntrega() {
                                     <h3>{infoPedido.tipoPagamento} – <span>{valorEmReais(infoPedido.valorFrete + infoPedido.valorProdutos)}</span></h3>
 
                                     <h4>
-                                        {infoPedido.dataAprovacao ? 
+                                        {infoPedido.dataAprovacao ?
                                             `Aprovado em ${formatarData(infoPedido.dataAprovacao, true)}` :
                                             'Aguardando aprovação'
                                         }
                                     </h4>
-                                    
+
                                 </div>
                                 <img src={imgPagamento} alt="" />
                             </div>
@@ -135,7 +138,7 @@ export default function StatusEntrega() {
                             <h2>Detalhes da Compra</h2>
                             <h3>Efetuada em {formatarData(infoPedido.dataCompra)}</h3>
                             {infoPedido.tipoPagamento === 'PIX' &&
-                                <h3 style={{color: 'var(--verde-claro)'}}>Por você ter usado PIX, seus produtos receberam 15% de desconto.</h3>
+                                <h3 style={{ color: 'var(--verde-claro)' }}>Por você ter usado PIX, seus produtos receberam 15% de desconto.</h3>
                             }
 
                             <div>
@@ -149,11 +152,11 @@ export default function StatusEntrega() {
                             </div>
 
                             {produtosSecundarios.length > 0 &&
-                            <div className='subcategoria'>
-                                <h4>Outros Produtos</h4>
-                                <p>{valorEmReais(calcularPrecoProdutos(produtosSecundarios))}</p>
-                            </div>
-                            }                            
+                                <div className='subcategoria'>
+                                    <h4>Outros Produtos</h4>
+                                    <p>{valorEmReais(calcularPrecoProdutos(produtosSecundarios))}</p>
+                                </div>
+                            }
 
                             <div>
                                 <h4>Frete</h4>
@@ -170,13 +173,13 @@ export default function StatusEntrega() {
                     <div className='processo-entrega'>
                         <h3>Entrega {infoPedido.dataEntrega ? 'Concluída' : 'Pendente'}</h3>
                         {
-                            !infoPedido.dataEntrega && 
+                            !infoPedido.dataEntrega &&
                             <h2>Data prevista de Entrega: {formatarData(infoPedido.previsaoEntrega)}</h2>
                         }
 
                         <p>Desculpe por fazer você esperar :(</p>
 
-                        <BarraProgresso infoPedido={infoPedido}/>
+                        <BarraProgresso infoPedido={infoPedido} />
                     </div>
 
                     <h2>Problemas com esta compra?</h2>
