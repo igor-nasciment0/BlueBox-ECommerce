@@ -194,12 +194,8 @@ export default function Carrinho() {
   }, [cidade, estado, bairro, logradouro, numero, produtosCarrinho])
 
   const toComponentB = () => {
-    navigate("/pagamento", { state: { precoProdutos: totalProdutos, frete: frete, endereco: {cep: cep,
-                                                                                             estado: estado,
-                                                                                             cidade: cidade,
-                                                                                             bairro: bairro,
-                                                                                             logradouro: logradouro,
-                                                                                             numero: numero} } });
+    let cliente = get('user-login'); 
+    navigate("/pagamento", { state: { precoProdutos: totalProdutos, frete: frete, idEndereco: cliente.idEndereco } });
   };
 
   return (

@@ -11,6 +11,8 @@ import { cadastrarPedido } from "../../api/pedidoAPI";
 import ToastCont from "../../components/toastContainer";
 import { TemaContext } from "../../theme";
 
+let codigoPix = (Math.random() * 1000000000).toFixed(0);
+
 export default function Telacartao() {
   const [numCartao, setNumCartao] = useState("");
   const [nome, setNome] = useState("");
@@ -25,6 +27,10 @@ export default function Telacartao() {
   const location = useLocation();
   const navigate = useNavigate();
 
+  if(!location.state.produtos) {
+    navigate('/');
+  }
+
   async function novoPedido() {
     let idPagamento;
     setCriandoPedido(true);
@@ -32,9 +38,11 @@ export default function Telacartao() {
     try {
       if (escolhaCartao == "Cartão de crédito") idPagamento = 1;
       else if (escolhaCartao == "Cartão de débito") idPagamento = 2;
-      else throw new Error("Metodo de pagamento obrigatório");
+      else if (escolhaCartao == "PIX") idPagamento = 3; 
+      else throw new Error("Método de pagamento obrigatório!");
+
       const usuario = storage("user-login").id;
-      const carrinhoProdutos = storage("carrinho");
+      const carrinhoProdutos = location.state.produtos;
       let produtos = [];
 
       for (let i = 0; i < carrinhoProdutos.length; i++) {
@@ -42,32 +50,36 @@ export default function Telacartao() {
 
         produtos[i] = {
           id: carrinhoProduto.id,
-          preco: carrinhoProduto.promocao ? carrinhoProduto.valorPromocional : carrinhoProduto.preco,
+          preco: carrinhoProduto.precoReal,
           quantidade: carrinhoProduto.qtd,
         };
       }
 
-      const totalCompra = location.state.valor;
+      const totalCompra = escolhaCartao === 'PIX' ? location.state.valor * 0.85 : location.state.valor;
 
-      await cadastrarPedido(
+      let r = await cadastrarPedido(
         usuario,
+        location.state.idEndereco,
         totalCompra,
         location.state.valorFrete,
         idPagamento,
         produtos
       );
+
+      r.comprador = nome;
+      r.metodoCompra = escolhaCartao;
       
       toast.success('Pagamento finalizado com sucesso =)');
       set('carrinho', []);
 
       setTimeout(() => {
-        navigate('/checkout');
+        navigate('/checkout', {state: {infoPedido: r, produtos: location.state.produtos}});
       }, 3000)
 
       setCriandoPedido(false);
     } catch (error) {
       console.log(error);
-      toast.error("Metodo de pagamento obrigatório");
+      toast.error(error.message);
       setCriandoPedido(false)
     }
   }
@@ -80,22 +92,35 @@ export default function Telacartao() {
         <img src="/assets/images/logo-transparente.png" alt="" />
         <div className="pagamento-cartao">
           <div className="dados-cartao">
-            <ReactInputMask
-              type="text"
-              mask={"9999-9999-9999-999-"}
-              value={numCartao}
-              onChange={(e) => setNumCartao(e.target.value)}
-              placeholder="Numero do cartão"
-            />
+            {escolhaCartao !== 'PIX' &&
+              <ReactInputMask
+                type="text"
+                mask={"9999-9999-9999-9999"}
+                value={numCartao}
+                onChange={(e) => setNumCartao(e.target.value)}
+                placeholder="Numero do cartão"
+              />
+            }
+            
+            {escolhaCartao !== 'PIX' &&
+              <input
+                type="text"
+                onChange={(e) => setBandeira(e.target.value)}
+                placeholder="Bandeira do cartão"
+              />
+            }
+
+            {escolhaCartao === 'PIX' &&
+              <div className="pix">
+                <input type="text" readOnly value={codigoPix}/>
+                <p>Você terá até 24h para pagar o PIX neste código.</p>
+              </div>
+            }
+            
             <input
               type="text"
-              onChange={(e) => setBandeira(e.target.value)}
-              placeholder="Bandeira do cartão"
-            />
-            <input
-              type="text"
-              onChange={(e) => setNome(e.target.value)}
-              placeholder="Titular do cartão"
+              onChange={(e) => setNome(e.target.value.toUpperCase())}
+              placeholder="Nome do Titular"
             />
 
             <div className="escolhaCartao">
@@ -115,6 +140,15 @@ export default function Telacartao() {
                   name="cartao"
                 />
                 <label>Cartão de débito</label>
+              </div>
+
+              <div>
+                <input
+                  type="radio"
+                  onChange={(e) => setEscolhaCartão("PIX")}
+                  name="cartao"
+                />
+                <label>PIX</label>
               </div>
             </div>
 
@@ -140,7 +174,7 @@ export default function Telacartao() {
               </div>
               <div>
                 <p className="pix">PIX:</p>
-                <p className="pix">{valorEmReais(location.state.valorPix)}</p>
+                <p className="pix">{valorEmReais(location.state.valor * 0.85)}</p>
               </div>
 
               <p>Até 15% de desconto no pix</p>
@@ -153,15 +187,19 @@ export default function Telacartao() {
                 <p>{escolhaCartao.toUpperCase()}</p>
               </div>
 
-              <div className="specs-pagamento">
-                <p>Numero:</p>
-                <p>{numCartao.toUpperCase()}</p>
-              </div>
-
+              {escolhaCartao !== 'PIX' &&
+                <div className="specs-pagamento">
+                  <p>Numero:</p>
+                  <p>{numCartao.toUpperCase()}</p>
+                </div>
+              }
+              
+              {escolhaCartao !== 'PIX' &&
               <div className="specs-pagamento">
                 <p>Rede:</p>
                 <p>{bandeira.toUpperCase()}</p>
               </div>
+              }
 
               <div className="specs-pagamento">
                 <p>Nome do titular:</p>

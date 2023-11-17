@@ -1,9 +1,10 @@
 import api from './apiURL';
 import { buscarImagemPrimaria } from './produtoAPI';
 
-export async function cadastrarPedido(idCliente, valorProdutos, valorFrete, idTipoPagamento, produtos){
+export async function cadastrarPedido(idCliente, idEndereco, valorProdutos, valorFrete, idTipoPagamento, produtos){
     let r = await api.post(`/pedido`, {
         idCliente: idCliente,
+        idEndereco: idEndereco,
         valorProdutos: valorProdutos,
         valorFrete: valorFrete,
         idTipoPagamento: idTipoPagamento,

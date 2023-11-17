@@ -134,6 +134,9 @@ export default function StatusEntrega() {
                         <div className='cont-detalhes'>
                             <h2>Detalhes da Compra</h2>
                             <h3>Efetuada em {formatarData(infoPedido.dataCompra)}</h3>
+                            {infoPedido.tipoPagamento === 'PIX' &&
+                                <h3 style={{color: 'var(--verde-claro)'}}>Por você ter usado PIX, seus produtos receberam 15% de desconto.</h3>
+                            }
 
                             <div>
                                 <h4>Produtos</h4>

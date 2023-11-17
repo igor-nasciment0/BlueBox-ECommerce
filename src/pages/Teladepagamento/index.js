@@ -52,10 +52,10 @@ export default function TeladePagamento() {
 
   function atualizarCarrinho() {
     let preco = 0;
-    
+
     console.log(produtosCarrinho);
-    
-    for(let i = 0; i < produtosCarrinho.length; i++) {
+
+    for (let i = 0; i < produtosCarrinho.length; i++) {
       let produto = produtosCarrinho[i];
       preco += produto.precoReal;
       console.log(preco);
@@ -70,13 +70,13 @@ export default function TeladePagamento() {
 
       let cupomServiu = false;
 
-      for(let i = 0; i < produtosCarrinho.length; i++) {
+      for (let i = 0; i < produtosCarrinho.length; i++) {
         let produto = produtosCarrinho[i];
 
         let resp = await verificarCupom(cupom, produto.id);
         console.log(resp);
 
-        if(resp.cupomServe) {
+        if (resp.cupomServe) {
           cupomServiu = true;
           produto.precoReal = produto.precoReal - produto.precoReal * resp.desconto;
         }
@@ -84,13 +84,13 @@ export default function TeladePagamento() {
 
       atualizarCarrinho();
 
-      if(cupomServiu)
+      if (cupomServiu)
         toast.success('O cupom foi aplicado a todos os produtos aplicáveis.')
       else
         toast.error('O cupom não é aplicável a nenhum dos produtos.')
 
     } catch (error) {
-      if(error.response) {
+      if (error.response) {
         toast.error(error.response.data)
       } else {
         toast.error(error.message);
@@ -98,11 +98,23 @@ export default function TeladePagamento() {
     }
   }
 
+  if(produtosCarrinho.length === 0) {
+    navigate('/');
+  }
+
   const pagarCredito = () => {
     const precoTotal = precoProdutos + location.state.frete;
     let descontoPix = precoTotal - (precoTotal * 15 / 100)
 
-    navigate("/tela-cartão", { state: { valor: precoProdutos, valorPix: descontoPix, valorFrete: location.state.frete, produtos: produtosCarrinho } })
+    let info = { 
+      valor: precoProdutos, 
+      valorPix: descontoPix, 
+      valorFrete: location.state.frete, 
+      produtos: produtosCarrinho, 
+      idEndereco: location.state.idEndereco 
+    };
+
+    navigate("/tela-cartão", { state: info })
   }
 
   return (
@@ -131,15 +143,6 @@ export default function TeladePagamento() {
                     </div>
                   </div>
                 ))}
-              </div>
-            </div>
-
-            <div className="metodos-pagamento">
-              <p>Escolha seu método de pagamento:</p>
-              <div className="metodos">
-                <button onClick={pagarCredito} >PIX</button>
-                <button onClick={pagarCredito} >Cartão de credito</button>
-                <button onClick={pagarCredito} >Cartão de debito</button>
               </div>
             </div>
 
@@ -197,21 +200,21 @@ export default function TeladePagamento() {
                     </defs>
                   </svg>
                 </button>
-                
+
                 {usandoCupom &&
                   <div className="input-cupom">
                     <div>
-                      <input placeholder="Código do Cupom" value={cupom} onChange={e => setCupom(e.target.value)}/>
+                      <input placeholder="Código do Cupom" value={cupom} onChange={e => setCupom(e.target.value)} />
                       <button onClick={usarCupom}>
                         <img src="/assets/images/icons/arrow-right.svg" alt="" />
                       </button>
                     </div>
                   </div>
                 }
-                
 
-                <button className="finalizar-pedido">
-                  Finalizar pedido{" "}
+
+                <button className="finalizar-pedido" onClick={pagarCredito}>
+                  Prosseguir 
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="20"

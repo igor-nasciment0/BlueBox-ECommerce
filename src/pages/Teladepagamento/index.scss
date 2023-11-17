@@ -216,7 +216,7 @@
             background: #1C84FF;
         }
 
-        .cupom:hover {
+        .cupom:hover, .finalizar-pedido:hover {
             transform: scale(1.02);
             cursor: pointer;
         }
@@ -276,8 +276,12 @@
             }
 
         .finalizar-pedido{
-            background: #ACACAC;
-            color: #424242;
+            background: var(--verde-claro);
+            color: #FFF;
+
+            svg {
+                color: #FFF;
+            }
         }
 
         .linha2{

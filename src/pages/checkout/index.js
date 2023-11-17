@@ -3,11 +3,55 @@ import "./index.scss";
 import Cabecalho from "../../components/cabecalho";
 import Rodape from "../../components/rodape";
 
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { useContext, useEffect, useState } from "react";
+import { toast } from "react-toastify";
+import { buscarEndereco } from "../../api/enderecoAPI";
+import { formatarData, valorEmReais } from "../../api/funcoesGerais";
+import { get } from "local-storage";
+import { TemaContext } from "../../theme";
 
 export default function Checkout() {
+
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  const [endereco, setEndereco] = useState({});
+  const [infoPedido, setInfoPedido] = useState({});
+  const [listaProdutos, setListaProdutos] = useState([]);
+  const cliente = get('user-login');
+
+  useEffect(() => {
+    if (!location.state) {
+      navigate('/');
+    } else {
+      setInfoPedido(location.state.infoPedido);
+      setListaProdutos(location.state.produtos);
+    }
+  }, [])
+
+  useEffect(() => {
+    buscarInfo();
+  }, [])
+
+  async function buscarInfo() {
+    let infoPedido = location.state.infoPedido;
+
+    try {
+
+      let endrc = await buscarEndereco(infoPedido.idEndereco);
+      setEndereco(endrc);
+
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  const context = useContext(TemaContext);
+  let tema = context.tema;
+
   return (
-    <div className="checkoutBody">
+    <div className={"checkoutBody " + tema}>
       <Cabecalho />
 
       <div className="resumo">
@@ -31,23 +75,25 @@ export default function Checkout() {
               <p>Preço</p>
             </div>
           </div>
-          <div className="conteudo">
-            <div className="espacamento">
-              <p>Resident Evil 1 - PS1</p>
+          {listaProdutos.map(produto =>
+            <div className="conteudo">
+              <div className="espacamento">
+                <p>{produto.nome}</p>
+              </div>
+              <div>
+                <p>{produto.qtd}</p>
+              </div>
+              <div className="valor">
+                <p>{valorEmReais(produto.precoReal)}</p>
+              </div>
             </div>
-            <div>
-              <p>1</p>
-            </div>
-            <div className="valor">
-              <p>R$29,90</p>
-            </div>
-          </div>
+          )}
           <div className="subtotal">
             <div>
-              <p>subtotal:</p>
+              <p>Subtotal:</p>
             </div>
             <div>
-              <p className="espacamentoValor">R$29,90</p>
+              <p className="espacamentoValor">{valorEmReais(infoPedido.valorProdutos)}</p>
             </div>
           </div>
           <div className="frete">
@@ -55,7 +101,7 @@ export default function Checkout() {
               <p>Frete</p>
             </div>
             <div>
-              <p className="espacamentoValor">R$0,00</p>
+              <p className="espacamentoValor">{valorEmReais(infoPedido.valorFrete)}</p>
             </div>
           </div>
           <div className="total">
@@ -63,7 +109,7 @@ export default function Checkout() {
               <p>Total</p>
             </div>
             <div>
-              <p className="espacamentoValor">R$29,90</p>
+              <p className="espacamentoValor">{valorEmReais(infoPedido.valorFrete + infoPedido.valorProdutos)}</p>
             </div>
           </div>
         </div>
@@ -77,29 +123,23 @@ export default function Checkout() {
           </div>
 
           <div className="informacaoCliente">
-            <p>Nome da Rua</p>
+            <p>{endereco.logradouro}</p>
           </div>
 
           <div className="casaCliente">
             <div>
-              <p>CEP</p>
-            </div>
-            <div>
-              <p>Complemento</p>
+              <p>{endereco.cep}</p>
             </div>
             <div className="alinhamentoNumero">
-              <p>N° da Casa</p>
+              <p>N° {endereco.numero}</p>
             </div>
           </div>
 
           <div className="informacaoCliente">
-            <p>Nome do Cliente</p>
+            <p>{cliente.nome + ' ' + cliente.sobrenome}</p>
           </div>
           <div className="informacaoCliente">
-            <p>Número de Telefone</p>
-          </div>
-          <div className="informacaoCliente">
-            <p>Código de Rastreio</p>
+            <p>{cliente.telefone}</p>
           </div>
         </div>
         <div className="pagamento">
@@ -107,23 +147,14 @@ export default function Checkout() {
             <img src="/assets/images/icons/dinheiro.svg" alt="" />
             <h2>Pagamento</h2>
           </div>
-
           <div>
-            <p>Número do Cartão</p>
+            <p>{infoPedido.comprador}</p>
           </div>
           <div>
-            <p>Cupom</p>
+            <p>{infoPedido.metodoCompra}</p>
           </div>
           <div>
-            <p>Nome do Comprador</p>
-          </div>
-          <div>
-            <p>Data de Compra</p>
-          </div>
-
-          <div className="notaFiscal">
-            <Link to={""}>Baixar Nota Fiscal</Link>
-            <img src="/assets/images/icons/download.svg" alt="Download" />
+            <p>Pagamento em {formatarData(new Date(), true)}</p>
           </div>
         </div>
       </div>
