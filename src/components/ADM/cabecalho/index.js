@@ -8,10 +8,10 @@ export default function CabecalhoADM() {
 
     const navigate = useNavigate();
 
-    // useEffect(() => {
-    //     if(!storage('adm-login'))
-    //         navigate('/adm/login');
-    // })
+    useEffect(() => {
+        if(!storage('adm-login'))
+            navigate('/adm/login');
+    })
 
     const tema = useContext(TemaContext);
 
@@ -23,21 +23,14 @@ export default function CabecalhoADM() {
             
             <nav>
                 <div className="nav-icons">
-                    <Link>
-                        <img src="/assets/images/icons/adm/cabecalho/squares.svg" alt=""/>
-                    </Link>
-
-                    <div className='linha'/>
-
-                    <Link>
-                        <img src="/assets/images/icons/adm/cabecalho/mail.svg" alt="" />
-                    </Link>
 
                     <div className='linha'/>
 
                     <Link onClick={tema.trocarTema}>
                         <img src="/assets/images/icons/sun.svg" alt="" />
                     </Link>
+
+                    <div className='linha'/>
                 </div>
 
                 <div className="usuario">

@@ -162,9 +162,9 @@ export default function Carrinho() {
   useEffect(() => {
     let login = get("user-login");
 
-    /*     if(!login) {
+    if(!login) {
       navigate('/login')
-    } */
+    }
 
     buscaCarrinho();
     buscaEndereco();
