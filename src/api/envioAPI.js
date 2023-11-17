@@ -47,7 +47,7 @@ export async function calcularFreteCarrinho(produtos, cep) {
     let produto = produtos[i];
 
     let produtoObject = {
-      peso: produto.peso / 1000 * produto.qtd,
+      peso: 0.005,
       altura: 20,
       largura: 15,
       comprimento: 4,
@@ -56,7 +56,7 @@ export async function calcularFreteCarrinho(produtos, cep) {
     }
 
     preco += produto.preco;
-    peso += produto.peso / 1000;
+    peso += produto.peso / 10000000;
 
     arrayProdutos.push(produtoObject);
   }
