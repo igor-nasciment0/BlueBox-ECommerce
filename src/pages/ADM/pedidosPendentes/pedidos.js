@@ -19,7 +19,7 @@ async function avancarEstado(pedido) {
     }
 }
 
-export function PedidoAguardando({ pedido }) {
+export function PedidoAguardando({ pedido, setId }) {
 
     const [produtos, setProdutos] = useState([]);
 
@@ -57,13 +57,13 @@ export function PedidoAguardando({ pedido }) {
                 <h6>Método</h6>
                 <p>{pedido.tipoPagamento}</p>
             </div>
-            <img src="/assets/images/icons/adm/BotãoOlhar.svg" alt='Ver detalhes' />
+            <img src="/assets/images/icons/adm/BotãoOlhar.svg" onClick={() => setId(pedido.id)} alt='Ver detalhes' />
             <button onClick={() => avancarEstado(pedido)}>Aprovar</button>
         </div>
     )
 }
 
-export function PedidoPreparo({ pedido }) {
+export function PedidoPreparo({ pedido, setId }) {
     const [produtos, setProdutos] = useState([]);
 
     async function buscarProdutos() {
@@ -96,13 +96,13 @@ export function PedidoPreparo({ pedido }) {
                 <h6>Aprovação do Pgt.</h6>
                 <p>{formatarData(pedido.dataAprovacao)}</p>
             </div>
-            <img src="/assets/images/icons/adm/BotãoOlhar.svg" alt='Ver detalhes' />
+            <img src="/assets/images/icons/adm/BotãoOlhar.svg" onClick={() => setId(pedido.id)} alt='Ver detalhes' />
             <button onClick={() => avancarEstado(pedido)}>Pronto</button>
         </div>
     )
 }
 
-export function PedidoCaminho({ pedido }) {
+export function PedidoCaminho({ pedido, setId }) {
     const [produtos, setProdutos] = useState([]);
 
     async function buscarProdutos() {
@@ -135,7 +135,7 @@ export function PedidoCaminho({ pedido }) {
                 <h6>Saiu Para Entrega</h6>
                 <p>{formatarData(pedido.dataSaida)}</p>
             </div>
-            <img src="/assets/images/icons/adm/BotãoOlhar.svg" alt='Ver detalhes' />
+            <img src="/assets/images/icons/adm/BotãoOlhar.svg" onClick={() => setId(pedido.id)} alt='Ver detalhes' />
             <button onClick={() => avancarEstado(pedido)}>Concluir <br /> pedido</button>
         </div>
     )

@@ -3,10 +3,12 @@ import BarraLateral from '../../../components/ADM/barraLateral';
 import CabecalhoADM from '../../../components/ADM/cabecalho';
 import './index.scss';
 import { TemaContext } from '../../../theme';
-import { buscarPedidoPorEstado } from '../../../api/pedidoAPI';
+import { buscarPedidoPorEstado, buscarPedidoPorID } from '../../../api/pedidoAPI';
 import ToastCont from '../../../components/toastContainer';
 import { toast } from 'react-toastify';
 import { PedidoAguardando, PedidoCaminho, PedidoPreparo } from './pedidos';
+import { buscarEndereco } from '../../../api/enderecoAPI';
+import { formatarData, valorEmReais } from '../../../api/funcoesGerais';
 
 export default function PedidoPendente() {
 
@@ -16,6 +18,30 @@ export default function PedidoPendente() {
     const [aprovacao, setAprovacao] = useState([]);
     const [preparo, setPreparo] = useState([]);
     const [emEntrega, setEmEntrega] = useState([]);
+
+    const [detalhes, setDetalhes] = useState(false);
+
+    const [idPedidoInfo, setIdPedidoInfo] = useState();
+    const [endereco, setEndereco] = useState({});
+    const [infoPedido, setInfoPedido] = useState({});
+    const [listaProdutos, setListaProdutos] = useState([]);
+
+    async function buscarInfo() {
+        try {
+          let info = await buscarPedidoPorID(idPedidoInfo)
+          setInfoPedido(info); 
+
+          let endrc = await buscarEndereco(info.id_endereco);
+          setEndereco(endrc);
+
+          console.log(info);
+
+          setListaProdutos(info.produtos);
+    
+        } catch (error) {
+          console.log(error);
+        }
+      }
 
     async function buscarPedidos() {
         try {
@@ -41,9 +67,18 @@ export default function PedidoPendente() {
         }
     }
 
+    function mostrarDetalhes(idPedido) {
+        setDetalhes(true);
+        setIdPedidoInfo(idPedido);
+    }
+
     useEffect(() => {
         buscarPedidos();
     }, []);
+
+    useEffect(() => {
+        buscarInfo();
+    }, [idPedidoInfo])
 
     return (
         <div className={'pagina-pedido-pendente ' + tema}>
@@ -53,33 +88,38 @@ export default function PedidoPendente() {
                 <BarraLateral />
                 <ToastCont />
 
-                <div className='produtoDesc'>
+                <div className='produtoDesc' style={{display: detalhes ? 'flex' : 'none'}}>
+                    <h4 className='sair' onClick={() => setDetalhes(false)}>Sair</h4>
+                    
                     <div className='produto'>
                         <h2>Produto</h2>
 
-                        <div>
+                        {listaProdutos.map(produto => 
+                         <div>
                             <div className='alinhamentoNome'>
                                 <h6>Nome</h6>
                                 <div  className='nome'>
-                                    <p>God of War: Saga (3 Jogos) (Seminovo) - PS3</p>
+                                    <p>{produto.nomeProduto}</p>
                                 </div>
                             </div>
 
                             <div>
                                 <h6>Qtd.</h6>
                                 <div>
-                                    <p>1</p>
+                                    <p>{produto.quantidade}</p>
                                 </div>
                             </div>
 
                             <div>
                                 <h6>Valor Unitário</h6>
                                 <div>
-                                    <p>R$50,00</p>
+                                    <p>{valorEmReais(produto.precoProduto)}</p>
                                 </div>
                             </div>
 
-                        </div>
+                        </div>    
+                        )}
+                       
 
                     </div>
                     
@@ -91,28 +131,28 @@ export default function PedidoPendente() {
                             <div>
                                 <h6>Data de Compra</h6>
                                 <div>
-                                    <p>29/07/2023</p>
+                                    <p>{formatarData(infoPedido.dataCompra)}</p>
                                 </div>
                             </div>
 
                             <div>
                                 <h6>Aprovação do Pgt.</h6>
                                 <div>
-                                    <p>29/07/2023</p>
+                                    <p>{formatarData(infoPedido.dataAprovacao)}</p>
                                 </div>
                             </div>
 
                             <div>
                                 <h6>Saiu para Entrega</h6>
                                 <div>
-                                    <p>29/07/2023</p>
+                                    <p>{formatarData(infoPedido.dataSaida)}</p>
                                 </div>
                             </div>
 
                             <div>
                                 <h6>Entregue</h6>
                                 <div>
-                                    <p>29/07/2023</p>
+                                    <p>{formatarData(infoPedido.dataEntrega)}</p>
                                 </div>
                             </div>
 
@@ -134,21 +174,21 @@ export default function PedidoPendente() {
                                 <div>
                                     <h6>Nome da Rua</h6>
                                     <div>
-                                        <p>Rua Um</p>
+                                        <p>{endereco.logradouro}</p>
                                     </div>
                                 </div>
 
                                 <div>
                                     <h6>Cidade</h6>
                                     <div>
-                                    <p>São Paulo</p>
+                                    <p>{endereco.cidade}</p>
                                     </div>
                                 </div>
 
                                 <div>
                                     <h6>Estado</h6>
                                     <div>
-                                    <p>São Paulo</p>
+                                    <p>{endereco.estado}</p>
                                     </div>
                                 </div>
 
@@ -159,44 +199,37 @@ export default function PedidoPendente() {
                                 <div>
                                     <h6>CEP</h6>
                                     <div>
-                                    <p>04811-110</p>
-                                    </div>
-                                </div>
-
-                                <div>
-                                    <h6>Complemento</h6>
-                                    <div>
-                                    <p>Casa</p>
+                                    <p>{endereco.cep}</p>
                                     </div>
                                 </div>
 
                                 <div>
                                     <h6>N° da Casa</h6>
                                     <div>
-                                    <p>N°1000</p>   
+                                    <p>{endereco.numero}</p>   
                                     </div>
                                 </div>
 
                             </div>
 
                             <div className='infoLong'>
-                                <h6>Nome de Usuário</h6>
+                                <h6>Nome</h6>
                                 <div>
-                                    <p>Carlos Henrique</p>
+                                    <p>{infoPedido.nomeCliente + ' ' + infoPedido.sobrenomeCliente}</p>
                                 </div>
                             </div>
 
                             <div className='infoLong'>
                                 <h6>Número de Telefone</h6>
                                 <div>
-                                    <p>99999-9999</p>
+                                    <p>{infoPedido.telefone}</p>
                                 </div>
                             </div>
 
                             <div className='infoLong'>
                                 <h6>N° do Pedido</h6>
                                 <div>
-                                    <p>123.456.789.987.654.321.0</p>
+                                    <p>{infoPedido.id}</p>
                                 </div>
                             </div>
 
@@ -213,35 +246,14 @@ export default function PedidoPendente() {
                             <div className='infoLong'>
                                 <h6>Método</h6>
                                 <div>
-                                    <p>Cartão de Crédito</p>
-                                </div>
-                            </div>
-
-                            <div className='infoLong'>
-                                <h6>Número do Cartão</h6>
-                                <div>
-                                    <p>xxxx-xxxx-xxxx-9876</p>
-                                </div>
-                            </div>
-
-                            <div className='infoLong'>
-                                <h6>Cupom</h6>
-                                <div>
-                                    <p>ACHEINAGAVETA123</p>
-                                </div>
-                            </div>
-
-                            <div className='infoLong'>
-                                <h6>Nome da Conta</h6>
-                                <div>
-                                    <p>CARLOS H. DA SILVA PINTO</p>
+                                    <p>{infoPedido.tipoPagamento}</p>
                                 </div>
                             </div>
 
                             <div className='infoLong'>
                                 <h6>Data de pagamento</h6>
                                 <div>
-                                    <p>01/01/2023</p>
+                                    <p>{formatarData(infoPedido.dataCompra)}</p>
                                 </div>
                             </div>
 
@@ -257,21 +269,21 @@ export default function PedidoPendente() {
                     <p>Aguardando Aprovação</p>
                     <div className='aprovacao'>
                         {aprovacao.map(pedido =>
-                            <PedidoAguardando pedido={pedido}/>
+                            <PedidoAguardando pedido={pedido} setId={mostrarDetalhes}/>
                         )}
                     </div>
 
                     <p>Em Preparo</p>
                     <div className='preparo'>
                         {preparo.map(pedido =>
-                            <PedidoPreparo pedido={pedido}/>
+                            <PedidoPreparo pedido={pedido} setId={mostrarDetalhes}/>
                         )}
                     </div>
 
                     <p>A Caminho</p>
                     <div className='caminho'>
                         {emEntrega.map(pedido =>
-                            <PedidoCaminho pedido={pedido}/>
+                            <PedidoCaminho pedido={pedido} setId={mostrarDetalhes}/>
                         )}
                     </div>
                 </div>

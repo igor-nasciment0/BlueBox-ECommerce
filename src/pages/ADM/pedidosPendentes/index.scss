@@ -31,6 +31,16 @@
             background-color: #d9d9d9;
             padding: 20px;
             z-index: 1000px;
+            overflow-y: scroll;
+            max-height: 700px;
+            border-radius: 10px;
+
+            .sair {
+                align-self: flex-start;
+                margin-bottom: 16px;
+                color: var(--azul-claro);
+                cursor: pointer;
+            }
 
             .produto {
                 display: flex;
@@ -271,6 +281,18 @@
                     }
                 }
             }
+        }
+
+        .produtoDesc::-webkit-scrollbar {
+            width: 10px;
+        }
+        
+        .produtoDesc::-webkit-scrollbar-thumb {
+            background: #030C1E;
+        }
+        
+        .produtoDesc::-webkit-scrollbar-track {
+            background: #15203988;
         }
 
         .pedidos {

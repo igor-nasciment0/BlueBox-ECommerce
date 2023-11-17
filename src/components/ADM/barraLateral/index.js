@@ -32,7 +32,7 @@ export default function BarraLateral() {
 
                 <hr/>
 
-                <h2>Bem Vindo, Carlos.</h2>
+                <h2>Bem Vindo, Administrador.</h2>
 
                 <nav>
                     <Link to={'/adm/'}>
