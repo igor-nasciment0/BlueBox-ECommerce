@@ -27,6 +27,8 @@ export default function Telacartao() {
   const location = useLocation();
   const navigate = useNavigate();
 
+  const valorTotal = location.state.valor + location.state.valorFrete;
+
   if(!location.state.produtos) {
     navigate('/');
   }
@@ -55,12 +57,10 @@ export default function Telacartao() {
         };
       }
 
-      const totalCompra = escolhaCartao === 'PIX' ? location.state.valor * 0.85 : location.state.valor;
-
       let r = await cadastrarPedido(
         usuario,
         location.state.idEndereco,
-        totalCompra,
+        location.state.valor,
         location.state.valorFrete,
         idPagamento,
         produtos
@@ -68,6 +68,8 @@ export default function Telacartao() {
 
       r.comprador = nome;
       r.metodoCompra = escolhaCartao;
+      r.valorTotal = valorTotal; 
+      r.valorPix = location.state.valorPix;
       
       toast.success('Pagamento finalizado com sucesso =)');
       set('carrinho', []);
@@ -166,15 +168,15 @@ export default function Telacartao() {
               </div>
               <div>
                 <p>Frete</p>
-                <p>{location.state.valorFrete}</p>
+                <p>{valorEmReais(location.state.valorFrete)}</p>
               </div>
               <div>
                 <p className="total">Total</p>
-                <p className="total">{valorEmReais(location.state.valor)}</p>
+                <p className="total">{valorEmReais(valorTotal)}</p>
               </div>
               <div>
                 <p className="pix">PIX:</p>
-                <p className="pix">{valorEmReais(location.state.valor * 0.85)}</p>
+                <p className="pix">{valorEmReais(location.state.valorPix)}</p>
               </div>
 
               <p>Até 15% de desconto no pix</p>

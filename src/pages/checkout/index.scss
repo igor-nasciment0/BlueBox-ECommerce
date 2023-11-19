@@ -85,12 +85,6 @@
             .espacamentoValor {
                 padding-right: 41px;
             }
-
-            .PIX {
-                font-size: 14px;
-                font-weight: 600;
-                color: var(--verde-claro);
-            }
         }
 
         .frete {
@@ -123,6 +117,12 @@
 
             .espacamentoValor {
                 padding-right: 41px;
+            }
+
+            .PIX {
+                font-size: 14px;
+                font-weight: 500;
+                color: var(--verde-claro);
             }
         }
     }

@@ -18,6 +18,7 @@ export default function TeladePagamento() {
   const [precoProdutos, setPrecoProdutos] = useState(0);
 
   const [usandoCupom, setUsandoCupom] = useState(false);
+  const [cupomUsado, setCupomUsado] = useState(false);
   const [cupom, setCupom] = useState("");
 
   const navigate = useNavigate();
@@ -58,8 +59,9 @@ export default function TeladePagamento() {
     for (let i = 0; i < produtosCarrinho.length; i++) {
       let produto = produtosCarrinho[i];
       preco += produto.precoReal * produto.qtd;
-      console.log(preco);
     }
+
+    console.log(preco);
 
     setPrecoProdutos(preco);
     setProdutosCarrinho([...produtosCarrinho]);
@@ -67,16 +69,21 @@ export default function TeladePagamento() {
 
   async function usarCupom() {
     try {
+
+      if(cupomUsado) {
+        throw new Error('Um cupom já foi usado.')
+      }
+
       let cupomServiu = false;
 
       for (let i = 0; i < produtosCarrinho.length; i++) {
         let produto = produtosCarrinho[i];
 
         let resp = await verificarCupom(cupom, produto.id);
-        console.log(resp);
 
         if (resp.cupomServe) {
           cupomServiu = true;
+          setCupomUsado(true);
           produto.precoReal =
             produto.precoReal - produto.precoReal * resp.desconto;
         }
@@ -105,6 +112,8 @@ export default function TeladePagamento() {
   const pagarCredito = () => {
     const precoTotal = precoProdutos + location.state.frete;
     let descontoPix = precoTotal - (precoTotal * 15) / 100;
+
+    console.log(precoProdutos);
 
     let info = { 
       valor: precoProdutos, 
