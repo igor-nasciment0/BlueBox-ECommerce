@@ -45,7 +45,7 @@ export default function TeladePagamento() {
       produto.precoReal = produto.promocao
         ? produto.valorPromocional
         : produto.preco;
-      preco += produto.precoReal;
+      preco += produto.precoReal * produto.qtd;
     }
 
     setPrecoProdutos(preco);
@@ -55,11 +55,9 @@ export default function TeladePagamento() {
   function atualizarCarrinho() {
     let preco = 0;
 
-    console.log(produtosCarrinho);
-
     for (let i = 0; i < produtosCarrinho.length; i++) {
       let produto = produtosCarrinho[i];
-      preco += produto.precoReal;
+      preco += produto.precoReal * produto.qtd;
       console.log(preco);
     }
 
@@ -141,7 +139,7 @@ export default function TeladePagamento() {
 
                     <div>
                       <p>Subtotal</p>
-                      <p>{valorEmReais(carrinho.precoReal)}</p>
+                      <p>{valorEmReais(carrinho.precoReal * carrinho.qtd)}</p>
                     </div>
                   </div>
                 ))}
@@ -159,7 +157,7 @@ export default function TeladePagamento() {
                 <h1>Resumo</h1>
                 <div className="linha"></div>
                 <div>
-                  <p>Subtotal</p>
+                  <p>Produtos</p>
                   <p>{valorEmReais(precoProdutos)}</p>
                 </div>
                 <div>

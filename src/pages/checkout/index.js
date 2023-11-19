@@ -69,10 +69,10 @@ export default function Checkout() {
               <p>Produtos</p>
             </div>
             <div>
-              <p>Quantidades</p>
+              <p>Qtd.</p>
             </div>
             <div>
-              <p>Preço</p>
+              <p>Subtotal</p>
             </div>
           </div>
           {listaProdutos.map(produto =>
@@ -84,13 +84,18 @@ export default function Checkout() {
                 <p>{produto.qtd}</p>
               </div>
               <div className="valor">
-                <p>{valorEmReais(produto.precoReal)}</p>
+                <p>{valorEmReais(produto.precoReal * produto.qtd)}</p>
               </div>
             </div>
           )}
           <div className="subtotal">
+            {infoPedido.metodoCompra === 'PIX' &&
+              <div>
+                <p className="PIX">Como você pagou com PIX, seus produtos receberam 15% de desconto! ( ☞˙ᵕ˙)☞ </p>
+              </div>
+            }            
             <div>
-              <p>Subtotal:</p>
+              <p>Produtos:</p>
             </div>
             <div>
               <p className="espacamentoValor">{valorEmReais(infoPedido.valorProdutos)}</p>
@@ -98,7 +103,7 @@ export default function Checkout() {
           </div>
           <div className="frete">
             <div>
-              <p>Frete</p>
+              <p>Frete:</p>
             </div>
             <div>
               <p className="espacamentoValor">{valorEmReais(infoPedido.valorFrete)}</p>

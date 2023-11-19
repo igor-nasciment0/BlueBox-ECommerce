@@ -161,7 +161,7 @@ export default function Telacartao() {
               <h1>RESUMO</h1>
               <div className="linha"></div>
               <div>
-                <p>Subtotal</p>
+                <p>Produtos</p>
                 <p>{valorEmReais(location.state.valor)}</p>
               </div>
               <div>

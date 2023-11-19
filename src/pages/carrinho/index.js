@@ -51,6 +51,9 @@ export default function Carrinho() {
       let produto = carrinho[i];
       let img = await buscarImagemPrimaria(produto.id);
       produto.img = img.url;
+      if(!produto.qtd) {
+        produto.qtd = 1;
+      } 
     }
 
     setProdutosCarrinho(carrinho);

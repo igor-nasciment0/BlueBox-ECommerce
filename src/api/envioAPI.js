@@ -46,25 +46,29 @@ export async function calcularFreteCarrinho(produtos, cep) {
   for(let i = 0; i < produtos.length; i++) {
     let produto = produtos[i];
 
+    let quantidade = produto.qtd <= 5 ? produto.qtd : 5;
+
     let produtoObject = {
       peso: 0.005,
-      altura: 20,
-      largura: 15,
-      comprimento: 4,
+      altura: 2,
+      largura: 2,
+      comprimento: 2,
       valor: produto.preco,
-      quantidade: produto.qtd
+      quantidade: 1
     }
 
-    preco += produto.preco;
+    preco += (produto.promocao ? produto.valorPromocional : produto.preco) * quantidade;
     peso += produto.peso / 10000000;
 
-    arrayProdutos.push(produtoObject);
+    if(produto.qtd > 0) {
+      arrayProdutos.push(produtoObject);
+    }
   }
 
   let dados = {
       "cepOrigem": "04852-506",
       "cepDestino": cep,
-      "vlrMerc": preco,
+      "vlrMerc": preco < 9900 ? preco : 9900,
       "pesoMerc": peso,
       "produtos": arrayProdutos,
       "servicos": ["E", "X"],

@@ -76,13 +76,20 @@
             justify-content: flex-end;
             border: 1px solid rgba(var(--cor-textos), 0.5);
             background-color: rgba(var(--cor-textos), 0.1);
-            
+            font-weight: 600;
+
             > div {
                 padding: 10px 12px;
             }
 
             .espacamentoValor {
                 padding-right: 41px;
+            }
+
+            .PIX {
+                font-size: 14px;
+                font-weight: 600;
+                color: var(--verde-claro);
             }
         }
 
@@ -92,6 +99,7 @@
             justify-content: flex-end;
             border: 1px solid rgba(var(--cor-textos), 0.5);
             background-color: rgba(var(--cor-textos), 0.1);
+            font-weight: 600;
             
             > div {
                 padding: 10px 12px;
@@ -107,6 +115,7 @@
             flex-direction: row;
             justify-content: flex-end;
             border: 1px solid rgba(var(--cor-textos), 0.5);
+            font-weight: 700;
 
             > div {
                 padding: 30px 12px;

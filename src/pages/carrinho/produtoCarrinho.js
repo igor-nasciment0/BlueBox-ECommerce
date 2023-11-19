@@ -3,26 +3,33 @@ import { valorEmReais } from "../../api/funcoesGerais";
 import { mostrarUrlImagem } from "../../api/produtoAPI";
 import { Link, useNavigate } from "react-router-dom";
 import { get, set } from "local-storage";
+import { toast } from "react-toastify";
 
 export default function ProdutoCarrinho({ produto, resetar, index }) {
 
     const navigate = useNavigate();
 
-    const [qtd, setQtd] = useState(1);
-    const [precoReal, setPrecoReal] = useState(produto.qtd);
+    const [qtd, setQtd] = useState(produto.qtd);
+    const [precoReal, setPrecoReal] = useState(0);
 
     function adicionarQtd() {
-        setQtd(qtd + 1);
+        if(qtd + 1 <= produto.estoque) {
+            setQtd(qtd + 1);
 
-        produto.qtd = produto.qtd + 1;
-        resetar();
+            produto.qtd = produto.qtd + 1;
+            resetar();    
+        } else {
+            toast.info(`Só existem ${produto.estoque} desse produto no estoque.`)
+        }
     }
 
     function subtrairQtd() {
-        setQtd(qtd - 1);
+        if(qtd > 0) {
+            setQtd(qtd - 1);
 
-        produto.qtd = produto.qtd - 1;
-        resetar();
+            produto.qtd = produto.qtd - 1;
+            resetar();    
+        } 
     }
 
     function excluirProduto() {
