@@ -219,6 +219,12 @@
         }
     }
 
+    @media (max-width: 2560px) {
+        .perfil {
+            max-width: 1200px!important;
+        }
+    }
+
     @media (max-width: 768px) {
         .perfil {
             flex-direction: column!important;
