@@ -98,6 +98,18 @@ export async function outrosProdutos(idProduto, produtos) {
     return outrosProdutos;
 }
 
+export function produtoExisteNoPedido(produtosPedido, idProduto) {
+    let existe = false;
+
+    for(let i = 0; i < produtosPedido.length; i++) {
+        if(produtosPedido.idProduto === idProduto) {
+            existe = true;
+        }
+    }
+
+    return existe;
+}
+
 export function calcularPrecoProdutos(produtos) {
     let preco = 0;
     

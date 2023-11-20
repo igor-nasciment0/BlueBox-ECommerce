@@ -3,6 +3,7 @@ import CabecalhoLogo from "../../components/cabecalhoLogo";
 import './index.scss';
 import { TemaContext } from "../../theme";
 import { Link } from "react-router-dom";
+import ToastCont from "../../components/toastContainer";
 
 export default function NotFound() {
     const context = useContext(TemaContext);
@@ -11,6 +12,7 @@ export default function NotFound() {
     return (
         <div className={"pagina-not-found " + tema}>
             <CabecalhoLogo />
+            <ToastCont />
             
             <div className="gradient">
                 <h2>Onde estamos?</h2>

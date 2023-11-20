@@ -7,7 +7,7 @@ import Rodape from '../../components/rodape';
 
 import BarraProgresso from './barraProgresso';
 import { toast } from 'react-toastify';
-import { buscarPedidoPorID, buscarProdutosPedido, calcularPrecoProdutos, outrosProdutos, produtoAtual } from '../../api/pedidoAPI';
+import { buscarPedidoPorID, buscarProdutosPedido, calcularPrecoProdutos, outrosProdutos, produtoAtual, produtoExisteNoPedido } from '../../api/pedidoAPI';
 import { formatarData, limitarString, valorEmReais } from '../../api/funcoesGerais';
 import { mostrarUrlImagem } from '../../api/produtoAPI';
 import { get } from 'local-storage';
@@ -38,23 +38,32 @@ export default function StatusEntrega() {
         try {
             let informacaoPedido = await buscarPedidoPorID(idPedido);
             let todosProdutos = await buscarProdutosPedido(idPedido);
+
+            if(!produtoExisteNoPedido(todosProdutos, idProduto)) {
+                throw new Error('URL inválido.')
+            }
+
             let produtoAt = await produtoAtual(idProduto, todosProdutos);
             let outProdutos = await outrosProdutos(idProduto, todosProdutos);
+
+            console.log(informacaoPedido);
+            
 
             setInfoPedido(informacaoPedido);
             setProdutoPrincipal(produtoAt);
             setProdutosSecundarios(outProdutos);
 
-            setValorTotal(infoPedido.valorFrete + infoPedido.valorProdutos);
+            setValorTotal(informacaoPedido.valorFrete + informacaoPedido.valorProdutos);
 
             console.log(informacaoPedido);
 
         } catch (error) {
             if (error.response) {
-                toast.error(error.response.data);
+                toast.error("URL inválido");
             } else {
                 toast.error(error.message);
             }
+            navigate('/pedido-inválido')
         }
     }
 
@@ -98,7 +107,7 @@ export default function StatusEntrega() {
                                     <div>
                                         <h2>Pedido</h2>
                                         <h3 onClick={() => navigate('/produto/' + produtoPrincipal.idProduto)}>{produtoPrincipal.nomeProduto}</h3>
-                                        <h4>{produtoPrincipal.quantidade} unidades /
+                                        <h4>{`${produtoPrincipal.quantidade} unidades / `}
                                             <span>Valor: {valorEmReais(produtoPrincipal.precoProduto * produtoPrincipal.quantidade)}</span>
                                         </h4>
                                     </div>
@@ -122,7 +131,7 @@ export default function StatusEntrega() {
                             <div className="cont-pagamento">
                                 <div>
                                     <h2>Pagamento</h2>
-                                    <h3>{infoPedido.tipoPagamento} – <span>{valorEmReais(infoPedido.valorFrete + infoPedido.valorProdutos)}</span></h3>
+                                    <h3>{infoPedido.tipoPagamento} – <span>{valorEmReais(infoPedido.tipoPagamento === 'PIX' ? valorTotal * 0.85 : valorTotal)}</span></h3>
 
                                     <h4>
                                         {infoPedido.dataAprovacao ?
@@ -140,7 +149,7 @@ export default function StatusEntrega() {
                             <h2>Detalhes da Compra</h2>
                             <h3>Efetuada em {formatarData(infoPedido.dataCompra)}</h3>
                             {infoPedido.tipoPagamento === 'PIX' &&
-                                <h3 style={{ color: 'var(--verde-claro)' }}>Por você ter usado PIX, seus produtos receberam 15% de desconto.</h3>
+                                <h3 style={{ color: 'var(--verde-claro)' }}>Por você ter usado PIX, sua compra recebeu 15% de desconto.</h3>
                             }
 
                             <div>
