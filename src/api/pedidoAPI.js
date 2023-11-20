@@ -102,7 +102,7 @@ export function produtoExisteNoPedido(produtosPedido, idProduto) {
     let existe = false;
 
     for(let i = 0; i < produtosPedido.length; i++) {
-        if(produtosPedido.idProduto === idProduto) {
+        if(Number(produtosPedido[i].idProduto) === Number(idProduto)) {
             existe = true;
         }
     }

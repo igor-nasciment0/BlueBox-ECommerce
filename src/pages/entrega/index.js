@@ -40,7 +40,7 @@ export default function StatusEntrega() {
             let todosProdutos = await buscarProdutosPedido(idPedido);
 
             if(!produtoExisteNoPedido(todosProdutos, idProduto)) {
-                throw new Error('URL inválido.')
+                throw new Error('a.')
             }
 
             let produtoAt = await produtoAtual(idProduto, todosProdutos);
