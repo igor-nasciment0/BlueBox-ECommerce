@@ -23,8 +23,8 @@ export default function StatusEntrega() {
     const [produtoPrincipal, setProdutoPrincipal] = useState({});
     const [produtosSecundarios, setProdutosSecundarios] = useState({});
     const [infoPedido, setInfoPedido] = useState({});
-
     const [imgPagamento, setImgPagamento] = useState('');
+    const [valorTotal, setValorTotal] = useState(0);
 
     const navigate = useNavigate();
 
@@ -44,6 +44,8 @@ export default function StatusEntrega() {
             setInfoPedido(informacaoPedido);
             setProdutoPrincipal(produtoAt);
             setProdutosSecundarios(outProdutos);
+
+            setValorTotal(infoPedido.valorFrete + infoPedido.valorProdutos);
 
             console.log(informacaoPedido);
 
@@ -165,7 +167,7 @@ export default function StatusEntrega() {
 
                             <div>
                                 <h4>Total</h4>
-                                <p>{valorEmReais(infoPedido.valorFrete + infoPedido.valorProdutos)}</p>
+                                <p>{valorEmReais(infoPedido.tipoPagamento === 'PIX' ? valorTotal * 0.85 : valorTotal)}</p>
                             </div>
                         </div>
                     </section>
