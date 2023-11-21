@@ -24,7 +24,7 @@ export default function Landpage() {
         try {
             let dest = await buscarProdutos('', 'promoData');
 
-            dest = dest.slice(0, 20)
+            dest = dest.slice(0, 8)
 
             setDestaques(dest);
 

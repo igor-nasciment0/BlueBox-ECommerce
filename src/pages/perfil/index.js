@@ -124,7 +124,6 @@ export default function Perfil() {
               <button onClick={(() => document.getElementById('inputImg').click())}>Adicionar Imagem</button>
             </div>
 
-            <Link href="">Trocar Senha</Link>
             <Link to={'/meus-pedidos'}>Meus Pedidos</Link>
             <button onClick={sair}>Sair</button>
           </div>

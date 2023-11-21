@@ -18,6 +18,7 @@ export default function TeladePagamento() {
   const [precoProdutos, setPrecoProdutos] = useState(0);
 
   const [usandoCupom, setUsandoCupom] = useState(false);
+  const [cupomUsado, setCupomUsado] = useState(false);
   const [cupom, setCupom] = useState("");
 
   const navigate = useNavigate();
@@ -45,7 +46,7 @@ export default function TeladePagamento() {
       produto.precoReal = produto.promocao
         ? produto.valorPromocional
         : produto.preco;
-      preco += produto.precoReal;
+      preco += produto.precoReal * produto.qtd;
     }
 
     setPrecoProdutos(preco);
@@ -55,13 +56,12 @@ export default function TeladePagamento() {
   function atualizarCarrinho() {
     let preco = 0;
 
-    console.log(produtosCarrinho);
-
     for (let i = 0; i < produtosCarrinho.length; i++) {
       let produto = produtosCarrinho[i];
-      preco += produto.precoReal;
-      console.log(preco);
+      preco += produto.precoReal * produto.qtd;
     }
+
+    console.log(preco);
 
     setPrecoProdutos(preco);
     setProdutosCarrinho([...produtosCarrinho]);
@@ -69,16 +69,21 @@ export default function TeladePagamento() {
 
   async function usarCupom() {
     try {
+
+      if(cupomUsado) {
+        throw new Error('Um cupom já foi usado.')
+      }
+
       let cupomServiu = false;
 
       for (let i = 0; i < produtosCarrinho.length; i++) {
         let produto = produtosCarrinho[i];
 
         let resp = await verificarCupom(cupom, produto.id);
-        console.log(resp);
 
         if (resp.cupomServe) {
           cupomServiu = true;
+          setCupomUsado(true);
           produto.precoReal =
             produto.precoReal - produto.precoReal * resp.desconto;
         }
@@ -107,6 +112,8 @@ export default function TeladePagamento() {
   const pagarCredito = () => {
     const precoTotal = precoProdutos + location.state.frete;
     let descontoPix = precoTotal - (precoTotal * 15) / 100;
+
+    console.log(precoProdutos);
 
     let info = { 
       valor: precoProdutos, 
@@ -141,7 +148,7 @@ export default function TeladePagamento() {
 
                     <div>
                       <p>Subtotal</p>
-                      <p>{valorEmReais(carrinho.precoReal)}</p>
+                      <p>{valorEmReais(carrinho.precoReal * carrinho.qtd)}</p>
                     </div>
                   </div>
                 ))}
@@ -159,7 +166,7 @@ export default function TeladePagamento() {
                 <h1>Resumo</h1>
                 <div className="linha"></div>
                 <div>
-                  <p>Subtotal</p>
+                  <p>Produtos</p>
                   <p>{valorEmReais(precoProdutos)}</p>
                 </div>
                 <div>

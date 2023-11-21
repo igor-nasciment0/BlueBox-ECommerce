@@ -27,28 +27,29 @@ export default function UserPedidos() {
     }
 
     const [produtosPedidos, setProdutosPedidos] = useState([]);
+    const [carregando, setCarregando] = useState(false);
 
     async function buscarPedidos() {
+        setCarregando(true);
+
         try {
             let pedidos = await buscarPedidoPorCliente(login.id);
 
             let produtos = await buscarProdutosArrayPedidos(pedidos);
 
-            console.log(produtos);
             setProdutosPedidos(produtos);
 
         } catch (error) {
             console.log(error);
             toast.error('Não foi possível carregar os seus pedidos.')
         }
+
+        setCarregando(false);
     }
 
     function colocarNovaData(produto, index) {
         if (produtosPedidos[index - 1]) {
             if (produto) {
-                console.log(formatarMesAno(produto.infoPedido.dataCompra));
-                console.log(formatarMesAno(produtosPedidos[index - 1].infoPedido.dataCompra));
-
                 return formatarMesAno(produto.infoPedido.dataCompra) !== formatarMesAno(produtosPedidos[index - 1].infoPedido.dataCompra)
             }
         } else {
@@ -75,8 +76,14 @@ export default function UserPedidos() {
 
                     <div className='container-pedidos'>
 
-                        {produtosPedidos.length === 0 && 
+                        {(produtosPedidos.length === 0 && !carregando) && 
                         <h4>Você ainda não fez nenhum pedido.</h4>}
+
+                        {carregando && 
+                        <div className='carregando'>
+                            <h4>Carregando pedidos...</h4>
+                            <img src="/assets/images/sonic-running.gif" alt="" />    
+                        </div>}
 
                         {produtosPedidos.map((produto, index) => {
                             if (produto)
