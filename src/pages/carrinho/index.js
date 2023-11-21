@@ -34,6 +34,7 @@ export default function Carrinho() {
   const [bairro, setBairro] = useState('');
   const [logradouro, setLogradouro] = useState('');
   const [numero, setNumero] = useState('');
+  const [idEndereco, setIdEndereco] = useState(0);
 
   const [preenchendoEndereço, setPreenchendoEndereco] = useState(false);
   const [carregando, setCarregando] = useState(false);
@@ -79,6 +80,8 @@ export default function Carrinho() {
 
     let cliente = get('user-login');
 
+    setIdEndereco(cliente.idEndereco);
+
     if(cliente.idEndereco) {
       let endereco = await buscarEndereco(cliente.idEndereco);
       
@@ -99,6 +102,7 @@ export default function Carrinho() {
         await mudarEndereco(cliente.id, novoEndereco.idEndereco);
 
         cliente.idEndereco = novoEndereco.idEndereco;
+        setIdEndereco(novoEndereco.idEndereco);
 
         set('user-login', cliente);
         
@@ -193,9 +197,18 @@ export default function Carrinho() {
     buscarFretes();
   }, [cidade, estado, bairro, logradouro, numero, produtosCarrinho])
 
+  useEffect(() => {
+    atualizarEndereco();
+  }, [frete]);
+
   const toComponentB = () => {
     let cliente = get('user-login'); 
-    navigate("/pagamento", { state: { precoProdutos: totalProdutos, frete: frete, idEndereco: cliente.idEndereco } });
+
+    navigate("/pagamento", { state: { 
+      precoProdutos: totalProdutos, 
+      frete: frete, 
+      idEndereco: idEndereco ? idEndereco : cliente.idEndereco
+    }});
   };
 
   return (
@@ -344,7 +357,6 @@ export default function Carrinho() {
             <button
               disabled={produtosCarrinho.length < 1 || frete === 0}
               onClick={() => {
-                atualizarEndereco()
                 toComponentB();
               }}
               
