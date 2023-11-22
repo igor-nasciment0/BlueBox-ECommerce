@@ -15,7 +15,7 @@ import { toast } from 'react-toastify';
 import InputMask from 'react-input-mask';
 import { buscarCEP, calcularFreteCarrinho, descobrirCep } from "../../api/envioAPI";
 import ToastCont from "../../components/toastContainer";
-import { buscarEndereco, inserirEndereco, mudarEndereco } from "../../api/enderecoAPI";
+  import { buscarEndereco, buscarEnderecoPorID, inserirEndereco, mudarEndereco } from "../../api/enderecoAPI";
 
 export default function Carrinho() {
   const context = useContext(TemaContext);
@@ -39,6 +39,8 @@ export default function Carrinho() {
   const [preenchendoEndereço, setPreenchendoEndereco] = useState(false);
   const [carregando, setCarregando] = useState(false);
   const [entregas, setEntregas] = useState([]);
+
+  const [atualizandoEndereco, setAtualizandoEndereco] = useState(true);
 
   async function buscaCarrinho() {
     let carrinho = get("carrinho");
@@ -79,11 +81,11 @@ export default function Carrinho() {
   }
 
   async function atualizarEndereco() {
+    setAtualizandoEndereco(true);
+
     let atualizar = false;
 
     let cliente = get('user-login');
-
-    setIdEndereco(cliente.idEndereco);
 
     if(cliente.idEndereco) {
       let endereco = await buscarEndereco(cliente.idEndereco);
@@ -100,7 +102,15 @@ export default function Carrinho() {
 
     if(atualizar) {
       try {
-        let novoEndereco = await inserirEndereco(cep, estado, cidade, bairro, logradouro, numero);
+        let c;
+
+        if(!cep) {
+          c = await descobrirCep(cidade, estado, logradouro);
+        } else {
+          c = cep;
+        }
+
+        let novoEndereco = await inserirEndereco(c, estado, cidade, bairro, logradouro, numero);
 
         await mudarEndereco(cliente.id, novoEndereco.idEndereco);
 
@@ -112,7 +122,10 @@ export default function Carrinho() {
       } catch (error) {
         console.log(error);
       }  
+    } else {
+      setIdEndereco(cliente.idEndereco);
     }
+    setAtualizandoEndereco(false);
   }
  
   async function buscarFretes() {
@@ -202,7 +215,7 @@ export default function Carrinho() {
 
   useEffect(() => {
     atualizarEndereco();
-  }, [frete]);
+  }, [frete, numero]);
 
   const toComponentB = () => {
     let cliente = get('user-login'); 
@@ -358,15 +371,11 @@ export default function Carrinho() {
             </div>
 
             <button
-              disabled={produtosCarrinho.length < 1 || frete === 0}
-              onClick={() => {
-                toComponentB();
-              }}
-              
-
-            >
-              {" "}
+              disabled={produtosCarrinho.length < 1 || frete === 0 || !idEndereco || atualizandoEndereco}
+              onClick={toComponentB}>
               Prosseguir
+              {atualizandoEndereco &&
+              <img src="/assets/images/loading.gif" alt="" />}
             </button>
           </section>
         </div>

@@ -97,5 +97,5 @@ export async function descobrirCep(cidade, estado, logradouro) {
 
   console.log(cep.data);
 
-  return cep.data.cep;
+  return cep.data[0].cep;
 }

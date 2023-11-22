@@ -470,6 +470,16 @@
         color: #FFFFFF;
 
         transition: 0.3s;
+
+        display: flex;
+        flex-direction: row;
+        gap: 8px;
+        justify-content: center;
+
+        img {
+            width: 20px;
+            height: 20px;
+        }
     }
 
     .sec-total>button:enabled:hover {
