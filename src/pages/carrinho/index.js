@@ -15,7 +15,7 @@ import { toast } from 'react-toastify';
 import InputMask from 'react-input-mask';
 import { buscarCEP, calcularFreteCarrinho, descobrirCep } from "../../api/envioAPI";
 import ToastCont from "../../components/toastContainer";
-  import { buscarEndereco, buscarEnderecoPorID, inserirEndereco, mudarEndereco } from "../../api/enderecoAPI";
+import { buscarEndereco, buscarEnderecoPorID, inserirEndereco, mudarEndereco } from "../../api/enderecoAPI";
 
 export default function Carrinho() {
   const context = useContext(TemaContext);
@@ -54,9 +54,9 @@ export default function Carrinho() {
       let produto = carrinho[i];
       let img = await buscarImagemPrimaria(produto.id);
       produto.img = img.url;
-      if(!produto.qtd) {
+      if (!produto.qtd) {
         produto.qtd = 1;
-      } 
+      }
     }
 
     setProdutosCarrinho(carrinho);
@@ -65,7 +65,7 @@ export default function Carrinho() {
   async function buscaEndereco() {
     let cliente = get('user-login');
 
-    if(cliente.idEndereco) {
+    if (cliente.idEndereco) {
       let endereco = await buscarEndereco(cliente.idEndereco);
       console.log(endereco);
 
@@ -87,30 +87,22 @@ export default function Carrinho() {
 
     let cliente = get('user-login');
 
-    if(cliente.idEndereco) {
+    if (cliente.idEndereco) {
       let endereco = await buscarEndereco(cliente.idEndereco);
-      
+
       atualizar = cep !== endereco.cep ||
-                  cidade !== endereco.cidade ||
-                  estado !== endereco.estado ||
-                  bairro !== endereco.bairro ||
-                  logradouro !== endereco.logradouro ||
-                  Number(numero) !== Number(endereco.numero);
+        cidade !== endereco.cidade ||
+        estado !== endereco.estado ||
+        bairro !== endereco.bairro ||
+        logradouro !== endereco.logradouro ||
+        Number(numero) !== Number(endereco.numero);
     } else {
       atualizar = true;
     }
 
-    if(atualizar) {
+    if (atualizar) {
       try {
-        let c;
-
-        if(!cep) {
-          c = await descobrirCep(cidade, estado, logradouro);
-        } else {
-          c = cep;
-        }
-
-        let novoEndereco = await inserirEndereco(c, estado, cidade, bairro, logradouro, numero);
+        let novoEndereco = await inserirEndereco(cep, estado, cidade, bairro, logradouro, numero);
 
         await mudarEndereco(cliente.id, novoEndereco.idEndereco);
 
@@ -118,37 +110,44 @@ export default function Carrinho() {
         setIdEndereco(novoEndereco.idEndereco);
 
         set('user-login', cliente);
-        
+
       } catch (error) {
         console.log(error);
-      }  
+      }
     } else {
       setIdEndereco(cliente.idEndereco);
     }
-    setAtualizandoEndereco(false);
+    setTimeout(() => setAtualizandoEndereco(false), 1000)
+    
   }
- 
+
   async function buscarFretes() {
     setCarregando(true);
 
     try {
-      if (cidade && estado && bairro && logradouro && numero && produtosCarrinho.length > 0) {
-
-        let entregasPossiveis;
-
-        if (!cep) {
-          let c = await descobrirCep(cidade, estado, logradouro);
-          entregasPossiveis = await calcularFreteCarrinho(produtosCarrinho, c);
-
-        } else {
-          entregasPossiveis = await calcularFreteCarrinho(produtosCarrinho, cep);
-        }
-
-        setEntregas(entregasPossiveis);
+      if (!cidade || !estado || !bairro || !logradouro || !numero || !produtosCarrinho) {
+        throw new Error('Preencha todos os campos do endereço.')
       }
+
+      let entregasPossiveis;
+
+      if (!cep) {
+        let c = await descobrirCep(cidade, estado, logradouro);
+        entregasPossiveis = await calcularFreteCarrinho(produtosCarrinho, c);
+
+      } else {
+        entregasPossiveis = await calcularFreteCarrinho(produtosCarrinho, cep);
+      }
+
+      setEntregas(entregasPossiveis);
     } catch (error) {
+      if(error.message) {
+        toast.error(error.message)
+      } else {
+        toast.error('Não foi possível buscar os fretes. Tente novamente mais tarde.')
+      }
+
       console.log(error);
-      toast.error('Não foi possível buscar os fretes. Tente novamente mais tarde.')
     }
 
     setCarregando(false);
@@ -182,7 +181,7 @@ export default function Carrinho() {
   useEffect(() => {
     let login = get("user-login");
 
-    if(!login) {
+    if (!login) {
       navigate('/login')
     }
 
@@ -210,21 +209,19 @@ export default function Carrinho() {
   }, [produtosCarrinho])
 
   useEffect(() => {
-    buscarFretes();
-  }, [cidade, estado, bairro, logradouro, numero, produtosCarrinho])
-
-  useEffect(() => {
     atualizarEndereco();
   }, [frete, numero]);
 
   const toComponentB = () => {
-    let cliente = get('user-login'); 
+    let cliente = get('user-login');
 
-    navigate("/pagamento", { state: { 
-      precoProdutos: totalProdutos, 
-      frete: frete, 
-      idEndereco: idEndereco ? idEndereco : cliente.idEndereco
-    }});
+    navigate("/pagamento", {
+      state: {
+        precoProdutos: totalProdutos,
+        frete: frete,
+        idEndereco: idEndereco ? idEndereco : cliente.idEndereco
+      }
+    });
   };
 
   return (
@@ -339,9 +336,11 @@ export default function Carrinho() {
 
                     <div>
                       <h4>Nº</h4>
-                      <input type="text" value={numero} onChange={e => {if(!isNaN(Number(e.target.value))) setNumero(Number(e.target.value))}} />
+                      <input type="text" value={numero} onChange={e => { if (!isNaN(Number(e.target.value))) setNumero(Number(e.target.value)) }} />
                     </div>
                   </section>
+
+                  <button onClick={buscarFretes}>Buscar Entregas</button>
                 </div>
               }
             </div>
@@ -349,25 +348,25 @@ export default function Carrinho() {
             <div className="container-entregas">
               {carregando &&
                 <div className="carregando">
-                  <img src="/assets/images/BeanEater.gif" alt="Carregando..."  />
+                  <img src="/assets/images/BeanEater.gif" alt="Carregando..." />
                 </div>
               }
 
               {!carregando && entregas.map((entrega, index) =>
-                  <div onClick={() => { setFrete(entrega.vlrFrete); setEntEscolhida(index); }}
-                    style={{ boxShadow: index === entEscolhida && "0 0 4px 2px var(--azul-claro)" }}
-                  >
-                    <img
-                      src={entrega.url_logo}
-                      alt="Ícone Transportadora"
-                    />
-                    <div>
-                      <h3>{entrega.transp_nome}</h3>
-                      <p>Receba em até {entrega.prazoEnt} dias úteis</p>
-                      <h4>{valorEmReais(entrega.vlrFrete)}</h4>
-                    </div>
+                <div onClick={() => { setFrete(entrega.vlrFrete); setEntEscolhida(index); }}
+                  style={{ boxShadow: index === entEscolhida && "0 0 4px 2px var(--azul-claro)" }}
+                >
+                  <img
+                    src={entrega.url_logo}
+                    alt="Ícone Transportadora"
+                  />
+                  <div>
+                    <h3>{entrega.transp_nome}</h3>
+                    <p>Receba em até {entrega.prazoEnt} dias úteis</p>
+                    <h4>{valorEmReais(entrega.vlrFrete)}</h4>
                   </div>
-                )}
+                </div>
+              )}
             </div>
 
             <button
@@ -375,7 +374,7 @@ export default function Carrinho() {
               onClick={toComponentB}>
               Prosseguir
               {atualizandoEndereco &&
-              <img src="/assets/images/loading.gif" alt="" />}
+                <img src="/assets/images/loading.gif" alt="" />}
             </button>
           </section>
         </div>
