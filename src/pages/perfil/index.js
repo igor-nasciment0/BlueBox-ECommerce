@@ -168,7 +168,7 @@ export default function Perfil() {
             <h3>Data de Nascimento</h3>
             <div className='data'>
               <div>
-                <p>{nascimento.getDate()}</p>
+                <p>{nascimento.getDate() + 1}</p>
               </div>
 
               <div>
