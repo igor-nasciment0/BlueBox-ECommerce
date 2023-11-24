@@ -7,7 +7,7 @@ export async function buscarProdutos(busca, ordem, filtro) {
 }
 
 export async function buscarProdutosPagina(busca, categoria, ordem, filtro, pagina) {
-    if(!pagina)
+    if (!pagina)
         pagina = 1;
 
     let produtos = await api.get(`/produto/pagina/${pagina}?nome=${busca}&categoria=${categoria}&ordem=${ordem}&filtro=${filtro}`)
@@ -22,8 +22,8 @@ export async function buscarRelacionados(produto) {
 
     let relacionados = [...porCategoria, ...porMarca];
 
-    for(let i = 0; i < relacionados.length; i++) {
-        if(relacionados[i].id === produto.id) {
+    for (let i = 0; i < relacionados.length; i++) {
+        if (relacionados[i].id === produto.id) {
             relacionados.splice(i, 1)
             i--;
         }
@@ -39,6 +39,7 @@ export async function buscarProdutoPorID(id) {
 }
 
 export async function cadastrarProduto(nomeProduto, preco, qtdEstoque, descricao, especificacoes, categoria, marca, usado, peso) {
+    
     let cadastrarProduto = {
         nome: nomeProduto,
         preco: preco,
@@ -51,8 +52,8 @@ export async function cadastrarProduto(nomeProduto, preco, qtdEstoque, descricao
         peso: peso
     }
 
-    let resp = await api.post('/produto', cadastrarProduto) 
-    
+    let resp = await api.post('/produto', cadastrarProduto)
+
     return resp.data;
 }
 
@@ -111,28 +112,28 @@ export async function excluirImagem(id) {
 
 export async function buscarMarcas() {
     let marcas = await api.get('/produto/marca');
-    
+
     return marcas.data;
 }
 
 export async function buscarCategorias() {
     let categorias = await api.get('/produto/categoria');
-    
+
     return categorias.data;
 }
 
-export async function buscarImagemPrimaria(idProduto){
+export async function buscarImagemPrimaria(idProduto) {
     let imagens = await buscarImagens(idProduto);
 
     for (let i = 0; i < imagens.length; i++) {
         let imagem = imagens[i];
 
-        if(imagem.primaria) 
+        if (imagem.primaria)
             return imagem;
     }
 }
 
-export async function buscarImagensSecundarias(idProduto){
+export async function buscarImagensSecundarias(idProduto) {
     let imagens = await buscarImagens(idProduto);
 
     let arraySecundario = [];
@@ -140,7 +141,7 @@ export async function buscarImagensSecundarias(idProduto){
     for (let i = 0; i < imagens.length; i++) {
         let imagem = imagens[i];
 
-        if(!imagem.primaria) 
+        if (!imagem.primaria)
             arraySecundario.push(imagem);
     }
 

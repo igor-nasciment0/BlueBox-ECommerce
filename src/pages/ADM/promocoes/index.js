@@ -4,7 +4,6 @@ import BarraLateral from '../../../components/ADM/barraLateral'
 import { useContext, useEffect, useState } from "react";
 
 import 'react-confirm-alert/src/react-confirm-alert.css';
-import { useNavigate } from "react-router-dom";
 import { buscarProdutos } from "../../../api/produtoAPI";
 import { toast, ToastContainer } from "react-toastify";
 import { TemaContext } from "../../../theme";
@@ -66,10 +65,9 @@ export default function Promocoes()
         }
     }
 
-    useEffect(
-        () => {
+    useEffect(() => {
             buscar();
-        }, [busca, listaProdutos]
+        }, [busca]
     );
 
     return(

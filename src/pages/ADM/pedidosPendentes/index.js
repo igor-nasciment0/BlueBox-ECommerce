@@ -88,7 +88,7 @@ export default function PedidoPendente() {
                 <BarraLateral />
                 <ToastCont />
 
-                <div className='produtoDesc' style={{display: detalhes ? 'flex' : 'none'}}>
+                <div className='produtoDesc light' style={{display: detalhes ? 'flex' : 'none'}}>
                     <h4 className='sair' onClick={() => setDetalhes(false)}>Sair</h4>
                     
                     <div className='produto'>

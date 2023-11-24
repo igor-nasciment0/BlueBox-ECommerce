@@ -120,6 +120,10 @@
                 }
             }
 
+            > a:hover {
+                transform: translateX(5px);
+            }
+
             .icone
             {
                 width: 40px;

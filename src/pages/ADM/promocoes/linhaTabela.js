@@ -1,8 +1,12 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function LinhaTbPromocao({produto, alterarBtPromo, alterarValorPromo, buscar}) {
     
     const [valorPromo, setValorPromo] = useState(produto.valorPromocional);
+
+    useEffect(() => {
+        setValorPromo(produto.valorPromocional);
+    }, [produto])
     
     return (
         <tr className={!produto.promocao && 'unchecked'}>
@@ -19,6 +23,7 @@ export default function LinhaTbPromocao({produto, alterarBtPromo, alterarValorPr
                 <div>
                     {produto.promocao ? 
                         <button onClick={() => {
+                            produto = {...produto};
                             alterarBtPromo(false, produto.id);
                             buscar();
                         }}>
@@ -28,6 +33,7 @@ export default function LinhaTbPromocao({produto, alterarBtPromo, alterarValorPr
                         :
 
                         <button onClick={() => {
+                            produto = {...produto};
                             alterarBtPromo(true, produto.id);
                             buscar();
                         }}>
