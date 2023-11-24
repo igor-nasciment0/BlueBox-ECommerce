@@ -67,7 +67,7 @@ export default function Promocoes()
 
     useEffect(() => {
             buscar();
-        }, [busca]
+        }, [busca, ordem]
     );
 
     return(
